@@ -334,7 +334,7 @@ const StatCalculator = () => {
                           <TextField
                             style={{ width: '75px' }}
                             type='number'
-                            value={statLevels[stat]}
+                            value={statLevels[stat] || 1}
                             variant='outlined'
                             onChange={event => updateStatLevels(stat, event.target.value)}
                             />
