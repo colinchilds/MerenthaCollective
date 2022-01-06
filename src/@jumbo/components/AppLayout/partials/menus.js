@@ -3,7 +3,7 @@ import { InsertChart, PostAdd } from '@material-ui/icons';
 
 export const sidebarNavs = [
   {
-    name: 'Main',
+    name: 'General',
     type: 'section',
     children: [
       {
@@ -11,6 +11,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <PostAdd />,
         link: '/',
+      },
+      {
+        name: 'Coordinates',
+        type: 'item',
+        icon: <PostAdd />,
+        link: '/coords',
       },
     ],
   },

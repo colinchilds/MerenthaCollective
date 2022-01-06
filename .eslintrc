@@ -22,6 +22,7 @@
     "ecmaVersion": 2018,
     "sourceType": "module"
   },
+  "ignorePatterns": ["build/**"],
   "rules": {
     "react/jsx-filename-extension": "off",
     "prettier/prettier": "error",

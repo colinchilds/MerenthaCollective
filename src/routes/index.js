@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import HomePage from './Pages/HomePage';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
+import Coordinates from './General/Coordinates';
 
 const Routes = () => {
   const location = useLocation();
@@ -18,6 +19,7 @@ const Routes = () => {
     <React.Fragment>
       <Switch>
         <Route path="/home" component={HomePage} />
+        <Route path="/coords" component={Coordinates} />
         <Route path="/calculators/stats" component={StatCalculator} />
         <Route component={Error404} />
       </Switch>
