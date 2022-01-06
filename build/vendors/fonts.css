@@ -1,0 +1,59 @@
+@font-face {
+  font-family: 'Normal';
+  src: url('Fonts/Normal-ExtraLight.eot');
+  src: url('Fonts/Normal-ExtraLight.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/Normal-ExtraLight.woff2') format('woff2'),
+    url('Fonts/Normal-ExtraLight.woff') format('woff'),
+    url('Fonts/Normal-ExtraLight.ttf') format('truetype'),
+    url('Fonts/Normal-ExtraLight.svg#Normal-ExtraLight') format('svg');
+  font-weight: 200;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Normal';
+  src: url('Fonts/Normal-Light.eot');
+  src: url('Fonts/Normal-Light.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/Normal-Light.woff2') format('woff2'),
+    url('Fonts/Normal-Light.woff') format('woff'),
+    url('Fonts/Normal-Light.ttf') format('truetype'),
+    url('Fonts/Normal-Light.svg#Normal-Light') format('svg');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Normal';
+  src: url('Fonts/Normal-Regular.eot');
+  src: url('Fonts/Normal-Regular.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/Normal-Regular.woff2') format('woff2'),
+    url('Fonts/Normal-Regular.woff') format('woff'),
+    url('Fonts/Normal-Regular.ttf') format('truetype'),
+    url('Fonts/Normal-Regular.svg#Normal-Regular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Normal';
+  src: url('Fonts/Normal-Bold.eot');
+  src: url('Fonts/Normal-Bold.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/Normal-Bold.woff2') format('woff2'),
+    url('Fonts/Normal-Bold.woff') format('woff'),
+    url('Fonts/Normal-Bold.ttf') format('truetype'),
+    url('Fonts/Normal-Bold.svg#Normal-Bold') format('svg');
+  font-weight: bold;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Normal';
+  src: url('Fonts/Normal-ExtraBold.eot');
+  src: url('Fonts/Normal-ExtraBold.eot?#iefix') format('embedded-opentype'),
+    url('Fonts/Normal-ExtraBold.woff2') format('woff2'),
+    url('Fonts/Normal-ExtraBold.woff') format('woff'),
+    url('Fonts/Normal-ExtraBold.ttf') format('truetype'),
+    url('Fonts/Normal-ExtraBold.svg#Normal-ExtraBold') format('svg');
+  font-weight: 800;
+  font-style: normal;
+}
