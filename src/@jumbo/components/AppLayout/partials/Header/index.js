@@ -77,7 +77,7 @@ const Header = () => {
     <Toolbar className={classes.root}>
       <SidebarToggleHandler edge="start" color="inherit" aria-label="menu" />
       {/* <Logo ml={2} color="white" /> */}
-      <Typography variant="h1" color="white" component="p">
+      <Typography variant="h1" component="p">
         Merentha Collective
       </Typography>
       <Box flex={1} />
