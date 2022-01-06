@@ -1,6 +1,5 @@
 import React from 'react';
 import { InsertChart, PostAdd } from '@material-ui/icons';
-import IntlMessages from '../../../utils/IntlMessages';
 
 export const sidebarNavs = [
   {

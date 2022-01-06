@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
 import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
-import rtl from 'jss-rtl';
 
 function FramedWindow(props) {
   const { children, document } = props;
@@ -16,7 +15,7 @@ function FramedWindow(props) {
   const { jss, sheetsManager } = React.useMemo(() => {
     return {
       jss: create({
-        plugins: [...jssPreset().plugins, rtl()],
+        plugins: [...jssPreset().plugins],
         insertionPoint: document.head,
       }),
       sheetsManager: new Map(),

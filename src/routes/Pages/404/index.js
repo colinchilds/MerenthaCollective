@@ -1,5 +1,4 @@
 import React from 'react';
-import IntlMessages from '../../../@jumbo/utils/IntlMessages';
 import Box from '@material-ui/core/Box';
 import { Button, IconButton, InputBase } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
@@ -63,7 +62,7 @@ const Error404 = () => {
         404
       </Box>
       <Box fontSize={{ xs: 16, sm: 24 }} mb={8} color="grey.500">
-        <IntlMessages id="extraPages.404Msg" />
+        Oops, an error has occurred. Page not found!
       </Box>
       <Box className={classes.searchRoot}>
         <InputBase placeholder={'Search...'} inputProps={{ 'aria-label': 'search' }} />
@@ -73,7 +72,7 @@ const Error404 = () => {
       </Box>
       <Box mt={8}>
         <Button variant="contained" color="primary">
-          <IntlMessages id="extraPages.goHome" />
+          Go to home
         </Button>
       </Box>
     </Box>
