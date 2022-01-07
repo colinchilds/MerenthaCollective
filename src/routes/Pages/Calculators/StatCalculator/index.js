@@ -194,9 +194,11 @@ function getClassModifier(charClass, stat) {
   return result;
 }
 
-function getRaceModifier(race, stat) {
+function getRaceModifier(race, charClass, stat) {
   let rank = RACE[5];
-  if (!raceStats[stat]) {
+  if (charClass === 'Dragon') {
+    return RACE[1];
+  } else if (!raceStats[stat]) {
     rank = 3;
   } else {
     Object.keys(raceStats[stat]).forEach(tier => {
@@ -260,7 +262,7 @@ function getStatCost(stat, charClass, race, statLevel = 1, count = 1) {
 
   let cost = 0;
   const classModifier = getClassModifier(charClass, stat);
-  const raceModifier = getRaceModifier(race, stat);
+  const raceModifier = getRaceModifier(race, charClass, stat);
   cost = Math.trunc(getBaseCost(statLevel) * (1.0 + classModifier + raceModifier)) * 1000;
 
   /* // @TODO need a Were-wolf toggle
@@ -333,7 +335,7 @@ const StatCalculator = () => {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                      <FormControl style={{ width: '100%' }}>
+                      <FormControl style={{ width: '100%' }} disabled={charClass === 'Dragon'}>
                         <InputLabel>Race</InputLabel>
                         <Select label="Race" value={race} onChange={event => setRace(event.target.value)}>
                           {races.map(item => (
