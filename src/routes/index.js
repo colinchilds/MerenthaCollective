@@ -4,6 +4,7 @@ import HomePage from './Pages/HomePage';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
 import Coordinates from './General/Coordinates';
+import Party from './General/Party';
 
 const Routes = () => {
   const location = useLocation();
@@ -17,6 +18,7 @@ const Routes = () => {
       <Switch>
         <Route exact path="/" component={HomePage} />
         <Route path="/coords" component={Coordinates} />
+        <Route path="/party" component={Party} />
         <Route path="/calculators/stats" component={StatCalculator} />
         <Route component={Error404} />
       </Switch>

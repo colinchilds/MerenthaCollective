@@ -18,6 +18,12 @@ export const sidebarNavs = [
         icon: <PostAdd />,
         link: '/coords',
       },
+      {
+        name: 'Party',
+        type: 'item',
+        icon: <PostAdd />,
+        link: '/party',
+      },
     ],
   },
   {
