@@ -89,7 +89,6 @@ const NavMenuItem = props => {
         {renderIcon()}
         <span className={clsx(classes.navText, 'Cmt-nav-text')}>{name}</span>
       </NavHashLink>
-      {/* <Link to={link}>{name}</Link> */}
     </List>
   );
 };
