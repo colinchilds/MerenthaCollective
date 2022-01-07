@@ -10,7 +10,7 @@ export const sidebarNavs = [
         name: 'Home',
         type: 'item',
         icon: <PostAdd />,
-        link: '/home',
+        link: '/',
       },
       {
         name: 'Coordinates',

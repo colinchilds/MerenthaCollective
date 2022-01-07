@@ -1,6 +1,6 @@
 import React, { cloneElement, isValidElement, useContext } from 'react';
 
-import { NavLink } from 'react-router-dom';
+import { NavHashLink } from 'react-router-hash-link';
 import clsx from 'clsx';
 
 import { List } from '@material-ui/core';
@@ -84,11 +84,12 @@ const NavMenuItem = props => {
 
   return (
     <List component="div" className={clsx(classes.navMenuItem, 'Cmt-nav-menu-item')}>
-      <NavLink className={clsx(classes.navMenuLink, 'Cmt-nav-menu-link')} to={link}>
+      <NavHashLink className={clsx(classes.navMenuLink, 'Cmt-nav-menu-link')} to={link}>
         {/* Display an icon if any */}
         {renderIcon()}
         <span className={clsx(classes.navText, 'Cmt-nav-text')}>{name}</span>
-      </NavLink>
+      </NavHashLink>
+      {/* <Link to={link}>{name}</Link> */}
     </List>
   );
 };
