@@ -6,6 +6,7 @@ import {
   Box,
   FormControl,
   InputLabel,
+  ListSubheader,
   MenuItem,
   Select,
   Table,
@@ -194,9 +195,9 @@ function getClassModifier(charClass, stat) {
   return result;
 }
 
-function getRaceModifier(race, charClass, stat) {
+function getRaceModifier(race, stat) {
   let rank = RACE[5];
-  if (charClass === 'Dragon') {
+  if (race === 'Dragon') {
     return RACE[1];
   } else if (!raceStats[stat]) {
     rank = 3;
@@ -262,7 +263,7 @@ function getStatCost(stat, charClass, race, statLevel = 1, count = 1) {
 
   let cost = 0;
   const classModifier = getClassModifier(charClass, stat);
-  const raceModifier = getRaceModifier(race, charClass, stat);
+  const raceModifier = getRaceModifier(race, stat);
   cost = Math.trunc(getBaseCost(statLevel) * (1.0 + classModifier + raceModifier)) * 1000;
 
   /* // @TODO need a Were-wolf toggle
@@ -292,6 +293,24 @@ const StatCalculator = () => {
   const [maxExp, setMaxExp] = useState(0);
   const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {});
   const [statInc, setStatInc] = useState({});
+
+  const updateCharClass = c => {
+    if (c === 'Dragon') {
+      setRace(c);
+    } else if (race === 'Dragon') {
+      setRace(races[0]);
+    }
+    setCharClass(c);
+  };
+
+  const updateRace = r => {
+    if (r === 'Dragon') {
+      setCharClass(r);
+    } else if (charClass === 'Dragon') {
+      setCharClass(classes[0]);
+    }
+    setRace(r);
+  };
 
   const updateStatLevels = (k, v) => {
     setStatLevels(statLevels => ({
@@ -325,7 +344,7 @@ const StatCalculator = () => {
                     <Grid item xs={12} sm={4}>
                       <FormControl style={{ width: '100%' }}>
                         <InputLabel>Class</InputLabel>
-                        <Select label="Class" value={charClass} onChange={event => setCharClass(event.target.value)}>
+                        <Select label="Class" value={charClass} onChange={event => updateCharClass(event.target.value)}>
                           {classes.map(item => (
                             <MenuItem key={item} value={item}>
                               {item}
@@ -335,14 +354,24 @@ const StatCalculator = () => {
                       </FormControl>
                     </Grid>
                     <Grid item xs={12} sm={4}>
-                      <FormControl style={{ width: '100%' }} disabled={charClass === 'Dragon'}>
+                      <FormControl style={{ width: '100%' }}>
                         <InputLabel>Race</InputLabel>
-                        <Select label="Race" value={race} onChange={event => setRace(event.target.value)}>
-                          {races.map(item => (
-                            <MenuItem key={item} value={item}>
-                              {item}
-                            </MenuItem>
-                          ))}
+                        <Select label="Race" value={race} onChange={event => updateRace(event.target.value)}>
+                          <ListSubheader>Regular</ListSubheader>
+                          {races.map(item => {
+                            return item === 'Dragon' ? (
+                              [
+                                <ListSubheader>Special</ListSubheader>,
+                                <MenuItem key={item} value={item}>
+                                  {item}
+                                </MenuItem>,
+                              ]
+                            ) : (
+                              <MenuItem key={item} value={item}>
+                                {item}
+                              </MenuItem>
+                            );
+                          })}
                         </Select>
                       </FormControl>
                     </Grid>
