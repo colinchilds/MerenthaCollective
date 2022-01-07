@@ -32,3 +32,333 @@ export const sailingCoords = [
   { name: 'Valon', coords: '27, 12', id: '31' },
   { name: 'Whitestorm', coords: '12, 12', id: '32' },
 ];
+
+export const flyingCoords = [
+  {
+    name: 'Abbadon',
+    coords: '-12, 12',
+    description: 'A dormant volcanic island covered in a dense tropical forest is below.',
+  },
+  {
+    name: 'Aerioth',
+    coords: '18, 28',
+    description: 'A snowy village lays aginst the frozen shore below your wings.',
+  },
+  {
+    name: 'Asmar',
+    coords: '58, -2',
+    description: 'A large city lays before you.',
+  },
+  {
+    name: 'Boar Island',
+    coords: '21, 13',
+    description: 'A small island is below you.',
+  },
+  {
+    name: 'Cabeiri Beach',
+    coords: '10, 12',
+    description: 'The beach of Cabeiri is below you.',
+  },
+  {
+    name: 'Cabeiri Square',
+    coords: '9, 13',
+    description: 'The small town of Cabeiri is far below you.',
+  },
+  {
+    name: 'Calamyr',
+    coords: '-33, -91',
+    description: 'A field of ice and snow is below.',
+  },
+  {
+    name: 'Christmas Island',
+    coords: '16, 28',
+    description: 'A valley of snow and ice line the icy coast.',
+  },
+  {
+    name: 'Clouds',
+    coords: '10, 13',
+    description: 'Some white fluffy clouds are here.',
+  },
+  {
+    name: 'Coral Beach',
+    coords: '65, -57',
+    description: 'A chain of several small islands can be seen below.',
+  },
+  {
+    name: 'Crystal Cavern',
+    coords: '55, -5',
+    description: 'A sprawling emerald green forest lies below.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '25, 18',
+    description: 'A mountain path is below you.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '26, 19',
+    description: 'Mountains can be seen under you.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '26, 20',
+    description: 'Mountains can be seen under you.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '26, 22',
+    description: 'Mountains can be seen under you.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '26, 23',
+    description: 'Mountains can be seen under you.',
+  },
+  {
+    name: 'Deathspiral',
+    coords: '26, 24',
+    description: 'Mountains can be seen under you.',
+  },
+  {
+    name: 'Dragon Caves',
+    coords: '15, 19',
+    description: 'A small cove lays under your wings.',
+  },
+  {
+    name: 'Dragon Island',
+    coords: '18, 18',
+    description: 'A small tropical island is far below, a warm feeling flows though you as you look at it.',
+  },
+  {
+    name: 'Dragon Island',
+    coords: '20, 18',
+    description: 'A small tropical island is far below, a warm feeling flows though you as you look at it.',
+  },
+  { name: 'Ensi', coords: '81, -71', description: 'A dense forest lies below.' },
+  {
+    name: 'Fairdale',
+    coords: '54, -7',
+    description: 'A massive city covers rolling hills.',
+  },
+  {
+    name: 'Fairdale Harbor',
+    coords: '46, -10',
+    description: 'A harbor can be seen below.',
+  },
+  {
+    name: 'Fenris Rainforest',
+    coords: '10, 20',
+    description: 'A thick tropical forest grows far below.',
+  },
+  {
+    name: 'Fenris Swamp',
+    coords: '11, 20',
+    description: 'The Fenris swamps can be seen.',
+  },
+  {
+    name: 'Forest of Deception',
+    coords: '10, 21',
+    description: 'The forest of Deception is far below your wings.',
+  },
+  {
+    name: 'Fucawee',
+    coords: '18, 10',
+    description: 'A small island is below you.',
+  },
+  {
+    name: 'Fucawee',
+    coords: '20, 10',
+    description: 'A small island is below you.',
+  },
+  {
+    name: 'Haven Docks',
+    coords: '39, -40',
+    description: 'The docks of Haven can be seen far below.',
+  },
+  {
+    name: 'Havens Square',
+    coords: '40, -40',
+    description: 'The town of Haven lies below.',
+  },
+  {
+    name: 'Hiemelia',
+    coords: '27, 27',
+    description: 'The Kingdom of Hiemelia is far below.',
+  },
+  { name: 'Holgresh', coords: '42, -39', description: 'An island is below you.' },
+  {
+    name: 'Ice Isle',
+    coords: '2, 28',
+    description: 'An island of ice is far below.',
+  },
+  {
+    name: 'Iceflows',
+    coords: '12, 29',
+    description: 'An icy land is far below you.',
+  },
+  {
+    name: 'Iceflows',
+    coords: '21, 28',
+    description: 'An icy land is far below you.',
+  },
+  {
+    name: 'Imladris',
+    coords: '26, 21',
+    description: 'A hidden city can be seen under you.',
+  },
+  {
+    name: 'Jewel',
+    coords: '24, 17',
+    description: 'The Jeweled Queendom can be seen from here.',
+  },
+  {
+    name: 'Kender Island',
+    coords: '27, 12',
+    description: 'A small island lay underwing.',
+  },
+  {
+    name: 'Kobold Island',
+    coords: '22, 15',
+    description: 'A small island is below you.',
+  },
+  {
+    name: 'Lanerell',
+    coords: '25, 16',
+    description: 'The town of Lanerell is under your wings.',
+  },
+  {
+    name: 'Lanerell Forest',
+    coords: '26, 16',
+    description: 'A large dark forest is under you.',
+  },
+  {
+    name: 'Liku',
+    coords: '38, -69',
+    description: 'A wide path cutting through a forest can be seen below.',
+  },
+  {
+    name: 'Liku Docks',
+    coords: '37, -69',
+    description: 'Some docks and a populated area can be seen below.',
+  },
+  {
+    name: 'Maradan (Fenris Square)',
+    coords: '11, 21',
+    description: 'The dead town of Maradan lays below you.',
+  },
+  {
+    name: 'Mjharr',
+    coords: '36, -62',
+    description: 'A small island is beneath your wings.',
+  },
+  {
+    name: "Mon'kay",
+    coords: '59, -60',
+    description: 'A small, heavilly wooded island is below.',
+  },
+  {
+    name: 'Mountains?',
+    coords: '25, 17',
+    description: 'A mountain path is below you.',
+  },
+  {
+    name: 'Mystic Forest?',
+    coords: '28, 26',
+    description: 'A forest can be seen below.',
+  },
+  {
+    name: 'Northern Outpost',
+    coords: '27, 28',
+    description: 'A small village is underwing.',
+  },
+  {
+    name: 'Ottograd',
+    coords: '57, 21',
+    description: 'A frozen town lies below.',
+  },
+  {
+    name: 'Rimaga',
+    coords: '33, -52',
+    description: 'The Isle of Rimaga is a dot on the sea below you.',
+  },
+  {
+    name: 'Shanadan',
+    coords: '8, -69',
+    description: 'A castle in the center of an island lies below. A fire burns atop the castle roof.',
+  },
+  {
+    name: 'Storm',
+    coords: '2, 4',
+    description: 'Something can be seen far below.',
+  },
+  {
+    name: 'Sunken City',
+    coords: '3, 2',
+    description: 'Something can be seen below.',
+  },
+  {
+    name: 'Trinlar',
+    coords: '6, 11',
+    description: 'A small island can be seen under your wings.',
+  },
+  {
+    name: 'Tsfaru',
+    coords: '-49, 20',
+    description: 'A pillar of rocks and ice juts from the water.\nA cave entrance exists.',
+  },
+  {
+    name: 'Whitestorm Desert',
+    coords: '11, 15',
+    description: 'A large desert lays underwing.',
+  },
+  {
+    name: 'Whitestorm Desert',
+    coords: '11, 16',
+    description: 'A large desert lays underwing.',
+  },
+  {
+    name: 'Whitestorm Desert',
+    coords: '11, 17',
+    description: 'A large desert lays underwing.',
+  },
+  {
+    name: 'Whitestorm Desert',
+    coords: '11, 18',
+    description: 'A large desert lays underwing.',
+  },
+  {
+    name: 'Whitestorm Desert',
+    coords: '11, 19',
+    description: 'A large desert lays underwing.',
+  },
+  {
+    name: 'Whitestorm Docks',
+    coords: '12, 12',
+    description: 'The Whitestorm docks can be seen.',
+  },
+  {
+    name: 'Whitestorm Forest',
+    coords: '13, 13',
+    description: 'A forest is below.',
+  },
+  {
+    name: 'Whitestorm Square',
+    coords: '12, 13',
+    description: 'The city of Whitestorm can be seen from even thisheight.',
+  },
+  {
+    name: 'Wolvesdale',
+    coords: '26, 25',
+    description: 'The town of Wolvesdale is beneath you.',
+  },
+  {
+    name: 'Wolvesdale',
+    coords: '27, 26',
+    description: 'A small landing can be seen far below.',
+  },
+  {
+    name: 'Xenora',
+    coords: '26, 17',
+    description: 'The Queendom of Xenora is under you.',
+  },
+];

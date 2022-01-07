@@ -6,7 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Link, Table, TableBody, TableCell, TableRow } from '@material-ui/core';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { sailingCoords } from 'data/Coords';
+import { flyingCoords, sailingCoords } from 'data/Coords';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -31,6 +31,27 @@ const Coordinates = () => {
                       <TableCell>{area.name}</TableCell>
                       <TableCell>{area.coords}</TableCell>
                       <TableCell>{area.id}</TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CmtCardContent>
+          </CmtCard>
+        </Grid>
+        <Grid item xs={12}>
+          <CmtCard>
+            <CmtCardHeader title="Flying Coordinates" />
+            <CmtCardContent>
+              <Link href="/images/maps/flying_map.gif">Flying Map</Link>
+            </CmtCardContent>
+            <CmtCardContent>
+              <Table size="small">
+                <TableBody>
+                  {flyingCoords.map((area, index) => (
+                    <TableRow>
+                      <TableCell>{area.name}</TableCell>
+                      <TableCell style={{ minWidth: '100px' }}>{area.coords}</TableCell>
+                      <TableCell>{area.description}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
