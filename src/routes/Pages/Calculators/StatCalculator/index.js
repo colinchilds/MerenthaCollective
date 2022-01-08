@@ -15,6 +15,8 @@ import {
   TableContainer,
   TableRow,
   TextField,
+  Tooltip,
+  Typography,
 } from '@material-ui/core';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
@@ -285,6 +287,22 @@ function getMaxStat(stat, charClass, race, level) {
   return statLvl;
 }
 
+function intToString(num, fixed) {
+  if (num === null) {
+    return null;
+  } // terminate early
+  if (num === 0) {
+    return '0';
+  } // terminate early
+  fixed = !fixed || fixed < 0 ? 0 : fixed; // number of decimal places to show
+  var b = num.toPrecision(2).split('e'), // get power
+    k = b.length === 1 ? 0 : Math.floor(Math.min(b[1].slice(1), 14) / 3), // floor at decimals, ceiling at trillions
+    c = k < 1 ? num.toFixed(0 + fixed) : (num / Math.pow(10, k * 3)).toFixed(1 + fixed), // divide by power
+    d = c < 0 ? c : Math.abs(c), // enforce -0 is 0
+    e = d + ' ' + ['', 'K', 'M', 'B', 'T'][k]; // append power
+  return e;
+}
+
 const StatCalculator = () => {
   const [charClass, setCharClass] = useStickyState('statCalc_charClass', classes[0]);
   const [race, setRace] = useStickyState('statCalc_race', races[0]);
@@ -293,6 +311,7 @@ const StatCalculator = () => {
   const [maxExp, setMaxExp] = useState(0);
   const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {});
   const [statInc, setStatInc] = useState({});
+  const [statCost, setStatCost] = useState({});
 
   const updateCharClass = c => {
     if (c === 'Dragon') {
@@ -313,6 +332,11 @@ const StatCalculator = () => {
   };
 
   const updateStatLevels = (k, v) => {
+    if (!v || v < 0) {
+      v = 1;
+    } else if (v > 500) {
+      v = 500;
+    }
     setStatLevels(statLevels => ({
       ...statLevels,
       [k]: v,
@@ -320,11 +344,25 @@ const StatCalculator = () => {
   };
 
   const updateStatInc = (k, v) => {
+    if (!v || v < 0) {
+      v = 1;
+    } else if (v > 500) {
+      v = 500;
+    }
     setStatInc(statInc => ({
       ...statInc,
       [k]: v,
     }));
   };
+
+  useEffect(() => {
+    stats.forEach(stat => {
+      setStatCost(statCost => ({
+        ...statCost,
+        [stat]: getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]),
+      }));
+    });
+  }, [statLevels, statInc]);
 
   useEffect(() => {
     setAdvExp(getAdvanceExp(level));
@@ -394,19 +432,39 @@ const StatCalculator = () => {
               <div>
                 <Box pb={{ xs: 6, md: 10, xl: 16 }}>
                   <TableContainer>
-                    <Table>
+                    <Table size="small">
                       <TableBody>
                         <TableRow>
-                          <TableCell>Stat Requirement</TableCell>
-                          <TableCell>{Math.max(0, (level - 6) * 10)}</TableCell>
-                          <TableCell>Skill Requirement</TableCell>
-                          <TableCell>200</TableCell>
+                          <TableCell>
+                            <Typography component="p">Stat Requirement</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography component="p">{Math.max(0, (level - 6) * 10)}</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography component="p">Skill Requirement</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Typography component="p">200</Typography>
+                          </TableCell>
                         </TableRow>
                         <TableRow>
-                          <TableCell>Level Cost</TableCell>
-                          <TableCell>{advExp.toLocaleString('en-US')}</TableCell>
-                          <TableCell>Max Experience</TableCell>
-                          <TableCell>{maxExp.toLocaleString('en-US')}</TableCell>
+                          <TableCell>
+                            <Typography component="p">Level Cost</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Tooltip title={parseInt(advExp).toLocaleString('en-US')}>
+                              <Typography component="p">{intToString(advExp, 2)}</Typography>
+                            </Tooltip>
+                          </TableCell>
+                          <TableCell>
+                            <Typography component="p">Max Experience</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
+                              <Typography component="p">{intToString(maxExp, 2)}</Typography>
+                            </Tooltip>
+                          </TableCell>
                         </TableRow>
                       </TableBody>
                     </Table>
@@ -419,34 +477,44 @@ const StatCalculator = () => {
               <div>
                 <Box pb={{ xs: 6, md: 10, xl: 16 }}>
                   <TableContainer>
-                    <Table style={{ maxWidth: '800px' }}>
+                    <Table style={{ maxWidth: '800px' }} size="small">
                       <TableBody>
                         {stats.map(stat => (
                           <TableRow>
-                            <TableCell>{stat}</TableCell>
+                            <TableCell>
+                              <Typography component="p">{stat}</Typography>
+                            </TableCell>
                             <TableCell align="right">
                               <TextField
-                                style={{ width: '75px' }}
+                                size="small"
                                 type="number"
+                                inputProps={{ min: 1, max: 500 }}
                                 value={statLevels[stat] || 1}
                                 variant="outlined"
                                 onChange={event => updateStatLevels(stat, event.target.value)}
                               />
                             </TableCell>
-                            <TableCell>/{getMaxStat(stat, charClass, race, level)}</TableCell>
-                            <TableCell>Cost to improve:</TableCell>
+                            <TableCell>
+                              <Typography component="p">/{getMaxStat(stat, charClass, race, level)}</Typography>
+                            </TableCell>
                             <TableCell>
                               <TextField
-                                style={{ width: '75px' }}
+                                size="small"
                                 type="number"
-                                defaultValue="1"
+                                label="+"
+                                inputProps={{ min: 1, max: 500 }}
+                                value={statInc[stat] || 1}
                                 variant="outlined"
                                 onChange={event => updateStatInc(stat, event.target.value)}
                               />
                             </TableCell>
                             <TableCell>
-                              {getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]).toLocaleString('en-US')}{' '}
-                              exp
+                              <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
+                                <Typography component="p">
+                                  {intToString(parseInt(statCost[stat]), 2)}
+                                  {' exp'}
+                                </Typography>
+                              </Tooltip>
                             </TableCell>
                           </TableRow>
                         ))}
