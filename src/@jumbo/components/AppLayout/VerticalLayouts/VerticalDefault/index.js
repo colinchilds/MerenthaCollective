@@ -6,7 +6,6 @@ import Header from '../../partials/Header';
 import CmtSidebar from '../../../../../@coremat/CmtLayouts/Vertical/Sidebar';
 import SideBar from '../../partials/SideBar';
 import CmtContent from '../../../../../@coremat/CmtLayouts/Vertical/Content';
-import ContentLoader from '../../../ContentLoader';
 import CmtFooter from '../../../../../@coremat/CmtLayouts/Vertical/Footer';
 import Footer from '../../partials/Footer';
 import defaultContext from '../../../contextProvider/AppContextProvider/defaultContext';
@@ -45,10 +44,7 @@ const VerticalDefault = ({ children }) => {
           <Footer />
         </CmtFooter>
       }>
-      <CmtContent>
-        {children}
-        <ContentLoader />
-      </CmtContent>
+      <CmtContent>{children}</CmtContent>
     </CmtVerticalLayout>
   );
 };

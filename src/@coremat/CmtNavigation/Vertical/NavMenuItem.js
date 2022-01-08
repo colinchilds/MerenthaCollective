@@ -21,6 +21,7 @@ const useStyles = makeStyles(theme => ({
     padding: '9px 16px 9px 32px',
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
+    textDecoration: 'none',
     color: props => props.sidebarTheme.textColor,
     '&:hover, &:focus': {
       color: props => props.sidebarTheme.textDarkColor,
