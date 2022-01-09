@@ -18,17 +18,9 @@ import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
 import { getVitals } from './vitals';
-import { classes,
-  races,
-  stats,
-  getAdvanceExp,
-  getMaxExp,
-  getStatCost,
-  getMaxStat,
-  intToString,
-} from './calculator.helpers'
+import { classes, races, stats, getAdvanceExp, getMaxExp, getStatCost, getMaxStat, intToString } from './calculator.helpers';
 import LevelInfo from './level-info.component';
-import CharacterInfo from './character-info.component'
+import CharacterInfo from './character-info.component';
 
 const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
 
@@ -39,12 +31,16 @@ const StatCalculator = () => {
   const [advExp, setAdvExp] = useState(0);
   const [maxExp, setMaxExp] = useState(0);
 
-  const initStats = stats.reduce((result, stat) => ({ ...result, [stat]: 1 }), {});
+  const initStats = stats.reduce((result, stat) => ({ ...result, [stat]: 0 }), {});
   const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {
     ...initStats,
   });
   const [statInc, setStatInc] = useState({ ...initStats });
   const [statCost, setStatCost] = useState(initStats);
+
+  const [charStatTotal, setCharStatTotal] = useState(0);
+  const [statTotal, setStatTotal] = useState(0);
+  const [expTotal, setExpTotal] = useState(0);
 
   const [vitals, setVitals] = useState({});
 
@@ -68,7 +64,7 @@ const StatCalculator = () => {
 
   const updateStatLevels = (k, v) => {
     if (!v || v < 0) {
-      v = 1;
+      v = 0;
     } else if (v > 500) {
       v = 500;
     }
@@ -80,7 +76,7 @@ const StatCalculator = () => {
 
   const updateStatInc = (k, v) => {
     if (!v || v < 0) {
-      v = 1;
+      v = 0;
     } else if (v > 500) {
       v = 500;
     }
@@ -91,12 +87,22 @@ const StatCalculator = () => {
   };
 
   useEffect(() => {
+    var cst = 0;
+    var st = 0;
+    var et = 0;
     stats.forEach(stat => {
+      const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]);
       setStatCost(statCost => ({
         ...statCost,
-        [stat]: getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]),
+        [stat]: cost,
       }));
+      cst += parseInt(statLevels[stat]);
+      st += parseInt(getMaxStat(stat, charClass, race, level));
+      et += parseInt(cost);
     });
+    setCharStatTotal(cst);
+    setStatTotal(st);
+    setExpTotal(et);
   }, [statLevels, statInc]);
 
   useEffect(() => {
@@ -114,7 +120,7 @@ const StatCalculator = () => {
       <GridContainer>
         <Grid item xs={12}>
           <CmtCard>
-            <CharacterInfo 
+            <CharacterInfo
               level={level}
               setLevel={setLevel}
               charClass={charClass}
@@ -122,11 +128,7 @@ const StatCalculator = () => {
               race={race}
               updateRace={updateRace}
             />
-            <LevelInfo
-              level={level}
-              advExp={advExp}
-              maxExp={maxExp}
-            />
+            <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
             <CmtCardHeader title="Stat Information" />
             <CmtCardContent>
               <Box pb={{ xs: 6, md: 10, xl: 16 }}>
@@ -142,7 +144,7 @@ const StatCalculator = () => {
                             <TextField
                               size="small"
                               type="number"
-                              inputProps={{ min: 1, max: 500 }}
+                              inputProps={{ min: 0, max: 500 }}
                               value={statLevels[stat]}
                               variant="outlined"
                               onChange={event => updateStatLevels(stat, event.target.value)}
@@ -156,7 +158,7 @@ const StatCalculator = () => {
                               size="small"
                               type="number"
                               label="+"
-                              inputProps={{ min: 1, max: 500 }}
+                              inputProps={{ min: 0, max: 500 }}
                               value={statInc[stat]}
                               variant="outlined"
                               onChange={event => updateStatInc(stat, event.target.value)}
@@ -172,6 +174,24 @@ const StatCalculator = () => {
                           </TableCell>
                         </TableRow>
                       ))}
+                      <TableRow>
+                        <TableCell />
+                        <TableCell align="right">
+                          <Typography component="p">{charStatTotal}</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">/{statTotal}</Typography>
+                        </TableCell>
+                        <TableCell />
+                        <TableCell>
+                          <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                            <Typography component="p">
+                              {intToString(parseInt(expTotal), 2)}
+                              {' exp'}
+                            </Typography>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
                     </TableBody>
                   </Table>
                 </TableContainer>

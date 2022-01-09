@@ -1,32 +1,14 @@
-
 import React from 'react';
 import GridContainer from '../../../../@jumbo/components/GridContainer';
 import Grid from '@material-ui/core/Grid';
-import {
-  Box,
-  FormControl,
-  InputLabel,
-  ListSubheader,
-  MenuItem,
-  Select,
-  TextField,
-} from '@material-ui/core';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import { Box, FormControl, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@material-ui/core';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { classes, races } from './calculator.helpers'
+import { classes, races } from './calculator.helpers';
 
 export default function CharacterInfo(props) {
-  const {
-    level,
-    setLevel,
-    charClass,
-    updateCharClass,
-    race,
-    updateRace
-  } = props
+  const { level, setLevel, charClass, updateCharClass, race, updateRace } = props;
   return (
-    <>
-      <CmtCardHeader title="Character Info" />
+    <div>
       <CmtCardContent>
         <Box pb={{ xs: 6, md: 10, xl: 16 }}>
           <GridContainer>
@@ -77,6 +59,6 @@ export default function CharacterInfo(props) {
           </GridContainer>
         </Box>
       </CmtCardContent>
-    </>
-  )
-};
+    </div>
+  );
+}
