@@ -22,6 +22,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
+import { getVitals } from './vitals';
 
 const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
 
@@ -309,9 +310,15 @@ const StatCalculator = () => {
   const [level, setLevel] = useStickyState('statCalc_level', 1);
   const [advExp, setAdvExp] = useState(0);
   const [maxExp, setMaxExp] = useState(0);
-  const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {});
-  const [statInc, setStatInc] = useState({});
-  const [statCost, setStatCost] = useState({});
+
+  const initStats = stats.reduce((result, stat) => ({ ...result, [stat]: 1 }), {});
+  const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {
+    ...initStats,
+  });
+  const [statInc, setStatInc] = useState({ ...initStats });
+  const [statCost, setStatCost] = useState(initStats);
+
+  const [vitals, setVitals] = useState({});
 
   const updateCharClass = c => {
     if (c === 'Dragon') {
@@ -369,6 +376,11 @@ const StatCalculator = () => {
     setMaxExp(getMaxExp(level));
   }, [level]);
 
+  useEffect(() => {
+    var v = getVitals(charClass, race, level, statLevels);
+    setVitals(v);
+  }, [charClass, race, level, statLevels]);
+
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
       <GridContainer>
@@ -376,153 +388,168 @@ const StatCalculator = () => {
           <CmtCard>
             <CmtCardHeader title="Character Info" />
             <CmtCardContent>
-              <div>
-                <Box pb={{ xs: 6, md: 10, xl: 16 }}>
-                  <GridContainer>
-                    <Grid item xs={12} sm={4}>
-                      <FormControl style={{ width: '100%' }}>
-                        <InputLabel>Class</InputLabel>
-                        <Select label="Class" value={charClass} onChange={event => updateCharClass(event.target.value)}>
-                          {classes.map(item => (
+              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+                <GridContainer>
+                  <Grid item xs={12} sm={4}>
+                    <FormControl style={{ width: '100%' }}>
+                      <InputLabel>Class</InputLabel>
+                      <Select label="Class" value={charClass} onChange={event => updateCharClass(event.target.value)}>
+                        {classes.map(item => (
+                          <MenuItem key={item} value={item}>
+                            {item}
+                          </MenuItem>
+                        ))}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <FormControl style={{ width: '100%' }}>
+                      <InputLabel>Race</InputLabel>
+                      <Select label="Race" value={race} onChange={event => updateRace(event.target.value)}>
+                        <ListSubheader>Regular</ListSubheader>
+                        {races.map(item => {
+                          return item === 'Dragon' ? (
+                            [
+                              <ListSubheader>Special</ListSubheader>,
+                              <MenuItem key={item} value={item}>
+                                {item}
+                              </MenuItem>,
+                            ]
+                          ) : (
                             <MenuItem key={item} value={item}>
                               {item}
                             </MenuItem>
-                          ))}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <FormControl style={{ width: '100%' }}>
-                        <InputLabel>Race</InputLabel>
-                        <Select label="Race" value={race} onChange={event => updateRace(event.target.value)}>
-                          <ListSubheader>Regular</ListSubheader>
-                          {races.map(item => {
-                            return item === 'Dragon' ? (
-                              [
-                                <ListSubheader>Special</ListSubheader>,
-                                <MenuItem key={item} value={item}>
-                                  {item}
-                                </MenuItem>,
-                              ]
-                            ) : (
-                              <MenuItem key={item} value={item}>
-                                {item}
-                              </MenuItem>
-                            );
-                          })}
-                        </Select>
-                      </FormControl>
-                    </Grid>
-                    <Grid item xs={12} sm={4}>
-                      <FormControl style={{ width: '100%' }} variant="outlined">
-                        <TextField
-                          label="Level"
-                          type="number"
-                          value={level}
-                          onChange={event => setLevel(parseInt(event.target.value))}
-                        />
-                      </FormControl>
-                    </Grid>
-                  </GridContainer>
-                </Box>
-              </div>
+                          );
+                        })}
+                      </Select>
+                    </FormControl>
+                  </Grid>
+                  <Grid item xs={12} sm={4}>
+                    <FormControl style={{ width: '100%' }} variant="outlined">
+                      <TextField
+                        label="Level"
+                        type="number"
+                        value={level}
+                        onChange={event => setLevel(parseInt(event.target.value))}
+                      />
+                    </FormControl>
+                  </Grid>
+                </GridContainer>
+              </Box>
             </CmtCardContent>
             <CmtCardHeader title="Level Information" />
             <CmtCardContent>
-              <div>
-                <Box pb={{ xs: 6, md: 10, xl: 16 }}>
-                  <TableContainer>
-                    <Table size="small">
-                      <TableBody>
-                        <TableRow>
-                          <TableCell>
-                            <Typography component="p">Stat Requirement</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography component="p">{Math.max(0, (level - 6) * 10)}</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography component="p">Skill Requirement</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Typography component="p">200</Typography>
-                          </TableCell>
-                        </TableRow>
-                        <TableRow>
-                          <TableCell>
-                            <Typography component="p">Level Cost</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Tooltip title={parseInt(advExp).toLocaleString('en-US')}>
-                              <Typography component="p">{intToString(advExp, 2)}</Typography>
-                            </Tooltip>
-                          </TableCell>
-                          <TableCell>
-                            <Typography component="p">Max Experience</Typography>
-                          </TableCell>
-                          <TableCell>
-                            <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
-                              <Typography component="p">{intToString(maxExp, 2)}</Typography>
-                            </Tooltip>
-                          </TableCell>
-                        </TableRow>
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Box>
-              </div>
+              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+                <TableContainer>
+                  <Table size="small">
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <Typography component="p">Stat Requirement</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">{Math.max(0, (level - 6) * 10)}</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">Skill Requirement</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">200</Typography>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography component="p">Level Cost</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Tooltip title={parseInt(advExp).toLocaleString('en-US')}>
+                            <Typography component="p">{intToString(advExp, 2)}</Typography>
+                          </Tooltip>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">Max Experience</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
+                            <Typography component="p">{intToString(maxExp, 2)}</Typography>
+                          </Tooltip>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
             </CmtCardContent>
             <CmtCardHeader title="Stat Information" />
             <CmtCardContent>
-              <div>
-                <Box pb={{ xs: 6, md: 10, xl: 16 }}>
-                  <TableContainer>
-                    <Table style={{ maxWidth: '800px' }} size="small">
-                      <TableBody>
-                        {stats.map(stat => (
-                          <TableRow>
-                            <TableCell>
-                              <Typography component="p">{stat}</Typography>
-                            </TableCell>
-                            <TableCell align="right">
-                              <TextField
-                                size="small"
-                                type="number"
-                                inputProps={{ min: 1, max: 500 }}
-                                value={statLevels[stat] || 1}
-                                variant="outlined"
-                                onChange={event => updateStatLevels(stat, event.target.value)}
-                              />
-                            </TableCell>
-                            <TableCell>
-                              <Typography component="p">/{getMaxStat(stat, charClass, race, level)}</Typography>
-                            </TableCell>
-                            <TableCell>
-                              <TextField
-                                size="small"
-                                type="number"
-                                label="+"
-                                inputProps={{ min: 1, max: 500 }}
-                                value={statInc[stat] || 1}
-                                variant="outlined"
-                                onChange={event => updateStatInc(stat, event.target.value)}
-                              />
-                            </TableCell>
-                            <TableCell>
-                              <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                                <Typography component="p">
-                                  {intToString(parseInt(statCost[stat]), 2)}
-                                  {' exp'}
-                                </Typography>
-                              </Tooltip>
-                            </TableCell>
-                          </TableRow>
-                        ))}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                </Box>
-              </div>
+              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+                <TableContainer>
+                  <Table style={{ maxWidth: '800px' }} size="small">
+                    <TableBody>
+                      {stats.map(stat => (
+                        <TableRow>
+                          <TableCell>
+                            <Typography component="p">{stat}</Typography>
+                          </TableCell>
+                          <TableCell align="right">
+                            <TextField
+                              size="small"
+                              type="number"
+                              inputProps={{ min: 1, max: 500 }}
+                              value={statLevels[stat]}
+                              variant="outlined"
+                              onChange={event => updateStatLevels(stat, event.target.value)}
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Typography component="p">/{getMaxStat(stat, charClass, race, level)}</Typography>
+                          </TableCell>
+                          <TableCell>
+                            <TextField
+                              size="small"
+                              type="number"
+                              label="+"
+                              inputProps={{ min: 1, max: 500 }}
+                              value={statInc[stat]}
+                              variant="outlined"
+                              onChange={event => updateStatInc(stat, event.target.value)}
+                            />
+                          </TableCell>
+                          <TableCell>
+                            <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
+                              <Typography component="p">
+                                {intToString(parseInt(statCost[stat]), 2)}
+                                {' exp'}
+                              </Typography>
+                            </Tooltip>
+                          </TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
+            </CmtCardContent>
+            <CmtCardHeader title="Character Information" />
+            <CmtCardContent>
+              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+                <TableContainer>
+                  <Table size="small">
+                    <TableBody>
+                      <TableRow>
+                        <TableCell>
+                          <Typography component="p">Vitals</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">
+                            {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
+                          </Typography>
+                        </TableCell>
+                      </TableRow>
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Box>
             </CmtCardContent>
           </CmtCard>
         </Grid>
