@@ -1,10 +1,10 @@
 import React from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router';
-import HomePage from './Pages/HomePage';
+import HomePage from './Pages/General/HomePage';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
-import Coordinates from './General/Coordinates';
-import Party from './General/Party';
+import Coordinates from './Pages/General/Coordinates';
+import Party from './Pages/General/Party';
 
 const Routes = () => {
   const location = useLocation();
