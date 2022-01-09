@@ -103,7 +103,7 @@ const StatCalculator = () => {
     setCharStatTotal(cst);
     setStatTotal(st);
     setExpTotal(et);
-  }, [statLevels, statInc]);
+  }, [statLevels, statInc, charClass, race, level]);
 
   useEffect(() => {
     setAdvExp(getAdvanceExp(level));

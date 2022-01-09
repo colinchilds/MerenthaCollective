@@ -24,6 +24,12 @@ export const sidebarNavs = [
         icon: <PostAdd />,
         link: '/party',
       },
+      {
+        name: 'Combat Messages',
+        type: 'item',
+        icon: <PostAdd />,
+        link: '/combat',
+      },
     ],
   },
   {
