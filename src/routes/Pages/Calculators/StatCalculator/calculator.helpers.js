@@ -1,4 +1,3 @@
-
 export const classes = ['Cleric', 'Dragon', 'Fighter', 'Monk', 'Mage', 'Rogue'];
 
 export const races = [
@@ -123,6 +122,8 @@ export function getClassModifier(charClass, stat) {
       case 'Wisdom':
         result = CLASS[2];
         break;
+      default:
+        break;
     }
   } else if (charClass === 'Fighter') {
     switch (stat) {
@@ -132,6 +133,8 @@ export function getClassModifier(charClass, stat) {
         break;
       case 'Dexterity':
         result = CLASS[2];
+        break;
+      default:
         break;
     }
   } else if (charClass === 'Mage') {
@@ -143,6 +146,8 @@ export function getClassModifier(charClass, stat) {
       case 'Charisma':
         result = CLASS[2];
         break;
+      default:
+        break;
     }
   } else if (charClass === 'Monk') {
     switch (stat) {
@@ -152,6 +157,8 @@ export function getClassModifier(charClass, stat) {
       case 'Intelligence':
       case 'Wisdom':
         result = CLASS[2];
+        break;
+      default:
         break;
     }
   } else if (charClass === 'Rogue') {
@@ -165,6 +172,8 @@ export function getClassModifier(charClass, stat) {
         break;
       case 'Constitution':
         result = CLASS[3];
+        break;
+      default:
         break;
     }
   }

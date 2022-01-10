@@ -27,7 +27,7 @@ const Coordinates = () => {
               <Table size="small">
                 <TableBody>
                   {sailingCoords.map((area, index) => (
-                    <TableRow>
+                    <TableRow key={index}>
                       <TableCell>{area.name}</TableCell>
                       <TableCell>{area.coords}</TableCell>
                       <TableCell>{area.id}</TableCell>
@@ -48,7 +48,7 @@ const Coordinates = () => {
               <Table size="small">
                 <TableBody>
                   {flyingCoords.map((area, index) => (
-                    <TableRow>
+                    <TableRow key={index}>
                       <TableCell>{area.name}</TableCell>
                       <TableCell style={{ minWidth: '100px' }}>{area.coords}</TableCell>
                       <TableCell>{area.description}</TableCell>

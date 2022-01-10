@@ -7,12 +7,16 @@ import Coordinates from './Pages/General/Coordinates';
 import Party from './Pages/General/Party';
 import Combat from './Pages/General/Combat';
 import Cleric from './Pages/Guides/Cleric';
+import Fighter from './Pages/Guides/Fighter';
+import Mage from './Pages/Guides/Mage';
 
 const Routes = () => {
   const location = useLocation();
 
   if (location.pathname === '/calculators') {
     return <Redirect to={'/calculators/stats'} />;
+  } else if (location.pathname === '/guides') {
+    return <Redirect to={'/guides/cleric'} />;
   }
 
   return (
@@ -29,8 +33,8 @@ const Routes = () => {
 
         {/* Guides */}
         <Route path="/guides/cleric" component={Cleric} />
-        <Route path="/guides/fighter" component={Cleric} />
-        <Route path="/guides/mage" component={Cleric} />
+        <Route path="/guides/fighter" component={Fighter} />
+        <Route path="/guides/mage" component={Mage} />
         <Route path="/guides/monk" component={Cleric} />
         <Route path="/guides/rogue" component={Cleric} />
         <Route path="/guides/newbie" component={Cleric} />

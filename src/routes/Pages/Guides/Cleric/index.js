@@ -4,12 +4,12 @@ import PageContainer from '@jumbo/components/PageComponents/layouts/PageContaine
 import Grid from '@material-ui/core/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Accordion, AccordionDetails, AccordionSummary, Typography } from '@material-ui/core';
+import { Typography } from '@material-ui/core';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 
 const breadcrumbs = [
-  { label: 'Main', link: '/' },
-  { label: 'Party', isActive: true },
+  { label: 'Guides', link: '/guides' },
+  { label: 'Cleric', isActive: true },
 ];
 
 const data = [
@@ -122,7 +122,7 @@ const Cleric = () => {
     <PageContainer breadcrumbs={breadcrumbs} heading="Cleric FAQ">
       <GridContainer>
         {data.map((item, index) => (
-          <Grid item xs={12}>
+          <Grid item xs={12} key={index}>
             <CmtCard>
               <CmtCardHeader title={item.question} />
               <CmtCardContent>

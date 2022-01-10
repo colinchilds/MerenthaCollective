@@ -135,8 +135,8 @@ const StatCalculator = () => {
                 <TableContainer>
                   <Table style={{ maxWidth: '800px' }} size="small">
                     <TableBody>
-                      {stats.map(stat => (
-                        <TableRow>
+                      {stats.map((stat, index) => (
+                        <TableRow key={index}>
                           <TableCell>
                             <Typography component="p">{stat}</Typography>
                           </TableCell>
