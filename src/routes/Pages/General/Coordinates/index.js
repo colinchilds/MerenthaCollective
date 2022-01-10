@@ -15,14 +15,13 @@ const breadcrumbs = [
 
 const Coordinates = () => {
   return (
-    <PageContainer breadcrumbs={breadcrumbs}>
+    <PageContainer breadcrumbs={breadcrumbs} heading="Coordinates">
       <GridContainer>
         <Grid item xs={12}>
           <CmtCard>
-            <CmtCardHeader title="Sailing Coordinates" />
-            <CmtCardContent>
+            <CmtCardHeader title="Sailing">
               <Link href="/images/maps/world_map.png">World Map</Link>
-            </CmtCardContent>
+            </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
                 <TableBody>
@@ -40,10 +39,9 @@ const Coordinates = () => {
         </Grid>
         <Grid item xs={12}>
           <CmtCard>
-            <CmtCardHeader title="Flying Coordinates" />
-            <CmtCardContent>
+            <CmtCardHeader title="Flying">
               <Link href="/images/maps/flying_map.gif">Flying Map</Link>
-            </CmtCardContent>
+            </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
                 <TableBody>

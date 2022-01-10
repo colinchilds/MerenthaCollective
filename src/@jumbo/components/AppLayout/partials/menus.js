@@ -1,5 +1,5 @@
 import React from 'react';
-import { InsertChart, PostAdd } from '@material-ui/icons';
+import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report } from '@material-ui/icons';
 
 export const sidebarNavs = [
   {
@@ -21,25 +21,25 @@ export const sidebarNavs = [
       {
         name: 'Home',
         type: 'item',
-        icon: <PostAdd />,
+        icon: <Home />,
         link: '/',
       },
       {
         name: 'Coordinates',
         type: 'item',
-        icon: <PostAdd />,
+        icon: <MyLocation />,
         link: '/coords',
       },
       {
         name: 'Party',
         type: 'item',
-        icon: <PostAdd />,
+        icon: <People />,
         link: '/party',
       },
       {
         name: 'Combat Messages',
         type: 'item',
-        icon: <PostAdd />,
+        icon: <Report />,
         link: '/combat',
       },
     ],
@@ -51,37 +51,37 @@ export const sidebarNavs = [
       {
         name: 'Cleric',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/cleric',
       },
       {
         name: 'Fighter',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/fighter',
       },
       {
         name: 'Mage',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/mage',
       },
       {
         name: 'Monk',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/monk',
       },
       {
         name: 'Rogue',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/rogue',
       },
       {
         name: 'Newbie',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <AccessibilityNew />,
         link: '/guides/newbie',
       },
     ],

@@ -9,6 +9,9 @@ import Combat from './Pages/General/Combat';
 import Cleric from './Pages/Guides/Cleric';
 import Fighter from './Pages/Guides/Fighter';
 import Mage from './Pages/Guides/Mage';
+import Monk from './Pages/Guides/Monk';
+import Rogue from './Pages/Guides/Rogue';
+import Newbie from './Pages/Guides/Newbie';
 
 const Routes = () => {
   const location = useLocation();
@@ -35,9 +38,9 @@ const Routes = () => {
         <Route path="/guides/cleric" component={Cleric} />
         <Route path="/guides/fighter" component={Fighter} />
         <Route path="/guides/mage" component={Mage} />
-        <Route path="/guides/monk" component={Cleric} />
-        <Route path="/guides/rogue" component={Cleric} />
-        <Route path="/guides/newbie" component={Cleric} />
+        <Route path="/guides/monk" component={Monk} />
+        <Route path="/guides/rogue" component={Rogue} />
+        <Route path="/guides/newbie" component={Newbie} />
         <Route component={Error404} />
       </Switch>
     </React.Fragment>

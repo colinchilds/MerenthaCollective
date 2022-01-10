@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -14,11 +13,10 @@ const breadcrumbs = [
 
 const Party = () => {
   return (
-    <PageContainer breadcrumbs={breadcrumbs}>
+    <PageContainer breadcrumbs={breadcrumbs} heading="Party Experience">
       <GridContainer>
         <Grid item xs={12}>
           <CmtCard>
-            <CmtCardHeader title="Party Experience" />
             <CmtCardContent>
               <Table>
                 <TableHead>

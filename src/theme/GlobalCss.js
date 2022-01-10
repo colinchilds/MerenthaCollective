@@ -160,6 +160,9 @@ const globalStyles = makeStyles(theme => ({
         backgroundColor: alpha(theme.palette.primary.main, 0.1),
       },
     },
+    pre: {
+      margin: '15px',
+    },
     ...paddingClasses,
     ...marginClasses,
   },
