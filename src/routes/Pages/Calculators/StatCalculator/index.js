@@ -17,8 +17,9 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
-import { getVitals } from './vitals';
-import { classes, races, stats, getAdvanceExp, getMaxExp, getStatCost, getMaxStat, intToString } from './calculator.helpers';
+import { getEncumbrance, getVitals, getWeight } from './vitals';
+import { classes, stats, getAdvanceExp, getMaxExp, getStatCost, getMaxStat, intToString } from './calculator.helpers';
+import { races } from 'data/Races';
 import LevelInfo from './level-info.component';
 import CharacterInfo from './character-info.component';
 
@@ -211,6 +212,22 @@ const StatCalculator = () => {
                           <Typography component="p">
                             {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
                           </Typography>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography component="p">Encumbrance</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">{getEncumbrance(race, statLevels)}</Typography>
+                        </TableCell>
+                      </TableRow>
+                      <TableRow>
+                        <TableCell>
+                          <Typography component="p">Weight</Typography>
+                        </TableCell>
+                        <TableCell>
+                          <Typography component="p">{getWeight(race, statLevels)}</Typography>
                         </TableCell>
                       </TableRow>
                     </TableBody>

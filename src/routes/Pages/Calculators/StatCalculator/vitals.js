@@ -1,3 +1,5 @@
+import { raceCfg } from 'data/Races';
+
 const CLASS_NONE = 0,
   CLASS_LOW = 1,
   CLASS_MEDIUM = 2,
@@ -127,4 +129,17 @@ export function getVitals(charClass, race, level, statLevels) {
   var maxMP = 50 + level * (10 + mpAdj) + statLevels['Intelligence'] * (10 + mpAdj) + statLevels['Wisdom'] * (5 + mpAdj);
 
   return { hp: maxHP, sp: maxSP, mp: maxMP };
+}
+
+export function getEncumbrance(race, statLevels) {
+  if (!race || !raceCfg[race]) return 0;
+
+  const strAdjustment = raceCfg[race] ? raceCfg[race]['str'] : 0;
+  return 2 * (((strAdjustment > -4 ? strAdjustment + 10 : 5) + statLevels['Strength'] * 3) * 2 + 35);
+}
+
+export function getWeight(race, statLevels) {
+  if (!race || !raceCfg[race]) return 10000;
+
+  return Math.max(0, statLevels['Constitution'] - 10) * 100 + raceCfg[race]['weight'];
 }

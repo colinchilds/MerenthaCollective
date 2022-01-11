@@ -3,7 +3,8 @@ import GridContainer from '../../../../@jumbo/components/GridContainer';
 import Grid from '@material-ui/core/Grid';
 import { Box, FormControl, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@material-ui/core';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { classes, races } from './calculator.helpers';
+import { classes } from './calculator.helpers';
+import { races } from 'data/Races';
 
 export default function CharacterInfo(props) {
   const { level, setLevel, charClass, updateCharClass, race, updateRace } = props;
