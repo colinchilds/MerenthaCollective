@@ -44,7 +44,7 @@
 (arghh
   *((undirected
       *((theirmsg [$TP_NAME %^YELLOW%^ARGHHs%^RESET%^ at everyone like an old swashbuckler])
- (mymsg    [You %^YELLOW%^ARGHH%^RESET%^ like an ol' swashbuckler])))))
+		(mymsg    [You %^YELLOW%^ARGHH%^RESET%^ like an ol' swashbuckler])))))
 (assimilate
   *((adverbs cheerfully,reluctantly)
     (undirected
@@ -643,7 +643,6 @@
       *((adverb     quietly,insultingly,despairingly)
         (theirmsg   [$TP_NAME fumes $ADJ])
         (mymsg      [You fume $ADJ])))))
-"$mcname$ fumes $lastarg$", }) }),
 (gasp
   *((noargs
       *((theirmsg     [$TP_NAME gasps in shock])
@@ -1993,7 +1992,7 @@
       *((theirmsg [$TP_NAME twitches $TP_POSS $ADJ])
         (mymsg    [You twitch your $ADJ])))))
 (twerk
-*((preposition [in front of])
+ *((preposition [in front of])
     (adverbs ,awkwardly, bravely, cheerfully, deeply, energetically, fiercly, grotesquely, hopelessly, innocently, jubilantly, lovingly, miserably, nervously, obnoxiously, quickly, roughly, slowly, tenderly, upwardly, vigorously, wildly, zealously)
     (undirected
     *((mymsg   [You bend over and twerk])
@@ -2008,7 +2007,6 @@
     (directed
      *((mymsg  [You gaze at $OB_NAME and slowly undress $OB_POSS with your eyes])
        (theirmsg [$TP_NAME  undresses $OB_NAME with $TP_POSS eyes])))))
-File doesn't exist.
 (waltz
   *((prepositions [with,along with,with])
     (directed
@@ -2132,14 +2130,13 @@ File doesn't exist.
       (directed
         *((theirmsg [$TP_NAME wrinkles $TP_POSS nose at $OB_NAME in total disgust])
          (mymsg    [You wrinkle your nose at $OB_NAME in total disgust]))))))
-  (wrist
+(wrist
   *((noargs
       *((mymsg     [You hold out your wrist for a slap])
         (theirmsg  [$TP_NAME holds out $TP_POSS wrist for a slap])))
     (directed
       *((mymsg     [You slap $OB_NAME on the wrist])
         (theirmsg  [$TP_NAME slaps $OB_NAME on the wrist])))))
-File doesn't exist.
 (yawn
   *((abverbs tiredly,boredly,sleepily)
     (undirected
