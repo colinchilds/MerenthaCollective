@@ -1,0 +1,2165 @@
+(ack
+  *((undirected
+      *((theirmsg [$TP_NAME acks])
+        (mymsg    [You ack])))))
+(accuse
+  *((prepositions [of])
+    (adverbs #)
+    (noargs
+      *((theirmsg [$TP_NAME looks around the room accusingly])
+        (mymsg    [You look around the room accusingly])))
+    (undirected
+      *((theirmsg [$TP_NAME accuses $ADJ])
+        (mymsg    [You accuse $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME accuses $OB_NAME of $ADJ])
+        (mymsg    [You accuse $OB_NAME of $ADJ])))))
+(apologize
+  *((prepositions [to])
+    (adverbs profusely,happily,sadly,reservedly,carefully,slowly,perfunctorily,
+      curtly,visciously,sulkily,drunkenly,unhappily,professionally,
+      pompously,wholeheartedly,partially,wearily,fishily,facetiously,
+      unnecessarily,spontaneously,twice,thoroughly,humbly)
+    (undirected
+      *((theirmsg [$TP_NAME apologizes $ADJ])
+        (mymsg    [You apologize $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME apologizes $ADJ to $OB_NAME])
+        (mymsg    [You apologize $ADJ to $OB_NAME])))))
+(applaud
+  *((adverbs wholeheartedly,loudly,softly,vaguely,briefly)
+    (undirected
+      *((theirmsg [$TP_NAME applauds $ADJ])
+        (mymsg    [You applaud $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME applauds $OB_NAME $ADJ])
+        (mymsg    [You applaud $OB_NAME $ADJ])))))
+(agree
+  *((noargs
+      *((theirmsg [$TP_NAME agrees wholeheartedly])
+        (mymsg    [You agree wholeheartedly])))
+    (directed
+      *((theirmsg [$TP_NAME agrees with $OB_NAME wholeheartedly])
+        (mymsg    [You agree with $OB_NAME wholeheartedly])))))
+(arghh
+  *((undirected
+      *((theirmsg [$TP_NAME %^YELLOW%^ARGHHs%^RESET%^ at everyone like an old swashbuckler])
+ (mymsg    [You %^YELLOW%^ARGHH%^RESET%^ like an ol' swashbuckler])))))
+(assimilate
+  *((adverbs cheerfully,reluctantly)
+    (undirected
+      *((theirmsg [$TP_NAME assimilates species $ADJ like a Borg])
+        (mymsg    [You assimilate species $ADJ like a Borg])))
+    (directed           
+      *((theirmsg [$TP_NAME assimilates $OB_NAME $ADJ])
+        (mymsg    [You assimilate $OB_NAME $ADJ])))))
+(bark
+  *((prepositions [at])
+    (adverbs ,happily)
+    (undirected
+      *((theirmsg [$TP_NAME $ADJ barks like a dog])
+        (mymsg    [You $ADJ bark like a dog]))
+      (directed
+        *((theirmsg [$TP_NAME barks $ADJ at $OB_NAME])
+        (mymsg    [You bark $ADJ at $OB_NAME]))))))
+(bat
+  *((prepositions [at])
+    (adverbs ,innocently)
+    (undirected
+      *((theirmsg [$TP_NAME bats $TP_POSS eyelashes innocently])
+        (mymsg    [You bat your eyelashes innocently]))
+      (directed
+        *((theirmsg [$TP_NAME bats $TP_POSS eyelashes at $OB_NAME])
+          (mymsg    [You bat your eyelashes at $OB_NAME]))))))
+(beam
+  *((prepositions [at])
+    (adverbs brightly,admiringly,strangely,hapilly,ecstatically,fishily,
+      like a train)
+    (undirected
+      *((theirmsg [$TP_NAME beams $ADJ])
+        (mymsg    [You beam $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME beams $ADJ at $OB_NAME])
+        (mymsg    [You beam $ADJ at $OB_NAME])))))
+(beep
+  *((prepositions [at])
+    (adverbs ,impatiently)
+    (undirected
+      *((theirmsg [$TP_NAME $ADJ goes %^RED%^BEEP, BEEP!!!])
+        (mymsg    [You $ADJ go %^RED%^BEEP, BEEP!!!]))
+      (directed
+        *((theirmsg [$TP_NAME $ADJ goes %^RED%^BEEP, BEEPS!!!%^RESET%^ at $OB_NAME])
+          (mymsg    [You $ADJ go %^RED%^BEEP, BEEP!!!%^RESET%^ at $OB_NAME]))))))
+(beg
+  *((prepositions [like a])
+    (adverbs dog,cat,chicken,cow,large bear,poodle,chihuahua,
+      train,beggar,noble man,lassie,labrador,german shepard,cannibal,
+      chimpanzee,librarian,fish,dolphin,tokzic,banshi,
+      bloodhound,husky,wolf,dingo,alsation)
+    (noargs
+      *((theirmsg [$TP_NAME gets down and begs])
+        (mymsg    [You beg])))
+    (undirected
+      *((theirmsg [$TP_NAME begs like a $ADJ puppy])
+        (mymsg    [You beg like a $ADJ puppy])))
+    (directed
+      *((force    [smile $OB_NAME])
+        (theirmsg [$TP_NAME begs $OB_NAME like a puppy])
+        (mymsg    [You beg $OB_NAME like a puppy])))))
+(bing
+  *((prepositions [at])
+    (adverbs happily,sadly,joyfully,sagely,knowingly,quickly,loudly,carefully,
+      balefully,excitedly,nervously,brightly,uncertainly)
+    (undirected
+      *((theirmsg [$TP_NAME bings $ADJ])
+        (mymsg    [You bing $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME bings $ADJ at $OB_NAME])
+        (mymsg    [You bing $ADJ at $OB_NAME])))))
+(bird
+  *((directed
+      *((theirmsg
+          [$TP_NAME raises $TP_POSS middle finger and gives $OB_NAME the bird])
+        (mymsg
+          [You raise your middle finger and give $OB_NAME the bird])))))
+(bite
+  *((undirected
+      *((theirmsg [$TP_NAME bites $OB_FOO])
+        (mymsg    [You bite yourself]))
+      (directed
+        *((adverbs ,hard,nastily,carefuly,politely,fishily,lovingly,refreshingly,
+            happily,like a train,pointlessly,objectively,sulkily,gently,
+            brightly,excitedly,uncertainly,like a dog,wolfishly,
+            mercilessly,ruthlessly,softly,sweetly,profesionally,hungrily,
+            mischeviously,ankles,arm,leg,casually,nose,ear,toe,finger)
+          (theirmsg [$TP_NAME bites $OB_NAME $ADJ])
+          (mymsg    [You bite $OB_NAME $ADJ]))))))
+(bleed
+  *((noargs
+      *((theirmsg [$TP_NAME bleeds])
+        (mymsg    [You bleed])))
+    (undirected
+      *((adverbs  ,heart,leg,arm,head,ear,nose)
+        (theirmsg [$TP_NPOSS $ADJ bleeds])
+        (mymsg    [Your $ADJ bleeds])))))
+(blink
+  *((prepositions [at])
+    (adverbs ,none)
+    (undirected
+      *((theirmsg [$TP_NAME $ADJ blinks in disbelief])
+        (mymsg    [You $ADJ blink in disbelief]))
+      (directed
+        *((theirmsg [$TP_NAME $ADJ blinks at $OB_NAME in disbelief])
+          (mymsg    [You $ADJ blink at $OB_NAME in disbelief]))))))
+(blush
+  *((adverbs in embarassment,redly,slightly,worriedly)
+    (undirected
+      *((theirmsg [$TP_NAME blushes $ADJ])
+        (mymsg    [You blush $ADJ])))))
+(boggle
+  *((prepositions [at])
+    (noargs
+      *((theirmsg [$TP_NAME boggles at the concept])
+        (mymsg    [You boggle at the concept])))
+    (undirected
+      *((adverbs #)
+        (theirmsg [$TP_NAME boggles at $ADJ])
+        (mymsg    [You boggle at $ADJ])))))
+(bonk
+  *((undirected
+      *((theirmsg [$TP_NAME bonks $TP_FOO])
+        (mymsg    [You bonk yourself on the head])))
+    (directed
+      *((theirmsg [$TP_NAME bonks $OB_NAME on the head])
+        (mymsg    [You bonk $OB_NAME on the head]))))) 
+(booger
+  *((prepositions [at])
+    (adverbs ,none)
+    (undirected
+      *((theirmsg [$TP_NAME has a booger hanging from $TP_POSS nose])
+        (mymsg    [You $ADJ have a booger hanging from your nose]))
+      (directed
+        *((theirmsg [$TP_NAME picks a booger and flicks it at $OB_NAME])
+          (mymsg    [You flick your boogers at $OB_NAME]))))))
+(boogie
+  *((noargs
+      *((mymsg    [You %^MAGENTA%^boogie%^RESET%^ with your bad self])
+        (theirmsg [$TP_NAME %^MAGENTA%^boogies%^RESET%^ with $TP_POSS bad self])))
+    (directed
+      *((mymsg  [You get down and %^MAGENTA%^boogie%^RESET%^ with $OB_NAME])
+        (theirmsg [$TP_NAME gets down and %^MAGENTA%^boogies%^RESET%^ with $OB_NAME])))))
+(bop
+  *((undirected
+      *((theirmsg [$TP_NAME bops about happily])
+        (mymsg    [You bop about happily])))
+    (directed
+      *((theirmsg [$TP_NAME bops $OB_NAME happily])
+        (mymsg    [You bop $OB_NAME happily])))))
+(bounce
+  *((noargs
+      *((mymsg    [You bounce up and down])
+        (theirmsg [$TP_NAME bounces])))
+    (directed
+      *((mymsg    [You bounce on top of $OB_NAME])
+        (theirmsg [$TP_NAME bounces on top of $OB_NAME])))))
+(breathe
+  *((undirected
+      *((adverbs quickly,seductively,painfully,nastily,slowly,once,
+          heavily,carefully,heatedly)
+        (theirmsg [$TP_NAME breathes $ADJ])
+        (mymsg    [You breathe $ADJ])))))
+(burp
+  *((undirected
+      *((adverbs disgustingly,faintly,loudly,rudely)
+        (theirmsg [$TP_NAME burps $ADJ])
+        (mymsg    [You burp $ADJ])))))
+(bow
+  *((prepositions [before])
+    (adverbs solemnly,deeply,formally)
+    (noargs
+      *((mymsg    [You bow respectfully])
+        (theirmsg  [$TP_NAME bows respectfully])))
+    (undirected
+      *((mymsg    [You bow $ADJ])
+        (theirmsg    [$TP_NAME bow $ADJ])))
+    (directed
+      *((mymsg   [You bow $ADJ before $OB_NAME ])
+        (theirmsg    [$TP_NAME bows $ADJ before $OB_NAME]))))))
+(burnp
+  *((noargs
+      *((theirmsg [$TP_NAME sets fire to $TP_FOO])
+        (mymsg    [You set fire to yourself])))
+    (directed
+      *((adverbs hair,leg,arm,nose,teeth,frog,carpet,net lag,
+          fish,invis,bed,ego,eyes,house,furniture,tongue,keyboard,brain,code,
+          ideas,hopes,dreams,cat,personality,desires,beliefs)
+        (theirmsg [$TP_NAME sets fire to $OB_NPOSS $ADJ])
+        (mymsg    [You set fire to $OB_NPOSS $ADJ])))))
+  (brag
+ *((noargs
+     *((mymsg    [You brag proudly about your various accomplishments. Everyone seems to believe you])
+       (theirmsg [$TP_NAME brags about $TP_POSS various accomplishments. There is nooooooooo way])))
+    (directed
+     *((mymsg  [You brag to $OB_NAME about your various accomplishments])
+       (theirmsg [$TP_NAME brags to $OB_NAME about  $TP_POSS various accomplishments])))))
+(cackle
+  *((noargs
+      *((theirmsg [$TP_NAME cackles demonically])
+        (mymsg    [You cackle demonically])))
+    (undirected
+      *((adverbs with glee,maniacaly,mischeviously,nastily,
+          depairingly,womblely,backwards)
+        (theirmsg [$TP_NAME cackles $ADJ])
+        (mymsg    [You cackle $ADJ])))))
+(calm
+  *((prepositions [down])
+    (undirected
+      *((theirmsg [$TP_NAME calms down])
+        (mymsg    [You calm down])))
+    (directed
+      *((theirmsg [$TP_NAME calms $OB_NAME down])
+        (mymsg    [You calm $OB_NAME down])))))
+(caper
+  *((prepositions [around])
+    (noargs
+      *((theirmsg [$TP_NAME capers around madly])
+        (mymsg    [You caper around madly])))
+    (undirected
+      *((adverbs fool,chicken,womble,jester,bimbo,blonde,sulam,seductress,
+          eager person,vivacious person,madman,madwoman,madperson,
+          frog on the run,happy chap,polite gentleperson,woman,
+          cheery)
+        (theirmsg [$TP_NAME capers around like a $ADJ])
+        (mymsg    [You caper around like a $ADJ])))))
+(caress
+  *((directed
+      *((adverbs ,gently,strangely,violently,firmly,seductively,suggestively,
+          slightly,sensually,reluctantly,politely,lovingly,vigorously,
+          eagerly,vivaciously)
+        (theirmsg [$TP_NAME caresses $OB_NAME $ADJ])
+        (mymsg    [You caress $OB_NAME $ADJ])))))
+(cartwheel
+ *((adverbs     excitedly,happily,carefully,slowly,joyfully,unsteadily,
+                sideways,absentmindedly)
+   (directed
+    *((adverbs  ,)
+      (mymsg    [You cartwheel $ADJ around $OB_NAME])
+      (theirmsg [$TP_NAME cartwheel $ADJ around $OB_NAME])))
+   (undirected
+    *((mymsg    [You do a cartwheel $ADJ])
+      (theirmsg [$TP_NAME does a cartwheel $ADJ])))))
+(caw
+  *((prepositions [at])
+    (adverbs ,happily,hysterically,in anger,anxiously,annoyingly,while pecking for food)
+    (undirected
+      *((theirmsg [$TP_NAME caws $ADJ])
+        (mymsg    [You caw $ADJ]))
+      (directed
+        *((theirmsg [$TP_NAME %^RED%^CAWS %^RED%^%^BOLD%^CAWS %^RESET%^%^RED%^CAWS%^RESET%^ at $OB_NAME $ADJ])
+        (mymsg    [You %^RED%^CAWS %^RED%^%^BOLD%^CAWS %^RESET%^%^RED%^CAWS%^RESET%^ at $OB_NAME $ADJ]))))))
+(cheer
+  *((undirected
+      *((adverbs  enthusiastically,excitedly,quietly,calmly,carefully,politely,
+          wildly,oddly,unconvincingly,happily,slightly,up)
+        (theirmsg [$TP_NAME cheers $ADJ])
+        (mymsg    [You cheer $ADJ])))
+    (directed
+      *((adverbs  enthusiastically,excitedly,quietly,calmly,carefully,politely,
+          wildly,oddly,unconvincingly,happily,slightly,up)
+        (theirmsg [$TP_NAME cheers $ADJ for $OB_NAME])
+        (mymsg    [You cheer $ADJ for $OB_NAME])))))
+(chirp
+  *((prepositions [at])
+    (adverbs ,happily,in anger,anxiously,annoyingly,while pecking for food)
+    (undirected
+      *((theirmsg [$TP_NAME chirps $ADJ])
+        (mymsg    [You chirp $ADJ]))
+      (directed
+        *((theirmsg [$TP_NAME chirps chirps chirps at $OB_NAME $ADJ])
+        (mymsg    [You chirp chirp chirp at $OB_NAME $ADJ]))))))
+(choke
+  *((noarg
+      *((theirmsg [$TP_NAME chokes])
+        (mymsg    [You choke])))
+    (directed
+      *((force    [breath pain])
+        (theirmsg [$TP_NAME chokes $OB_NAME])
+        (mymsg    [You choke $OB_NAME])))))
+(chortle
+  *((noargs
+      *((mymsg     [You chortle merrily])
+        (theirmsg   [$TP_NAME chortles merrily])))
+    (directed
+      *((mymsg    [You chortle merrily at $OB_NAME])
+        (theirmsg [$TP_NAME $ADJ chortles merrily at $OB_NAME])))))
+(chuckle
+  *((undirected
+      *((adverbs  politely,nastily,demonically)
+        (theirmsg [$TP_NAME chuckles $ADJ])
+        (mymsg    [You chuckle $ADJ])))))
+(clap
+  *((undirected
+      *((adverbs  briefly,enthusiastically,excitedly,wildly,happily,slightly)
+        (theirmsg [$TP_NAME claps $ADJ])
+        (mymsg    [You clap $ADJ])))
+    (directed
+      *((adverbs  briefly,enthusiastically,excitedly,wildly,happily,slightly)
+        (theirmsg [$TP_NAME claps $ADJ for $OB_NAME])
+        (mymsg    [You clap $ADJ for $OB_NAME])))))
+(comb
+  *((noargs
+      *((mymsg    [You comb your hair])
+        (theirmsg [$TP_NAME combs $TP_POSS hair])))
+    (directed
+      *((mymsg    [You comb $OB_NPOSS hair])
+        (theirmsg [$TP_NAME combs $OB_NPOSS hair])))))
+(comfort
+  *((directed
+      *((adverbs  sincerely,wholeheartly,mischeviously,halfheartedly,vaguely,
+          eagerly,completely,lovingly,gently,tenderly,sadly,
+          in earnest,twice,anxiously,carefully,delicately)
+        (theirmsg [$TP_NAME comforts $OB_NAME $ADJ])
+        (mymsg    [You comfort $OB_NAME $ADJ])))))
+(confess
+  *((noargs
+      *((theirmsg [$TP_NAME confesses $TP_POSS sins])
+        (mymsg    [You confess your sins])))
+    (directed
+      *((theirmsg [$TP_NAME confesses $TP_POSS sins to $OB_NAME])
+        (mymsg    [You confess your sins to $OB_NAME])))))
+(congratulate
+  *((directed
+      *((adverbs  ,heartily,warmly)
+        (theirmsg [$TP_NAME congratulates $OB_NAME $ADJ])
+        (mymsg    [You congratulate $OB_NAME $ADJ])))
+    (noargs
+      *((theirmsg [$TP_NAME congratulates everyone])
+        (mymsg    [You congratulate everyone])))))
+(cootie
+  *((noargs
+      *((mymsg    [You announce you have cooties])
+        (theirmsg [$TP_NAME announces $TP_PRONOUN has cooties])))
+    (directed
+      *((mymsg  [You give $OB_NAME the cooties])
+        (theirmsg [$TP_NAME gives $OB_NAME cooties])))))
+(cough
+  *((undirected
+      *((adverbs  ,happily,loudly,quietly,excitedly,disgustingly,
+          sadly,pinkly)
+        (theirmsg [$TP_NAME coughs $ADJ])
+        (mymsg    [You cough $ADJ])))))
+(cower
+  *((undirected
+      *((adverbs  in a corner,fearfully,slyly,shyly,in shame,nastily)
+        (theirmsg [$TP_NAME cowers $ADJ])
+        (mymsg    [You cower $ADJ])))))
+(crack
+  *((prepositons [on])
+    (undirected
+      *((theirmsg [$TP_NAME cracks $TP_POSS knuckles])
+        (mymsg    [You crack your knuckles]))
+      (directed
+        *((theirmsg [$TP_NAME finally cracks and confesses all $TP_POSS feelings for $OB_NAME])
+          (mymsg    [You finally crack and confess all your feelings for $OB_NAME]))))))
+(cringe
+  *((undirected
+      *((adverbs  terror,embarassment)
+        (theirmsg [$TP_NAME cringes in $ADJ])
+        (mymsg    [You cringe in $ADJ])))))
+(croak
+  *((noargs
+      *((theirmsg [$TP_NAME croaks loudly])
+        (mymsg    [You croak loudly])))))
+(cross
+  *((undirected
+      *((adverbs  fingers,legs,eyes,nose)
+        (theirmsg [$TP_NAME crosses $TP_POSS $ADJ])
+        (mymsg    [You cross your $ADJ])))))
+(cry
+  *((noargs
+      *((theirmsg [$TP_NAME cries mournfully])
+        (mymsg    [You cry mournfully])))))
+(cuddle
+  *((directed
+      *((theirmsg [$TP_NAME cuddles $OB_NAME])
+        (mymsg    [You cuddle $OB_NAME])))))
+(cursep
+  *((noargs
+      *((mymsg    [You mumble bad words to yourself])
+        (theirmsg [$TP_NAME mumbles some bad words])))
+    (directed
+      *((mymsg    [You mumble bad words about $OB_NAME])
+        (theirmsg [$TP_NAME mumbles bad words about $OB_NAME])))))
+(curtsey
+  *((prepositons [to])
+    (undirected
+      *((theirmsg [$TP_NAME curtseys gracefully])
+        (mymsg    [You curtsey gracefully]))
+      (directed
+        *((theirmsg [$TP_NAME curtseys gracefully to $OB_NAME])
+          (mymsg    [You curtsey gracefully to $OB_NAME]))))))
+(dance
+  *((noargs
+      *((mymsg    [You sweep yourself across the dance floor])
+        (theirmsg [$TP_NAME sweeps $TP_FOO across the dance floor])))
+    (directed
+      *((theirmsg [$TP_NAME sweeps $OB_NAME across the dance floor])
+        (mymsg    [You sweep $OB_NAME across the dance floor])))))
+(dart
+  *((noargs
+      *((theirmsg     [$TP_NAME darts back and forth])
+        (mymsg      [You dart back and forth])))))
+(daydream
+  *((noargs
+      *((theirmsg [$TP_NAME daydreams])
+        (mymsg    [You daydream])))
+    (undirected
+      *((adverbs  #)
+        (theirmsg [$TP_NAME daydreams $ADJ])
+        (mymsg    [You daydream $ADJ])))))
+(dip
+  *((prepositions [at])
+    (adverbs ,innocently)
+    (undirected
+      *((theirmsg [$TP_NAME dips $TP_POSS invisible friend])
+        (mymsg    [You dip your invisable friend]))
+      (directed
+        *((theirmsg [$TP_NAME dips $OB_NAME])
+          (mymsg    [You dip $OB_NAME]))))) )
+(doh
+  *((noargs
+      *((theirmsg [%^CYAN%^ $TP_NAME says:%^RESET%^ doh!])
+        (mymsg    [%^CYAN%^You say:%^RESET%^ doh!])))))
+(drool
+  *((noargs
+      *((theirmsg [$TP_NAME messily drools all over the place])
+        (mymsg    [You start to drool])))
+    (directed
+      *((theirmsg [$TP_NAME drools all over $OB_NAME])
+        (mymsg    [You drool all over $OB_NAME])))))
+(drum
+  *((prepositons [on])
+    (undirected
+      *((theirmsg [$TP_NAME drums $TP_POSS chest like King-Kong])
+        (mymsg    [You drum your chest like King-Kong]))
+      (directed
+        *((theirmsg [$TP_NAME drums on top of $OB_NPOSS head])
+          (mymsg    [You drum on top of $OB_NPOSS head]))))))
+(duck
+  *((noargs
+      *((theirmsg [$TP_NAME ducks out of the way])
+        (mymsg    [You duck out of the way])))
+    (directed
+      *((theirmsg [$TP_NAME ducks behind $OB_NAME])
+        (mymsg    [You duck behind $OB_NAME])))))
+(duh
+  *((noargs
+      *((theirmsg [$TP_NAME duhs])
+        (mymsg    [You duh])))))
+(eek
+  *((prepositions [at])
+    (adverbs ,none)
+    (undirected
+      *((theirmsg [$TP_NAME eeks!])
+        (mymsg    [You eek!]))
+      (directed
+        *((theirmsg [$TP_NAME eeks! at $OB_NAME])
+          (mymsg    [You eek! at $OB_NAME]))))) )
+(eep
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME eeps])
+        (mymsg    [You eep])))))
+(eye
+  *((directed
+      *((theirmsg [$TP_NAME eyes $OB_NAME over])
+        (mymsg    [You eye $OB_NAME over])))))
+(expect
+  *((directed
+      *((theirmsg [$TP_NAME looks expectantly at $OB_NAME])
+        (mymsg    [You look expectantly at $OB_NAME])))))
+(explode
+  *((noargs
+      *((theirmsg [$TP_NAME explodes into thousands of tiny pieces])
+        (mymsg    [You explode into thousands of tiny pieces])))))
+(faint
+  *((undirected
+      *((adverbs   ,tiredly,out of boredom,for the heck of it)
+        (theirmsg [$TP_NAME faints $ADJ])
+        (mymsg    [You faint $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME faints on $OB_NAME])
+        (mymsg    [You faint on $OB_NAME])))))
+(fart
+  *((noargs
+      *((theirmsg [$TP_NAME farts])
+        (mymsg    [You fart])))))
+(fiddle
+  *((noargs
+      *((theirmsg [$TP_NAME fiddles around])
+        (mymsg    [You fiddle around])))))
+(fidget
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME fidgets anxiously])
+        (mymsg    [You fidget anxiously])))))
+(flap
+  *((undirected
+      *((adverbs  ears,arms,wings,eyelashes)
+        (theirmsg [$TP_NAME flaps $TP_POSS $ADJ])
+        (mymsg    [You flap your $ADJ])))))
+(flex
+  *((undirected
+      *((adverbs  muscles,bisceps,triceps,legs,brain,nose,ears)
+        (theirmsg [$TP_NAME flexes $TP_POSS $ADJ])
+        (mymsg    [You flex your $ADJ])))))
+(flick
+  *((noargs
+      *((mymsg    [You flick your boogers into the air])
+        (theirmsg [$TP_NAME flicks $TP_POSS boogers into the air])))
+    (directed
+      *((mymsg  [You %^RED%^flick%^RESET%^ $OB_NAME on the ear really hard])
+        (theirmsg [$TP_NAME %^RED%^flicks%^RESET%^ $OB_NAME on the ear really hard])))))
+(flip
+  *((undirected
+      *((adverbs  head over heels,backwards,forwards,sideways,around,
+          carefully,slowly,twice,awkwardly,disturbingly,
+          digustingly,quickly,slowly,gracefully,over the moon,
+          around in a really complicated double back roll flip)
+        (theirmsg [$TP_NAME flips $ADJ])
+        (mymsg    [You flip $ADJ])))
+    (directed
+      *((adverbs  head over heels,off,into the garbage bin,
+          dangerously,spectacularly)
+        (theirmsg [$TP_NAME flips $OB_NAME $ADJ])
+        (mymsg    [You flip $OB_NAME $ADJ])))))
+(flirt
+  *((prepositions [with])
+    (directed
+      *((theirmsg [$TP_NAME teasingly flirts with $OB_NAME])
+        (mymsg    [You teasingly flirt with $OB_NAME])))))
+(flop
+  *((undirected
+      *((adverbs  helplessly,like a fish out of water,badly,
+          carefully,rudely,a bit,once,wonderfully,
+          impressively,suggestively,lazily,happily,pensively)
+        (theirmsg [$TP_NAME flops about $ADJ])
+        (mymsg    [You flop about $ADJ])))))
+(flourish
+  *((noargs
+      *((mymsg    [You gallantly flourish your cloak, and bow gracefully])
+        (theirmsg [$TP_NAME gallantly flourishes $TP_POSS cloak, and bows gracefully])))
+    (directed
+      *((mymsg    [You gallantly flourish your cloak, and bow gracefully before $OB_NAME])
+        (theirmsg [$TP_NAME gallantly flourishes $TP_POSS cloak and bows gracefully before $OB_NAME])))))
+(flustered
+  *((noargs
+      *((theirmsg [$TP_NAME looks flustered])
+        (mymsg    [You look flustered])))))
+(fondle
+  *((directed
+      *((theirmsg [$TP_NAME fondles $OB_NAME])
+        (mymsg    [You fondle $OB_NAME])))))
+(foo
+  *((undirected
+      *((adverbs   vaguely,carefully,slowly,dangerously)
+        (theirmsg  [$TP_NAME foos $ADJ])
+        (mymsg     [You foo $ADJ])))))
+(forgivep
+  *((directed
+      *((theirmsg  [$TP_NAME forgives $OB_NAME])
+        (mymsg     [You forgive $OB_NAME])))))
+(french
+  *((directed
+      *((theirmsg  [$TP_NAME frenches $OB_NAME deeply])
+        (mymsg     [You french $OB_NAME deeply])))))
+(frolic
+  *((noargs
+      *((theirmsg [$TP_NAME frolics around])
+        (mymsg    [You frolic around])))))
+(froth
+  *((noargs
+      *((theirmsg  [$TP_NAME froths at the mouth])
+        (mymsg     [You froth at the mouth])))))
+(frown
+  *((adverbs      ,in concentration,in thought,in anger,in depression,
+      happily)
+    (noargs
+      *((theirmsg  [$TP_NAME frowns])
+        (mymsg     [You frown])))
+    (undirected
+      *((theirmsg  [$TP_NAME frowns $ADJ])
+        (mymsg     [You frown $ADJ])))
+    (directed
+      *((theirmsg  [$TP_NAME frowns $ADJ at $OB_NAME])
+        (mymsg     [You frown $ADJ at $OB_NAME])))))
+(fumble
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME fumbles around all embarassed like])
+        (mymsg    [You fumble around all embarassed like])))))
+(fume
+  *((undirected
+      *((adverb     quietly,insultingly,despairingly)
+        (theirmsg   [$TP_NAME fumes $ADJ])
+        (mymsg      [You fume $ADJ])))))
+"$mcname$ fumes $lastarg$", }) }),
+(gasp
+  *((noargs
+      *((theirmsg     [$TP_NAME gasps in shock])
+        (mymsg      [You gasp in shock])))))
+(gesticulate
+  *((noargs
+      *((mymsg    [You gesticulate wildly])
+        (theirmsg     [$TP_NAME gesticulates wildly])))) )
+(gibber
+  *((noargs
+      *((mymsg    [You gibber madly])
+        (theirmsg    [$TP_NAME gibbers madly])))) )
+(giggle
+  *((adverbs     inanely,loudly,stupidly,quietly,idiotically,fiendishly)
+    (undirected
+      *((mymsg   [You giggle $ADJ])
+        (theirmsg   [$TP_NAME giggles $ADJ])))))
+(glance
+  *((noargs
+      *((mymsg    [You glance at nothing in particular])
+        (theirmsg [$TP_NAME glances at nothing in particular])))
+    (directed
+      *((mymsg  [You casually glance at $OB_NAME])
+        (theirmsg [$TP_NAME casually glances at $OB_NAME])))))
+(glare
+  *((prepositions [at])
+    (adverbs   stonily,sternly,hotly,intently,solemnly,idiotically,
+      evanly,evilly)
+    (noargs
+      *((mymsg    [You glare at the world in general])
+        (theirmsg  [$TP_NAME glares at the world in general])))
+    (undirected
+      *((mymsg    [You glare $ADJ])
+        (theirmsg    [$TP_NAME glares $ADJ])))
+    (directed
+      *((mymsg   [You glare at $OB_NAME $ADJ])
+        (theirmsg    [$TP_NAME glares at $OB_NAME $ADJ]))))))
+(goose
+  *((noargs
+      *((mymsg    [You goose yourself on the tushie])
+        (theirmsg [$TP_NAME gooses $TP_FOO on the tushie])))
+    (directed
+      *((mymsg  [You goose $OB_NAME on the tushie])
+        (theirmsg [$TP_NAME gooses $OB_NAME on the tushie])))))
+(greet
+  *((adverbs   happily,sadly,with open arms,ecstatically, carefully,
+      courteously,hysterically,reservedly,warmly,coldly,
+      insolently,curtly,absentmindedly)
+    (directed
+      *((mymsg   [You greet $OB_NAME $ADJ])
+        (theirmsg   [$TP_NAME greets $OB_NAME $ADJ])))))
+(grimace
+  *((undirected
+      *((theirmsg [$TP_NAME grimaces])
+        (mymsg    [You grimace])))))
+(grin
+  *((noargs
+      *((theirmsg    [$TP_NAME grins evilly])
+        (mymsg       [You grin evilly])))
+    (directed
+      *((theirmsg    [$TP_NAME grins evilly at $OB_NAME])
+        (mymsg       [You grin evilly at $OB_NAME])))))
+(grincat
+  *((noargs
+      *((theirmsg    [$TP_NAME grins like a cheshire cat])
+        (mymsg       [You grin like a cheshire cat])))
+    (directed
+      *((theirmsg    [$TP_NAME grins like a cheshire cat at $OB_NAME])
+        (mymsg       [You grin like a cheshire cat at $OB_NAME])))))
+(grinf
+  *((noargs
+      *((theirmsg    [$TP_NAME grins foolishly])
+        (mymsg       [You grin foolishly])))
+    (directed
+      *((theirmsg    [$TP_NAME grins foolishly at $OB_NAME])
+        (mymsg       [You grin foolishly at $OB_NAME])))))
+(grinhap
+  *((noargs
+      *((theirmsg    [$TP_NAME grins happily])
+        (mymsg       [You grin happily])))
+    (directed
+      *((theirmsg    [$TP_NAME grins happily at $OB_NAME])
+        (mymsg       [You grin happily at $OB_NAME])))))
+(grinhid
+  *((noargs
+      *((theirmsg    [$TP_NAME grins hideously])
+        (mymsg       [You grin hideously])))
+    (directed
+      *((theirmsg    [$TP_NAME grins hideously at $OB_NAME])
+        (mymsg       [You grin hideously at $OB_NAME])))))
+(grinm
+  *((noargs
+      *((theirmsg    [$TP_NAME grins mischievously])
+        (mymsg       [You grin mischievously])))
+    (directed
+      *((theirmsg    [$TP_NAME grins mischievously at $OB_NAME])
+        (mymsg       [You grin mischievously at $OB_NAME])))))
+(grind
+  *((adverbs   ,loudly,resignedly,together)
+    (undirected
+      *((mymsg   [You grind your teeth $ADJ])
+        (theirmsg   [$TP_NAME grinds $TP_POSS teeth $ADJ])))))
+(groan
+  *((adverbs   ,loudly,resignedly,tiredly)
+    (undirected
+      *((mymsg   [You groan $ADJ])
+        (theirmsg   [$TP_NAME groans $ADJ])))))
+(grope
+  *((adverbs   ,#)
+    (undirected
+      *((mymsg   [You grope $ADJ])
+        (theirmsg   [$TP_NAME gropes $ADJ])))
+    (directed
+      *((mymsg   [You grope $OB_NPOSS body $ADJ])
+        (theirmsg   [$TP_NAME gropes $OB_NPOSS body $ADJ])))))
+(grovel
+  *((prepositions [at])
+    (adverbs   shamelessly,violently,unashamedly,respectfully,
+      like bastian,like a dog,sarcastically)
+    (directed  
+      *((mymsg  [You grovel $ADJ at $OB_NPOSS feet])
+        (theirmsg   [$TP_NAME grovels $ADJ at $OB_NPOSS feet])))) )
+(growl
+  *((prepositions [at])
+    (adverbs   ,menacingly,nastily,loudly,playfully)
+    (undirected
+      *((mymsg   [You growl $ADJ])
+        (theirmsg   [$TP_NAME growls $ADJ])))
+    (directed
+      *((mymsg   [You growl $ADJ at $OB_NAME])
+        (theirmsg   [$TP_NAME growls $ADJ at $OB_NAME])))))
+(grumble
+  *((prepositions  [at])
+    (adverbs   quietly,bitterly,menacingly,halfheartedly,seductively,
+      suggestively,loudly,annoyingly,devastatingly,carefully,
+      wildly,more or less,jealously)
+    (undirected
+      *((mymsg  [You grumble $ADJ])
+        (theirmsg  [$TP_NAME grumbles $ADJ])))
+    (directed
+      *((mymsg  [You grumble $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME grumbles $ADJ at $OB_NAME])))))
+(grunt
+  *((adverbs      ,in ignitation,carefully,rudely)
+    (undirected
+      *((mymsg     [You grunt $ADJ])
+        (theirmsg  [$TP_NAME grunts $ADJ])))))
+(gurgle
+  *((prepositions  [at])
+    (adverbs  ,noisily,rudely,loudly,mischievously,happily,carefully,
+      disgustingly,in surprise,like a train,quickly,slowly)
+    (undirected
+      *((mymsg  [You gurgle $ADJ])
+        (theirmsg   [$TP_NAME gurgles $ADJ])))
+    (directed
+      *((mymsg  [You gurgle $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME gurgles $ADJ at $OB_NAME])))))
+(gwert
+  *((noargs
+      *((theirmsg    [$TP_NAME does the gwert])
+        (mymsg       [You do the gwert])))
+    (directed
+      *((theirmsg    [$TP_NAME does the gwert with $OB_NAME])
+        (mymsg       [You do the gwert with $OB_NAME])))))
+(grab
+  *((noargs
+      *((mymsg    [You grab about at things])
+        (theirmsg [$TP_NAME grabs about at things])))
+    (directed
+      *((mymsg    [You grab $OB_NAME from behind])
+        (theirmsg [$TP_NAME grabs $OB_NAME from behind])))))
+(hang
+  *((noargs
+      *((mymsg   [You hang your head in shame])
+        (theirmsg   [$TP_NAME hangs $TP_POSS head in shame])))))
+(headbutt
+  *((directed
+      *((mymsg  [You headbutt $OB_NAME])
+        (theirmsg  [$TP_NAME headbutts $OB_NAME]))))) 
+(headstand
+  *((prepositions [on])
+    (undirected
+      *((mymsg  [You stand on your head])
+        (theirmsg  [$TP_NAME stands on $TP_NPOSS head])))
+    (directed
+      *((mymsg  [You stand on $OB_NPOSS head])
+        (theirmsg   [$TP_NAME stands on $OB_NPOSS head])))))
+(hiccup
+  *((noargs
+      *((mymsg   [You hiccup])
+        (theirmsg   [$TP_NAME hiccups])))))
+(holdb
+  *((prepositions   [on,onto])
+    (adverbs   ,close,down,tightly,warmly,gently,lovingly,back,up)
+    (noargs
+      *((mymsg   [You hold back])
+        (theirmsg   [$TP_NAME holds back])))
+    (directed
+      *((mymsg   [You hold $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME holds $OB_NAME $ADJ])))))
+(hop
+  *((noargs
+      *((mymsg   [You hop around like a bunny rabbit])
+        (theirmsg  [$TP_NAME hops around like a bunny rabbit])))))
+(hoot
+  *((prepositions [at])
+    (adverbs ,like an owl,hysterically,in warning,anxiously,annoyingly,to signal another probably hiding somewhere near)
+    (undirected
+      *((theirmsg [$TP_NAME hoots $ADJ])
+        (mymsg    [You hoot $ADJ]))
+      (directed
+        *((theirmsg [$TP_NAME %^GREEN%^HOOTS %^GREEN%^%^BOLD%^HOOTS %^RESET%^%^GREEN%^HOOTS%^RESET%^ at $OB_NAME $ADJ])
+        (mymsg    [You %^GREEN%^HOOT %^GREEN%^%^BOLD%^HOOT %^RESET%^%^GREEN%^HOOT%^RESET%^ at $OB_NAME $ADJ]))))))
+(howlp
+  *((adverbs  at the sky,tunelessly,annoyingly,aguely,absentmindedly,
+      while you work,distractedly,pointlessly,silently,loudly,
+      rudely)
+    (undirected
+      *((mymsg   [You %^RED%^howl%^RESET%^ pathetically])
+        (theirmsg  [$TP_NAME howl $ADJ])))))
+(hug
+  *((adverbs   ,tightly,warmly,gently,close)
+    (directed
+      *((mymsg   [You hug $OB_NAME $ADJ])
+        (theirmsg   [$TP_NAME hugs $OB_NAME $ADJ])))))
+(hiss
+  *((noargs
+      *((mymsg    [You %^RED%^hiss in disgust%^RESET%^])
+        (theirmsg [$TP_NAME %^RED%^hisses in disgust%^RESET%^])))
+    (directed
+      *((mymsg  [You %^RED%^hiss in disgust%^RESET%^ at $OB_NAME])
+        (theirmsg [$TP_NAME %^RED%^hisses in disgust%^RESET%^ at $OB_NAME])))))
+(huggle
+  *((noargs
+      *((mymsg    [You huggle yourself in self pity])
+        (theirmsg [$TP_NAME huggles $TP_FOO])))
+    (directed
+      *((mymsg  [You huggle $OB_NAME affectionately])
+        (theirmsg [$TP_NAME huggles $OB_NAME affectionately])))))
+(hum
+  *((adverbs  a merry tune,tunelessly,annoyingly,aguely,absentmindedly,
+      while you work,distractedly,pointlessly,silently,loudly,
+      rudely)
+    (undirected
+      *((mymsg   [You hum $ADJ a merry little tune])
+        (theirmsg  [$TP_NAME hums $ADJ a merry little tune])))))
+(hurlp
+  *((prepositions [like a])
+    (adverbs dog,cat,chicken,cow,large bear,poodle,chihuahua)
+    (noargs
+      *((theirmsg [$TP_NAME %^GREEN%^hurls%^RESET%^ chunks])
+        (mymsg    [You %^GREEN%^hurl%^RESET%^ chunks])))
+    (undirected
+      *((theirmsg [$TP_NAME %^GREEN%^hurls%^RESET%^ chunks])
+        (mymsg    [You %^GREEN%^hurl%^RESET%^ chunks])))
+    (directed
+      *((force    [sneer $OB_NAME])
+        (theirmsg [$TP_NAME %^GREEN%^hurls chunks%^RESET%^ all over $OB_NAME])
+        (mymsg    [You %^GREEN%^hurl chunks%^RESET%^ all over $OB_NAME])))))   
+(ignorep
+     *((undirected
+         *((mymsg   [You ignore the world])
+           (theirmsg   [$TP_NAME ignores the world])))
+       (directed
+         *((mymsg  [You ignore $OB_NAME])
+           (theirmsg  [$TP_NAME ignores $OB_NAME])))))
+(juggle
+ *((adverbs     ,balls,sticks,battons,cats,dogs,frogs,chickens,swords,knives,
+                arms,legs,balls,trees,chain saws,bottles,torches,bings,
+                tree stumps,logs,wine glasses,water,people,fire)
+   (undirected
+    *((mymsg    [You juggle ineptly])
+      (theirmsg [$TP_NAME juggles $ADJ ineptly])))))
+(jump
+ *((adverbs     excitedly,happily,carefully,slowly,joyfully,unsteadily,
+                sideways,absentmindedly)
+   (directed
+    *((adverbs  ,)
+      (mymsg    [You jump $ADJ up and down on $OB_NAME])
+      (theirmsg [$TP_NAME jumps up and down $ADJ on $OB_NAME])))
+   (undirected
+    *((mymsg    [You jump up and down $ADJ])
+      (theirmsg [$TP_NAME jumps up and down $ADJ])))))
+(kick
+  *((noargs
+      *((mymsg    [You kick yourself])
+        (theirmsg [$TP_NAME kicks $TP_FOO])))
+    (directed
+      *((mymsg    [You kick $OB_NAME])
+        (theirmsg [$TP_NAME kicks $OB_NAME])))))
+(kiss
+  *((adverbs     passionately,deeply,tenderly,gently,lovingly,lengthily,
+      fishily,carefully,demandingly,sensuously)
+    (directed
+      *((mymsg    [You kiss $OB_NAME $ADJ])
+        (theirmsg [$TP_NAME kisses $OB_NAME $ADJ])))))
+(kissb
+  *((adverbs     passionately,deeply,tenderly,gently,lovingly,lengthily,
+      fishily,carefully,demandingly,sensuously)
+    (directed
+      *((mymsg    [You blow a kiss to $OB_NAME])
+        (theirmsg [$TP_NAME blows kisses at $OB_NAME])))))
+(kissc
+  *((adverbs     passionately,deeply,tenderly,gently,lovingly,lengthily,
+      fishily,carefully,demandingly,sensuously)
+    (directed
+      *((mymsg    [You kiss $OB_NAME sweetly on the cheek])
+        (theirmsg [$TP_NAME kisses $OB_NAME sweetly on the cheek])))))
+(kisshand
+  *((adverbs     demurely,passionately,tenderly,gently,lovingly,sensuously)
+    (directed
+      *((mymsg    [You kiss $OB_NAME $ADJ upon the hand])
+        (theirmsg [$TP_NAME kisses $OB_NAME upon the hand $ADJ]))))) 
+(kissp
+  *((adverbs     passionately,deeply,tenderly,gently,lovingly,lengthily,
+      fishily,carefully,demandingly,sensuously)
+    (directed
+      *((mymsg    [You kiss $OB_NAME passionately])
+        (theirmsg [$TP_NAME kisses $OB_NAME passionately])))))
+(kisss
+  *((adverbs     passionately,deeply,tenderly,gently,lovingly,lengthily,
+      fishily,carefully,demandingly,sensuously)
+    (directed
+      *((mymsg    [You kiss $OB_NAME seductively])
+        (theirmsg [$TP_NAME kisses $OB_NAME seductively])))))
+(knee
+  *((noargs
+      *((mymsg    [You knee yourself])
+        (theirmsg [$TP_NAME knees $TP_FOO])))
+    (directed
+      *((mymsg    [You knee $OB_NAME])
+        (theirmsg [$TP_NAME knees $OB_NAME])))))
+(kneel
+  *((prepositions [before])
+    (undirected
+      *((mymsg     [You kneel down upon your knees])
+        (theirmsg  [$TP_NAME kneels])))
+    (directed
+      *((mymsg    [You kneel before $OB_NAME ])
+        (theirmsg  [$TP_NAME kneels before $OB_NAME ])))))
+(laugh
+  *((adverbs     ,nastily,nicely,quietly,uncontrollably,politely,happily,
+      manically,estaticly,demonically)
+    (noargs
+      *((mymsg    [You roll around on the floor laughing])
+        (theirmsg [$TP_NAME rolls around on the floor laughing])))
+    (directed
+      *((mymsg    [You laugh $ADJ at $OB_NAME])
+        (theirmsg [$TP_NAME laughs $ADJ at $OB_NAME])))
+    (undirected
+      *((mymsg    [You laugh $ADJ])
+        (theirmsg [$TP_NAME laughs $ADJ])))))
+(leap
+  *((adverbs     ,longingly,excitedly,quickly,slowly,awkwardly,politlely,
+      quietly,noisily)
+    (directed
+      *((mymsg    [You leap $ADJ into $OB_NPOSS arms])
+        (theirmsg [$TP_NAME leaps $ADJ into $OB_NPOSS arms])))
+    (undirected
+      *((mymsg    [You leap $ADJ into the air])
+        (theirmsg [$TP_NAME leaps $ADJ into the air])))))
+(leaps
+  *((adverbs     ,longingly,excitedly,quickly,slowly,awkwardly,politlely,
+      quietly,noisily)
+    (directed
+      *((mymsg    [You leap $ADJ into $OB_NPOSS arms])
+        (theirmsg [$TP_NAME leaps $ADJ into $OB_PRONOUN arms])))
+    (undirected
+      *((mymsg    [You leap $ADJ into the air])
+        (theirmsg [$TP_NAME leaps $ADJ into the air])))))
+(leer
+  *((noargs
+      *((mymsg    [You leer at yourself])
+        (theirmsg [$TP_NAME leers at $TP_FOO])))
+    (directed
+      *((mymsg    [You leer at $OB_NAME])
+        (theirmsg [$TP_NAME leers at $OB_NAME])))))
+(lick
+  *((noargs
+      *((mymsg    [You lick your lips])
+        (theirmsg [$TP_NAME licks $TP_POSS lips])))
+    (directed
+      *((mymsg    [You lick $OB_NAME])
+        (theirmsg [$TP_NAME licks $OB_NAME])))))
+(lickle
+  *((directed
+      *((mymsg    [You give $OB_NAME a long, slow, seductive lick with your tongue])
+        (theirmsg [$TP_NAME gives $OB_NAME a long, slow, seductive lick])))))
+(loom
+  *((directed
+      *((mymsg    [You loom over $OB_NAME])
+        (theirmsg [$TP_NAME looms over $OB_NAME])))))
+(love
+  *((directed
+      *((mymsg    [You whisper sweet nothings to $OB_NAME])
+        (theirmsg [$TP_NAME whispers sweet nothings to $OB_NAME])))))
+(lower
+  *((adverbs     ,quickly,slowly,quizicaly,silently,loudly,with a pitch fork,
+      backwards,sideways,cleverly,surprisingly,playfully,
+      sternly,unnoticeably,macarbly,
+      scepticaly)
+    (undirected
+      *((mymsg    [You lower your eyebrows $ADJ])
+        (theirmsg [$TP_NAME lowers $TP_POSS eyebrows $ADJ])))))
+(madness
+  *((adverbs wholeheartedly,loudly,softly,vaguely,briefly)
+    (undirected
+      *((theirmsg [$TP_NAME rubs $TP_POSS hands together evilly and laughs like a madman ])
+        (mymsg    [You rub your hands together evilly and laugh like a madman])))
+    (directed
+      *((theirmsg [$TP_NAME rubs $TP_POSS hands together evilly and laughs like a madman at $OB_NAME])
+        (mymsg    [You rub your hands together evilly and laugh like a madman at $OB_NAME])))))
+(massage
+  *((adverbs     good,bad,ugly,long,refreshing,pink,full body,seductive,
+      sensuous,strange,painful,deep,meaningful,ergonomic,economic,
+      painless,memorable,different,unwanted,unwarranted,
+      unprovoked,unknown,sneaky,unnoticed,unwieldly,back,
+      professional,unprofessional,happy,sad,trained,untrained,
+      train,compact,quick,foot,leg,arm,head,
+      ear,neck,shoulder,nose)
+    (directed
+      *((mymsg    [You give $OB_NAME a $ADJ massage])
+        (theirmsg [$TP_NAME gives $OB_NAME a $ADJ massage])))))
+(meep
+  *((adverbs     #)
+    (undirected
+      *((theirmsg [$TP_NAME meeps meekly])
+        (mymsg    [You meep meekly])))))
+(melt
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME melts])
+        (mymsg    [You melt])))))
+(meow
+  *((noargs
+      *((theirmsg   [$TP_NAME meows])
+        (mymsg     [You meow])))))
+(moan
+  *((adverbs     ,gently,deeply,sensually,agonisingly,in terror,seductively)
+    (undirected
+      *((mymsg    [You moan $ADJ])
+        (theirmsg [$TP_NAME moans $ADJ])))))
+(moo
+  *((adverbs     ,like a cow,gently,deeply,sensually,agonisingly,in terror,seductively)
+    (undirected
+      *((mymsg    [You moo $ADJ])
+        (theirmsg [$TP_NAME moos $ADJ])))))
+(moon
+  *((directed
+      *((mymsg    [You drop your pants and moon $OB_NAME])
+        (theirmsg [$TP_NAME drops $TP_POSS pants and moons $OB_NAME])))))
+(mosh
+  *((undirected
+      *((adverbs  violently,angrily,carefully,thoughtfully,wonderingly,
+          vigously,insanely,loudly)
+        (theirmsg [$TP_NAME moshes $ADJ around the room])
+        (mymsg    [You mosh $ADJ around the room])))))
+(mutter
+  *((adverbs     #)
+    (undirected
+      *((theirmsg [$TP_NAME mutters $ADJ under $TP_POSS breath])
+        (mymsg    [You mutter $ADJ under your breath])))))
+(nestle
+  *((adverbs     affectionately,lovingly,curiously)
+    (directed
+      *((mymsg    [You nestle up to $OB_NAME $ADJ])
+        (theirmsg [$TP_NAME nestle up to  $OB_NAME $ADJ])))))
+(nibble
+  *((adverbs     ear,finger,lip,arm,leg,toe,neck,nose)
+    (directed
+      *((mymsg    [You nibble on $OB_NPOSS $ADJ])
+        (theirmsg [$TP_NAME nibbles on $OB_NPOSS $ADJ])))))
+(nip
+  *((noargs
+      *((mymsg    [You nip at an itchy spot, you may have fleas again])
+        (theirmsg [$TP_NAME nips at an itchy spot. Looks like $TP_PRONOUN might have fleas again])))
+    (directed
+      *((mymsg  [You playfully nip $OB_NAME])
+        (theirmsg [$TP_NAME playfully nips $OB_NAME])))))
+(nod
+  *((adverbs     solemnly,happily,brightly,curtly,patiently,slowly,knowingly,
+      vigorously,tentatively)
+    (undirected
+      *((mymsg    [You nod $ADJ ])
+        (theirmsg [$TP_NAME nods $ADJ])))
+    (directed
+      *((mymsg    [You nod $ADJ at $OB_NAME])
+        (theirmsg [$TP_NAME nods $ADJ at $OB_NAME])))))
+(noise
+  *((undirected
+      *((adverbs  bungle,flurgle,zongle-wop,wop,whirr,burble,frog,moo,train,
+          hairy,twisted,wap,pop,rat,mouse,chicken,womble,guppy,
+          cow,rabbit,kangaroo,gumby)
+        (theirmsg [$TP_NAME makes a $ADJ noise])
+        (mymsg    [You make a $ADJ noise]))
+      (noargs
+        *((theirmsg [$TP_NAME makes a funny noise])
+          (mymsg    [You make a funny noise]))))))
+(noogie
+  *((noargs
+      *((mymsg    [You noogie yourself like an idiot])
+        (theirmsg [$TP_NAME noogies $TP_FOO])))
+    (directed
+      *((mymsg  [You give $OB_NAME a noogie])
+        (theirmsg [$TP_NAME gives $OB_NAME a noogie])))))
+(nudge
+  *((directed
+      *((theirmsg [$TP_NAME nudges $OB_NAME])
+        (mymsg    [You nudge $OB_NAME])))))
+(nuzzle
+  *((directed
+      *((theirmsg [$TP_NAME nuzzles $OB_NAME affectionately])
+        (mymsg    [You nuzzle $OB_NAME affectionately])))))
+(nyuck
+  *((noargs
+      *((mymsg     [You Nyuck, Nyuck, Nyuck])
+        (theirmsg  [$TP_NAME Nyuck, Nyuck, Nyucks])))
+    (directed
+      *((mymsg    [You Nyuck, Nyuck, Nyuck at $OB_NAME])
+        (theirmsg [$TP_NAME Nyuck, Nyuck, Nyucks at $OB_NAME])))))
+(ok
+  *((noargs
+      *((mymsg    [You give the Okay sign and say: %^YELLOW%^Okie dokie])
+        (theirmsg [$TP_NAME gives the Okay sign and says: %^YELLOW%^Okie dokie])))
+    (directed
+      *((mymsg  [You give the Okay sign and say: %^YELLOW%^Okie dokie!%^RESET%^ to $OB_NAME])
+        (theirmsg [$TP_NAME gives the Okay sign and says: %^YELLOW%^Okie dokie!%^RESET%^ to $OB_NAME])))))
+(oogle
+  *((undirected
+      *((adverbs  enthusiastically,excitedly,quietly,calmly,carefully,politely,
+          wildly,oddly,unconvincingly,happily,slightly,up)
+        (theirmsg [$TP_NAME %^BLUE%^o%^CYAN%^o%^BLUE%^g%^CYAN%^l%^BLUE%^e%^CYAN%^s%^RESET%^ like a fool])
+        (mymsg    [You %^BLUE%^o%^CYAN%^o%^BLUE%^g%^CYAN%^l%^BLUE%^e%^RESET%^ like a fool])))
+    (directed
+      *((adverbs  enthusiastically,excitedly,quietly,calmly,carefully,politely,
+          wildly,oddly,unconvincingly,happily,slightly,up)
+        (theirmsg [$TP_NAME %^BLUE%^o%^CYAN%^o%^BLUE%^g%^CYAN%^l%^BLUE%^e%^CYAN%^s%^RESET%^ over $OB_NAME])
+        (mymsg    [You %^BLUE%^o%^CYAN%^o%^BLUE%^g%^CYAN%^l%^BLUE%^e%^RESET%^ over  $OB_NAME])))))
+(panic
+  *((noargs
+      *((theirmsg [$TP_NAME panics])
+        (mymsg    [You panic])))))
+(pant
+  *((noargs
+      *((theirmsg [$TP_NAME pants like a dog])
+        (mymsg    [You pant like a dog])))))
+(pat
+  *((directed
+      *((theirmsg [$TP_NAME pats $OB_NAME on the head])
+        (mymsg    [You pat $OB_NAME on the head])))))
+(pet
+  *((directed
+      *((theirmsg [$TP_NAME pets $OB_NAME])
+        (mymsg    [You pet $OB_NAME])))))
+(peer
+  *((adverbs     ,suspiciously,quizically,anoxiously,stupidly,warningly,
+      expectantly,happily,sadly,desperately,worriedly,strangely,
+      uncertainly,lazily,rudely,disappointedly,
+      fearfully,like a train,curiously,tentatively,
+      warily,nervously,carefully,warningly,owlishly,dazedly)
+    (undirected
+      *((theirmsg  [$TP_NAME peers $ADJ around the room])
+        (mymsg    [You peer $ADJ around the room])))
+    (directed
+      *((theirmsg [$TP_NAME peers $ADJ at $OB_NAME])
+        (mymsg    [You peer $ADJ at $OB_NAME])))) )
+(pinch
+  *((noargs
+      *((theirmsg [$TP_NAME pinches $TP_FOO])
+        (mymsg    [You pinch yourself])))
+    (directed
+      *((advebrs  bottom,leg,arm,frog,cheek)
+        (theirmsg [$TP_NAME pinches $OB_NAME on the tushie])
+        (mymsg    [You pinch $OB_NAME on the tushie])))))
+(ping
+  *((directed
+      *((force    [ack $TP_NAME])
+        (theirmsg [$TP_NAME pings at $OB_NAME])
+        (mymsg    [You ping at $OB_NAME])))))
+(plead
+  *((undirected
+      *((theirmsg [$TP_NAME pleads desperately])
+        (mymsg    [You plead desperately])))))
+(point
+  *((prepositions [at])
+    (adverbs ,innocently,accusingly,straight)
+    (undirected
+      *((theirmsg [$TP_NAME points])
+        (mymsg    [You point]))
+      (directed
+        *((theirmsg [$TP_NAME points directly at $OB_NAME])
+          (mymsg    [You point directly at $OB_NAME]))))))
+(poke
+  *((directed
+      *((adverbs  #,ribs,nose,leg,frog,arm)
+        (theirmsg [$TP_NAME pokes $OB_NAME in the $ADJ])
+        (mymsg    [You poke $OB_NAME in the $ADJ])))))
+(ponder
+  *((adverbs    #,the situation)
+    (undirected
+      *((theirmsg [$TP_NAME ponders $ADJ])
+        (mymsg    [You ponder $ADJ])))))
+(pontificate
+  *((noargs
+      *((mymsg    [You pontificate profusely])
+        (theirmsg  [$TP_NAME pontificates profusley])))))
+(pose
+  *((prepositions [at])
+    (adverbs ,innocently)
+    (undirected
+      *((theirmsg [$TP_NAME poses])
+        (mymsg    [You strike a pose]))
+      (directed
+        *((theirmsg [$TP_NAME poses for $OB_NAME])
+          (mymsg    [You pose for $OB_NAME]))))))
+(pounce
+  *((noargs
+      *((theirmsg    [$TP_NAME looks around in an odd manner])
+        (mymsg [You browse around for a pouncing target])))
+    (directed
+      *((theirmsg    [$TP_NAME %^BOLD%^%^YELLOW%^POUNCES%^RESET%^ on $OB_NAME])
+        (mymsg [You %^BOLD%^%^YELLOW%^POUNCE%^RESET%^ on $OB_NAME])))))
+(pout
+  *((undirected
+      *((theirmsg [$TP_NAME pouts])
+        (mymsg    [You pout])))))
+(preen
+  *((prepositions [at])
+    (adverbs      like a bird,visciously,slightly,wombely,happily,joyfully,angrily)
+    (undirected
+      *((adverbs   like a bird,under the arms,and fluffs all matted feathers)
+        (mymsg     [You preen yourself $ADJ])
+        (theirmsg  [$TP_NAME preens $TP_FOO $ADJ])))
+    (directed
+      *((adverbs   attentively)
+        (mymsg     [You preem $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME preens $OB_NAME $ADJ])))))
+(primp
+  *((adverbs     ,playfully,affectionately)
+    (directed
+      *((theirmsg [$TP_NAME primps $OB_NPOSS makeup $ADJ])
+        (mymsg    [You primp $OB_NPOSS makeup $ADJ])))))
+(puke
+  *((directed
+      *((theirmsg [$TP_NAME pukes on $OB_NAME])
+        (mymsg    [You puke on $OB_NAME])))))
+(punch
+  *((directed
+      *((theirmsg [$TP_NAME punches $OB_NAME])
+        (mymsg    [You punch $OB_NAME])))))
+(purr
+  *((adverbs     contentedly,loudly,happily,sensuously)
+    (undirected
+      *((theirmsg [$TP_NAME purrs $ADJ])
+        (mymsg    [You purr $ADJ])))))
+(push
+  *((noargs
+      *((theirmsg [$TP_NAME pushes $TP_FOO over])
+        (mymsg    [You push yourself over]))
+      (directed
+        *((theirmsg [$TP_NAME pushes $OB_NAME over])
+          (mymsg    [You push $OB_NAME over]))))))
+(puzzle
+  *((noargs
+      *((theirmsg [$TP_NAME looks puzzled])
+        (mymsg    [You look puzzled])))))
+(undirected
+  *((theirmsg [$TP_NAME puzzles over $ADJ])
+    (mymsg    [You puzzle over $ADJ])))))
+(quirk
+  *((noargs
+      *((theirmsg [$TP_NAME quirks an eyebrow])
+        (mymsg    [You quirk an eyebrow])))))
+(quiver
+  *((noargs
+      *((theirmsg [$TP_NAME quivers])
+        (mymsg    [You quiver]))))
+  (raise
+  *((adverbs     ,quickly,slowly,quizicaly,silently,loudly,with a pitch fork,
+      backwards,sideways,cleverly,surprisingly,playfully,
+      like someone I can't think of,unnoticeably,macarbly,
+                scepticaly,your hopes and a family)
+   (undirected
+    *((mymsg    [You raise your eyebrows $ADJ])
+      (theirmsg [$TP_NAME raises $TP_POSS eyebrows $ADJ])))))
+(raspberry
+  *((noargs
+    *((mymsg    [You blow raspberries])
+      (theirmsg [$TP_NAME blows raspberries])))
+    (directed
+     *((mymsg  [You blow raspberries at $OB_NAME])
+       (theirmsg [$TP_NAME blows raspberries at $OB_NAME])))))
+(ribbit
+  *((noargs
+  *((mymsg      [You ribbit musically])
+    (theirmsg   [$TP_NAME ribbits musically])))
+   (directed
+    *((mymsg    [You ribbit musically at $OB_NAME])
+       (theirmsg[$TP_NAME ribbits musically at $OB_NAME]))))) 
+(rub
+ *((undirected
+    *((adverbs  hands together,eyes,tummy,nose,leg,arm,eyebrows,head)
+      (mymsg    [You rub your $ADJ])
+      (theirmsg [$TP_NAME rubs $TP_POSS $ADJ])))
+   (directed
+    *((mymsg    [You rub $OB_NAME the wrong way])
+      (theirmsg [$TP_NAME rubs $OB_NAME up the wrong way])))))
+(roarp
+ *((noargs
+    *((mymsg    [You roar like a mouse])
+      (theirmsg [$TP_NAME roars like a mouse])))
+   (undirected
+    *((adverbs  ,and bounces in excitement,so hard a hairball is coughed up,mouselike,annoyingly,
+                disgustingly,a warning,painfully,fearfully,in disgust,
+                tightly,slowly)
+      (theirmsg [$TP_NAME roars $ADJ])
+      (mymsg    [You roar $ADJ]))
+   (directed
+    *((adverbs  ,menacingly,ferociously,perilously,precariously,dangerously,lovingly,like a pussy cat)
+      (theirmsg [$TP_NAME roars $ADJ at $OB_NAME])
+      (mymsg    [You roar $ADJ at $OB_NAME])))))
+(rock
+  *((noargs
+      *((mymsg    [You %^MAGENTA%^rock%^RESET%^ back and forth crooning a little melody])
+        (theirmsg [$TP_NAME %^MAGENTA%^rocks%^RESET%^ back and forth crooning a little melody])))
+    (directed
+      *((mymsg  [You pick up a rock and throw it at $OB_NAME])
+        (theirmsg [$TP_NAME picks up a rock and throws it at $OB_NAME])))))
+(roll
+ *((noargs
+    *((mymsg    [You roll your eyes])
+      (theirmsg [$TP_NAME rolls $TP_POSS eyes])))
+   (undirected
+    *((adverbs  your eyes,around on the floor laughing,over and play dead,
+                up into a ball,your own cigarette,sideways,backwards,
+                painfully,like a spy through an imaginary door,fearfully,
+                tightly,slowly)
+      (theirmsg [$TP_NAME rolls $ADJ])
+      (mymsg    [You roll $ADJ]))
+   (directed
+    *((adverbs  ,quickly,slowly,painfully,excitededly,lovingly,carefully)
+      (theirmsg [$TP_NAME rolls $ADJ over $OB_NAME])
+      (mymsg    [You roll $ADJ over $OB_NAME])))))
+(ruffle
+ *((adverbs     ,playfully,affectionately)
+   (directed
+    *((theirmsg [$TP_NAME ruffles $OB_NPOSS hair $ADJ])
+      (mymsg    [You ruffle $OB_NPOSS hair $ADJ]))))
+(salt
+  *((noargs
+      *((theirmsg    [$TP_NAME thows a pinch of %^BOLD%^salt%^RESET%^ over $TP_POSS shoulder])
+        (mymsg [You throw a pinch of %^BOLD%^salt%^RESET%^ over your shoulder for good luck])))
+    (directed
+      *((theirmsg    [$TP_NAME throws a pinch of %^BOLD%^salt%^RESET%^ at $OB_NAME])
+        (mymsg [You throw a pinch of %^BOLD%^salt%^RESET%^ at $OB_NAME])))))
+(salute
+  *((noargs
+      *((mymsg    [You salute])
+        (theirmsg [$TP_NAME salutes])))
+    (directed
+      *((mymsg  [You salute $OB_NAME])
+        (theirmsg [$TP_NAME salutes $OB_NAME])))))
+(scowl
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME scowls darkly])
+        (mymsg    [You scowl darkly])))))
+(scratch
+  *((prepositions [at])
+    (adverbs      ,visciously,slightly,wombely,happily,joyfully,angrily)
+    (undirected
+      *((adverbs   on the head)
+        (mymsg     [You scratch yourself $ADJ])
+        (theirmsg  [$TP_NAME scratches $TP_FOO $ADJ])))
+    (directed
+      *((adverbs   attentively)
+        (mymsg     [You scratch $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME scratches $OB_NAME $ADJ])))))
+(scream
+  *((prepositions [at])
+    (adverbs      terror,fright,fear,pain,surprise,frustration,despair,anger)
+    (noargs
+      *((mymsg     [You scream loudly])
+        (theirmsg  [$TP_NAME screams loudly])))
+    (undirected
+      *((mymsg     [You scream $ADJ])
+        (theirmsg  [$TP_NAME screams $ADJ])))
+    (directed
+      *((mymsg     [You scream $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME scream $ADJ at $OB_NAME])))))
+(screech
+  *((prepositions [at])
+    (adverbs ,like an eagle,hysterically,in warning,anxiously,annoyingly,to signal another probably hiding somewhere near)
+    (undirected
+      *((theirmsg [$TP_NAME screeches $ADJ])
+        (mymsg    [You screech $ADJ]))
+      (directed
+      *((theirmsg [$TP_NAME %^YELLOW%^screeches %^YELLOW%^%^BOLD%^screeches %^RESET%^%^YELLOW%^screeches%^RESET%^ at $OB_NAME $ADJ])
+        (mymsg    [You %^YELLOW%^screech %^YELLOW%^%^BOLD%^screech %^RESET%^%^YELLOW%^SCREECH%^RESET%^ at $OB_NAME $ADJ]))))))
+(seduce
+  *((prepositions [with])
+    (directed
+      *((theirmsg [$TP_NAME charmingly seduces $OB_NAME])
+        (mymsg    [You charmingly seduce $OB_NAME])))))
+(shake
+  *((prepositions [with at])
+    (undirected
+      *((adverbs   ,sorrowfully,carefully,slowly,once,quickly,curtly,pinkly,
+          vigorously,completely,fishily,tentatively,in agreement,
+          in disbelief)
+        (mymsg     [You shake your head $ADJ])
+        (theirmsg  [$TP_NAME shakes $TP_POSS head $ADJ])))
+    (directed
+      *((adverbs   ,hands with,fins with,fingers with,legs with,
+          pinkys with,tentacles with,your fist at)
+        (mymsg     [You shake $ADJ $OB_NAME])
+        (theirmsg  [$TP_NAME shakes $ADJ $OB_NAME])))))
+(shiver
+  *((adverbs      in fear,with cold,slightly,#)
+    (undirected
+      *((mymsg     [You shiver $ADJ])
+        (theirmsg  [$TP_NAME shivers $ADJ])))))
+(shrug
+  *((adverbs      ,helplessly,slightly,evanly,rhythmicly,around in circles,
+      with your legs)
+    (undirected
+      *((theirmsg  [$TP_NAME shrugs $ADJ])
+        (mymsg     [You shrug $ADJ])))))
+(shudder
+  *((adverbs      ,happily,joyfully,angrily)
+    (undirected
+      *((adverbs   fear,revulsion,disapointment,ecstasy)
+        (mymsg     [You shudder in $ADJ])
+        (theirmsg  [$TP_NAME shudders in $ADJ])))))
+(sigh
+  *((adverbs      ,deeply,silently,desperately,tiredly,sadly,slowly,dreamily,
+      happily,heavily,suggestively,sarcasticly,in relief,with relief)
+    (undirected
+      *((mymsg     [You sigh $ADJ])
+        (theirmsg  [$TP_NAME sighs $ADJ])))))
+(sing
+  *((prepositions [to])
+    (adverbs      #)
+    (undirected
+      *((mymsg     [You sing $ADJ])
+        (theirmsg  [$TP_NAME sing $ADJ])))
+    (directed
+      *((mymsg     [You sing $ADJ to $OB_NAME])
+        (theirmsg  [$TP_NAME sings $ADJ to $OB_NAME])))))
+(sit
+  *((prepositions [on])
+    (undirected
+      *((mymsg     [You sit down wearily])
+        (theirmsg  [$TP_NAME sits down wearily])))
+    (directed
+      *((mymsg    [You sit on $OB_NAME !])
+        (theirmsg  [$TP_NAME sits on $OB_NAME !])))))
+(slap
+  *((noargs
+      *((mymsg     [You slap your forehead])
+        (theirmsg  [$TP_NAME slaps $TP_POSS forehead])))
+    (directed
+      *((mymsg     [You slap $OB_NAME])
+        (theirmsg  [$TP_NAME slaps $OB_NAME])))))
+(sleep
+  *((noargs
+      *((mymsg     [You fall fast asleep])
+        (theirmsg  [$TP_NAME falls fast asleep])))
+    (directed
+      *((mymsg     [You go to sleep in $OB_NAME arms])
+        (theirmsg  [$TP_NAME goes to sleep in $OB_NPOSS arms])))))
+(slobber
+  *((noargs
+      *((mymsg    [You start to slobber all over yourself])
+        (theirmsg [$TP_NAME slobbers and drools a puddle of spit])))
+    (directed
+      *((mymsg  [You slobber all over $OB_NAME])
+        (theirmsg [$TP_NAME slobbers all over $OB_NAME])))))
+(smack
+  *((prepositions [at])
+    (adverbs      ,lightly,angrily)
+    (undirected
+      *((adverbs   silly)
+        (mymsg     [You smack yourself $ADJ])
+        (theirmsg  [$TP_NAME smacks $TP_FOO $ADJ])))
+    (directed
+      *((adverbs   penetratingly)
+        (mymsg    [You smack some sense into $OB_NAME])
+        (theirmsg [$TP_NAME smacks some sense into $OB_NAME])))))
+(smirk
+  *((noargs
+      *((mymsg     [You smirk])
+        (theirmsg  [$TP_NAME smirks])))))
+(smile
+  *((prepositions [at])
+    (adverbs      ,happily,sadly,nervously,wryly,broadly,crookedly,stupidly,
+      idiotically,condesendingly,ironically,patiently,brightly,
+      slightly,nastily,excitedly,strangely,
+      plasticly,carefully,sadisticly,lopsidedly,fishily,catishly,
+      faintly,like a train,angrily,paranoicaly,innocently,frogily,
+      slyly,weakly,humbly,sarcasticly,vicously,
+      garishly,sweetly,innocently,lovingly,dreamily,radiantly,
+      enthusiasticly,insolently,quirkily,completely,unconsciously,
+      drunkenly,insanely,cutely,maliciously,absentmindedly,
+      curtly,disturbingly,unbeliveably,quietly,loudly,differently,
+      winningly,in triumph,seductively,tightly,
+      softly,lividly,demonicaly,
+      manically,warily,sardonically,lazily,serenely,disappointedly,
+      secretly,penetratingly)
+    (undirected
+      *((mymsg    [You smile happily])
+        (theirmsg  [$TP_NAME smiles happily])))
+    (directed
+      *((mymsg     [You smile $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME smiles $ADJ at $OB_NAME])))))
+(smooch
+  *((prepositions [at])
+    (adverbs      ,visciously,slightly,wombely,happily,joyfully,angrily)
+    (undirected
+      *((adverbs   on the head)
+        (mymsg     [You %^RED%^smooch%^RESET%^ yourself happily])
+        (theirmsg  [$TP_NAME %^RED%^smooches%^RESET%^ $TP_FOO happily])))
+    (directed
+      *((adverbs   joyfully,passionately,playfully)
+        (mymsg     [You %^RED%^smooch%^RESET%^ $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME %^RED%^smooches%^RESET%^ $OB_NAME $ADJ])))))
+(snap
+  *((noargs
+      *((mymsg     [You snap your fingers])
+        (theirmsg  [$TP_NAME snaps $TP_POSS fingers])))
+    (directed
+      *((mymsg     [You snap your fingers at $OB_NAME])
+        (theirmsg  [$TP_NAME snaps $TP_POSS fingers at $OB_NAME])))))
+(snarl
+  *((prepositions [at])
+    (adverbs      ,visiously,nastily,demonicaly,happily,sadly,
+      unexpectedly,suddenly)
+    (undirected
+      *((mymsg     [You snarl $ADJ])
+        (theirmsg  [$TP_NAME snarls $ADJ])))
+    (directed
+      *((mymsg     [You snarl $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME snarls $ADJ at $OB_NAME])))))
+(sneer
+  *((prepositions [at])
+    (undirected
+      *((mymsg     [You sneer])
+        (theirmsg  [$TP_NAME sneers])))
+    (directed
+      *((mymsg     [You sneer at $OB_NAME])
+        (theirmsg  [$TP_NAME sneers at $OB_NAME])))))
+(sneeze
+  *((prepositions [on])
+    (adverbs      ,violently,loudly,silently,quietly,suddenly,unexpectedly)
+    (undirected
+      *((mymsg     [You sneeze $ADJ])
+        (theirmsg  [$TP_NAME sneezes $ADJ])))
+    (directed
+      *((mymsg     [You sneeze $ADJ on $OB_NAME])
+        (theirmsg  [$TP_NAME sneezes $ADJ on $OB_NAME])))))
+(snicker
+  *((adverbs      ,mischeviously,nastily,a bit,like skippy)
+    (undirected
+      *((mymsg     [You snicker $ADJ])
+        (theirmsg  [$TP_NAME snickers $ADJ])))))
+(sniff
+  *((adverbs      ,dejectedly,noisily,silently,loudly,in disdain)
+    (undirected
+      *((mymsg     [You sniff $ADJ])
+        (theirmsg  [$TP_NAME sniffs $ADJ])))))
+(snookie
+  *((prepositions [with])
+    (directed
+      *((theirmsg [$TP_NAME %^RED%^sn%^MAGENTA%^oo%^RED%^ki%^MAGENTA%^es%^RESET%^ up to $OB_NAME %^RED%^warmly])
+        (mymsg    [You %^RED%^sn%^MAGENTA%^oo%^RED%^ki%^MAGENTA%^es%^RESET%^ up to $OB_NAME %^RED%^warmly])))))
+(snore
+  *((adverbs      ,loudly,quitely,sypatheticly,strangely,carefully,backwards,
+      like bastian,like a train,over a keyboard with bastian)
+    (undirected
+      *((mymsg     [You snore $ADJ])
+        (theirmsg  [$TP_NAME snores $ADJ])))))
+(snort
+  *((noargs
+      *((mymsg    [You snort])
+        (theirmsg [$TP_NAME snorts])))
+    (directed
+      *((mymsg  [You snort at $OB_NAME])
+        (theirmsg [$TP_NAME snorts at $OB_NAME])))))
+(snuggle
+  *((directed
+      *((theirmsg  [$TP_NAME snuggles up to $OB_NAME affectionately])
+        (mymsg     [You snuggle up to $OB_NAME affectionately])))))
+(snurgle
+  *((noargs
+      *((mymsg    [You start to drool and gurgle, snurgle, like a gnoll in heat])
+        (theirmsg [$TP_NAME drools and gurgles, snurgles, like a gnoll in heat])))
+    (directed
+      *((mymsg    [You snurgle $OB_NAME by drooling and gurgling all over them like a gnoll in heat])
+        (theirmsg [$TP_NAME snurgles $OB_NAME by drooling and gurgling all over them like a gnoll in heat])))))
+(sob
+  *((adverbs      ,uncontrollablely,happily,carefully,slightly,
+      quietly,loudly,helplessly,completely,unexpectedly,
+      silently,forlornly,cheekily)
+    (undirected
+      *((theirmsg  [$TP_NAME sobs $ADJ])
+        (mymsg     [You sob $ADJ])))
+    (directed
+      *((theirmsg  [$TP_NAME sobs $ADJ on $OB_NPOSS shoulder])
+        (mymsg     [You sob $ADJ on $OB_NPOSS shoulder])))))
+(sorry
+  *((adverbs      ,profusely,reservedly,profunctily,carefully,insultingly,
+      insolently)
+    (undirected
+      *((mymsg     [You apologise $ADJ])
+        (theirmsg  [$TP_NAME apologises $ADJ])))
+    (undirected
+      *((mymsg     [You apologise $ADJ to $OB_NAME])
+        (theirmsg  [$TP_NAME apologises $ADJ to $OB_NAME])))))
+(spank
+  *((prepositions [like a])
+    (adverbs adverbs      seductively,carefully,gently,uncontrollably,politely,
+      sensuously,selectively,unexpectedly,with an evil smirk,
+      painfully,sneakily,unprovoked,professionally,vigorously,
+      reflexively,with a cat,like a train)
+    (noargs
+      *((theirmsg [$TP_NAME spanks their own butt])
+        (mymsg    [You spank your own butt])))
+    (undirected
+      *((theirmsg [$TP_NAME spanks their own butt])
+        (mymsg    [You spank your own butt])))
+    (directed
+      *((force    [grin $OB_NAME])
+        (theirmsg [$TP_NAME spanks $OB_NAME])
+        (mymsg    [You spank $OB_NAME])))))
+(spew
+  *((prepositions [like a])
+    (adverbs dog,cat,chicken,cow,large bear,poodle,chihuahua)
+    (noargs
+      *((theirmsg [$TP_NAME %^GREEN%^spews%^RESET%^ chunks])
+        (mymsg    [You %^GREEN%^spew%^RESET%^ chunks])))
+    (undirected
+      *((theirmsg [$TP_NAME %^GREEN%^spews%^RESET%^ chunks])
+        (mymsg    [You %^GREEN%^spew%^RESET%^ chunks])))
+    (directed
+      *((force    [sneer $OB_NAME])
+        (theirmsg [$TP_NAME %^GREEN%^spews chunks%^RESET%^ all over $OB_NAME])
+        (mymsg    [You %^GREEN%^spew chunks%^RESET%^ all over $OB_NAME])))))
+(spin
+  *((noargs
+      *((mymsg    [You spin around in delight])
+        (theirmsg [$TP_NAME spins around in delight])))
+    (directed
+      *((mymsg    [You spin around $OB_NAME playfully])
+        (theirmsg [$TP_NAME spins around $OB_NAME playfully])))))
+(spit
+  *((prepositions [on])
+    (noargs
+      *((mymsg     [You spit])
+        (theirmsg  [$TP_NAME spits])))
+    (directed
+      *((mymsg     [You spit in $OB_NPOSS face])
+        (theirmsg  [$TP_NAME spits in $OB_NPOSS face])))))
+(spock
+  *((noargs
+      *((mymsg     [You raise one eyebrow])
+        (theirmsg  [$TP_NAME raises one eyebrow])))))
+(squawk
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME squawks in annoyance])
+        (mymsg    [You squawk in annoyance])))))
+(squeeze
+  *((adverbs      fondly,gently,tightly)
+    (directed
+      *((mymsg     [You squeeze $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME squeezes $OB_NAME $ADJ])))))
+(squirm
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME squirms uncomfortably])
+        (mymsg    [You squirm uncomfortably])))))
+(stagger
+  *((adverbs      #)
+    (noargs
+      *((mymsg     [You stagger around])
+        (theirmsg  [$TP_NAME staggers around])))
+    (undirected
+      *((mymsg     [You stagger $ADJ])
+        (theirmsg  [$TP_NAME staggers $ADJ])))))
+(stamp
+  *((adverbs      angrily,impatiently,warningly,fighteningly)
+    (undirected
+      *((mymsg     [You stamp your foot $ADJ])
+        (theirmsg  [$TP_NAME stamps $TP_POSS foot $ADJ])))))
+(stand
+  *((adverbs      in uffish thought,about,patiently)
+    (undirected
+      *((mymsg     [You stand $ADJ])
+        (theirmsg  [$TP_NAME stands $ADJ])))))
+(stare
+  *((prepositions [at])
+    (adverbs      ,happily,sadly,woriedly,lazily,rudely,dazedly,hungrily,
+      macabrely,absent-mindedly,fanaticaly,lovingly,respectfully,
+      womblely,frogily,desperately,sternly,tentatively,politely,
+      listlessly,dreamily,intently,mindlessly,expectantly,longingly)
+    (undirected
+      *((mymsg     [You stare $ADJ into space])
+        (theirmsg  [$TP_NAME stares $ADJ into space])))
+    (directed
+      *((adverbs   romantically,continuously,annoyingly)
+        (mymsg     [You stare $ADJ at $OB_NAME])
+        (theirmsg  [$TP_NAME stares $ADJ at $OB_NAME])))))
+(stifle
+  *((noargs
+      *((mymsg     [You stifle a giggle])
+        (theirmsg  [$TP_NAME stifles a giggle])))))
+(stomp
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME stomps $TP_POSS feet like a spoiled brat])
+        (mymsg    [You stomp your feet like a spoiled brat])))))
+(strangle
+  *((noargs
+      *((mymsg     [You strangle yourself])
+        (theirmsg  [$TP_NAME strangles $TP_FOO])))
+    (directed
+      *((adverbs   #)
+        (mymsg     [You strangle $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME strangle $OB_NAME $ADJ])))))
+(streak
+  *((prepositions [at])
+    (adverbs      ,quickly,nakedly,joyfully,pervertedly)
+    (undirected
+      *((adverbs   pervertedly)
+        (mymsg     [You rip off all your clothes and streak the mud])
+        (theirmsg  [$TP_NAME rips off all $TP_POSS clothing and streaks the mud. You point and laugh hysterically])))
+    (directed
+      *((adverbs   attentively)
+        (mymsg     [You rip off all your clothing and streak around $OB_NAME])
+        (theirmsg  [$TP_NAME rips off all $TP_POSS clothing and streaks around $OB_NAME])))))
+(stroke
+  *((directed
+      *((mymsg     [You stroke $OB_NAME])
+        (theirmsg  [$TP_NAME strokes $OB_NAME])))))
+(strut
+  *((noargs
+      *((mymsg     [You strut your stuff])
+        (theirmsg  [$TP_NAME struts proudly around the room])))))
+(stumble
+  *((adverbs      #)
+    (noargs
+      *((mymsg     [You stumble around the room])
+        (theirmsg  [$TP_NAME stumbles around the room])))
+    (undirected
+      *((mymsg     [You stumble $ADJ])
+        (theirmsg  [$TP_NAME stumbles $ADJ])))
+    (noargs
+      *((mymsg     [You stumble over $OB_NAME $ADJ])
+        (theirmsg  [$TP_NAME stumbles over $OB_NAME $ADJ])))))
+(sulk
+  *((noargs
+      *((mymsg     [You sulk in the corner])
+        (theirmsg  [$TP_NAME sulks in the corner])))))
+(sunshine
+  *((noargs
+      *((mymsg     [You brighten the room with rays of sunshine])
+        (theirmsg  [$TP_NAME brightens the room with rays of sunshine])))))
+(swear
+  *((noargs
+      *((mymsg    [You swear on your mudders life])
+        (theirmsg [$TP_NAME swears on $TP_POSS mudders life])))
+    (directed
+      *((mymsg    [You swear to $OB_NAME upon your mudders life])
+        (theirmsg [$TP_NAME swears to $OB_NAME upon $TP_POSS mudders life])))))
+(sweep
+ *((adverbs     excitedly,happily,carefully,slowly,joyfully,unsteadily,
+                sideways,absentmindedly)
+   (directed
+    *((adverbs  ,)
+      (mymsg    [You sweep $OB_NAME into your arms and dance romantically])
+      (theirmsg [$TP_NAME sweeps $OB_NAME into $TP_POSS arms and dances romantically])))
+   (undirected
+    *((mymsg    [You sweep yourself across the dance floor])
+      (theirmsg [$TP_NAME sweeps $TP_FOO across the dance floor])))))
+(swim
+  *((noargs
+      *((mymsg     [You give a good imitation of swimming])
+        (theirmsg  [$TP_NAME swims around])))))
+(swoon
+  *((noargs
+      *((mymsg    [You swoon in a romantic daze])
+        (theirmsg [$TP_NAME swoons in a romantic daze])))
+    (directed
+      *((mymsg  [You swoon romantically over $OB_NAME])
+        (theirmsg [$TP_NAME swoons romantically over $OB_NAME])))))
+(serenade
+ *((noargs
+     *((mymsg    [You serenade the voices in your head with your singing])
+       (theirmsg [$TP_NAME serenades the voices in $TP_POSS head])))
+    (directed
+     *((mymsg  [You serenade $OB_NAME with a loving ballad])
+       (theirmsg [$TP_NAME  serenades $OB_NAME with a loving ballad])))))
+(squeal
+ *((noargs
+     *((mymsg    [You squeal with delight!])
+       (theirmsg [$TP_NAME lets out a sudden squeal of delight!])))
+    (directed(
+     *((mymsg  [You look towards $OB_NAME and squeal with delight!])
+       (theirmsg [$TP_NAME looks at $OB_NAME and squeals with delight!])))))
+(tackle
+  *((noargs
+      *((theirmsg [$TP_NAME tackles $TP_FOO to the ground])
+        (mymsg    [You tackle yourself to the ground])))
+    (directed
+      *((theirmsg [$TP_NAME tackles $OB_NAME to the ground])
+        (mymsg    [You tackle $OB_NAME to the ground])))))
+(tango
+  *((prepositions [at])
+    (adverbs ,innocently)
+    (undirected
+      *((theirmsg [$TP_NAME starts dancing around looking for a tango partner])
+        (mymsg    [You gyrate your hips in hopes of finding a tango partner]))
+      (directed
+        *((theirmsg [$TP_NAME grabs $OB_NAME and starts to romantically tango])
+          (mymsg    [You grab $OB_NAME and start to romantically tango]))))))
+(tap
+  *((prepositions [on the])
+    (adverbs      ,head,left leg,right leg,fingers,nose,shoulder,teeth,arm)
+    (undirected
+      *((adverbs   foot)  
+        (mymsg     [You tap your $ADJ impatiently])
+        (theirmsg  [$TP_NAME taps $TP_POSS $ADJ impatiently])))
+    (directed
+      *((adverbs   shoulder)
+        (mymsg     [You tap $OB_NAME on the $ADJ])
+        (theirmsg  [$TP_NAME taps $OB_NAME on the $ADJ])))))
+(taunt
+  *((noargs
+      *((theirmsg [$TP_NAME taunts $TP_FOO])
+        (mymsg    [You taunt yourself])))
+    (directed
+      *((theirmsg [$TP_NAME taunts $OB_NAME])
+        (mymsg    [You taunt $OB_NAME])))))
+(tease
+  *((noargs
+      *((theirmsg [$TP_NAME teases $TP_FOO])
+        (mymsg    [You tease yourself])))
+    (directed
+      *((adverbs  mercilessly,insistantly,annoyingly,lovingly,mischeviously,
+          rudely,carefully,quickly,slowly,halfheartedly,idlely,
+          obnoxiously)
+        (theirmsg [$TP_NAME teases $OB_NAME $ADJ])
+        (mymsg    [You tease $OB_NAME $ADJ])))))
+(thank
+  *((adverbs profusely,gratuitously,lots,slightly,reservedly)
+    (directed
+      *((theirmsg [$TP_NAME thanks $OB_NAME $ADJ])
+        (mymsg    [You thank $OB_NAME $ADJ])))))
+(think
+  *((adverbs #)
+    (noargs
+      *((theirmsg [$TP_NAME thinks carefully])
+        (mymsg    [You think carefully])))
+    (undirected
+      *((theirmsg [$TP_NAME thinks $ADJ])
+        (mymsg    [You think $ADJ])))))
+(thumbs
+  *((noargs
+      *((mymsg    [You give the thumbs up and say: %^YELLOW%^Ayeeee])
+        (theirmsg [$TP_NAME gives the thumbs up and says: %^YELLOW%^Ayeeee])))
+    (directed
+      *((mymsg  [You give the thumbs up and say: %^YELLOW%^Ayeeee... %^RESET%^ to $OB_NAME])
+        (theirmsg [$TP_NAME give the thumbs up and says: %^YELLOW%^Ayeeee...%^RESET%^ to $OB_NAME])))))
+(thwap
+  *((noargs
+      *((mymsg    [You %^RED%^T%^GREEN%^H%^BLUE%^W%^YELLOW%^A%^CYAN%^P%^RESET%^ yourself on the head])
+        (theirmsg [$TP_NAME %^RED%^T%^GREEN%^H%^BLUE%^W%^YELLOW%^A%^CYAN%^P%^MAGENTA%^S%^RESET%^ $TP_POSS own head])))
+    (directed
+      *((mymsg  [You %^RED%^T%^GREEN%^H%^BLUE%^W%^YELLOW%^A%^CYAN%^P%^RESET%^ $OB_NAME over the head])
+        (theirmsg [$TP_NAME %^RED%^T%^GREEN%^H%^BLUE%^W%^YELLOW%^A%^CYAN%^P%^MAGENTA%^S%^RESET%^ $OB_NAME over the head])))))
+(tip
+  *((prepositions [at to])
+    (adverbs happily,pathetically,hopefully)
+    (undirected
+      *((theirmsg [$TP_NAME tips $TP_POSS head $ADJ])
+        (mymsg [You tip your head $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME tips $TP_POSS head $ADJ to $OB_NAME])
+        (mymsg [You tip your head $ADJ to $OB_NAME])))))
+(tickle
+  *((adverbs ,mercilessly,ruthlessly,fearlessly,quickly,sneakily,weakly,
+      carefully,gently,harshly,inconcievablely,slowly)
+    (directed
+      *((theirmsg [$TP_NAME tickles $OB_NAME $ADJ])
+        (mymsg    [You tickle $OB_NAME $ADJ])))))
+(tongue
+  *((directed
+      *((theirmsg [$TP_NAME sticks $TP_POSS tongue out at $OB_NAME])
+        (mymsg    [You stick your tongue out at $OB_NAME])))))
+(tremble
+  *((adverbs in fear,in nervousness,in pain,slightly,violently,insistantly,
+      carefully,in a pink fit)
+    (undirected
+      *((theirmsg  [$TP_NAME trembles $ADJ])
+        (mymsg     [You tremble $ADJ])))))
+(trip
+  *((noargs
+      *((theirmsg [$TP_NAME trips over $TP_FOO])
+        (mymsg    [You trip over yourself]))
+      (directed 
+        *((theirmsg [$TP_NAME trips over $OB_NAME])
+          (mymsg    [You trip over $OB_NAME]))))))
+(tsk
+  *((noargs
+      *((theirmsg   [$TP_NAME makes tsking motions])
+        (mymsg      [You make tsking motions])))
+    (directed  
+      *((theirmsg  [$TP_NAME makes tsking motions at $OB_NAME])
+        (mymsg     [You make tsking motions at $OB_NAME])))))
+(tumble
+  *((noargs
+      *((mymsg    [You %^MAGENTA%^tumble%^RESET%^ forward])
+        (theirmsg [$TP_NAME %^MAGENTA%^tumbles%^RESET%^ forward])))
+    (directed
+      *((mymsg  [You %^MAGENTA%^tackle and tumble around%^RESET%^ with $OB_NAME])
+        (theirmsg [$TP_NAME %^MAGENTA%^tackles and tumbles around%^RESET%^ with $OB_NAME])))))
+(tweak
+  *((adverbs  bottom,ear,arm,leg,nose,bits)
+    (directed
+      *((theirmsg [$TP_NAME tweaks $OB_NAME $ADJ])
+        (mymsg    [You tweak $OB_NAME $ADJ])))))
+(twiddle
+  *((adverbs thumbs,fingers,hair,nose)
+    (undirected
+      *((theirmsg [$TP_NAME twiddles $TP_POSS $ADJ])
+        (mymsg    [You twiddle your $ADJ])))))
+(twirl
+  *((noargs
+      *((mymsg    [You twirl around in delight])
+        (theirmsg [$TP_NAME twirls around in delight])))
+    (directed
+      *((mymsg    [You twirl around $OB_NAME playfully])
+        (theirmsg [$TP_NAME twirls around $OB_NAME playfully])))))
+(twitch
+  *((adverbs nose,arm,body,finger,igloo)
+    (undirected
+      *((theirmsg [$TP_NAME twitches $TP_POSS $ADJ])
+        (mymsg    [You twitch your $ADJ])))))
+(twerk
+*((preposition [in front of])
+    (adverbs ,awkwardly, bravely, cheerfully, deeply, energetically, fiercly, grotesquely, hopelessly, innocently, jubilantly, lovingly, miserably, nervously, obnoxiously, quickly, roughly, slowly, tenderly, upwardly, vigorously, wildly, zealously)
+    (undirected
+    *((mymsg   [You bend over and twerk])
+    (theirmsg [$TP_NAME bends over and twerks])))
+    (directed
+    *((theirmsg [$TP_NAME bends over in front of $OB_NAME and twerks $ADJ])
+    (mymsg      [You bend over in front of $OB_NAME and twerk $ADJ])))))
+(undress
+ *((noargs
+     *((mymsg    [You start removing all your clothes. Brrr, it's chilly! ])
+       (theirmsg [$TP_NAME begins removing all $TP_POSS clothes])))
+    (directed
+     *((mymsg  [You gaze at $OB_NAME and slowly undress $OB_POSS with your eyes])
+       (theirmsg [$TP_NAME  undresses $OB_NAME with $TP_POSS eyes])))))
+File doesn't exist.
+(waltz
+  *((prepositions [with,along with,with])
+    (directed
+      *((theirmsg [$TP_NAME waltzs around the room with $OB_NAME])
+        (mymsg    [You waltz around the room with $OB_NAME])))))
+(wait
+  *((noargs
+      *((mymsg    [You wait patiently])
+        (theirmsg [$TP_NAME waits patiently])))
+    (directed
+      *((mymsg  [You tap your foot waiting for $OB_NAME])
+        (theirmsg [$TP_NAME tap your foot waiting for $OB_NAME])))))
+(wave
+  *((prepositions [at])
+    (adverbs ,tiredly,sleepily,lazily,sadly,happily,redundantly,
+      forlornly,excitedly,longingly,pointlessly,passionately)
+    (noargs
+      *((theirmsg [$TP_NAME waves])
+        (mymsg    [You wave])))
+    (undirected
+      *((theirmsg [$TP_NAME waves $ADJ])
+        (mymsg    [You wave $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME waves $ADJ to $OB_NAME])
+        (mymsg    [You wave $ADJ to $OB_NAME])))))
+(wedgie
+  *((noargs
+      *((mymsg    [You try to fix your undergarments and give yourself a wedgie])
+        (theirmsg [It appears that $TP_NAME is suddenly ashamed and uncomfortable.])))
+    (directed
+      *((mymsg  [You sneak up behind $OB_NAME and give them a %^RED%^w%^CYAN%^e%^GREEN%^d%^MAGENTA%^g%^YELLOW%^i%^BLUE%^e%^RESET%^])
+        (theirmsg [$TP_NAME gives $OB_NAME a %^RED%^w%^CYAN%^e%^GREEN%^d%^MAGENTA%^g%^YELLOW%^i%^BLUE%^e%^RESET%^])))))
+        (theirmsg [$TP_NAME sneaks up behind $OB_NAME and pulls at $OB_POSS garments trying to give $OB_NAME a wedgie])))))
+(wheeze
+  *((prepositions [at])
+    (adverbs ,none)
+    (undirected
+      *((theirmsg [$TP_NAME wheezes and coughs as $TP_PRONOUN catches $TP_POSS breath])
+        (mymsg    [You wheeze and cough as you catch your breath]))
+      (directed
+        *((theirmsg [$TP_NAME wheezes and coughs all over $OB_NAME])
+          (mymsg    [You wheeze and cough all over $OB_NAME]))))))
+(whimper
+  *((adverbs painfully,fearfully,carefully,dimuatively,happily,winningly)
+    (undirected
+      *((theirmsg [$TP_NAME whimpers $ADJ])
+        (mymsg    [You whimper $ADJ])))))
+(whistle
+  *((prepositions [at])
+    (adverbs innocently,appreciatively,loudly,musically,pleasantly,
+      discordantly)
+    (undirected
+      *((theirmsg [$TP_NAME whistles $ADJ])
+        (mymsg    [You whistle $ADJ])))
+    (directed
+      *((theirmsg [$TP_NAME whistles $ADJ at $OB_NAME])
+        (mymsg    [You whistle $ADJ at $OB_NAME])))))
+(wince
+  *((noargs
+      *((theirmsg [$TP_NAME winces])
+        (mymsg    [You wince])))))
+(wiggle
+  *((prepositions [at])
+    (adverbs ,enticingly,suggestively,vigourously,arrogantly,nonchalantly,
+      quickly)
+    (undirected
+      *((theirmsg  [$TP_NAME wiggles $TP_POSS bottom $ADJ])
+        (mymsg     [You wiggle your bottom $ADJ])))
+    (directed
+      *((theirmsg  [$TP_NAME wiggles $TP_POSS bottom at $OB_NAME $ADJ])
+        (mymsg     [You wiggle your bottom at $OB_NAME $ADJ])))))
+(wink
+  *((prepositions [at])
+    (adverbs ,suggestively,slowly,loudly,grumpily,despairingly,coyly,
+      desperately,insolently,curtly,lovingly,patiently,sadisticly,
+      warily,seductively,lazily)
+    (undirected 
+      *((theirmsg [$TP_NAME winks $ADJ])
+        (mymsg    [You wink $ADJ]))
+      (directed 
+        *((theirmsg [$TP_NAME winks $ADJ at $OB_NAME])
+          (mymsg    [You wink $ADJ at $OB_NAME]))))))
+(wipep
+  *((undirected
+      *((adverbs  in relief,enthusiastically,excitedly,wildly,happily,slightly)
+        (theirmsg [$TP_NAME wipes the sweat from $TP_POSS brow])
+        (mymsg    [You wipe the sweat from your brow $ADJ])))
+    (directed
+      *((adverbs  briefly,enthusiastically,excitedly,wildly,happily,slightly)
+        (theirmsg [$TP_NAME wipes $TP_POSS $ADJ on $OB_NAME])
+        (mymsg    [You wipe your $ADJ on $OB_NAME])))))
+(wobble
+  *((adverbs around a bit,like jelly,unsteadily,happily,carefully,
+      sideways,steadily)
+    (undirected
+      *((theirmsg [$TP_NAME wobbles $ADJ])
+        (mymsg    [You wobble $ADJ])))))
+(womble
+  *((adverbs #)
+    (undirected
+      *((theirmsg [$TP_NAME wombles around $ADJ])
+        (mymsg    [You womble around $ADJ])))))
+(wonder
+  *((adverbs #,about reality and how boring it can be)
+    (undirected
+      *((theirmsg [$TP_NAME wonders $ADJ])
+        (mymsg    [You wonder $ADJ])))))
+(worship
+  *((noargs
+      *((theirmsg [$TP_NAME worships $TP_FOO])
+        (mymsg    [You worship yourself])))
+    (directed
+      *((theirmsg [$TP_NAME worships $OB_NAME])
+        (mymsg    [You worship $OB_NAME])))))
+(wrinkle
+  *((prepositions [at])
+    (adverbs ,disgustingly)
+    (undirected
+      *((theirmsg [$TP_NAME wrinkles $TP_POSS nose in disgust])
+        (mymsg    [You wrinkle your nose in disgust]))
+      (directed
+        *((theirmsg [$TP_NAME wrinkles $TP_POSS nose at $OB_NAME in total disgust])
+         (mymsg    [You wrinkle your nose at $OB_NAME in total disgust]))))))
+  (wrist
+  *((noargs
+      *((mymsg     [You hold out your wrist for a slap])
+        (theirmsg  [$TP_NAME holds out $TP_POSS wrist for a slap])))
+    (directed
+      *((mymsg     [You slap $OB_NAME on the wrist])
+        (theirmsg  [$TP_NAME slaps $OB_NAME on the wrist])))))
+File doesn't exist.
+(yawn
+  *((abverbs tiredly,boredly,sleepily)
+    (undirected
+      *((theirmsg [$TP_NAME yawns $ADJ])
+        (mymsg    [You yawn $ADJ])))))
+(yip
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME hoots %^YELLOW%^%^BOLD%^Yippy %^CYAN%^kai%^WHITE%^-%^GREEN%^yah %^RED%^mother lover%^RESET%^])
+        (mymsg    [You hoot  %^YELLOW%^%^BOLD%^Yippy %^CYAN%^kai%^WHITE%^-%^GREEN%^yah %^RED%^mother lover%^RESET%^])))))
+(yodle
+  *((abverbs tiredly)
+    (undirected
+      *((theirmsg [$TP_NAME thumbs $TP_POSS lederhosen and hollers %^BOLD%^%^CYAN%^Yooodle-%^WHITE%^Yoodle-%^CYAN%^lai-%^WHITE%^heee-%^CYAN%^hooo%^RESET%^ like a good Hiemelian])
+        (mymsg    [You thumb your lederhosen and holler %^BOLD%^%^CYAN%^Yooodle-%^WHITE%^Yoodle-%^CYAN%^lai-%^WHITE%^heee-%^CYAN%^hooo%^RESET%^ like a good Hiemelian])))))
+(zip
+  *((prepositons [around])
+    (undirected
+      *((theirmsg [$TP_NAME zips around the room])
+        (mymsg    [You zip around the room]))
+      (directed
+        *((theirmsg [$TP_NAME zips around $OB_NAME])
+          (mymsg    [You zip around $OB_NAME]))))))

@@ -174,7 +174,7 @@ const StatCalculator = () => {
                               onChange={event => updateStatInc(stat, event.target.value)}
                             />
                           </TableCell>
-                          <TableCell>
+                          <TableCell align="right">
                             <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
                               <Typography component="div" variant="body2">
                                 {intToString(parseInt(statCost[stat]), 2)}
@@ -186,12 +186,13 @@ const StatCalculator = () => {
                       ))}
                       <TableRow>
                         <TableCell />
-                        <TableCell align="right" size="normal">
+                        <TableCell align="right">
                           <Typography component="div" variant="body2" style={{ paddingRight: '22px' }}>
                             {charStatTotal} / {statTotal}
                           </Typography>
                         </TableCell>
-                        <TableCell>
+                        <TableCell />
+                        <TableCell align="right">
                           <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
                             <Typography component="div" variant="body2" style={{ paddingLeft: '14px' }}>
                               {intToString(parseInt(expTotal), 2)}
@@ -199,7 +200,6 @@ const StatCalculator = () => {
                             </Typography>
                           </Tooltip>
                         </TableCell>
-                        <TableCell />
                       </TableRow>
                     </TableBody>
                   </Table>
@@ -214,28 +214,28 @@ const StatCalculator = () => {
                     <TableBody>
                       <TableRow>
                         <TableCell>
-                          <Typography component="p">Vitals</Typography>
+                          <Typography>Vitals</Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography component="p">
+                          <Typography>
                             {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
                           </Typography>
                         </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
-                          <Typography component="p">Encumbrance</Typography>
+                          <Typography>Encumbrance</Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography component="p">{getEncumbrance(race, statLevels)}</Typography>
+                          <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
                         </TableCell>
                       </TableRow>
                       <TableRow>
                         <TableCell>
-                          <Typography component="p">Weight</Typography>
+                          <Typography>Weight</Typography>
                         </TableCell>
                         <TableCell>
-                          <Typography component="p">{getWeight(race, statLevels)}</Typography>
+                          <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
                         </TableCell>
                       </TableRow>
                     </TableBody>
