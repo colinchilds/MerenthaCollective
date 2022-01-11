@@ -29,7 +29,7 @@ export default function CharacterInfo(props) {
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Race</InputLabel>
                 <Select label="Race" value={race} onChange={event => updateRace(event.target.value)}>
-                  <ListSubheader>Regular</ListSubheader>
+                  <ListSubheader disableSticky={true}>Regular</ListSubheader>
                   {races.map(item => {
                     return item === 'Dragon' ? (
                       [

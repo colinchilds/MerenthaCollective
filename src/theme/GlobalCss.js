@@ -23,6 +23,7 @@ const globalStyles = makeStyles(theme => ({
       boxSizing: 'border-box',
       margin: 0,
       padding: 0,
+      fontSize: 14,
     },
     a: {
       textDecoration: 'none',

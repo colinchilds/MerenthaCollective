@@ -12,6 +12,7 @@ import {
   TextField,
   Tooltip,
   Typography,
+  InputAdornment,
 } from '@material-ui/core';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
@@ -138,8 +139,10 @@ const StatCalculator = () => {
                     <TableBody>
                       {stats.map((stat, index) => (
                         <TableRow key={index}>
-                          <TableCell>
-                            <Typography component="p">{stat}</Typography>
+                          <TableCell size="small">
+                            <Typography variant="body2" component="div">
+                              {stat}
+                            </Typography>
                           </TableCell>
                           <TableCell align="right">
                             <TextField
@@ -149,10 +152,16 @@ const StatCalculator = () => {
                               value={statLevels[stat]}
                               variant="outlined"
                               onChange={event => updateStatLevels(stat, event.target.value)}
+                              InputProps={{
+                                endAdornment: (
+                                  <InputAdornment position="end" size="small">
+                                    <Typography component="div" variant="body2">
+                                      {`/ ${getMaxStat(stat, charClass, race, level)}`}
+                                    </Typography>
+                                  </InputAdornment>
+                                ),
+                              }}
                             />
-                          </TableCell>
-                          <TableCell>
-                            <Typography component="p">/{getMaxStat(stat, charClass, race, level)}</Typography>
                           </TableCell>
                           <TableCell>
                             <TextField
@@ -167,7 +176,7 @@ const StatCalculator = () => {
                           </TableCell>
                           <TableCell>
                             <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                              <Typography component="p">
+                              <Typography component="div" variant="body2">
                                 {intToString(parseInt(statCost[stat]), 2)}
                                 {' exp'}
                               </Typography>
@@ -177,21 +186,20 @@ const StatCalculator = () => {
                       ))}
                       <TableRow>
                         <TableCell />
-                        <TableCell align="right">
-                          <Typography component="p">{charStatTotal}</Typography>
+                        <TableCell align="right" size="normal">
+                          <Typography component="div" variant="body2" style={{ paddingRight: '22px' }}>
+                            {charStatTotal} / {statTotal}
+                          </Typography>
                         </TableCell>
-                        <TableCell>
-                          <Typography component="p">/{statTotal}</Typography>
-                        </TableCell>
-                        <TableCell />
                         <TableCell>
                           <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                            <Typography component="p">
+                            <Typography component="div" variant="body2" style={{ paddingLeft: '14px' }}>
                               {intToString(parseInt(expTotal), 2)}
                               {' exp'}
                             </Typography>
                           </Tooltip>
                         </TableCell>
+                        <TableCell />
                       </TableRow>
                     </TableBody>
                   </Table>
