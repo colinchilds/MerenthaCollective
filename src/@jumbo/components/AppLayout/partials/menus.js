@@ -42,6 +42,12 @@ export const sidebarNavs = [
         icon: <Report />,
         link: '/combat',
       },
+      {
+        name: 'Emotes',
+        type: 'item',
+        icon: <Report />,
+        link: '/emotes',
+      },
     ],
   },
   {
