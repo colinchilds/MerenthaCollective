@@ -1569,7 +1569,7 @@ export const emotes = [
   },
   {
     name: 'moo',
-    adverbs: 'like a cow, gently, deeply, sensually, agonisingly, in terror, seductively',
+    // adverbs: 'like a cow, gently, deeply, sensually, agonisingly, in terror, seductively',
     undirected: {
       mymsg: 'You moo <adverb>',
       theirmsg: '<name> moos <adverb>',
@@ -1584,8 +1584,8 @@ export const emotes = [
   },
   {
     name: 'mosh',
+    adverbs: 'violently, angrily, carefully, thoughtfully, wonderingly, vigously, insanely, loudly',
     undirected: {
-      adverbs: 'violently, angrily, carefully, thoughtfully, wonderingly, vigously, insanely, loudly',
       theirmsg: '<name> moshes <adverb> around the room',
       mymsg: 'You mosh <adverb> around the room',
     },

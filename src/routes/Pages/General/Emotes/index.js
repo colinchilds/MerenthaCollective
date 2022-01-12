@@ -80,7 +80,7 @@ const Emotes = () => {
                       <TableCell>
                         <Typography>{getEmoteText(emote)}</Typography>
                       </TableCell>
-                      <TableCell>
+                      <TableCell style={{ maxWidth: '300px ' }}>
                         <Typography>{emote.adverbs}</Typography>
                       </TableCell>
                       <TableCell>
