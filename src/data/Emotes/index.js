@@ -25,8 +25,8 @@ export const emotes = [
   {
     name: 'apologize',
     prepositions: 'to',
-    adverbs:
-      'profusely,happily,sadly,reservedly,carefully,slowly,perfunctorily, curtly,visciously,sulkily,drunkenly,unhappily,professionally, pompously,wholeheartedly,partially,wearily,fishily,facetiously, unnecessarily,spontaneously,twice,thoroughly,humbly',
+    // adverbs:
+    // 'profusely, happily, sadly, reservedly, carefully, slowly, perfunctorily, curtly, visciously, sulkily, drunkenly, unhappily, professionally, pompously, wholeheartedly, partially, wearily, fishily, facetiously, unnecessarily, spontaneously, twice, thoroughly, humbly',
     undirected: {
       theirmsg: '<name> apologizes <adverb>',
       mymsg: 'You apologize <adverb>',
@@ -38,7 +38,7 @@ export const emotes = [
   },
   {
     name: 'applaud',
-    adverbs: 'wholeheartedly,loudly,softly,vaguely,briefly',
+    // adverbs: 'wholeheartedly, loudly, softly, vaguely, briefly',
     undirected: {
       theirmsg: '<name> applauds <adverb>',
       mymsg: 'You applaud <adverb>',
@@ -68,7 +68,7 @@ export const emotes = [
   },
   {
     name: 'assimilate',
-    adverbs: 'cheerfully,reluctantly',
+    adverbs: 'cheerfully, reluctantly',
     undirected: {
       theirmsg: '<name> assimilates species <adverb> like a Borg',
       mymsg: 'You assimilate species <adverb> like a Borg',
@@ -107,7 +107,7 @@ export const emotes = [
   {
     name: 'beam',
     prepositions: 'at',
-    adverbs: 'brightly,admiringly,strangely,hapilly,ecstatically,fishily, like a train',
+    // adverbs: 'brightly, admiringly, strangely, hapilly, ecstatically, fishily, like a train',
     undirected: {
       theirmsg: '<name> beams <adverb>',
       mymsg: 'You beam <adverb>',
@@ -134,14 +134,14 @@ export const emotes = [
     name: 'beg',
     prepositions: 'like a',
     adverbs:
-      'dog,cat,chicken,cow,large bear,poodle,chihuahua, train,beggar,noble man,lassie,labrador,german shepard,cannibal, chimpanzee,librarian,fish,dolphin,tokzic,banshi, bloodhound,husky,wolf,dingo,alsation',
+      'dog, cat, chicken, cow, large bear, poodle, chihuahua, train, beggar, noble man, lassie, labrador, german shepard, cannibal, chimpanzee, librarian, fish, dolphin, tokzic, banshi, bloodhound, husky, wolf, dingo, alsation',
     noargs: {
       theirmsg: '<name> gets down and begs',
       mymsg: 'You beg',
     },
     undirected: {
-      theirmsg: '<name> begs like a <adverb> puppy',
-      mymsg: 'You beg like a <adverb> puppy',
+      theirmsg: '<name> begs like a <noun> puppy',
+      mymsg: 'You beg like a <noun> puppy',
     },
     directed: {
       theirmsg: '<name> begs <target> like a puppy',
@@ -152,7 +152,7 @@ export const emotes = [
     name: 'bing',
     prepositions: 'at',
     adverbs:
-      'happily,sadly,joyfully,sagely,knowingly,quickly,loudly,carefully, balefully,excitedly,nervously,brightly,uncertainly',
+      'happily, sadly, joyfully, sagely, knowingly, quickly, loudly, carefully, balefully, excitedly, nervously, brightly, uncertainly',
     undirected: {
       theirmsg: '<name> bings <adverb>',
       mymsg: 'You bing <adverb>',
@@ -169,19 +169,19 @@ export const emotes = [
       mymsg: 'You raise your middle finger and give <target> the bird',
     },
   },
-  {
-    name: 'bite',
-    undirected: {
-      theirmsg: '<name> bites $OB_FOO',
-      mymsg: 'You bite yourself',
-    },
-    directed: {
-      adverbs:
-        'hard,nastily,carefuly,politely,fishily,lovingly,refreshingly, happily,like a train,pointlessly,objectively,sulkily,gently, brightly,excitedly,uncertainly,like a dog,wolfishly, mercilessly,ruthlessly,softly,sweetly,profesionally,hungrily, mischeviously,ankles,arm,leg,casually,nose,ear,toe,finger',
-      theirmsg: '<name> bites <target> <adverb>',
-      mymsg: 'You bite <target> <adverb>',
-    },
-  },
+  // {
+  //   name: 'bite',
+  //   undirected: {
+  //     theirmsg: '<name> bites $OB_FOO',
+  //     mymsg: 'You bite yourself',
+  //   },
+  //   directed: {
+  //     adverbs:
+  //       'hard, nastily, carefuly, politely, fishily, lovingly, refreshingly, happily, like a train, pointlessly, objectively, sulkily, gently, brightly, excitedly, uncertainly, like a dog, wolfishly, mercilessly, ruthlessly, softly, sweetly, profesionally, hungrily, mischeviously, ankles, arm, leg, casually, nose, ear, toe, finger',
+  //     theirmsg: '<name> bites <target> <adverb>',
+  //     mymsg: 'You bite <target> <adverb>',
+  //   },
+  // },
   {
     name: 'bleed',
     noargs: {
@@ -189,7 +189,7 @@ export const emotes = [
       mymsg: 'You bleed',
     },
     undirected: {
-      adverbs: 'heart,leg,arm,head,ear,nose',
+      adverbs: 'heart, leg, arm, head, ear, nose',
       theirmsg: '<name> <adverb> bleeds',
       mymsg: 'Your <adverb> bleeds',
     },
@@ -197,7 +197,6 @@ export const emotes = [
   {
     name: 'blink',
     prepositions: 'at',
-    adverbs: 'none',
     undirected: {
       theirmsg: '<name> <adverb> blinks in disbelief',
       mymsg: 'You <adverb> blink in disbelief',
@@ -209,7 +208,7 @@ export const emotes = [
   },
   {
     name: 'blush',
-    adverbs: 'in embarassment,redly,slightly,worriedly',
+    // adverbs: 'in embarassment, redly, slightly, worriedly',
     undirected: {
       theirmsg: '<name> blushes <adverb>',
       mymsg: 'You blush <adverb>',
@@ -223,8 +222,8 @@ export const emotes = [
       mymsg: 'You boggle at the concept',
     },
     undirected: {
-      theirmsg: '<name> boggles at <adverb>',
-      mymsg: 'You boggle at <adverb>',
+      theirmsg: '<name> boggles at <noun>',
+      mymsg: 'You boggle at <noun>',
     },
   },
   {
@@ -241,10 +240,9 @@ export const emotes = [
   {
     name: 'booger',
     prepositions: 'at',
-    adverbs: 'none',
     undirected: {
       theirmsg: '<name> has a booger hanging from <pronoun> nose',
-      mymsg: 'You <adverb> have a booger hanging from your nose',
+      mymsg: 'You have a booger hanging from your nose',
     },
     directed: {
       theirmsg: '<name> picks a booger and flicks it at <target>',
@@ -287,7 +285,7 @@ export const emotes = [
   {
     name: 'breathe',
     undirected: {
-      adverbs: 'quickly,seductively,painfully,nastily,slowly,once, heavily,carefully,heatedly',
+      // adverbs: 'quickly, seductively, painfully, nastily, slowly, once, heavily, carefully, heatedly',
       theirmsg: '<name> breathes <adverb>',
       mymsg: 'You breathe <adverb>',
     },
@@ -295,7 +293,7 @@ export const emotes = [
   {
     name: 'burp',
     undirected: {
-      adverbs: 'disgustingly,faintly,loudly,rudely',
+      // adverbs: 'disgustingly, faintly, loudly, rudely',
       theirmsg: '<name> burps <adverb>',
       mymsg: 'You burp <adverb>',
     },
@@ -303,7 +301,7 @@ export const emotes = [
   {
     name: 'bow',
     prepositions: 'before',
-    adverbs: 'solemnly,deeply,formally',
+    adverbs: 'solemnly, deeply, formally',
     noargs: {
       mymsg: 'You bow respectfully',
       theirmsg: '<name> bows respectfully',
@@ -319,15 +317,15 @@ export const emotes = [
   },
   {
     name: 'burnp',
+    adverbs:
+      'hair, leg, arm, nose, teeth, frog, carpet, net lag, fish, invis, bed, ego, eyes, house, furniture, tongue, keyboard, brain, code, ideas, hopes, dreams, cat, personality, desires, beliefs',
     noargs: {
       theirmsg: '<name> sets fire to <target>',
       mymsg: 'You set fire to yourself',
     },
     directed: {
-      adverbs:
-        'hair,leg,arm,nose,teeth,frog,carpet,net lag, fish,invis,bed,ego,eyes,house,furniture,tongue,keyboard,brain,code, ideas,hopes,dreams,cat,personality,desires,beliefs',
-      theirmsg: '<name> sets fire to <target> <adverb>',
-      mymsg: 'You set fire to <target> <adverb>',
+      theirmsg: '<name> sets fire to <target> <noun>',
+      mymsg: 'You set fire to <target> <noun>',
     },
   },
   {
@@ -338,7 +336,7 @@ export const emotes = [
     },
     directed: {
       mymsg: 'You brag to <target> about your various accomplishments',
-      theirmsg: '<name> brags to <target> about  <pronoun> various accomplishments',
+      theirmsg: '<name> brags to <target> about <pronoun> various accomplishments',
     },
   },
   {
@@ -348,7 +346,7 @@ export const emotes = [
       mymsg: 'You cackle demonically',
     },
     undirected: {
-      adverbs: 'with glee,maniacaly,mischeviously,nastily, depairingly,womblely,backwards',
+      adverbs: 'with glee, maniacaly, mischeviously, nastily, depairingly, womblely, backwards',
       theirmsg: '<name> cackles <adverb>',
       mymsg: 'You cackle <adverb>',
     },
@@ -368,29 +366,29 @@ export const emotes = [
   {
     name: 'caper',
     prepositions: 'around',
+    adverbs:
+      'fool, chicken, womble, jester, bimbo, blonde, sulam, seductress, eager person, vivacious person, madman, madwoman, madperson, frog on the run, happy chap, polite gentleperson, woman, cheery',
     noargs: {
       theirmsg: '<name> capers around madly',
       mymsg: 'You caper around madly',
     },
     undirected: {
-      adverbs:
-        'fool,chicken,womble,jester,bimbo,blonde,sulam,seductress, eager person,vivacious person,madman,madwoman,madperson, frog on the run,happy chap,polite gentleperson,woman, cheery',
-      theirmsg: '<name> capers around like a <adverb>',
-      mymsg: 'You caper around like a <adverb>',
+      theirmsg: '<name> capers around like a <noun>',
+      mymsg: 'You caper around like a <noun>',
     },
   },
   {
     name: 'caress',
+    adverbs:
+      'gently, strangely, violently, firmly, seductively, suggestively, slightly, sensually, reluctantly, politely, lovingly, vigorously, eagerly, vivaciously',
     directed: {
-      adverbs:
-        'gently,strangely,violently,firmly,seductively,suggestively, slightly,sensually,reluctantly,politely,lovingly,vigorously, eagerly,vivaciously',
       theirmsg: '<name> caresses <target> <adverb>',
       mymsg: 'You caress <target> <adverb>',
     },
   },
   {
     name: 'cartwheel',
-    adverbs: 'excitedly,happily,carefully,slowly,joyfully,unsteadily, sideways,absentmindedly',
+    adverbs: 'excitedly, happily, carefully, slowly, joyfully, unsteadily, sideways, absentmindedly',
     directed: {
       mymsg: 'You cartwheel <adverb> around <target>',
       theirmsg: '<name> cartwheel <adverb> around <target>',
@@ -403,7 +401,7 @@ export const emotes = [
   {
     name: 'caw',
     prepositions: 'at',
-    adverbs: 'happily,hysterically,in anger,anxiously,annoyingly,while pecking for food',
+    adverbs: 'happily, hysterically, in anger, anxiously, annoyingly, while pecking for food',
     undirected: {
       theirmsg: '<name> caws <adverb>',
       mymsg: 'You caw <adverb>',
@@ -415,15 +413,13 @@ export const emotes = [
   },
   {
     name: 'cheer',
+    adverbs:
+      'enthusiastically, excitedly, quietly, calmly, carefully, politely, wildly, oddly, unconvincingly, happily, slightly, up',
     undirected: {
-      adverbs:
-        'enthusiastically,excitedly,quietly,calmly,carefully,politely, wildly,oddly,unconvincingly,happily,slightly,up',
       theirmsg: '<name> cheers <adverb>',
       mymsg: 'You cheer <adverb>',
     },
     directed: {
-      adverbs:
-        'enthusiastically,excitedly,quietly,calmly,carefully,politely, wildly,oddly,unconvincingly,happily,slightly,up',
       theirmsg: '<name> cheers <adverb> for <target>',
       mymsg: 'You cheer <adverb> for <target>',
     },
@@ -431,7 +427,7 @@ export const emotes = [
   {
     name: 'chirp',
     prepositions: 'at',
-    adverbs: 'happily,in anger,anxiously,annoyingly,while pecking for food',
+    adverbs: 'happily, in anger, anxiously, annoyingly, while pecking for food',
     undirected: {
       theirmsg: '<name> chirps <adverb>',
       mymsg: 'You chirp <adverb>',
@@ -466,20 +462,19 @@ export const emotes = [
   {
     name: 'chuckle',
     undirected: {
-      adverbs: 'politely,nastily,demonically',
+      adverbs: 'politely, nastily, demonically',
       theirmsg: '<name> chuckles <adverb>',
       mymsg: 'You chuckle <adverb>',
     },
   },
   {
     name: 'clap',
+    adverbs: 'briefly, enthusiastically, excitedly, wildly, happily, slightly',
     undirected: {
-      adverbs: 'briefly,enthusiastically,excitedly,wildly,happily,slightly',
       theirmsg: '<name> claps <adverb>',
       mymsg: 'You clap <adverb>',
     },
     directed: {
-      adverbs: 'briefly,enthusiastically,excitedly,wildly,happily,slightly',
       theirmsg: '<name> claps <adverb> for <target>',
       mymsg: 'You clap <adverb> for <target>',
     },
@@ -499,7 +494,7 @@ export const emotes = [
     name: 'comfort',
     directed: {
       adverbs:
-        'sincerely,wholeheartly,mischeviously,halfheartedly,vaguely, eagerly,completely,lovingly,gently,tenderly,sadly, in earnest,twice,anxiously,carefully,delicately',
+        'sincerely, wholeheartly, mischeviously, halfheartedly, vaguely, eagerly, completely, lovingly, gently, tenderly, sadly, in earnest, twice, anxiously, carefully, delicately',
       theirmsg: '<name> comforts <target> <adverb>',
       mymsg: 'You comfort <target> <adverb>',
     },
@@ -518,7 +513,7 @@ export const emotes = [
   {
     name: 'congratulate',
     directed: {
-      adverbs: 'heartily,warmly',
+      adverbs: 'heartily, warmly',
       theirmsg: '<name> congratulates <target> <adverb>',
       mymsg: 'You congratulate <target> <adverb>',
     },
@@ -541,7 +536,7 @@ export const emotes = [
   {
     name: 'cough',
     undirected: {
-      adverbs: 'happily,loudly,quietly,excitedly,disgustingly, sadly,pinkly',
+      adverbs: 'happily, loudly, quietly, excitedly, disgustingly, sadly, pinkly',
       theirmsg: '<name> coughs <adverb>',
       mymsg: 'You cough <adverb>',
     },
@@ -549,7 +544,7 @@ export const emotes = [
   {
     name: 'cower',
     undirected: {
-      adverbs: 'in a corner,fearfully,slyly,shyly,in shame,nastily',
+      adverbs: 'in a corner, fearfully, slyly, shyly, in shame, nastily',
       theirmsg: '<name> cowers <adverb>',
       mymsg: 'You cower <adverb>',
     },
@@ -567,8 +562,8 @@ export const emotes = [
   },
   {
     name: 'cringe',
+    adverbs: 'terror, embarassment',
     undirected: {
-      adverbs: 'terror,embarassment',
       theirmsg: '<name> cringes in <adverb>',
       mymsg: 'You cringe in <adverb>',
     },
@@ -582,10 +577,10 @@ export const emotes = [
   },
   {
     name: 'cross',
+    adverbs: 'fingers, legs, eyes, nose',
     undirected: {
-      adverbs: 'fingers,legs,eyes,nose',
-      theirmsg: '<name> crosses <pronoun> <adverb>',
-      mymsg: 'You cross your <adverb>',
+      theirmsg: '<name> crosses <pronoun> <noun>',
+      mymsg: 'You cross your <noun>',
     },
   },
   {
@@ -648,15 +643,14 @@ export const emotes = [
       theirmsg: '<name> daydreams',
       mymsg: 'You daydream',
     },
-    undirected: {
-      theirmsg: '<name> daydreams <adverb>',
-      mymsg: 'You daydream <adverb>',
-    },
+    // undirected: {
+    //   theirmsg: '<name> daydreams <adverb>',
+    //   mymsg: 'You daydream <adverb>',
+    // },
   },
   {
     name: 'dip',
     prepositions: 'at',
-    adverbs: 'innocently',
     undirected: {
       theirmsg: '<name> dips <pronoun> invisible friend',
       mymsg: 'You dip your invisable friend',
@@ -669,7 +663,7 @@ export const emotes = [
   {
     name: 'doh',
     noargs: {
-      theirmsg: ' <name> says: doh!',
+      theirmsg: '<name> says: doh!',
       mymsg: 'You say: doh!',
     },
   },
@@ -716,7 +710,6 @@ export const emotes = [
   {
     name: 'eek',
     prepositions: 'at',
-    adverbs: 'none',
     undirected: {
       theirmsg: '<name> eeks!',
       mymsg: 'You eek!',
@@ -757,7 +750,7 @@ export const emotes = [
   {
     name: 'faint',
     undirected: {
-      adverbs: 'tiredly,out of boredom,for the heck of it',
+      adverbs: 'tiredly, out of boredom, for the heck of it',
       theirmsg: '<name> faints <adverb>',
       mymsg: 'You faint <adverb>',
     },
@@ -789,18 +782,18 @@ export const emotes = [
   },
   {
     name: 'flap',
+    adverbs: 'ears, arms, wings, eyelashes',
     undirected: {
-      adverbs: 'ears,arms,wings,eyelashes',
-      theirmsg: '<name> flaps <pronoun> <adverb>',
-      mymsg: 'You flap your <adverb>',
+      theirmsg: '<name> flaps <pronoun> <noun>',
+      mymsg: 'You flap your <noun>',
     },
   },
   {
     name: 'flex',
+    adverbs: 'muscles, bisceps, triceps, legs, brain, nose, ears',
     undirected: {
-      adverbs: 'muscles,bisceps,triceps,legs,brain,nose,ears',
-      theirmsg: '<name> flexes <pronoun> <adverb>',
-      mymsg: 'You flex your <adverb>',
+      theirmsg: '<name> flexes <pronoun> <noun>',
+      mymsg: 'You flex your <noun>',
     },
   },
   {
@@ -816,14 +809,12 @@ export const emotes = [
   },
   {
     name: 'flip',
+    adverbs: 'head over heels, off, into the garbage bin, dangerously, spectacularly',
     undirected: {
-      adverbs:
-        'head over heels,backwards,forwards,sideways,around, carefully,slowly,twice,awkwardly,disturbingly, digustingly,quickly,slowly,gracefully,over the moon, around in a really complicated double back roll flip',
       theirmsg: '<name> flips <adverb>',
       mymsg: 'You flip <adverb>',
     },
     directed: {
-      adverbs: 'head over heels,off,into the garbage bin, dangerously,spectacularly',
       theirmsg: '<name> flips <target> <adverb>',
       mymsg: 'You flip <target> <adverb>',
     },
@@ -838,9 +829,9 @@ export const emotes = [
   },
   {
     name: 'flop',
+    adverbs:
+      'helplessly, like a fish out of water, badly, carefully, rudely, a bit, once, wonderfully, impressively, suggestively, lazily, happily, pensively',
     undirected: {
-      adverbs:
-        'helplessly,like a fish out of water,badly, carefully,rudely,a bit,once,wonderfully, impressively,suggestively,lazily,happily,pensively',
       theirmsg: '<name> flops about <adverb>',
       mymsg: 'You flop about <adverb>',
     },
@@ -873,7 +864,7 @@ export const emotes = [
   {
     name: 'foo',
     undirected: {
-      adverbs: 'vaguely,carefully,slowly,dangerously',
+      adverbs: 'vaguely, carefully, slowly, dangerously',
       theirmsg: '<name> foos <adverb>',
       mymsg: 'You foo <adverb>',
     },
@@ -908,7 +899,7 @@ export const emotes = [
   },
   {
     name: 'frown',
-    adverbs: 'in concentration,in thought,in anger,in depression, happily',
+    // adverbs: 'in concentration, in thought, in anger, in depression, happily',
     noargs: {
       theirmsg: '<name> frowns',
       mymsg: 'You frown',
@@ -931,7 +922,7 @@ export const emotes = [
   },
   {
     name: 'fume',
-    adverbs: 'quietly,insultingly,despairingly',
+    // adverbs: 'quietly, insultingly, despairingly',
     undirected: {
       theirmsg: '<name> fumes <adverb>',
       mymsg: 'You fume <adverb>',
@@ -960,7 +951,7 @@ export const emotes = [
   },
   {
     name: 'giggle',
-    adverbs: 'inanely,loudly,stupidly,quietly,idiotically,fiendishly',
+    // adverbs: 'inanely, loudly, stupidly, quietly, idiotically, fiendishly',
     undirected: {
       mymsg: 'You giggle <adverb>',
       theirmsg: '<name> giggles <adverb>',
@@ -980,7 +971,7 @@ export const emotes = [
   {
     name: 'glare',
     prepositions: 'at',
-    adverbs: 'stonily,sternly,hotly,intently,solemnly,idiotically, evanly,evilly',
+    adverbs: 'stonily, sternly, hotly, intently, solemnly, idiotically, evanly, evilly',
     noargs: {
       mymsg: 'You glare at the world in general',
       theirmsg: '<name> glares at the world in general',
@@ -1008,7 +999,7 @@ export const emotes = [
   {
     name: 'greet',
     adverbs:
-      'happily,sadly,with open arms,ecstatically, carefully, courteously,hysterically,reservedly,warmly,coldly, insolently,curtly,absentmindedly',
+      'happily, sadly, with open arms, ecstatically, carefully, courteously, hysterically, reservedly, warmly, coldly, insolently, curtly, absentmindedly',
     directed: {
       mymsg: 'You greet <target> <adverb>',
       theirmsg: '<name> greets <target> <adverb>',
@@ -1089,7 +1080,7 @@ export const emotes = [
   },
   {
     name: 'grind',
-    adverbs: 'loudly,resignedly,together',
+    adverbs: 'loudly, resignedly, together',
     undirected: {
       mymsg: 'You grind your teeth <adverb>',
       theirmsg: '<name> grinds <pronoun> teeth <adverb>',
@@ -1097,7 +1088,7 @@ export const emotes = [
   },
   {
     name: 'groan',
-    adverbs: 'loudly,resignedly,tiredly',
+    // adverbs: 'loudly, resignedly, tiredly',
     undirected: {
       mymsg: 'You groan <adverb>',
       theirmsg: '<name> groans <adverb>',
@@ -1105,20 +1096,19 @@ export const emotes = [
   },
   {
     name: 'grope',
-    adverbs: ',#',
     undirected: {
       mymsg: 'You grope <adverb>',
       theirmsg: '<name> gropes <adverb>',
     },
     directed: {
-      mymsg: 'You grope <target> body <adverb>',
-      theirmsg: '<name> gropes <target> body <adverb>',
+      mymsg: 'You grope <target> body',
+      theirmsg: '<name> gropes <target> body',
     },
   },
   {
     name: 'grovel',
     prepositions: 'at',
-    adverbs: 'shamelessly,violently,unashamedly,respectfully, like bastian,like a dog,sarcastically',
+    adverbs: 'shamelessly, violently, unashamedly, respectfully, like bastian, like a dog, sarcastically',
     directed: {
       mymsg: 'You grovel <adverb> at <target> feet',
       theirmsg: '<name> grovels <adverb> at <target> feet',
@@ -1127,7 +1117,7 @@ export const emotes = [
   {
     name: 'growl',
     prepositions: 'at',
-    adverbs: 'menacingly,nastily,loudly,playfully',
+    adverbs: 'menacingly, nastily, loudly, playfully',
     undirected: {
       mymsg: 'You growl <adverb>',
       theirmsg: '<name> growls <adverb>',
@@ -1141,7 +1131,7 @@ export const emotes = [
     name: 'grumble',
     prepositions: 'at',
     adverbs:
-      'quietly,bitterly,menacingly,halfheartedly,seductively, suggestively,loudly,annoyingly,devastatingly,carefully, wildly,more or less,jealously',
+      'quietly, bitterly, menacingly, halfheartedly, seductively, suggestively, loudly, annoyingly, devastatingly, carefully, wildly, more or less, jealously',
     undirected: {
       mymsg: 'You grumble <adverb>',
       theirmsg: '<name> grumbles <adverb>',
@@ -1153,7 +1143,7 @@ export const emotes = [
   },
   {
     name: 'grunt',
-    adverbs: 'in ignitation,carefully,rudely',
+    // adverbs: 'in ignitation, carefully, rudely',
     undirected: {
       mymsg: 'You grunt <adverb>',
       theirmsg: '<name> grunts <adverb>',
@@ -1162,7 +1152,8 @@ export const emotes = [
   {
     name: 'gurgle',
     prepositions: 'at',
-    adverbs: 'noisily,rudely,loudly,mischievously,happily,carefully, disgustingly,in surprise,like a train,quickly,slowly',
+    adverbs:
+      'noisily, rudely, loudly, mischievously, happily, carefully, disgustingly, in surprise, like a train, quickly, slowly',
     undirected: {
       mymsg: 'You gurgle <adverb>',
       theirmsg: '<name> gurgles <adverb>',
@@ -1229,8 +1220,8 @@ export const emotes = [
   },
   {
     name: 'holdb',
-    prepositions: 'on,onto',
-    adverbs: 'close,down,tightly,warmly,gently,lovingly,back,up',
+    prepositions: 'on, onto',
+    adverbs: 'close, down, tightly, warmly, gently, lovingly, back, up',
     noargs: {
       mymsg: 'You hold back',
       theirmsg: '<name> holds back',
@@ -1250,7 +1241,8 @@ export const emotes = [
   {
     name: 'hoot',
     prepositions: 'at',
-    adverbs: 'like an owl,hysterically,in warning,anxiously,annoyingly,to signal another probably hiding somewhere near',
+    adverbs:
+      'like an owl, hysterically, in warning, anxiously, annoyingly, to signal another probably hiding somewhere near',
     undirected: {
       theirmsg: '<name> hoots <adverb>',
       mymsg: 'You hoot <adverb>',
@@ -1263,7 +1255,7 @@ export const emotes = [
   {
     name: 'howlp',
     adverbs:
-      'at the sky,tunelessly,annoyingly,aguely,absentmindedly, while you work,distractedly,pointlessly,silently,loudly, rudely',
+      'at the sky, tunelessly, annoyingly, aguely, absentmindedly, while you work, distractedly, pointlessly, silently, loudly, rudely',
     undirected: {
       mymsg: 'You howl pathetically',
       theirmsg: '<name> howl <adverb>',
@@ -1271,7 +1263,7 @@ export const emotes = [
   },
   {
     name: 'hug',
-    adverbs: 'tightly,warmly,gently,close',
+    adverbs: 'tightly, warmly, gently, close',
     directed: {
       mymsg: 'You hug <target> <adverb>',
       theirmsg: '<name> hugs <target> <adverb>',
@@ -1302,7 +1294,7 @@ export const emotes = [
   {
     name: 'hum',
     adverbs:
-      'a merry tune,tunelessly,annoyingly,aguely,absentmindedly, while you work,distractedly,pointlessly,silently,loudly, rudely',
+      'a merry tune, tunelessly, annoyingly, aguely, absentmindedly, while you work, distractedly, pointlessly, silently, loudly, rudely',
     undirected: {
       mymsg: 'You hum <adverb> a merry little tune',
       theirmsg: '<name> hums <adverb> a merry little tune',
@@ -1310,12 +1302,6 @@ export const emotes = [
   },
   {
     name: 'hurlp',
-    prepositions: 'like a',
-    adverbs: 'dog,cat,chicken,cow,large bear,poodle,chihuahua',
-    noargs: {
-      theirmsg: '<name> hurls chunks',
-      mymsg: 'You hurl chunks',
-    },
     undirected: {
       theirmsg: '<name> hurls chunks',
       mymsg: 'You hurl chunks',
@@ -1339,15 +1325,15 @@ export const emotes = [
   {
     name: 'juggle',
     adverbs:
-      'balls,sticks,battons,cats,dogs,frogs,chickens,swords,knives, arms,legs,balls,trees,chain saws,bottles,torches,bings, tree stumps,logs,wine glasses,water,people,fire',
+      'balls, sticks, battons, cats, dogs, frogs, chickens, swords, knives, arms, legs, balls, trees, chain saws, bottles, torches, bings, tree stumps, logs, wine glasses, water, people, fire',
     undirected: {
       mymsg: 'You juggle ineptly',
-      theirmsg: '<name> juggles <adverb> ineptly',
+      theirmsg: '<name> juggles <noun> ineptly',
     },
   },
   {
     name: 'jump',
-    adverbs: 'excitedly,happily,carefully,slowly,joyfully,unsteadily, sideways,absentmindedly',
+    adverbs: 'excitedly, happily, carefully, slowly, joyfully, unsteadily, sideways, absentmindedly',
     directed: {
       mymsg: 'You jump <adverb> up and down on <target>',
       theirmsg: '<name> jumps up and down <adverb> on <target>',
@@ -1370,7 +1356,7 @@ export const emotes = [
   },
   {
     name: 'kiss',
-    adverbs: 'passionately,deeply,tenderly,gently,lovingly,lengthily, fishily,carefully,demandingly,sensuously',
+    adverbs: 'passionately, deeply, tenderly, gently, lovingly, lengthily, fishily, carefully, demandingly, sensuously',
     directed: {
       mymsg: 'You kiss <target> <adverb>',
       theirmsg: '<name> kisses <target> <adverb>',
@@ -1378,7 +1364,7 @@ export const emotes = [
   },
   {
     name: 'kissb',
-    adverbs: 'passionately,deeply,tenderly,gently,lovingly,lengthily, fishily,carefully,demandingly,sensuously',
+    adverbs: 'passionately, deeply, tenderly, gently, lovingly, lengthily, fishily, carefully, demandingly, sensuously',
     directed: {
       mymsg: 'You blow a kiss to <target>',
       theirmsg: '<name> blows kisses at <target>',
@@ -1386,7 +1372,7 @@ export const emotes = [
   },
   {
     name: 'kissc',
-    adverbs: 'passionately,deeply,tenderly,gently,lovingly,lengthily, fishily,carefully,demandingly,sensuously',
+    adverbs: 'passionately, deeply, tenderly, gently, lovingly, lengthily, fishily, carefully, demandingly, sensuously',
     directed: {
       mymsg: 'You kiss <target> sweetly on the cheek',
       theirmsg: '<name> kisses <target> sweetly on the cheek',
@@ -1394,7 +1380,7 @@ export const emotes = [
   },
   {
     name: 'kisshand',
-    adverbs: 'demurely,passionately,tenderly,gently,lovingly,sensuously',
+    adverbs: 'demurely, passionately, tenderly, gently, lovingly, sensuously',
     directed: {
       mymsg: 'You kiss <target> <adverb> upon the hand',
       theirmsg: '<name> kisses <target> upon the hand <adverb>',
@@ -1402,7 +1388,7 @@ export const emotes = [
   },
   {
     name: 'kissp',
-    adverbs: 'passionately,deeply,tenderly,gently,lovingly,lengthily, fishily,carefully,demandingly,sensuously',
+    adverbs: 'passionately, deeply, tenderly, gently, lovingly, lengthily, fishily, carefully, demandingly, sensuously',
     directed: {
       mymsg: 'You kiss <target> passionately',
       theirmsg: '<name> kisses <target> passionately',
@@ -1410,7 +1396,7 @@ export const emotes = [
   },
   {
     name: 'kisss',
-    adverbs: 'passionately,deeply,tenderly,gently,lovingly,lengthily, fishily,carefully,demandingly,sensuously',
+    adverbs: 'passionately, deeply, tenderly, gently, lovingly, lengthily, fishily, carefully, demandingly, sensuously',
     directed: {
       mymsg: 'You kiss <target> seductively',
       theirmsg: '<name> kisses <target> seductively',
@@ -1441,7 +1427,7 @@ export const emotes = [
   },
   {
     name: 'laugh',
-    adverbs: 'nastily,nicely,quietly,uncontrollably,politely,happily, manically,estaticly,demonically',
+    adverbs: 'nastily, nicely, quietly, uncontrollably, politely, happily, manically, estaticly, demonically',
     noargs: {
       mymsg: 'You roll around on the floor laughing',
       theirmsg: '<name> rolls around on the floor laughing',
@@ -1457,7 +1443,7 @@ export const emotes = [
   },
   {
     name: 'leap',
-    adverbs: 'longingly,excitedly,quickly,slowly,awkwardly,politlely, quietly,noisily',
+    adverbs: 'longingly, excitedly, quickly, slowly, awkwardly, politlely, quietly, noisily',
     directed: {
       mymsg: 'You leap <adverb> into <target> arms',
       theirmsg: '<name> leaps <adverb> into <target> arms',
@@ -1469,7 +1455,7 @@ export const emotes = [
   },
   {
     name: 'leaps',
-    adverbs: 'longingly,excitedly,quickly,slowly,awkwardly,politlely, quietly,noisily',
+    adverbs: 'longingly, excitedly, quickly, slowly, awkwardly, politlely, quietly, noisily',
     directed: {
       mymsg: 'You leap <adverb> into <target> arms',
       theirmsg: '<name> leaps <adverb> into <pronoun> arms',
@@ -1525,7 +1511,7 @@ export const emotes = [
   {
     name: 'lower',
     adverbs:
-      'quickly,slowly,quizicaly,silently,loudly,with a pitch fork, backwards,sideways,cleverly,surprisingly,playfully, sternly,unnoticeably,macarbly, scepticaly',
+      'quickly, slowly, quizicaly, silently, loudly, with a pitch fork, backwards, sideways, cleverly, surprisingly, playfully, sternly, unnoticeably, macarbly, scepticaly',
     undirected: {
       mymsg: 'You lower your eyebrows <adverb>',
       theirmsg: '<name> lowers <pronoun> eyebrows <adverb>',
@@ -1533,7 +1519,7 @@ export const emotes = [
   },
   {
     name: 'madness',
-    adverbs: 'wholeheartedly,loudly,softly,vaguely,briefly',
+    adverbs: 'wholeheartedly, loudly, softly, vaguely, briefly',
     undirected: {
       theirmsg: '<name> rubs <pronoun> hands together evilly and laughs like a madman ',
       mymsg: 'You rub your hands together evilly and laugh like a madman',
@@ -1546,7 +1532,7 @@ export const emotes = [
   {
     name: 'massage',
     adverbs:
-      'good,bad,ugly,long,refreshing,pink,full body,seductive, sensuous,strange,painful,deep,meaningful,ergonomic,economic, painless,memorable,different,unwanted,unwarranted, unprovoked,unknown,sneaky,unnoticed,unwieldly,back, professional,unprofessional,happy,sad,trained,untrained, train,compact,quick,foot,leg,arm,head, ear,neck,shoulder,nose',
+      'good, bad, ugly, long, refreshing, pink, full body, seductive, sensuous, strange, painful, deep, meaningful, ergonomic, economic, painless, memorable, different, unwanted, unwarranted, unprovoked, unknown, sneaky, unnoticed, unwieldly, back, professional, unprofessional, happy, sad, trained, untrained, train, compact, quick, foot, leg, arm, head, ear, neck, shoulder, nose',
     directed: {
       mymsg: 'You give <target> a <adverb> massage',
       theirmsg: '<name> gives <target> a <adverb> massage',
@@ -1575,7 +1561,7 @@ export const emotes = [
   },
   {
     name: 'moan',
-    adverbs: 'gently,deeply,sensually,agonisingly,in terror,seductively',
+    adverbs: 'gently, deeply, sensually, agonisingly, in terror, seductively',
     undirected: {
       mymsg: 'You moan <adverb>',
       theirmsg: '<name> moans <adverb>',
@@ -1583,7 +1569,7 @@ export const emotes = [
   },
   {
     name: 'moo',
-    adverbs: 'like a cow,gently,deeply,sensually,agonisingly,in terror,seductively',
+    adverbs: 'like a cow, gently, deeply, sensually, agonisingly, in terror, seductively',
     undirected: {
       mymsg: 'You moo <adverb>',
       theirmsg: '<name> moos <adverb>',
@@ -1599,7 +1585,7 @@ export const emotes = [
   {
     name: 'mosh',
     undirected: {
-      adverbs: 'violently,angrily,carefully,thoughtfully,wonderingly, vigously,insanely,loudly',
+      adverbs: 'violently, angrily, carefully, thoughtfully, wonderingly, vigously, insanely, loudly',
       theirmsg: '<name> moshes <adverb> around the room',
       mymsg: 'You mosh <adverb> around the room',
     },
@@ -1613,7 +1599,7 @@ export const emotes = [
   },
   {
     name: 'nestle',
-    adverbs: 'affectionately,lovingly,curiously',
+    adverbs: 'affectionately, lovingly, curiously',
     directed: {
       mymsg: 'You nestle up to <target> <adverb>',
       theirmsg: '<name> nestle up to  <target> <adverb>',
@@ -1621,7 +1607,7 @@ export const emotes = [
   },
   {
     name: 'nibble',
-    adverbs: 'ear,finger,lip,arm,leg,toe,neck,nose',
+    adverbs: 'ear, finger, lip, arm, leg, toe, neck, nose',
     directed: {
       mymsg: 'You nibble on <target> <adverb>',
       theirmsg: '<name> nibbles on <target> <adverb>',
@@ -1640,7 +1626,7 @@ export const emotes = [
   },
   {
     name: 'nod',
-    adverbs: 'solemnly,happily,brightly,curtly,patiently,slowly,knowingly, vigorously,tentatively',
+    adverbs: 'solemnly, happily, brightly, curtly, patiently, slowly, knowingly, vigorously, tentatively',
     undirected: {
       mymsg: 'You nod <adverb> ',
       theirmsg: '<name> nods <adverb>',
@@ -1654,7 +1640,7 @@ export const emotes = [
     name: 'noise',
     undirected: {
       adverbs:
-        'bungle,flurgle,zongle-wop,wop,whirr,burble,frog,moo,train, hairy,twisted,wap,pop,rat,mouse,chicken,womble,guppy, cow,rabbit,kangaroo,gumby',
+        'bungle, flurgle, zongle-wop, wop, whirr, burble, frog, moo, train, hairy, twisted, wap, pop, rat, mouse, chicken, womble, guppy, cow, rabbit, kangaroo, gumby',
       theirmsg: '<name> makes a <adverb> noise',
       mymsg: 'You make a <adverb> noise',
     },
@@ -1714,13 +1700,13 @@ export const emotes = [
     name: 'oogle',
     undirected: {
       adverbs:
-        'enthusiastically,excitedly,quietly,calmly,carefully,politely, wildly,oddly,unconvincingly,happily,slightly,up',
+        'enthusiastically, excitedly, quietly, calmly, carefully, politely, wildly, oddly, unconvincingly, happily, slightly, up',
       theirmsg: '<name> oogles like a fool',
       mymsg: 'You oogle like a fool',
     },
     directed: {
       adverbs:
-        'enthusiastically,excitedly,quietly,calmly,carefully,politely, wildly,oddly,unconvincingly,happily,slightly,up',
+        'enthusiastically, excitedly, quietly, calmly, carefully, politely, wildly, oddly, unconvincingly, happily, slightly, up',
       theirmsg: '<name> oogles over <target>',
       mymsg: 'You oogle over  <target>',
     },
@@ -1756,7 +1742,7 @@ export const emotes = [
   {
     name: 'peer',
     adverbs:
-      'suspiciously,quizically,anoxiously,stupidly,warningly, expectantly,happily,sadly,desperately,worriedly,strangely, uncertainly,lazily,rudely,disappointedly, fearfully,like a train,curiously,tentatively, warily,nervously,carefully,warningly,owlishly,dazedly',
+      'suspiciously, quizically, anoxiously, stupidly, warningly, expectantly, happily, sadly, desperately, worriedly, strangely, uncertainly, lazily, rudely, disappointedly, fearfully, like a train, curiously, tentatively, warily, nervously, carefully, warningly, owlishly, dazedly',
     undirected: {
       theirmsg: '<name> peers <adverb> around the room',
       mymsg: 'You peer <adverb> around the room',
@@ -1794,7 +1780,7 @@ export const emotes = [
   {
     name: 'point',
     prepositions: 'at',
-    adverbs: 'innocently,accusingly,straight',
+    adverbs: 'innocently, accusingly, straight',
     undirected: {
       theirmsg: '<name> points',
       mymsg: 'You point',
@@ -1807,7 +1793,7 @@ export const emotes = [
   {
     name: 'poke',
     directed: {
-      adverbs: 'ribs,nose,leg,frog,arm',
+      adverbs: 'ribs, nose, leg, frog, arm',
       theirmsg: '<name> pokes <target> in the <adverb>',
       mymsg: 'You poke <target> in the <adverb>',
     },
@@ -1861,9 +1847,9 @@ export const emotes = [
   {
     name: 'preen',
     prepositions: 'at',
-    adverbs: 'like a bird,visciously,slightly,wombely,happily,joyfully,angrily',
+    adverbs: 'like a bird, visciously, slightly, wombely, happily, joyfully, angrily',
     undirected: {
-      adverbs: 'like a bird,under the arms,and fluffs all matted feathers',
+      adverbs: 'like a bird, under the arms, and fluffs all matted feathers',
       mymsg: 'You preen yourself <adverb>',
       theirmsg: '<name> preens <target> <adverb>',
     },
@@ -1875,7 +1861,7 @@ export const emotes = [
   },
   {
     name: 'primp',
-    adverbs: 'playfully,affectionately',
+    adverbs: 'playfully, affectionately',
     directed: {
       theirmsg: '<name> primps <target> makeup <adverb>',
       mymsg: 'You primp <target> makeup <adverb>',
@@ -1897,7 +1883,7 @@ export const emotes = [
   },
   {
     name: 'purr',
-    adverbs: 'contentedly,loudly,happily,sensuously',
+    adverbs: 'contentedly, loudly, happily, sensuously',
     undirected: {
       theirmsg: '<name> purrs <adverb>',
       mymsg: 'You purr <adverb>',
@@ -1942,7 +1928,7 @@ export const emotes = [
   {
     name: 'raise',
     adverbs:
-      "quickly,slowly,quizicaly,silently,loudly,with a pitch fork, backwards,sideways,cleverly,surprisingly,playfully, like someone I can't think of,unnoticeably,macarbly, scepticaly,your hopes and a family",
+      "quickly, slowly, quizicaly, silently, loudly, with a pitch fork, backwards, sideways, cleverly, surprisingly, playfully, like someone I can't think of, unnoticeably, macarbly, scepticaly, your hopes and a family",
     undirected: {
       mymsg: 'You raise your eyebrows <adverb>',
       theirmsg: '<name> raises <pronoun> eyebrows <adverb>',
@@ -1973,7 +1959,7 @@ export const emotes = [
   {
     name: 'rub',
     undirected: {
-      adverbs: 'hands together,eyes,tummy,nose,leg,arm,eyebrows,head',
+      adverbs: 'hands together, eyes, tummy, nose, leg, arm, eyebrows, head',
       mymsg: 'You rub your <adverb>',
       theirmsg: '<name> rubs <pronoun> <adverb>',
     },
@@ -1990,12 +1976,12 @@ export const emotes = [
     },
     undirected: {
       adverbs:
-        'and bounces in excitement,so hard a hairball is coughed up,mouselike,annoyingly, disgustingly,a warning,painfully,fearfully,in disgust, tightly,slowly',
+        'and bounces in excitement, so hard a hairball is coughed up, mouselike, annoyingly, disgustingly, a warning, painfully, fearfully, in disgust, tightly, slowly',
       theirmsg: '<name> roars <adverb>',
       mymsg: 'You roar <adverb>',
     },
     directed: {
-      adverbs: 'menacingly,ferociously,perilously,precariously,dangerously,lovingly,like a pussy cat',
+      adverbs: 'menacingly, ferociously, perilously, precariously, dangerously, lovingly, like a pussy cat',
       theirmsg: '<name> roars <adverb> at <target>',
       mymsg: 'You roar <adverb> at <target>',
     },
@@ -2019,19 +2005,19 @@ export const emotes = [
     },
     undirected: {
       adverbs:
-        'your eyes,around on the floor laughing,over and play dead, up into a ball,your own cigarette,sideways,backwards, painfully,like a spy through an imaginary door,fearfully, tightly,slowly',
+        'your eyes, around on the floor laughing, over and play dead, up into a ball, your own cigarette, sideways, backwards, painfully, like a spy through an imaginary door, fearfully, tightly, slowly',
       theirmsg: '<name> rolls <adverb>',
       mymsg: 'You roll <adverb>',
     },
     directed: {
-      adverbs: 'quickly,slowly,painfully,excitededly,lovingly,carefully',
+      adverbs: 'quickly, slowly, painfully, excitededly, lovingly, carefully',
       theirmsg: '<name> rolls <adverb> over <target>',
       mymsg: 'You roll <adverb> over <target>',
     },
   },
   {
     name: 'ruffle',
-    adverbs: 'playfully,affectionately',
+    adverbs: 'playfully, affectionately',
     directed: {
       theirmsg: '<name> ruffles <target> hair <adverb>',
       mymsg: 'You ruffle <target> hair <adverb>',
@@ -2070,7 +2056,7 @@ export const emotes = [
   {
     name: 'scratch',
     prepositions: 'at',
-    adverbs: 'visciously,slightly,wombely,happily,joyfully,angrily',
+    adverbs: 'visciously, slightly, wombely, happily, joyfully, angrily',
     undirected: {
       adverbs: 'on the head',
       mymsg: 'You scratch yourself <adverb>',
@@ -2085,7 +2071,6 @@ export const emotes = [
   {
     name: 'scream',
     prepositions: 'at',
-    adverbs: 'terror,fright,fear,pain,surprise,frustration,despair,anger',
     noargs: {
       mymsg: 'You scream loudly',
       theirmsg: '<name> screams loudly',
@@ -2102,7 +2087,8 @@ export const emotes = [
   {
     name: 'screech',
     prepositions: 'at',
-    adverbs: 'like an eagle,hysterically,in warning,anxiously,annoyingly,to signal another probably hiding somewhere near',
+    adverbs:
+      'like an eagle, hysterically, in warning, anxiously, annoyingly, to signal another probably hiding somewhere near',
     undirected: {
       theirmsg: '<name> screeches <adverb>',
       mymsg: 'You screech <adverb>',
@@ -2125,19 +2111,19 @@ export const emotes = [
     prepositions: 'with at',
     undirected: {
       adverbs:
-        'sorrowfully,carefully,slowly,once,quickly,curtly,pinkly, vigorously,completely,fishily,tentatively,in agreement, in disbelief',
+        'sorrowfully, carefully, slowly, once, quickly, curtly, pinkly, vigorously, completely, fishily, tentatively, in agreement, in disbelief',
       mymsg: 'You shake your head <adverb>',
       theirmsg: '<name> shakes <pronoun> head <adverb>',
     },
     directed: {
-      adverbs: 'hands with,fins with,fingers with,legs with, pinkys with,tentacles with,your fist at',
+      adverbs: 'hands with, fins with, fingers with, legs with, pinkys with, tentacles with, your fist at',
       mymsg: 'You shake <adverb> <target>',
       theirmsg: '<name> shakes <adverb> <target>',
     },
   },
   {
     name: 'shiver',
-    adverbs: 'in fear,with cold,slightly,#',
+    adverbs: 'in fear, with cold, slightly',
     undirected: {
       mymsg: 'You shiver <adverb>',
       theirmsg: '<name> shivers <adverb>',
@@ -2145,7 +2131,7 @@ export const emotes = [
   },
   {
     name: 'shrug',
-    adverbs: 'helplessly,slightly,evanly,rhythmicly,around in circles, with your legs',
+    adverbs: 'helplessly, slightly, evanly, rhythmicly, around in circles, with your legs',
     undirected: {
       theirmsg: '<name> shrugs <adverb>',
       mymsg: 'You shrug <adverb>',
@@ -2153,9 +2139,9 @@ export const emotes = [
   },
   {
     name: 'shudder',
-    adverbs: 'happily,joyfully,angrily',
+    adverbs: 'happily, joyfully, angrily',
     undirected: {
-      adverbs: 'fear,revulsion,disapointment,ecstasy',
+      adverbs: 'fear, revulsion, disapointment, ecstasy',
       mymsg: 'You shudder in <adverb>',
       theirmsg: '<name> shudders in <adverb>',
     },
@@ -2163,7 +2149,7 @@ export const emotes = [
   {
     name: 'sigh',
     adverbs:
-      'deeply,silently,desperately,tiredly,sadly,slowly,dreamily, happily,heavily,suggestively,sarcasticly,in relief,with relief',
+      'deeply, silently, desperately, tiredly, sadly, slowly, dreamily, happily, heavily, suggestively, sarcasticly, in relief, with relief',
     undirected: {
       mymsg: 'You sigh <adverb>',
       theirmsg: '<name> sighs <adverb>',
@@ -2229,7 +2215,7 @@ export const emotes = [
   {
     name: 'smack',
     prepositions: 'at',
-    adverbs: 'lightly,angrily',
+    adverbs: 'lightly, angrily',
     undirected: {
       adverbs: 'silly',
       mymsg: 'You smack yourself <adverb>',
@@ -2252,7 +2238,7 @@ export const emotes = [
     name: 'smile',
     prepositions: 'at',
     adverbs:
-      'happily,sadly,nervously,wryly,broadly,crookedly,stupidly, idiotically,condesendingly,ironically,patiently,brightly, slightly,nastily,excitedly,strangely, plasticly,carefully,sadisticly,lopsidedly,fishily,catishly, faintly,like a train,angrily,paranoicaly,innocently,frogily, slyly,weakly,humbly,sarcasticly,vicously, garishly,sweetly,innocently,lovingly,dreamily,radiantly, enthusiasticly,insolently,quirkily,completely,unconsciously, drunkenly,insanely,cutely,maliciously,absentmindedly, curtly,disturbingly,unbeliveably,quietly,loudly,differently, winningly,in triumph,seductively,tightly, softly,lividly,demonicaly, manically,warily,sardonically,lazily,serenely,disappointedly, secretly,penetratingly',
+      'happily, sadly, nervously, wryly, broadly, crookedly, stupidly, idiotically, condesendingly, ironically, patiently, brightly, slightly, nastily, excitedly, strangely, plasticly, carefully, sadisticly, lopsidedly, fishily, catishly, faintly, like a train, angrily, paranoicaly, innocently, frogily, slyly, weakly, humbly, sarcasticly, vicously, garishly, sweetly, innocently, lovingly, dreamily, radiantly, enthusiasticly, insolently, quirkily, completely, unconsciously, drunkenly, insanely, cutely, maliciously, absentmindedly, curtly, disturbingly, unbeliveably, quietly, loudly, differently, winningly, in triumph, seductively, tightly, softly, lividly, demonicaly, manically, warily, sardonically, lazily, serenely, disappointedly, secretly, penetratingly',
     undirected: {
       mymsg: 'You smile happily',
       theirmsg: '<name> smiles happily',
@@ -2265,14 +2251,14 @@ export const emotes = [
   {
     name: 'smooch',
     prepositions: 'at',
-    adverbs: 'visciously,slightly,wombely,happily,joyfully,angrily',
+    adverbs: 'visciously, slightly, wombely, happily, joyfully, angrily',
     undirected: {
       adverbs: 'on the head',
       mymsg: 'You smooch yourself happily',
       theirmsg: '<name> smooches <target> happily',
     },
     directed: {
-      adverbs: 'joyfully,passionately,playfully',
+      adverbs: 'joyfully, passionately, playfully',
       mymsg: 'You smooch <target> <adverb>',
       theirmsg: '<name> smooches <target> <adverb>',
     },
@@ -2291,7 +2277,7 @@ export const emotes = [
   {
     name: 'snarl',
     prepositions: 'at',
-    adverbs: 'visiously,nastily,demonicaly,happily,sadly, unexpectedly,suddenly',
+    adverbs: 'visiously, nastily, demonicaly, happily, sadly, unexpectedly, suddenly',
     undirected: {
       mymsg: 'You snarl <adverb>',
       theirmsg: '<name> snarls <adverb>',
@@ -2316,7 +2302,7 @@ export const emotes = [
   {
     name: 'sneeze',
     prepositions: 'on',
-    adverbs: 'violently,loudly,silently,quietly,suddenly,unexpectedly',
+    adverbs: 'violently, loudly, silently, quietly, suddenly, unexpectedly',
     undirected: {
       mymsg: 'You sneeze <adverb>',
       theirmsg: '<name> sneezes <adverb>',
@@ -2328,7 +2314,7 @@ export const emotes = [
   },
   {
     name: 'snicker',
-    adverbs: 'mischeviously,nastily,a bit,like skippy',
+    adverbs: 'mischeviously, nastily, a bit, like skippy',
     undirected: {
       mymsg: 'You snicker <adverb>',
       theirmsg: '<name> snickers <adverb>',
@@ -2336,7 +2322,7 @@ export const emotes = [
   },
   {
     name: 'sniff',
-    adverbs: 'dejectedly,noisily,silently,loudly,in disdain',
+    adverbs: 'dejectedly, noisily, silently, loudly, in disdain',
     undirected: {
       mymsg: 'You sniff <adverb>',
       theirmsg: '<name> sniffs <adverb>',
@@ -2353,7 +2339,7 @@ export const emotes = [
   {
     name: 'snore',
     adverbs:
-      'loudly,quitely,sypatheticly,strangely,carefully,backwards, like bastian,like a train,over a keyboard with bastian',
+      'loudly, quitely, sypatheticly, strangely, carefully, backwards, like bastian, like a train, over a keyboard with bastian',
     undirected: {
       mymsg: 'You snore <adverb>',
       theirmsg: '<name> snores <adverb>',
@@ -2391,7 +2377,7 @@ export const emotes = [
   {
     name: 'sob',
     adverbs:
-      'uncontrollablely,happily,carefully,slightly, quietly,loudly,helplessly,completely,unexpectedly, silently,forlornly,cheekily',
+      'uncontrollablely, happily, carefully, slightly, quietly, loudly, helplessly, completely, unexpectedly, silently, forlornly, cheekily',
     undirected: {
       theirmsg: '<name> sobs <adverb>',
       mymsg: 'You sob <adverb>',
@@ -2403,7 +2389,7 @@ export const emotes = [
   },
   {
     name: 'sorry',
-    adverbs: 'profusely,reservedly,profunctily,carefully,insultingly, insolently',
+    adverbs: 'profusely, reservedly, profunctily, carefully, insultingly, insolently',
     undirected: {
       mymsg: 'You apologise <adverb>',
       theirmsg: '<name> apologises <adverb>',
@@ -2417,11 +2403,7 @@ export const emotes = [
     name: 'spank',
     prepositions: 'like a',
     adverbs:
-      'seductively,carefully,gently,uncontrollably,politely, sensuously,selectively,unexpectedly,with an evil smirk, painfully,sneakily,unprovoked,professionally,vigorously, reflexively,with a cat,like a train',
-    noargs: {
-      theirmsg: '<name> spanks their own butt',
-      mymsg: 'You spank your own butt',
-    },
+      'seductively, carefully, gently, uncontrollably, politely, sensuously, selectively, unexpectedly, with an evil smirk, painfully, sneakily, unprovoked, professionally, vigorously, reflexively, with a cat, like a train',
     undirected: {
       theirmsg: '<name> spanks their own butt',
       mymsg: 'You spank your own butt',
@@ -2433,12 +2415,6 @@ export const emotes = [
   },
   {
     name: 'spew',
-    prepositions: 'like a',
-    adverbs: 'dog,cat,chicken,cow,large bear,poodle,chihuahua',
-    noargs: {
-      theirmsg: '<name> spews chunks',
-      mymsg: 'You spew chunks',
-    },
     undirected: {
       theirmsg: '<name> spews chunks',
       mymsg: 'You spew chunks',
@@ -2487,7 +2463,7 @@ export const emotes = [
   },
   {
     name: 'squeeze',
-    adverbs: 'fondly,gently,tightly',
+    adverbs: 'fondly, gently, tightly',
     directed: {
       mymsg: 'You squeeze <target> <adverb>',
       theirmsg: '<name> squeezes <target> <adverb>',
@@ -2513,7 +2489,7 @@ export const emotes = [
   },
   {
     name: 'stamp',
-    adverbs: 'angrily,impatiently,warningly,fighteningly',
+    adverbs: 'angrily, impatiently, warningly, fighteningly',
     undirected: {
       mymsg: 'You stamp your foot <adverb>',
       theirmsg: '<name> stamps <pronoun> foot <adverb>',
@@ -2521,7 +2497,7 @@ export const emotes = [
   },
   {
     name: 'stand',
-    adverbs: 'in uffish thought,about,patiently',
+    adverbs: 'in uffish thought, about, patiently',
     undirected: {
       mymsg: 'You stand <adverb>',
       theirmsg: '<name> stands <adverb>',
@@ -2531,13 +2507,13 @@ export const emotes = [
     name: 'stare',
     prepositions: 'at',
     adverbs:
-      'happily,sadly,woriedly,lazily,rudely,dazedly,hungrily, macabrely,absent-mindedly,fanaticaly,lovingly,respectfully, womblely,frogily,desperately,sternly,tentatively,politely, listlessly,dreamily,intently,mindlessly,expectantly,longingly',
+      'happily, sadly, woriedly, lazily, rudely, dazedly, hungrily, macabrely, absent-mindedly, fanaticaly, lovingly, respectfully, womblely, frogily, desperately, sternly, tentatively, politely, listlessly, dreamily, intently, mindlessly, expectantly, longingly',
     undirected: {
       mymsg: 'You stare <adverb> into space',
       theirmsg: '<name> stares <adverb> into space',
     },
     directed: {
-      adverbs: 'romantically,continuously,annoyingly',
+      adverbs: 'romantically, continuously, annoyingly',
       mymsg: 'You stare <adverb> at <target>',
       theirmsg: '<name> stares <adverb> at <target>',
     },
@@ -2570,7 +2546,7 @@ export const emotes = [
   {
     name: 'streak',
     prepositions: 'at',
-    adverbs: 'quickly,nakedly,joyfully,pervertedly',
+    adverbs: 'quickly, nakedly, joyfully, pervertedly',
     undirected: {
       adverbs: 'pervertedly',
       mymsg: 'You rip off all your clothes and streak the mud',
@@ -2638,7 +2614,6 @@ export const emotes = [
   },
   {
     name: 'sweep',
-    adverbs: 'excitedly,happily,carefully,slowly,joyfully,unsteadily, sideways,absentmindedly',
     directed: {
       mymsg: 'You sweep <target> into your arms and dance romantically',
       theirmsg: '<name> sweeps <target> into <pronoun> arms and dances romantically',
@@ -2715,7 +2690,7 @@ export const emotes = [
   {
     name: 'tap',
     prepositions: 'on the',
-    adverbs: 'head,left leg,right leg,fingers,nose,shoulder,teeth,arm',
+    adverbs: 'head, left leg, right leg, fingers, nose, shoulder, teeth, arm',
     undirected: {
       adverbs: 'foot',
       mymsg: 'You tap your <adverb> impatiently',
@@ -2746,14 +2721,14 @@ export const emotes = [
     },
     directed: {
       adverbs:
-        'mercilessly,insistantly,annoyingly,lovingly,mischeviously, rudely,carefully,quickly,slowly,halfheartedly,idlely, obnoxiously',
+        'mercilessly, insistantly, annoyingly, lovingly, mischeviously, rudely, carefully, quickly, slowly, halfheartedly, idlely, obnoxiously',
       theirmsg: '<name> teases <target> <adverb>',
       mymsg: 'You tease <target> <adverb>',
     },
   },
   {
     name: 'thank',
-    adverbs: 'profusely,gratuitously,lots,slightly,reservedly',
+    adverbs: 'profusely, gratuitously, lots, slightly, reservedly',
     directed: {
       theirmsg: '<name> thanks <target> <adverb>',
       mymsg: 'You thank <target> <adverb>',
@@ -2795,7 +2770,7 @@ export const emotes = [
   {
     name: 'tip',
     prepositions: 'at to',
-    adverbs: 'happily,pathetically,hopefully',
+    adverbs: 'happily, pathetically, hopefully',
     undirected: {
       theirmsg: '<name> tips <pronoun> head <adverb>',
       mymsg: 'You tip your head <adverb>',
@@ -2807,7 +2782,8 @@ export const emotes = [
   },
   {
     name: 'tickle',
-    adverbs: 'mercilessly,ruthlessly,fearlessly,quickly,sneakily,weakly, carefully,gently,harshly,inconcievablely,slowly',
+    adverbs:
+      'mercilessly, ruthlessly, fearlessly, quickly, sneakily, weakly, carefully, gently, harshly, inconcievablely, slowly',
     directed: {
       theirmsg: '<name> tickles <target> <adverb>',
       mymsg: 'You tickle <target> <adverb>',
@@ -2822,7 +2798,7 @@ export const emotes = [
   },
   {
     name: 'tremble',
-    adverbs: 'in fear,in nervousness,in pain,slightly,violently,insistantly, carefully,in a pink fit',
+    adverbs: 'in fear, in nervousness, in pain, slightly, violently, insistantly, carefully, in a pink fit',
     undirected: {
       theirmsg: '<name> trembles <adverb>',
       mymsg: 'You tremble <adverb>',
@@ -2863,7 +2839,7 @@ export const emotes = [
   },
   {
     name: 'tweak',
-    adverbs: 'bottom,ear,arm,leg,nose,bits',
+    adverbs: 'bottom, ear, arm, leg, nose, bits',
     directed: {
       theirmsg: '<name> tweaks <target> <adverb>',
       mymsg: 'You tweak <target> <adverb>',
@@ -2871,7 +2847,7 @@ export const emotes = [
   },
   {
     name: 'twiddle',
-    adverbs: 'thumbs,fingers,hair,nose',
+    adverbs: 'thumbs, fingers, hair, nose',
     undirected: {
       theirmsg: '<name> twiddles <pronoun> <adverb>',
       mymsg: 'You twiddle your <adverb>',
@@ -2890,7 +2866,7 @@ export const emotes = [
   },
   {
     name: 'twitch',
-    adverbs: 'nose,arm,body,finger,igloo',
+    adverbs: 'nose, arm, body, finger, igloo',
     undirected: {
       theirmsg: '<name> twitches <pronoun> <adverb>',
       mymsg: 'You twitch your <adverb>',
@@ -2923,7 +2899,7 @@ export const emotes = [
   },
   {
     name: 'waltz',
-    prepositions: 'with,along with,with',
+    prepositions: 'with, along with, with',
     directed: {
       theirmsg: '<name> waltzs around the room with <target>',
       mymsg: 'You waltz around the room with <target>',
@@ -2943,7 +2919,8 @@ export const emotes = [
   {
     name: 'wave',
     prepositions: 'at',
-    adverbs: 'tiredly,sleepily,lazily,sadly,happily,redundantly, forlornly,excitedly,longingly,pointlessly,passionately',
+    adverbs:
+      'tiredly, sleepily, lazily, sadly, happily, redundantly, forlornly, excitedly, longingly, pointlessly, passionately',
     noargs: {
       theirmsg: '<name> waves',
       mymsg: 'You wave',
@@ -2971,7 +2948,6 @@ export const emotes = [
   {
     name: 'wheeze',
     prepositions: 'at',
-    adverbs: 'none',
     undirected: {
       theirmsg: '<name> wheezes and coughs as <pronoun> catches <pronoun> breath',
       mymsg: 'You wheeze and cough as you catch your breath',
@@ -2983,7 +2959,7 @@ export const emotes = [
   },
   {
     name: 'whimper',
-    adverbs: 'painfully,fearfully,carefully,dimuatively,happily,winningly',
+    adverbs: 'painfully, fearfully, carefully, dimuatively, happily, winningly',
     undirected: {
       theirmsg: '<name> whimpers <adverb>',
       mymsg: 'You whimper <adverb>',
@@ -2992,7 +2968,7 @@ export const emotes = [
   {
     name: 'whistle',
     prepositions: 'at',
-    adverbs: 'innocently,appreciatively,loudly,musically,pleasantly, discordantly',
+    adverbs: 'innocently, appreciatively, loudly, musically, pleasantly, discordantly',
     undirected: {
       theirmsg: '<name> whistles <adverb>',
       mymsg: 'You whistle <adverb>',
@@ -3012,7 +2988,7 @@ export const emotes = [
   {
     name: 'wiggle',
     prepositions: 'at',
-    adverbs: 'enticingly,suggestively,vigourously,arrogantly,nonchalantly, quickly',
+    adverbs: 'enticingly, suggestively, vigourously, arrogantly, nonchalantly, quickly',
     undirected: {
       theirmsg: '<name> wiggles <pronoun> bottom <adverb>',
       mymsg: 'You wiggle your bottom <adverb>',
@@ -3026,7 +3002,7 @@ export const emotes = [
     name: 'wink',
     prepositions: 'at',
     adverbs:
-      'suggestively,slowly,loudly,grumpily,despairingly,coyly, desperately,insolently,curtly,lovingly,patiently,sadisticly, warily,seductively,lazily',
+      'suggestively, slowly, loudly, grumpily, despairingly, coyly, desperately, insolently, curtly, lovingly, patiently, sadisticly, warily, seductively, lazily',
     undirected: {
       theirmsg: '<name> winks <adverb>',
       mymsg: 'You wink <adverb>',
@@ -3039,19 +3015,19 @@ export const emotes = [
   {
     name: 'wipep',
     undirected: {
-      adverbs: 'in relief,enthusiastically,excitedly,wildly,happily,slightly',
+      adverbs: 'in relief, enthusiastically, excitedly, wildly, happily, slightly',
       theirmsg: '<name> wipes the sweat from <pronoun> brow',
       mymsg: 'You wipe the sweat from your brow <adverb>',
     },
     directed: {
-      adverbs: 'briefly,enthusiastically,excitedly,wildly,happily,slightly',
+      adverbs: 'briefly, enthusiastically, excitedly, wildly, happily, slightly',
       theirmsg: '<name> wipes <pronoun> <adverb> on <target>',
       mymsg: 'You wipe your <adverb> on <target>',
     },
   },
   {
     name: 'wobble',
-    adverbs: 'around a bit,like jelly,unsteadily,happily,carefully, sideways,steadily',
+    adverbs: 'around a bit, like jelly, unsteadily, happily, carefully, sideways, steadily',
     undirected: {
       theirmsg: '<name> wobbles <adverb>',
       mymsg: 'You wobble <adverb>',
@@ -3066,7 +3042,6 @@ export const emotes = [
   },
   {
     name: 'wonder',
-    adverbs: 'about reality and how boring it can be',
     undirected: {
       theirmsg: '<name> wonders <adverb>',
       mymsg: 'You wonder <adverb>',
@@ -3109,7 +3084,7 @@ export const emotes = [
   },
   {
     name: 'yawn',
-    abverbs: 'tiredly,boredly,sleepily',
+    abverbs: 'tiredly, boredly, sleepily',
     undirected: {
       theirmsg: '<name> yawns <adverb>',
       mymsg: 'You yawn <adverb>',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report } from '@material-ui/icons';
+import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report, Textsms } from '@material-ui/icons';
 
 export const sidebarNavs = [
   {
@@ -45,7 +45,7 @@ export const sidebarNavs = [
       {
         name: 'Emotes',
         type: 'item',
-        icon: <Report />,
+        icon: <Textsms />,
         link: '/emotes',
       },
     ],
