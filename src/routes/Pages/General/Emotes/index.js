@@ -81,7 +81,9 @@ const Emotes = () => {
                         <Typography>{getEmoteText(emote)}</Typography>
                       </TableCell>
                       <TableCell style={{ maxWidth: '300px ' }}>
-                        <Typography>{emote.adverbs}</Typography>
+                        <Typography>
+                          {emote.adverbs} {emote.nouns}
+                        </Typography>
                       </TableCell>
                       <TableCell>
                         <Typography component="div">{emote.noargs ? emote.noargs.mymsg + '.' : ''}</Typography>
