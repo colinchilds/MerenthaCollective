@@ -11,7 +11,7 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     transition: 'all 0.3s ease',
     '.Cmt-sidebar-fixed &, .Cmt-Drawer-container &': {
-      height: 'calc(100% - 167px)',
+      height: '100%',
     },
     '.Cmt-modernLayout &': {
       height: 'calc(100% - 72px)',
@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
       height: 'calc(100% - 91px)',
     },
     '.Cmt-miniLayout .Cmt-sidebar-content:hover &': {
-      height: 'calc(100% - 167px)',
+      height: '100%)',
     },
   },
 }));
