@@ -2,8 +2,11 @@ import React from 'react';
 import GridContainer from '@jumbo/components/GridContainer';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@material-ui/core/Grid';
-import { Card, CardContent, Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@material-ui/core';
+import { Divider, Typography } from '@material-ui/core';
 import { emotes } from 'data/Emotes';
+import CmtCard from '@coremat/CmtCard';
+import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -58,44 +61,25 @@ const Emotes = () => {
     <PageContainer breadcrumbs={breadcrumbs} heading="Emotes">
       <GridContainer>
         <Grid item xs={12}>
-          <Card>
-            <CardContent>
-              <Table size="small">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>
-                      <Typography>Command</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>Adverb/Noun</Typography>
-                    </TableCell>
-                    <TableCell>
-                      <Typography>Text</Typography>
-                    </TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {emotes.map((emote, index) => (
-                    <TableRow key={index}>
-                      <TableCell>
-                        <Typography>{getEmoteText(emote)}</Typography>
-                      </TableCell>
-                      <TableCell style={{ maxWidth: '300px ' }}>
-                        <Typography>
-                          {emote.adverbs} {emote.nouns}
-                        </Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography component="div">{emote.noargs ? emote.noargs.mymsg + '.' : ''}</Typography>
-                        <Typography component="div">{emote.undirected ? emote.undirected.mymsg + '.' : ''}</Typography>
-                        <Typography component="div">{emote.directed ? emote.directed.mymsg + '.' : ''}</Typography>
-                      </TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </CardContent>
-          </Card>
+          <CmtCard>
+            {emotes.map((emote, index) => (
+              <React.Fragment>
+                <Divider />
+                <CmtCardContent>
+                  <Typography variant="h3" component="div">
+                    {getEmoteText(emote)}
+                  </Typography>
+                  <Typography style={{ fontStyle: 'italic' }}>{emote.adverbs ? 'Adverbs: ' + emote.adverbs : ''}</Typography>
+                  <Typography style={{ fontStyle: 'italic' }}>{emote.nouns ? 'Nouns: ' + emote.nouns : ''}</Typography>
+                  <Typography style={{ marginLeft: '10px' }}>{emote.noargs ? emote.noargs.mymsg + '.' : ''}</Typography>
+                  <Typography style={{ marginLeft: '10px' }}>
+                    {emote.undirected ? emote.undirected.mymsg + '.' : ''}
+                  </Typography>
+                  <Typography style={{ marginLeft: '10px' }}>{emote.directed ? emote.directed.mymsg + '.' : ''}</Typography>
+                </CmtCardContent>
+              </React.Fragment>
+            ))}
+          </CmtCard>
         </Grid>
       </GridContainer>
     </PageContainer>
