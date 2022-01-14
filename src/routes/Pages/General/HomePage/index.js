@@ -18,7 +18,7 @@ const HomePage = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardContent>
-              <Typography variant="body2" color="textSecondary" component="p">
+              <Typography>
                 Welcome to the newly revived Merentha Collective! This site is all about the MUD{' '}
                 <Link href="https://www.merentha.com">Merentha</Link>. Please take a look around and feel free to offer
                 suggestions for improvements. We also gladly accept merge requests to fix or add new content. This is a site

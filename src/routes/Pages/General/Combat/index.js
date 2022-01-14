@@ -11,6 +11,14 @@ const breadcrumbs = [
   { label: 'Combat Messages', isActive: true },
 ];
 
+const TypographyCell = ({ children }) => {
+  return (
+    <TableCell>
+      <Typography>{children}</Typography>
+    </TableCell>
+  );
+};
+
 const Combat = () => {
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Combat Messages">
@@ -18,7 +26,7 @@ const Combat = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardContent>
-              <Typography component="p">
+              <Typography>
                 Below are two tables showing the message for each hit, for each of the three damage types. The percentage is
                 the damage compared to your enemy's maximum health points.
                 <br />
@@ -32,76 +40,76 @@ const Combat = () => {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Damage %</TableCell>
-                    <TableCell>Blunt</TableCell>
-                    <TableCell>Sharp</TableCell>
+                    <TypographyCell>Damage %</TypographyCell>
+                    <TypographyCell>Blunt</TypographyCell>
+                    <TypographyCell>Sharp</TypographyCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell>0%</TableCell>
-                    <TableCell>hit ineffectively</TableCell>
-                    <TableCell>hit ineffectively</TableCell>
+                    <TypographyCell>0%</TypographyCell>
+                    <TypographyCell>hit ineffectively</TypographyCell>
+                    <TypographyCell>hit ineffectively</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>0.0 - 0.7%</TableCell>
-                    <TableCell>tap innocently</TableCell>
-                    <TableCell>tap</TableCell>
+                    <TypographyCell>0.0 - 0.7%</TypographyCell>
+                    <TypographyCell>tap innocently</TypographyCell>
+                    <TypographyCell>tap</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>0.7 - 1.4%</TableCell>
-                    <TableCell>tickle lightly</TableCell>
-                    <TableCell>tickle</TableCell>
+                    <TypographyCell>0.7 - 1.4%</TypographyCell>
+                    <TypographyCell>tickle lightly</TypographyCell>
+                    <TypographyCell>tickle</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>1.4 - 2.0%</TableCell>
-                    <TableCell>sting</TableCell>
-                    <TableCell>sting sharply</TableCell>
+                    <TypographyCell>1.4 - 2.0%</TypographyCell>
+                    <TypographyCell>sting</TypographyCell>
+                    <TypographyCell>sting sharply</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>2.0 - 2.7%</TableCell>
-                    <TableCell>hurt mildly</TableCell>
-                    <TableCell>graze</TableCell>
+                    <TypographyCell>2.0 - 2.7%</TypographyCell>
+                    <TypographyCell>hurt mildly</TypographyCell>
+                    <TypographyCell>graze</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>2.7 - 3.4%</TableCell>
-                    <TableCell>strike badly</TableCell>
-                    <TableCell>cut</TableCell>
+                    <TypographyCell>2.7 - 3.4%</TypographyCell>
+                    <TypographyCell>strike badly</TypographyCell>
+                    <TypographyCell>cut</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>3.4 - 4.7%</TableCell>
-                    <TableCell>strike</TableCell>
-                    <TableCell>slice</TableCell>
+                    <TypographyCell>3.4 - 4.7%</TypographyCell>
+                    <TypographyCell>strike</TypographyCell>
+                    <TypographyCell>slice</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>4.7 - 6.0%</TableCell>
-                    <TableCell>send a bone crushing blow</TableCell>
-                    <TableCell>slice horribly</TableCell>
+                    <TypographyCell>4.7 - 6.0%</TypographyCell>
+                    <TypographyCell>send a bone crushing blow</TypographyCell>
+                    <TypographyCell>slice horribly</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>6.0 - 7.4%</TableCell>
-                    <TableCell>knock</TableCell>
-                    <TableCell>shear to pieces</TableCell>
+                    <TypographyCell>6.0 - 7.4%</TypographyCell>
+                    <TypographyCell>knock</TypographyCell>
+                    <TypographyCell>shear to pieces</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>7.4 - 9.4%</TableCell>
-                    <TableCell>slam mercilessly</TableCell>
-                    <TableCell>strike with deadly force</TableCell>
+                    <TypographyCell>7.4 - 9.4%</TypographyCell>
+                    <TypographyCell>slam mercilessly</TypographyCell>
+                    <TypographyCell>strike with deadly force</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>9.4 - 11.4%</TableCell>
-                    <TableCell>blast powerfully</TableCell>
-                    <TableCell>mutilate</TableCell>
+                    <TypographyCell>9.4 - 11.4%</TypographyCell>
+                    <TypographyCell>blast powerfully</TypographyCell>
+                    <TypographyCell>mutilate</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>11.4 - 14.0%</TableCell>
-                    <TableCell>destroy</TableCell>
-                    <TableCell>dismember</TableCell>
+                    <TypographyCell>11.4 - 14.0%</TypographyCell>
+                    <TypographyCell>destroy</TypographyCell>
+                    <TypographyCell>dismember</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>14.0%+</TableCell>
-                    <TableCell>destroy utterly</TableCell>
-                    <TableCell>destroy utterly</TableCell>
+                    <TypographyCell>14.0%+</TypographyCell>
+                    <TypographyCell>destroy utterly</TypographyCell>
+                    <TypographyCell>destroy utterly</TypographyCell>
                   </TableRow>
                 </TableBody>
               </Table>
@@ -110,62 +118,62 @@ const Combat = () => {
               <Table size="small">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Damage %</TableCell>
-                    <TableCell>Magic</TableCell>
+                    <TypographyCell>Damage %</TypographyCell>
+                    <TypographyCell>Magic</TypographyCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell>0%</TableCell>
-                    <TableCell>hit ineffectively</TableCell>
+                    <TypographyCell>0%</TypographyCell>
+                    <TypographyCell>hit ineffectively</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>0.0 - 1.4%</TableCell>
-                    <TableCell>tap innocently</TableCell>
+                    <TypographyCell>0.0 - 1.4%</TypographyCell>
+                    <TypographyCell>tap innocently</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>1.4 - 2.0%</TableCell>
-                    <TableCell>tickle lightly</TableCell>
+                    <TypographyCell>1.4 - 2.0%</TypographyCell>
+                    <TypographyCell>tickle lightly</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>2.0 - 3.4%</TableCell>
-                    <TableCell>sting</TableCell>
+                    <TypographyCell>2.0 - 3.4%</TypographyCell>
+                    <TypographyCell>sting</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>3.4 - 4.0%</TableCell>
-                    <TableCell>hurt mildly</TableCell>
+                    <TypographyCell>3.4 - 4.0%</TypographyCell>
+                    <TypographyCell>hurt mildly</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>4.0 - 5.4%</TableCell>
-                    <TableCell>strike badly</TableCell>
+                    <TypographyCell>4.0 - 5.4%</TypographyCell>
+                    <TypographyCell>strike badly</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>5.4 - 6.7%</TableCell>
-                    <TableCell>strike</TableCell>
+                    <TypographyCell>5.4 - 6.7%</TypographyCell>
+                    <TypographyCell>strike</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>6.7 - 8.7%</TableCell>
-                    <TableCell>send a bone crushing blow</TableCell>
+                    <TypographyCell>6.7 - 8.7%</TypographyCell>
+                    <TypographyCell>send a bone crushing blow</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>8.7 - 10.7%</TableCell>
-                    <TableCell>knock</TableCell>
+                    <TypographyCell>8.7 - 10.7%</TypographyCell>
+                    <TypographyCell>knock</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>10.7 - 14.0%</TableCell>
-                    <TableCell>slam mercilessly</TableCell>
+                    <TypographyCell>10.7 - 14.0%</TypographyCell>
+                    <TypographyCell>slam mercilessly</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>14.0 - 16.7%</TableCell>
-                    <TableCell>blast powerfully</TableCell>
+                    <TypographyCell>14.0 - 16.7%</TypographyCell>
+                    <TypographyCell>blast powerfully</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>16.7 - 20.7%</TableCell>
-                    <TableCell>destroy</TableCell>
+                    <TypographyCell>16.7 - 20.7%</TypographyCell>
+                    <TypographyCell>destroy</TypographyCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>20.7%+</TableCell>
-                    <TableCell>destroy utterly</TableCell>
+                    <TypographyCell>20.7%+</TypographyCell>
+                    <TypographyCell>destroy utterly</TypographyCell>
                   </TableRow>
                 </TableBody>
               </Table>

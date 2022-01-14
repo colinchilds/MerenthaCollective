@@ -140,9 +140,7 @@ const StatCalculator = () => {
                       {stats.map((stat, index) => (
                         <TableRow key={index}>
                           <TableCell size="small">
-                            <Typography variant="body2" component="div">
-                              {stat}
-                            </Typography>
+                            <Typography>{stat}</Typography>
                           </TableCell>
                           <TableCell align="right">
                             <TextField
@@ -155,9 +153,7 @@ const StatCalculator = () => {
                               InputProps={{
                                 endAdornment: (
                                   <InputAdornment position="end" size="small">
-                                    <Typography component="div" variant="body2">
-                                      {`/ ${getMaxStat(stat, charClass, race, level)}`}
-                                    </Typography>
+                                    <Typography>{`/ ${getMaxStat(stat, charClass, race, level)}`}</Typography>
                                   </InputAdornment>
                                 ),
                               }}
@@ -176,7 +172,7 @@ const StatCalculator = () => {
                           </TableCell>
                           <TableCell align="right">
                             <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                              <Typography component="div" variant="body2">
+                              <Typography>
                                 {intToString(parseInt(statCost[stat]), 2)}
                                 {' exp'}
                               </Typography>
@@ -187,14 +183,14 @@ const StatCalculator = () => {
                       <TableRow>
                         <TableCell />
                         <TableCell align="right">
-                          <Typography component="div" variant="body2" style={{ paddingRight: '22px' }}>
+                          <Typography style={{ paddingRight: '22px' }}>
                             {charStatTotal} / {statTotal}
                           </Typography>
                         </TableCell>
                         <TableCell />
                         <TableCell align="right">
                           <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                            <Typography component="div" variant="body2" style={{ paddingLeft: '14px' }}>
+                            <Typography style={{ paddingLeft: '14px' }}>
                               {intToString(parseInt(expTotal), 2)}
                               {' exp'}
                             </Typography>

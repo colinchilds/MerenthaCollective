@@ -5,7 +5,6 @@ import Grid from '@material-ui/core/Grid';
 import { Divider, Typography } from '@material-ui/core';
 import { emotes } from 'data/Emotes';
 import CmtCard from '@coremat/CmtCard';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 
 const breadcrumbs = [
@@ -63,7 +62,7 @@ const Emotes = () => {
         <Grid item xs={12}>
           <CmtCard>
             {emotes.map((emote, index) => (
-              <React.Fragment>
+              <React.Fragment key={index}>
                 <Divider />
                 <CmtCardContent>
                   <Typography variant="h3" component="div">

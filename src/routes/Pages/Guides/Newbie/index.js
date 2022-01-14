@@ -18,7 +18,7 @@ const Newbie = () => {
             <CardContent>
               <Typography variant="h1">Introduction</Typography>
               <br />
-              <Typography variant="body2">
+              <Typography>
                 Welcome to the newbie guide to Merentha. It's written to be a beginners guide to Merentha, and possibly
                 MUDing. It will not be a walkthrough however, nor will there be any spoilers. A large part of the fun in this
                 game is exploring and finding things so it will only list an explanation for most things you come accross as
@@ -27,7 +27,7 @@ const Newbie = () => {
               <br />
               <Typography variant="h1">Character Creation</Typography>
               <br />
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 When you log on, you are first asked to create a character to play this game. This character is not a
                 representation of you, it can be anything you want it to be. Picking a name doesn't seem important, but it'll
                 affect your character later on. People have remade their characters because of not liking their name. Also be
@@ -64,7 +64,7 @@ const Newbie = () => {
               <br />
               <Typography variant="h1">Selecting A Race</Typography>
               <br />
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Picking a race is a rather important decision in your early career. Don't let this bother you too much
                 though, later on in the game there is the option of changing race. You can try to find a race you like
                 yourself, since you are not forced to pick a certain race. If you'd like to do so, type the following.
@@ -93,7 +93,7 @@ const Newbie = () => {
               <br />
               <br />
               <Typography variant="h4">Cleric</Typography>
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 One of the less played classes in Merentha, mostly because they're very dependent on playing with other
                 players. Clerics have a large collection of abilities and spells ranging from healing to damage. There is a
                 lot of strength in this class, but don't be disheartened by the harder early levels.
@@ -108,7 +108,7 @@ const Newbie = () => {
               <br />
               <br />
               <Typography variant="h4">Fighter</Typography>
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 A very popular class in Merentha. Largely because this class offers a normal starting difficulty, and has a
                 lot of potential for later levels. The main difficulty in this class is they are one of the most stat
                 dependant classes, and thus need a lot of training to improve themself. If you are looking for a varied start
@@ -126,7 +126,7 @@ const Newbie = () => {
               <br />
               <br />
               <Typography variant="h4">Mage</Typography>
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Like Fighters, mages are a very popular class as well. Each of the mage subclasses offers quite different
                 spells, and generally anyone can find something they like. Some of the subclasses are considered to be more
                 powerful than others, but if you keep your mind to it each subclass can be equally strong.
@@ -144,7 +144,7 @@ const Newbie = () => {
               <br />
               <br />
               <Typography variant="h4">Monk</Typography>
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Monks are a somewhat underplayed class in Merentha, although lately there seems to be an uprising. The four
                 subclasses that the monks provide are all very different. But what they all feature is a great amount of
                 defense abilities and skills. They're able to take on large monsters early on with the aid of defense spells
@@ -162,7 +162,7 @@ const Newbie = () => {
               <br />
               <br />
               <Typography variant="h4">Rogue</Typography>
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Probably the most played class of Merentha, looking at assassins alone. They are a great starting class, and
                 can get very powerful later on. Although all rogues lack the ability to take on large monsters due to the way
                 they fight. This should be considered when choosing a rogue.
@@ -180,7 +180,7 @@ const Newbie = () => {
               <br />
               <Typography variant="h1">Starting Your Adventure</Typography>
               <br />
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Once you've selected a race based on the class you'd like to play, you can now venture out to find the hall
                 for your class and join them. You can look at the individual help files for each class to find a general
                 direction. Following is a few helpful commands to get you started.
@@ -237,7 +237,7 @@ const Newbie = () => {
               <br />
               <Typography variant="h1">The Quest For Experience</Typography>
               <br />
-              <Typography variant="body2" component="div">
+              <Typography component="div">
                 Once you're all set up, have found your class hall and chosen a class and subclass, you will need to equip
                 yourself. You start out with some basic equipment which will do fine at first. To wear all the armour you
                 have on you, use the following command.

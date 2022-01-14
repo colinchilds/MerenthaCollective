@@ -126,7 +126,7 @@ const Cleric = () => {
             <CmtCard>
               <CmtCardHeader title={item.question} />
               <CmtCardContent>
-                <Typography variant="body2">{item.answer}</Typography>
+                <Typography>{item.answer}</Typography>
               </CmtCardContent>
             </CmtCard>
           </Grid>

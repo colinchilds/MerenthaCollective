@@ -20,7 +20,7 @@ const useStyles = makeStyles(() => ({
       height: 'calc(100% - 91px)',
     },
     '.Cmt-miniLayout .Cmt-sidebar-content:hover &': {
-      height: '100%)',
+      height: '100%',
     },
   },
 }));

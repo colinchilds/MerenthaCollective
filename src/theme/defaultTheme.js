@@ -87,6 +87,7 @@ const defaultTheme = {
     fontWeightRegular: 400,
     fontWeightBold: 'bold',
     fontWeightExtraBold: 800,
+    fontSize: 14,
   },
   overrides: {
     MuiTypography: {
@@ -135,12 +136,12 @@ const defaultTheme = {
         letterSpacing: 0.1,
       },
       body1: {
-        fontSize: 16,
+        fontSize: 14,
         fontWeight: 400,
         letterSpacing: 0.5,
       },
       body2: {
-        fontSize: 14,
+        fontSize: 12,
         fontWeight: 400,
         letterSpacing: 0.25,
       },

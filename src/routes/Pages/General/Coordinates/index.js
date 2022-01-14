@@ -4,7 +4,7 @@ import PageContainer from '@jumbo/components/PageComponents/layouts/PageContaine
 import Grid from '@material-ui/core/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Link, Table, TableBody, TableCell, TableRow } from '@material-ui/core';
+import { Link, Table, TableBody, TableCell, TableRow, Typography } from '@material-ui/core';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { flyingCoords, sailingCoords } from 'data/Coords';
 
@@ -27,9 +27,15 @@ const Coordinates = () => {
                 <TableBody>
                   {sailingCoords.map((area, index) => (
                     <TableRow key={index}>
-                      <TableCell>{area.name}</TableCell>
-                      <TableCell>{area.coords}</TableCell>
-                      <TableCell>{area.id}</TableCell>
+                      <TableCell>
+                        <Typography>{area.name}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>{area.coords}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>{area.id}</Typography>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -47,9 +53,15 @@ const Coordinates = () => {
                 <TableBody>
                   {flyingCoords.map((area, index) => (
                     <TableRow key={index}>
-                      <TableCell>{area.name}</TableCell>
-                      <TableCell style={{ minWidth: '100px' }}>{area.coords}</TableCell>
-                      <TableCell>{area.description}</TableCell>
+                      <TableCell>
+                        <Typography>{area.name}</Typography>
+                      </TableCell>
+                      <TableCell style={{ minWidth: '100px' }}>
+                        <Typography>{area.coords}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>{area.description}</Typography>
+                      </TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

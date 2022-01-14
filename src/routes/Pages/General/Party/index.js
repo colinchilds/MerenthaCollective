@@ -21,41 +21,83 @@ const Party = () => {
               <Table>
                 <TableHead>
                   <TableRow>
-                    <TableCell>Members</TableCell>
-                    <TableCell>EXP Bonus</TableCell>
-                    <TableCell>EXP Gain</TableCell>
+                    <TableCell>
+                      <Typography>Members</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>EXP Bonus</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>EXP Gain</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   <TableRow>
-                    <TableCell>1</TableCell>
-                    <TableCell>100%</TableCell>
-                    <TableCell>100%</TableCell>
+                    <TableCell>
+                      <Typography>1</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>100%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>100%</Typography>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>2</TableCell>
-                    <TableCell>150%</TableCell>
-                    <TableCell>75%</TableCell>
+                    <TableCell>
+                      <Typography>2</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>150%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>75%</Typography>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>3</TableCell>
-                    <TableCell>180%</TableCell>
-                    <TableCell>60%</TableCell>
+                    <TableCell>
+                      <Typography>3</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>180%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>60%</Typography>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>4</TableCell>
-                    <TableCell>200%</TableCell>
-                    <TableCell>50%</TableCell>
+                    <TableCell>
+                      <Typography>4</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>200%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>50%</Typography>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>5</TableCell>
-                    <TableCell>200%</TableCell>
-                    <TableCell>40%</TableCell>
+                    <TableCell>
+                      <Typography>5</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>200%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>40%</Typography>
+                    </TableCell>
                   </TableRow>
                   <TableRow>
-                    <TableCell>6*</TableCell>
-                    <TableCell>200%</TableCell>
-                    <TableCell>33%</TableCell>
+                    <TableCell>
+                      <Typography>6*</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>200%</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>33%</Typography>
+                    </TableCell>
                   </TableRow>
                 </TableBody>
               </Table>

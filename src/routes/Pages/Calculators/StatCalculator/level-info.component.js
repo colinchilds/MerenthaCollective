@@ -16,33 +16,33 @@ export default function LevelInfo(props) {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <Typography component="p">Stat Requirement</Typography>
+                    <Typography>Stat Requirement</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography component="p">{Math.max(0, (level - 6) * 10)}</Typography>
+                    <Typography>{Math.max(0, (level - 6) * 10)}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography component="p">Skill Requirement</Typography>
+                    <Typography>Skill Requirement</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography component="p">{14 * (level + 1)}</Typography>
+                    <Typography>{14 * (level + 1)}</Typography>
                   </TableCell>
                 </TableRow>
                 <TableRow>
                   <TableCell>
-                    <Typography component="p">Level Cost</Typography>
+                    <Typography>Level Cost</Typography>
                   </TableCell>
                   <TableCell>
                     <Tooltip title={parseInt(advExp).toLocaleString('en-US')}>
-                      <Typography component="p">{intToString(advExp, 2)}</Typography>
+                      <Typography>{intToString(advExp, 2)}</Typography>
                     </Tooltip>
                   </TableCell>
                   <TableCell>
-                    <Typography component="p">Max Experience</Typography>
+                    <Typography>Max Experience</Typography>
                   </TableCell>
                   <TableCell>
                     <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
-                      <Typography component="p">{intToString(maxExp, 2)}</Typography>
+                      <Typography>{intToString(maxExp, 2)}</Typography>
                     </Tooltip>
                   </TableCell>
                 </TableRow>

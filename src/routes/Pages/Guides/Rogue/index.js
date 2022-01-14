@@ -118,9 +118,7 @@ const Rogue = () => {
             <CmtCard>
               <CmtCardHeader title={item.question} />
               <CmtCardContent>
-                <Typography variant="body2" style={{ whiteSpace: 'pre-line' }}>
-                  {item.answer}
-                </Typography>
+                <Typography style={{ whiteSpace: 'pre-line' }}>{item.answer}</Typography>
               </CmtCardContent>
             </CmtCard>
           </Grid>
