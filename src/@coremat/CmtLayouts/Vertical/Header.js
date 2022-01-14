@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'row',
     alignItems: 'center',
     transition: 'all 0.3s ease',
-    backgroundColor: theme.palette.primary.main,
+    backgroundColor: '#0a304c',
   },
 }));
 

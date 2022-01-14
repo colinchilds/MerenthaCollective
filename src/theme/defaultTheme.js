@@ -1,6 +1,6 @@
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import { Fonts } from '../@jumbo/constants/ThemeOptions';
-import { indigo, pink } from '@material-ui/core/colors';
+import { blue, indigo } from '@material-ui/core/colors';
 
 const breakpoints = createBreakpoints({
   values: {
@@ -31,15 +31,15 @@ const defaultTheme = {
       white: '#fff',
       dark: '#020202',
     },
-    primary: indigo,
-    secondary: pink,
+    primary: blue,
+    secondary: indigo,
     sidebar: {
       bgColor: '#fff',
       textColor: 'rgba(0, 0, 0, 0.6)',
       textDarkColor: 'rgba(0, 0, 0, 0.87)',
       textActiveColor: '#6200EE',
-      navHoverBgColor: 'rgb(229, 229, 229)',
-      navActiveBgColor: 'rgb(239, 229, 253)',
+      navHoverBgColor: 'rgb(182, 196, 207)',
+      navActiveBgColor: 'rgb(209, 218, 225)',
       borderColor: 'rgba(33, 33, 33, 0.08)',
     },
     horizontalNav: {

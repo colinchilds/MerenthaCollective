@@ -1,4 +1,4 @@
-import { alpha, makeStyles, darken } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 
 const breakpoints = createBreakpoints({});
@@ -94,72 +94,6 @@ const globalStyles = makeStyles(theme => ({
     },
     '.swal2-container .swal2-close:focus': {
       outline: 'none',
-    },
-    // React Big Calendar
-    '.rbc-calendar': {
-      flex: 1,
-      minHeight: 'calc(100vh - 200px)',
-      [theme.breakpoints.down('xs')]: {
-        minHeight: 400,
-      },
-      [theme.breakpoints.down(710)]: {
-        '& .rbc-toolbar': {
-          display: 'flex',
-          flexDirection: 'column',
-          flexWrap: 'nowrap',
-          alignItems: 'flex-start',
-          '& .rbc-toolbar-label': {
-            margin: '8px 0',
-            padding: 0,
-          },
-        },
-      },
-      [theme.breakpoints.down(500)]: {
-        '& .rbc-toolbar': {
-          fontSize: 12,
-          '& button': {
-            padding: '5px 10px',
-          },
-        },
-      },
-      '& .rbc-event': {
-        backgroundColor: theme.palette.primary.main,
-        minHeight: 50,
-        '&:focus': {
-          outline: 'none',
-        },
-      },
-      '& .rbc-event.rbc-selected': {
-        backgroundColor: darken(theme.palette.primary.main, 0.3),
-      },
-      '& .rbc-slot-selection': {
-        backgroundColor: alpha(theme.palette.primary.main, 0.7),
-      },
-      '& .rbc-toolbar button:active, & .rbc-toolbar button.rbc-active': {
-        color: theme.palette.common.white,
-        backgroundImage: 'none',
-        backgroundColor: alpha(theme.palette.primary.main, 0.9),
-        borderColor: theme.palette.primary.main,
-      },
-      '& .rbc-toolbar button:active:hover, & .rbc-toolbar button.rbc-active:hover, & .rbc-toolbar button:active:focus, & .rbc-toolbar button.rbc-active:focus': {
-        color: theme.palette.common.white,
-        backgroundColor: alpha(theme.palette.primary.main, 0.9),
-        borderColor: theme.palette.primary.main,
-      },
-      '& .rbc-toolbar button': {
-        color: theme.palette.text.primary,
-      },
-      '& .rbc-toolbar button:focus, & .rbc-toolbar button:hover': {
-        color: theme.palette.common.white,
-        backgroundColor: alpha(theme.palette.primary.main, 0.9),
-        borderColor: theme.palette.primary.main,
-      },
-      '& .rbc-month-row': {
-        minHeight: 100,
-      },
-      '& .rbc-off-range-bg': {
-        backgroundColor: alpha(theme.palette.primary.main, 0.1),
-      },
     },
     pre: {
       margin: '15px',

@@ -55,6 +55,12 @@ export const sidebarNavs = [
     type: 'section',
     children: [
       {
+        name: 'Newbie',
+        type: 'item',
+        icon: <AccessibilityNew />,
+        link: '/guides/newbie',
+      },
+      {
         name: 'Cleric',
         type: 'item',
         icon: <AccessibilityNew />,
@@ -83,12 +89,6 @@ export const sidebarNavs = [
         type: 'item',
         icon: <AccessibilityNew />,
         link: '/guides/rogue',
-      },
-      {
-        name: 'Newbie',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/newbie',
       },
     ],
   },
