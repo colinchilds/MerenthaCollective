@@ -13,7 +13,6 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
-    transition: 'all 0.3s ease',
     backgroundColor: '#0a304c',
   },
 }));

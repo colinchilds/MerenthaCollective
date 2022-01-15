@@ -8,7 +8,6 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
     boxSizing: 'border-box',
     position: 'relative',
-    transition: 'all 0.01s ease',
     '&.Cmt-fixedHeaderLayout': {
       '& $appMain': {
         position: 'relative',
@@ -90,7 +89,6 @@ const useStyles = makeStyles(theme => ({
       '& .Cmt-header': {
         left: props.miniSidebarWidth,
         width: `calc(100% - ${props.miniSidebarWidth}px)`,
-        transition: 'all 0.01s ease',
         '.layout-type-framed &': {
           '@media screen and (min-width: 1366px)': {
             left: props.miniSidebarWidth + 20,
@@ -161,7 +159,6 @@ const useStyles = makeStyles(theme => ({
     height: '100%',
     width: `calc(100% - ${props.sidebarWidth}px)`,
     boxSizing: 'border-box',
-    transition: 'all 0.3s ease',
     '.Cmt-sidebar-fixed &': {
       marginLeft: props.sidebarWidth,
     },
