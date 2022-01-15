@@ -1,7 +1,8 @@
 import { Fonts } from '../@jumbo/constants/ThemeOptions';
 import { blue, indigo } from '@mui/material/colors';
+import { createTheme } from '@mui/material/styles';
 
-const defaultTheme = {
+var theme = createTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -30,15 +31,6 @@ const defaultTheme = {
       navHoverBgColor: 'rgb(182, 196, 207)',
       navActiveBgColor: 'rgb(209, 218, 225)',
       borderColor: 'rgba(33, 33, 33, 0.08)',
-    },
-    horizontalNav: {
-      navigationColor: 'rgba(255, 255, 255, 0.74)',
-      navigationActiveColor: 'rgba(255, 255, 255, 1)',
-      textColor: 'rgba(0, 0, 0, 0.6)',
-      textDarkColor: 'rgba(0, 0, 0, 0.87)',
-      textActiveColor: '#6200EE',
-      menuHoverBgColor: 'rgb(229, 229, 229)',
-      menuActiveBgColor: 'rgb(239, 229, 253)',
     },
     background: {
       paper: '#FFFFFF',
@@ -76,106 +68,121 @@ const defaultTheme = {
     fontWeightRegular: 400,
     fontWeightBold: 'bold',
     fontWeightExtraBold: 800,
-    // fontSize: 14,
-    h1: {
-      fontSize: '1rem',
-    },
+    fontSize: 14,
   },
   components: {
-    MuiTypography: {
-      h1: {
-        fontSize: '1rem',
-        fontWeight: 'bold',
-        // [breakpoints.up('md')]: {
-        //   fontSize: 22,
-        // },
-      },
-      h2: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        // [breakpoints.up('md')]: {
-        //   fontSize: 20,
-        // },
-      },
-      h3: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        // [breakpoints.up('md')]: {
-        //   fontSize: 18,
-        // },
-      },
-      h4: {
-        fontSize: 16,
-        fontWeight: 'bold',
-      },
-      h5: {
-        fontSize: 14,
-        fontWeight: 400,
-      },
-      h6: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        letterSpacing: 0.5,
-      },
-      subtitle1: {
-        fontSize: 16,
-        fontWeight: 400,
-        letterSpacing: 0.15,
-      },
-      subtitle2: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        letterSpacing: 0.1,
-      },
-      body1: {
-        fontSize: 14,
-        fontWeight: 400,
-        letterSpacing: 0.5,
-      },
-      body2: {
-        fontSize: 12,
-        fontWeight: 400,
-        letterSpacing: 0.25,
-      },
-    },
     MuiButton: {
-      root: {
-        fontWeight: 'bold',
-        letterSpacing: 1.25,
-        fontSize: 13,
+      styleOverrides: {
+        root: {
+          fontWeight: 'bold',
+          letterSpacing: 1.25,
+          fontSize: 13,
+        },
       },
     },
     MuiToggleButton: {
-      root: {
-        borderRadius: 4,
+      styleOverrides: {
+        root: {
+          borderRadius: 4,
+        },
       },
     },
     MuiCardLg: {
-      root: {
-        borderRadius: 10,
+      styleOverrides: {
+        root: {
+          borderRadius: 10,
+        },
       },
     },
     MuiCard: {
-      root: {
-        borderRadius: 4,
-        boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14)',
+      styleOverrides: {
+        root: {
+          borderRadius: 4,
+          boxShadow: '0px 1px 3px rgba(0, 0, 0, 0.2), 0px 2px 1px rgba(0, 0, 0, 0.12), 0px 1px 1px rgba(0, 0, 0, 0.14)',
+        },
       },
     },
     MuiTab: {
-      textColorPrimary: {
-        color: 'rgba(0, 0, 0, 0.87)',
+      styleOverrides: {
+        textColorPrimary: {
+          color: 'rgba(0, 0, 0, 0.87)',
+        },
       },
     },
     MuiPopover: {
-      paper: {
-        backgroundColor: '#FFFFFF',
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#FFFFFF',
+        },
       },
     },
     MuiDialog: {
-      paper: {
-        backgroundColor: '#FFFFFF',
+      styleOverrides: {
+        paper: {
+          backgroundColor: '#FFFFFF',
+        },
       },
     },
   },
-};
+});
+
+const defaultTheme = createTheme(theme, {
+  typography: {
+    h1: {
+      fontSize: 20,
+      fontWeight: 'bold',
+      [theme.breakpoints.up('md')]: {
+        fontSize: 22,
+      },
+    },
+    h2: {
+      fontSize: 18,
+      fontWeight: 'bold',
+      [theme.breakpoints.up('md')]: {
+        fontSize: 20,
+      },
+    },
+    h3: {
+      fontSize: 16,
+      fontWeight: 'bold',
+      [theme.breakpoints.up('md')]: {
+        fontSize: 18,
+      },
+    },
+    h4: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    h5: {
+      fontSize: 14,
+      fontWeight: 400,
+    },
+    h6: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      letterSpacing: 0.5,
+    },
+    subtitle1: {
+      fontSize: 16,
+      fontWeight: 400,
+      letterSpacing: 0.15,
+    },
+    subtitle2: {
+      fontSize: 14,
+      fontWeight: 'bold',
+      letterSpacing: 0.1,
+    },
+    body1: {
+      fontSize: 14,
+      fontWeight: 400,
+      letterSpacing: 0.5,
+    },
+    body2: {
+      fontSize: 12,
+      fontWeight: 400,
+      letterSpacing: 0.25,
+    },
+  },
+});
+
 export default defaultTheme;

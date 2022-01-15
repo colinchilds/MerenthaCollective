@@ -2,7 +2,7 @@ import React, { useContext, useMemo } from 'react';
 
 import { create } from 'jss';
 
-import ThemeProvider from '@mui/styles/ThemeProvider';
+import { ThemeProvider } from '@mui/material/styles';
 import { createTheme, StyledEngineProvider } from '@mui/material/styles';
 import jssPreset from '@mui/styles/jssPreset';
 import StylesProvider from '@mui/styles/StylesProvider';
@@ -18,9 +18,7 @@ const AppWrapper = ({ children }) => {
   const { theme } = useContext(AppContext);
 
   const muiTheme = useMemo(() => {
-    var t = createTheme(theme);
-    console.log(t);
-    return t;
+    return createTheme(theme);
   }, [theme]);
 
   return (
