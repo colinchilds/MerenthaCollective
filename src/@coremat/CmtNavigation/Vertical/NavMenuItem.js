@@ -6,6 +6,7 @@ import clsx from 'clsx';
 import { List } from '@material-ui/core';
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
+import LayoutContext from '@coremat/CmtLayouts/LayoutContext';
 
 const useStyles = makeStyles(theme => ({
   navMenuItem: {
@@ -71,6 +72,9 @@ const useStyles = makeStyles(theme => ({
 const NavMenuItem = props => {
   const { name, icon, link } = props;
   const { sidebarTheme } = useContext(SidebarThemeContext);
+
+  const { setSidebarOpen } = useContext(LayoutContext);
+
   const classes = useStyles({ sidebarTheme });
 
   const renderIcon = () => {
@@ -85,7 +89,10 @@ const NavMenuItem = props => {
 
   return (
     <List component="div" className={clsx(classes.navMenuItem, 'Cmt-nav-menu-item')}>
-      <NavHashLink className={clsx(classes.navMenuLink, 'Cmt-nav-menu-link')} to={link}>
+      <NavHashLink
+        className={clsx(classes.navMenuLink, 'Cmt-nav-menu-link')}
+        to={link}
+        onClick={() => setSidebarOpen(false)}>
         {/* Display an icon if any */}
         {renderIcon()}
         <span className={clsx(classes.navText, 'Cmt-nav-text')}>{name}</span>

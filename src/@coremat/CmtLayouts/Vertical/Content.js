@@ -9,6 +9,7 @@ const useStyles = makeStyles(theme => ({
     flexDirection: 'column',
     boxSizing: 'border-box',
     padding: '30px 15px',
+    overflowY: 'auto',
     [theme.breakpoints.up('md')]: {
       paddingLeft: 50,
       paddingRight: 50,
