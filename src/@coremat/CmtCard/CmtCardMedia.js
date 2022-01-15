@@ -3,8 +3,9 @@ import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Fab, makeStyles, Typography } from '@material-ui/core';
-import CardMedia from '@material-ui/core/CardMedia';
+import { Fab, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import CardMedia from '@mui/material/CardMedia';
 
 const useStyles = makeStyles(theme => ({
   media: {

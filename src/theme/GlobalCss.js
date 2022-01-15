@@ -1,7 +1,4 @@
-import { makeStyles } from '@material-ui/core/styles';
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
-
-const breakpoints = createBreakpoints({});
+import makeStyles from '@mui/styles/makeStyles';
 
 let paddingClasses = {};
 let marginClasses = {};
@@ -17,7 +14,6 @@ for (let count = 1; count <= 8; count++) {
 }
 
 const globalStyles = makeStyles(theme => ({
-  breakpoints,
   '@global': {
     '*': {
       boxSizing: 'border-box',
@@ -33,7 +29,7 @@ const globalStyles = makeStyles(theme => ({
       '&.disable-link': {
         pointerEvents: 'none',
         cursor: 'default',
-        [theme.breakpoints.down('xs')]: {
+        [theme.breakpoints.down('sm')]: {
           pointerEvents: 'inherit',
           cursor: 'pointer',
         },
@@ -51,7 +47,7 @@ const globalStyles = makeStyles(theme => ({
     '.Cmt-table-responsive': {
       minHeight: '.01%',
       overflowX: 'auto',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         width: '100%',
         marginBottom: 15,
         overflowY: 'hidden',

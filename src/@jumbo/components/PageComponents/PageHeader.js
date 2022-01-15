@@ -1,5 +1,6 @@
 import React from 'react';
-import { Box, makeStyles, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -12,7 +13,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   titleRoot: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       marginBottom: 10,
     },
   },

@@ -3,7 +3,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Drawer, makeStyles } from '@material-ui/core';
+import { Drawer } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import { getBackgroundStyle, getOverLayStyle } from '../CmtHelpers/JssHelper';
 

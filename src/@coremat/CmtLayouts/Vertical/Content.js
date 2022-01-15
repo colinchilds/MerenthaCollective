@@ -1,5 +1,6 @@
 import React, { useImperativeHandle } from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
       paddingLeft: 88,
       paddingRight: 88,
     },
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       paddingTop: 20,
       paddingBottom: 20,
     },

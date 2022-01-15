@@ -2,8 +2,8 @@ import React, { useContext } from 'react';
 
 import clsx from 'clsx';
 
-import { List } from '@material-ui/core';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { List } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 
 import NavMenuItem from './NavMenuItem';
 import NavCollapse from './NavCollapse';

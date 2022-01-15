@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import clsx from 'clsx';
 
-import { useMediaQuery, useTheme } from '@material-ui/core';
+import { useMediaQuery, useTheme } from '@mui/material';
 
 import useStyles from './Sidebar.style';
 import LayoutContext from '../LayoutContext';

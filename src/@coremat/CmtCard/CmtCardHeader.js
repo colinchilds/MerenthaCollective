@@ -1,7 +1,7 @@
 import React, { useImperativeHandle, useState, useEffect } from 'react';
 
-import { IconButton } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { IconButton } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 
 import PropTypes from 'prop-types';
 import clsx from 'clsx';

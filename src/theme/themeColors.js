@@ -2,7 +2,7 @@ import { THEME_TYPES } from '../@jumbo/constants/ThemeOptions';
 
 export const semiDarkTheme = {
   palette: {
-    type: THEME_TYPES.LIGHT,
+    mode: THEME_TYPES.LIGHT,
     sidebar: {
       bgColor: '#363636',
       textColor: 'rgba(255, 255, 255, 0.3)',
@@ -67,7 +67,7 @@ export const semiDarkTheme = {
 };
 export const darkTheme = {
   palette: {
-    type: THEME_TYPES.DARK,
+    mode: THEME_TYPES.DARK,
     sidebar: {
       bgColor: '#363636',
       textColor: 'rgba(255, 255, 255, 0.3)',
@@ -132,7 +132,7 @@ export const darkTheme = {
 };
 export const lightTheme = {
   palette: {
-    type: THEME_TYPES.LIGHT,
+    mode: THEME_TYPES.LIGHT,
     sidebar: {
       bgColor: '#fff',
       textColor: 'rgba(0, 0, 0, 0.6)',

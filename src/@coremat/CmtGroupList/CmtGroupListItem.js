@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 
 import clsx from 'clsx';
 
-import { IconButton, Collapse } from '@material-ui/core';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { IconButton, Collapse } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
+import { alpha } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import CmtList from '../CmtList';
 import CmtGridList from '../CmtGridView';
@@ -60,7 +62,8 @@ const CmtGroupListItem = ({ isGrid, itemPadding, column, isExpandable, group, it
             edge="end"
             onClick={handleExpandClick}
             aria-expanded={expanded}
-            aria-label="show more">
+            aria-label="show more"
+            size="large">
             <ExpandMoreIcon />
           </IconButton>
         </div>

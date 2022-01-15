@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 
-import { Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem } from '@mui/material';
 
 const CmtDropdownMenu = ({ TriggerComponent, items, onItemClick }) => {
   const [anchorEl, setAnchorEl] = useState(null);

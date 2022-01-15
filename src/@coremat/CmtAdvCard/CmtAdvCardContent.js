@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid } from '@mui/material';
 import CmtContentHead from '../CmtTypography/CmtContentHead';
 import useStyles from './CmtAdvCardContent.style';
 import clsx from 'clsx';

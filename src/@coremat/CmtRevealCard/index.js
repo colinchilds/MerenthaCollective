@@ -4,9 +4,10 @@ import clsx from 'clsx';
 import PropTypes from 'prop-types';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
-import { Box, makeStyles } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import IconButton from '@material-ui/core/IconButton';
+import { Box } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import CloseIcon from '@mui/icons-material/Close';
+import IconButton from '@mui/material/IconButton';
 
 import { CmtTitle } from '../CmtTypography';
 import RevealEffect from '../CmtTransitions/RevealEffect';
@@ -60,7 +61,7 @@ const CmtRevealCard = ({ revealed, onClose, revealComponentTitle, titleProps, re
             <div className={classes.revealHeader}>
               <Box flex={1}>{revealComponentTitle && <CmtTitle content={revealComponentTitle} {...titleProps} />}</Box>
               <Box my={-3}>
-                <IconButton onClick={onClose}>
+                <IconButton onClick={onClose} size="large">
                   <CloseIcon />
                 </IconButton>
               </Box>

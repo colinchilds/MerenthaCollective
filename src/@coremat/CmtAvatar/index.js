@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Avatar } from '@material-ui/core';
+import { Avatar } from '@mui/material';
 import { componentColors } from '../CmtHelpers/JssHelper';
 import useStyles from './index.style';
 

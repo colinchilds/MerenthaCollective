@@ -1,6 +1,6 @@
 import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 const CmtSubTitle = ({ content, ...subTitleProps }) => {
   if (!content) return null;

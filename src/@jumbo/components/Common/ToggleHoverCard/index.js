@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import clsx from 'clsx';
 
-import { Typography, useTheme } from '@material-ui/core';
+import { Typography, useTheme } from '@mui/material';
 
 import CmtCard from '../../../../@coremat/CmtCard';
 import CmtCardHeader from '../../../../@coremat/CmtCard/CmtCardHeader';

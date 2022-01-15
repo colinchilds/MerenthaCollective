@@ -1,8 +1,8 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import { PageBreadcrumbs, PageHeader } from '../index';
-import Slide from '@material-ui/core/Slide';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Slide from '@mui/material/Slide';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({

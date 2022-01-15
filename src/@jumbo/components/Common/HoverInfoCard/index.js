@@ -1,9 +1,9 @@
 import React from 'react';
 import CmtCard from '../../../../@coremat/CmtCard';
-import { Box } from '@material-ui/core';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { Box } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import CountUp from 'react-countup';
-import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles(() => ({

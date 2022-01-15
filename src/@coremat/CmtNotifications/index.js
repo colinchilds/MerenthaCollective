@@ -2,10 +2,11 @@ import React, { useState } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { Box, IconButton, makeStyles, Typography, Avatar } from '@material-ui/core';
-import MoreHorizIcon from '@material-ui/icons/MoreHoriz';
-import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
-import InfoIcon from '@material-ui/icons/Info';
+import { Box, IconButton, Typography, Avatar } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz';
+import AllInclusiveIcon from '@mui/icons-material/AllInclusive';
+import InfoIcon from '@mui/icons-material/Info';
 
 import CmtNotificationItem from './CmtNotificationItem';
 import CmtList from '../CmtList';

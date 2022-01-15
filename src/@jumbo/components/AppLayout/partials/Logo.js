@@ -1,6 +1,6 @@
 import React from 'react';
-import Hidden from '@material-ui/core/Hidden';
-import { Box } from '@material-ui/core';
+import Hidden from '@mui/material/Hidden';
+import { Box } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import CmtImage from '../../../../@coremat/CmtImage';
 
@@ -10,7 +10,7 @@ const Logo = ({ color, ...props }) => {
 
   return (
     <Box className="pointer" {...props}>
-      <Hidden xsDown>
+      <Hidden smDown>
         <NavLink to="/">
           <CmtImage src={logoUrl} alt="logo" />
         </NavLink>

@@ -1,6 +1,7 @@
 import React from 'react';
-import { Breadcrumbs, makeStyles } from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import { Breadcrumbs } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import Typography from '@mui/material/Typography';
 import { NavLink } from 'react-router-dom';
 import clsx from 'clsx';
 

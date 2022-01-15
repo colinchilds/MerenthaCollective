@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { hexToRgba } from '../CmtHelpers/JssHelper';
-import { deepPurple } from '@material-ui/core/colors';
+import { deepPurple } from '@mui/material/colors';
 
 const useStyles = makeStyles({
   advCardRoot: {

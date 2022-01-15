@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 import { linkify } from '../../../utils/commonHelper';
 
 const TextToHtml = ({ content, ...restProps }) => {

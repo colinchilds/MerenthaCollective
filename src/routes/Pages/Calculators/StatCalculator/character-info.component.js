@@ -1,7 +1,7 @@
 import React from 'react';
 import GridContainer from '../../../../@jumbo/components/GridContainer';
-import Grid from '@material-ui/core/Grid';
-import { Box, FormControl, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import { Box, FormControl, InputLabel, ListSubheader, MenuItem, Select, TextField } from '@mui/material';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { classes } from './calculator.helpers';
 import { races } from 'data/Races';

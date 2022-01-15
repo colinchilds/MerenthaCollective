@@ -1,7 +1,7 @@
 import React from 'react';
 
-import { ListItem, ListItemAvatar, Avatar, ListItemText } from '@material-ui/core';
-import ImageIcon from '@material-ui/icons/Image';
+import { ListItem, ListItemAvatar, Avatar, ListItemText } from '@mui/material';
+import ImageIcon from '@mui/icons-material/Image';
 
 const DummyItem = ({ item }) => (
   <ListItem key={item} style={{ backgroundColor: 'red' }}>

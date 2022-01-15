@@ -2,7 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import PropTypes from 'prop-types';
 import { create } from 'jss';
-import { makeStyles, useTheme, jssPreset, StylesProvider } from '@material-ui/core/styles';
+import { useTheme } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
+import jssPreset from '@mui/styles/jssPreset';
+import StylesProvider from '@mui/styles/StylesProvider';
 
 function FramedWindow(props) {
   const { children, document } = props;

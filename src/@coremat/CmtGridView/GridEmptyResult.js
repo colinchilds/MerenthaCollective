@@ -3,8 +3,10 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-import { Box, Button, CircularProgress } from '@material-ui/core';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { Box, Button, CircularProgress } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   emptyListContainer: {

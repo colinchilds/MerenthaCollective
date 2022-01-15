@@ -4,7 +4,12 @@ import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Box, makeStyles, withWidth } from '@material-ui/core';
+import { Box } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
+
+// FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
+const withWidth = () => WrappedComponent => props => <WrappedComponent {...props} width="xs" />;
 
 const useStyles = makeStyles(() => ({
   gridContainer: {

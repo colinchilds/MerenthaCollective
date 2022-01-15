@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import Pagination from '@material-ui/lab/Pagination';
-import { makeStyles } from '@material-ui/core';
+import Pagination from '@mui/material/Pagination';
+import makeStyles from '@mui/styles/makeStyles';
 
 import ListView from './ListView';
 

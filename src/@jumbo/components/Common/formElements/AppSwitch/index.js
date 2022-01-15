@@ -1,10 +1,10 @@
 import React from 'react';
-import Switch from '@material-ui/core/Switch';
-import FormLabel from '@material-ui/core/FormLabel';
-import Box from '@material-ui/core/Box';
+import Switch from '@mui/material/Switch';
+import FormLabel from '@mui/material/FormLabel';
+import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
-import makeStyles from '@material-ui/core/styles/makeStyles';
-import { FormHelperText } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
+import { FormHelperText } from '@mui/material';
 
 const useStyles = makeStyles(() => ({
   root: {

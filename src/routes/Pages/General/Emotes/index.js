@@ -1,8 +1,8 @@
 import React from 'react';
 import GridContainer from '@jumbo/components/GridContainer';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@material-ui/core/Grid';
-import { Divider, Typography } from '@material-ui/core';
+import Grid from '@mui/material/Grid';
+import { Divider, Typography } from '@mui/material';
 import { emotes } from 'data/Emotes';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';

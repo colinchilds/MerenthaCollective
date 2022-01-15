@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core';
+import makeStyles from '@mui/styles/makeStyles';
 import { hexToRgba } from '../CmtHelpers/JssHelper';
-import { amber, blue, brown, deepOrange, green, grey, purple, red, yellow } from '@material-ui/core/colors';
+import { amber, blue, brown, deepOrange, green, grey, purple, red, yellow } from '@mui/material/colors';
 
 const hoverOpacity = 0.7;
 const useStyles = makeStyles(theme => ({

@@ -3,8 +3,8 @@ import React, { cloneElement, isValidElement, useContext } from 'react';
 import { NavHashLink } from 'react-router-hash-link';
 import clsx from 'clsx';
 
-import { List } from '@material-ui/core';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { List } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 import LayoutContext from '@coremat/CmtLayouts/LayoutContext';
 

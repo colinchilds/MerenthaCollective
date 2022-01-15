@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import GridContainer from '../../../../@jumbo/components/GridContainer';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@material-ui/core/Grid';
+import Grid from '@mui/material/Grid';
 import {
   Box,
   Table,
@@ -13,7 +13,7 @@ import {
   Tooltip,
   Typography,
   InputAdornment,
-} from '@material-ui/core';
+} from '@mui/material';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';

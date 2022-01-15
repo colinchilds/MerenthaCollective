@@ -2,9 +2,9 @@ import React, { cloneElement, useContext, useEffect, useState } from 'react';
 
 import clsx from 'clsx';
 
-import { useMediaQuery } from '@material-ui/core';
-import { useTheme } from '@material-ui/styles';
-import Box from '@material-ui/core/Box';
+import { useMediaQuery } from '@mui/material';
+import { useTheme } from '@mui/styles';
+import Box from '@mui/material/Box';
 
 import LayoutContext from '../LayoutContext';
 import useStyles from './MainContainer.style';

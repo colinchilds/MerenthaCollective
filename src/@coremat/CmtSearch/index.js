@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import InputBase from '@material-ui/core/InputBase';
-import SearchIcon from '@material-ui/icons/Search';
+import InputBase from '@mui/material/InputBase';
+import SearchIcon from '@mui/icons-material/Search';
 
 import useStyles from './index.style';
 

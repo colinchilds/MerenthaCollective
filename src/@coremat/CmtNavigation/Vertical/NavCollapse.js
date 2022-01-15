@@ -2,10 +2,10 @@ import React, { cloneElement, isValidElement, useEffect, useCallback, useContext
 import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 
-import { Collapse, List, ListItem } from '@material-ui/core';
-import IconExpandLess from '@material-ui/icons/ExpandLess';
-import IconExpandMore from '@material-ui/icons/ExpandMore';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import { Collapse, List, ListItem } from '@mui/material';
+import IconExpandLess from '@mui/icons-material/ExpandLess';
+import IconExpandMore from '@mui/icons-material/ExpandMore';
+import makeStyles from '@mui/styles/makeStyles';
 
 import NavSection from './NavSection';
 import NavMenuItem from './NavMenuItem';

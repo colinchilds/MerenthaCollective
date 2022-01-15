@@ -1,6 +1,6 @@
 import React from 'react';
-import { Box, Hidden, List, ListItem, ListItemText, Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import { Box, Hidden, List, ListItem, ListItemText, Typography } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import PageContainer from './PageContainer';
 
 const useStyles = makeStyles(theme => ({
@@ -35,7 +35,7 @@ const ComponentsDemo = ({ pageTitle, menus, breadcrumbs, children }) => {
     <PageContainer heading={pageTitle} breadcrumbs={breadcrumbs}>
       <Box className={classes.root}>
         <Box className={classes.contentArea}>{children}</Box>
-        <Hidden xsDown>
+        <Hidden smDown>
           <Box className={classes.contentSidebar}>
             <Typography component="h4" variant="h4">
               Contents

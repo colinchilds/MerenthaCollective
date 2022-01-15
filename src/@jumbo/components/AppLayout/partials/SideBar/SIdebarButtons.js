@@ -1,15 +1,15 @@
 import React, { useContext } from 'react';
-import ImportContactsIcon from '@material-ui/icons/ImportContacts';
-import RotateLeftIcon from '@material-ui/icons/RotateLeft';
-import FlagIcon from '@material-ui/icons/Flag';
-import GroupWorkIcon from '@material-ui/icons/GroupWork';
-import GitHubIcon from '@material-ui/icons/GitHub';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { makeStyles } from '@material-ui/styles';
-import { lighten } from '@material-ui/core';
+import ImportContactsIcon from '@mui/icons-material/ImportContacts';
+import RotateLeftIcon from '@mui/icons-material/RotateLeft';
+import FlagIcon from '@mui/icons-material/Flag';
+import GroupWorkIcon from '@mui/icons-material/GroupWork';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
+import { makeStyles } from '@mui/styles';
+import { lighten } from '@mui/material';
 import SidebarThemeContext from '../../../../../@coremat/CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 
 const useStyles = makeStyles(theme => ({

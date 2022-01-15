@@ -1,8 +1,10 @@
 import React from 'react';
-import Box from '@material-ui/core/Box';
-import { Button, IconButton, InputBase } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import Box from '@mui/material/Box';
+import { Button, IconButton, InputBase } from '@mui/material';
+import SearchIcon from '@mui/icons-material/Search';
+import { alpha } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -66,7 +68,7 @@ const Error404 = () => {
       </Box>
       <Box className={classes.searchRoot}>
         <InputBase placeholder={'Search...'} inputProps={{ 'aria-label': 'search' }} />
-        <IconButton className="searchBtn">
+        <IconButton className="searchBtn" size="large">
           <SearchIcon />
         </IconButton>
       </Box>

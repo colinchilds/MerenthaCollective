@@ -3,8 +3,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import AppBar from '@material-ui/core/AppBar';
-import { makeStyles } from '@material-ui/core';
+import AppBar from '@mui/material/AppBar';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   appHeader: {

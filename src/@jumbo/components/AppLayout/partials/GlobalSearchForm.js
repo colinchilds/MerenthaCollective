@@ -1,11 +1,12 @@
 import React from 'react';
 import clsx from 'clsx';
-import { Box, Button, InputBase } from '@material-ui/core';
-import { alpha, makeStyles } from '@material-ui/core/styles';
-import SearchIcon from '@material-ui/icons/Search';
-import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
-import Menu from '@material-ui/core/Menu';
-import MenuItem from '@material-ui/core/MenuItem';
+import { Box, Button, InputBase } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import SearchIcon from '@mui/icons-material/Search';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
 
 const useStyles = makeStyles(theme => ({
   searchRoot: {

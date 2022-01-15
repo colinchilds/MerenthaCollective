@@ -1,4 +1,6 @@
-import { darken, makeStyles } from '@material-ui/core';
+import { darken } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   appRoot: props => ({
@@ -12,7 +14,7 @@ const useStyles = makeStyles(theme => ({
       '& $appMain': {
         position: 'relative',
         paddingTop: 72,
-        [theme.breakpoints.down('sm')]: {
+        [theme.breakpoints.down('md')]: {
           paddingTop: '64px !important',
         },
       },
@@ -45,7 +47,7 @@ const useStyles = makeStyles(theme => ({
     '&.Cmt-fullFixedHeaderLayout': {
       marginTop: 72,
       height: 'calc(100vh - 72px)',
-      [theme.breakpoints.down('sm')]: {
+      [theme.breakpoints.down('md')]: {
         marginTop: 64,
         height: 'calc(100vh - 64px)',
       },
@@ -238,7 +240,7 @@ const useStyles = makeStyles(theme => ({
       flexDirection: 'column',
     },
     '.Cmt-modernLayout &': {
-      [theme.breakpoints.down('md')]: {
+      [theme.breakpoints.down('lg')]: {
         flexDirection: 'column',
       },
     },

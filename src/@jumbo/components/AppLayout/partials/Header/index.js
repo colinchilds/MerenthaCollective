@@ -1,9 +1,10 @@
 import React from 'react';
 import SidebarToggleHandler from '../../../../../@coremat/CmtLayouts/Vertical/SidebarToggleHandler';
-import Toolbar from '@material-ui/core/Toolbar';
-import { Box, Typography } from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import Toolbar from '@mui/material/Toolbar';
+import { Box, Typography } from '@mui/material';
+import { alpha } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -58,7 +59,7 @@ const useStyles = makeStyles(theme => ({
     paddingLeft: 8,
     paddingRight: 8,
     position: 'relative',
-    [theme.breakpoints.down('sm')]: {
+    [theme.breakpoints.down('md')]: {
       minHeight: 64,
     },
   },

@@ -1,5 +1,7 @@
 import React from 'react';
-import { Box, makeStyles } from '@material-ui/core';
+import { Box } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -8,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: 'space-between',
   },
   btnRoot: {
-    [theme.breakpoints.down('xs')]: {
+    [theme.breakpoints.down('sm')]: {
       padding: '6px 12px',
       fontSize: 11,
     },

@@ -1,9 +1,9 @@
 import React from 'react';
-import { List } from '@material-ui/core';
+import { List } from '@mui/material';
 import NavMenuItem from './NavMenuItem';
 import NavSection from './NavSection';
 import NavCollapse from './NavCollapse';
-import makeStyles from '@material-ui/core/styles/makeStyles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   sideNavMenu: {

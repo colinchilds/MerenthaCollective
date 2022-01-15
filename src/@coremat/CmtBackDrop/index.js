@@ -3,10 +3,10 @@ import clsx from 'clsx';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import PropTypes from 'prop-types';
 
-import { Box } from '@material-ui/core';
-import CloseIcon from '@material-ui/icons/Close';
-import ExpandLessIcon from '@material-ui/icons/ExpandLess';
-import Typography from '@material-ui/core/Typography';
+import { Box } from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import ExpandLessIcon from '@mui/icons-material/ExpandLess';
+import Typography from '@mui/material/Typography';
 
 import CmtCard from '../CmtCard';
 import 'react-perfect-scrollbar/dist/css/styles.css';

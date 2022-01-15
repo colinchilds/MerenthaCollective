@@ -3,10 +3,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Box, IconButton, makeStyles, Tooltip } from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles';
-import Brightness1Icon from '@material-ui/icons/Brightness1';
-import RadioButtonUncheckedIcon from '@material-ui/icons/RadioButtonUnchecked';
+import { Box, IconButton, Tooltip } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import { alpha } from '@mui/material/styles';
+import Brightness1Icon from '@mui/icons-material/Brightness1';
+import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
 const useStyles = makeStyles(theme => ({
   root: {

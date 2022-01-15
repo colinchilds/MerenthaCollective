@@ -3,7 +3,9 @@ import React from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-import { CardActionArea, makeStyles } from '@material-ui/core';
+import { CardActionArea } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
   root: {

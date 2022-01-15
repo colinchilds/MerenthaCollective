@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
 import { CmtSubTitle, CmtTitle } from '../index';
-import { makeStyles } from '@material-ui/core/styles';
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
   headRoot: {

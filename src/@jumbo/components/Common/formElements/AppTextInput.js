@@ -1,5 +1,5 @@
 import React from 'react';
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const AppTextInput = ({ type, name, id, fullWidth, size, value, onChange, helperText, variant, error, ...rest }) => {

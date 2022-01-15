@@ -1,16 +1,5 @@
-import createBreakpoints from '@material-ui/core/styles/createBreakpoints';
 import { Fonts } from '../@jumbo/constants/ThemeOptions';
-import { blue, indigo } from '@material-ui/core/colors';
-
-const breakpoints = createBreakpoints({
-  values: {
-    xs: 0,
-    sm: 600,
-    md: 960,
-    lg: 1280,
-    xl: 1920,
-  },
-});
+import { blue, indigo } from '@mui/material/colors';
 
 const defaultTheme = {
   breakpoints: {
@@ -25,7 +14,7 @@ const defaultTheme = {
   spacing: 4,
   direction: 'ltr',
   palette: {
-    type: 'light',
+    mode: 'light',
     common: {
       black: '#000',
       white: '#fff',
@@ -87,30 +76,33 @@ const defaultTheme = {
     fontWeightRegular: 400,
     fontWeightBold: 'bold',
     fontWeightExtraBold: 800,
-    fontSize: 14,
+    // fontSize: 14,
+    h1: {
+      fontSize: '1rem',
+    },
   },
-  overrides: {
+  components: {
     MuiTypography: {
       h1: {
-        fontSize: 20,
+        fontSize: '1rem',
         fontWeight: 'bold',
-        [breakpoints.up('md')]: {
-          fontSize: 22,
-        },
+        // [breakpoints.up('md')]: {
+        //   fontSize: 22,
+        // },
       },
       h2: {
         fontSize: 18,
         fontWeight: 'bold',
-        [breakpoints.up('md')]: {
-          fontSize: 20,
-        },
+        // [breakpoints.up('md')]: {
+        //   fontSize: 20,
+        // },
       },
       h3: {
         fontSize: 16,
         fontWeight: 'bold',
-        [breakpoints.up('md')]: {
-          fontSize: 18,
-        },
+        // [breakpoints.up('md')]: {
+        //   fontSize: 18,
+        // },
       },
       h4: {
         fontSize: 16,

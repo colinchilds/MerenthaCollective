@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { AvatarGroup } from '@material-ui/lab';
-import { ClickAwayListener, makeStyles, Tooltip } from '@material-ui/core';
+import { AvatarGroup } from '@mui/material';
+import { ClickAwayListener, Tooltip } from '@mui/material';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 import CmtAvatar from '../CmtAvatar';
 

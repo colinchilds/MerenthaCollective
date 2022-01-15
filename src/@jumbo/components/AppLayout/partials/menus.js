@@ -1,5 +1,5 @@
 import React from 'react';
-import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report, Textsms } from '@material-ui/icons';
+import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report, Textsms } from '@mui/icons-material';
 
 export const sidebarNavs = [
   {

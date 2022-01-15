@@ -1,5 +1,6 @@
 import React from 'react';
-import { CardContent, makeStyles } from '@material-ui/core';
+import { CardContent } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(() => ({

@@ -3,7 +3,7 @@ import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Box, Typography } from '@material-ui/core';
+import { Box, Typography } from '@mui/material';
 
 import { CmtSubTitle, CmtTitle } from '../CmtTypography';
 import useStyles from './index.style';

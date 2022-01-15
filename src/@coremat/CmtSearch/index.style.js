@@ -1,4 +1,6 @@
-import { alpha, makeStyles } from '@material-ui/core/styles';
+import { alpha } from '@mui/material/styles';
+
+import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,7 +41,7 @@ const useStyles = makeStyles(theme => ({
       right: 0,
       '& + $inputRoot $inputInput': {
         paddingLeft: theme.spacing(2),
-        paddingRight: `calc(1em + ${theme.spacing(4)}px)`,
+        paddingRight: `calc(1em + ${theme.spacing(4)})`,
       },
     },
   },
@@ -49,7 +51,7 @@ const useStyles = makeStyles(theme => ({
   },
   inputInput: {
     padding: theme.spacing(2, 2, 2, 0),
-    paddingLeft: `calc(1em + ${theme.spacing(6)}px)`,
+    paddingLeft: `calc(1em + ${theme.spacing(6)})`,
     transition: theme.transitions.create('width'),
     width: 162,
     height: 35,
@@ -69,7 +71,7 @@ const useStyles = makeStyles(theme => ({
       '&:focus': {
         width: 150,
         borderRadius: 4,
-        paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
+        paddingLeft: `calc(1em + ${theme.spacing(4)})`,
         [theme.breakpoints.up('sm')]: {
           width: 235,
         },

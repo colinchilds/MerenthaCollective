@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@material-ui/core';
+import { Checkbox, FormControl, FormControlLabel, FormHelperText } from '@mui/material';
 import PropTypes from 'prop-types';
 
 const AppCheckbox = ({

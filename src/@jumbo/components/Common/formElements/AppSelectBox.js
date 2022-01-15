@@ -1,8 +1,8 @@
 import React from 'react';
-import { FormControl, InputLabel, MenuItem, Select } from '@material-ui/core';
+import { FormControl, InputLabel, MenuItem, Select } from '@mui/material';
 import PropTypes from 'prop-types';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import { makeStyles } from '@material-ui/core/styles';
+import FormHelperText from '@mui/material/FormHelperText';
+import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
 const useStyles = makeStyles(theme => ({

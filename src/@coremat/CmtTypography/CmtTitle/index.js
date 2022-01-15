@@ -1,6 +1,6 @@
 import React, { isValidElement } from 'react';
 import PropTypes from 'prop-types';
-import { Typography } from '@material-ui/core';
+import { Typography } from '@mui/material';
 
 const CmtTitle = ({ content, ...titleProps }) => {
   if (!content) return null;

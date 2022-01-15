@@ -1,7 +1,7 @@
 import React from 'react';
 import useStyles from './CmtTimeLineItem.style';
 import clsx from 'clsx';
-import Box from '@material-ui/core/Box';
+import Box from '@mui/material/Box';
 import PropTypes from 'prop-types';
 
 const CmtTimeLineItem = ({ point, pointColor, head, content }) => {

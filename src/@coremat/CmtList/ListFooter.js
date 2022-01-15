@@ -3,7 +3,8 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { CircularProgress, makeStyles } from '@material-ui/core';
+import { CircularProgress } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
 import SidebarThemeContext from '../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 
 const useStyles = makeStyles(theme => ({

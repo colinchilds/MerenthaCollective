@@ -1,6 +1,6 @@
 import React from 'react';
-import Slider from '@material-ui/core/Slider';
-import { makeStyles } from '@material-ui/core/styles';
+import Slider from '@mui/material/Slider';
+import makeStyles from '@mui/styles/makeStyles';
 
 const boxShadow = '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 

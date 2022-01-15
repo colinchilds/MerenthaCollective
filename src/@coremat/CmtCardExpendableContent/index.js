@@ -3,9 +3,10 @@ import React, { useState } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
 
-import { Box, Collapse, makeStyles } from '@material-ui/core';
-import IconButton from '@material-ui/core/IconButton';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+import { Box, Collapse } from '@mui/material';
+import makeStyles from '@mui/styles/makeStyles';
+import IconButton from '@mui/material/IconButton';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 import CmtCardContent from '../CmtCard/CmtCardContent';
 import CmtCardActions from '../CmtCard/CmtCardActions';
@@ -45,7 +46,8 @@ const CmtCardExpendableContent = ({ actionsComponent, className, actionsClasses,
           })}
           onClick={handleExpandClick}
           aria-expanded={expanded}
-          aria-label="show more">
+          aria-label="show more"
+          size="large">
           <ExpandMoreIcon />
         </IconButton>
       </CmtCardActions>

@@ -1,13 +1,13 @@
 import React, { useContext } from 'react';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
+import IconButton from '@mui/material/IconButton';
+import MenuIcon from '@mui/icons-material/Menu';
 import LayoutContext from '../LayoutContext';
 
 const SidebarToggleHandler = ({ children, ...restProps }) => {
   const { isSidebarOpen, setSidebarOpen } = useContext(LayoutContext);
 
   return (
-    <IconButton className="Cmt-toggle-menu" onClick={() => setSidebarOpen(!isSidebarOpen)} {...restProps}>
+    <IconButton className="Cmt-toggle-menu" onClick={() => setSidebarOpen(!isSidebarOpen)} {...restProps} size="large">
       {children || <MenuIcon />}
     </IconButton>
   );

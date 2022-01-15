@@ -1,12 +1,12 @@
 import React, { Children, cloneElement, isValidElement, useRef } from 'react';
-import { Box, Card } from '@material-ui/core';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Box, Card } from '@mui/material';
+import MoreVertIcon from '@mui/icons-material/MoreVert';
 import CmtDropdownMenu from '../CmtDropdownMenu';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useStyles from './index.style';
 import { getBackgroundStyle, getOverLayStyle } from '../CmtHelpers/JssHelper';
-import IconButton from '@material-ui/core/IconButton';
+import IconButton from '@mui/material/IconButton';
 
 const CmtAdvCard = ({
   className,

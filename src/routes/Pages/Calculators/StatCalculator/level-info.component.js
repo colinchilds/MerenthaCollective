@@ -1,7 +1,7 @@
 import React from 'react';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Tooltip, Typography } from '@material-ui/core';
+import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Tooltip, Typography } from '@mui/material';
 import { intToString } from './calculator.helpers';
 
 export default function LevelInfo(props) {

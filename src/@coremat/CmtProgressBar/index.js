@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-import { Box } from '@material-ui/core';
+import { Box } from '@mui/material';
 
 import useStyles from './index.style';
 
