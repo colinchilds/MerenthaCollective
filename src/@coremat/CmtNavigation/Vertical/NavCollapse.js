@@ -1,5 +1,4 @@
 import React, { cloneElement, isValidElement, useEffect, useCallback, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
 import clsx from 'clsx';
 
 import { Collapse, List, ListItem } from '@mui/material';
@@ -11,6 +10,7 @@ import NavSection from './NavSection';
 import NavMenuItem from './NavMenuItem';
 import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 import { isUrlInChildren } from '../../CmtHelpers/JssHelper';
+import { useLocation } from 'react-router';
 
 const useStyles = makeStyles(theme => ({
   navCollapseBtn: {
@@ -142,7 +142,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const NavCollapse = props => {
-  const history = useHistory();
+  const location = useLocation();
   const { sidebarTheme } = useContext(SidebarThemeContext);
   const classes = useStyles({ sidebarTheme });
 
@@ -151,13 +151,13 @@ const NavCollapse = props => {
   const [open, setOpen] = React.useState(false);
 
   useEffect(() => {
-    if (isUrlInChildren(props, history.location.pathname)) {
+    if (isUrlInChildren(props, location.pathname)) {
       setOpen(true);
     } else {
       setOpen(false);
     }
     //eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [location]);
 
   const handleClick = () => {
     setOpen(!open);
