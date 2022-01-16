@@ -31,7 +31,8 @@
     "typescript": "^3.9.5"
   },
   "resolutions": {
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+    "mini-css-extract-plugin": "2.4.5"
   },
   "scripts": {
     "start": "react-scripts start",
