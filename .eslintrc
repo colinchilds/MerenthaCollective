@@ -12,6 +12,7 @@
     "react-app",
     "plugin:prettier/recommended"
   ],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "jsx": "react",
     "ecmaFeatures": {
