@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import GridContainer from '../../../../@jumbo/components/GridContainer';
+import React, { Fragment, useEffect, useState } from 'react';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
 import {
@@ -13,6 +12,7 @@ import {
   Tooltip,
   Typography,
   InputAdornment,
+  Divider,
 } from '@mui/material';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
@@ -46,7 +46,7 @@ const StatCalculator = () => {
 
   const [vitals, setVitals] = useState({});
 
-  const updateCharClass = c => {
+  const updateCharClass = (c) => {
     if (c === 'Dragon') {
       setRace(c);
     } else if (race === 'Dragon') {
@@ -55,7 +55,7 @@ const StatCalculator = () => {
     setCharClass(c);
   };
 
-  const updateRace = r => {
+  const updateRace = (r) => {
     if (r === 'Dragon') {
       setCharClass(r);
     } else if (charClass === 'Dragon') {
@@ -70,7 +70,7 @@ const StatCalculator = () => {
     } else if (v > 500) {
       v = 500;
     }
-    setStatLevels(statLevels => ({
+    setStatLevels((statLevels) => ({
       ...statLevels,
       [k]: v,
     }));
@@ -82,7 +82,7 @@ const StatCalculator = () => {
     } else if (v > 500) {
       v = 500;
     }
-    setStatInc(statInc => ({
+    setStatInc((statInc) => ({
       ...statInc,
       [k]: v,
     }));
@@ -92,9 +92,9 @@ const StatCalculator = () => {
     var cst = 0;
     var st = 0;
     var et = 0;
-    stats.forEach(stat => {
+    stats.forEach((stat) => {
       const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]);
-      setStatCost(statCost => ({
+      setStatCost((statCost) => ({
         ...statCost,
         [stat]: cost,
       }));
@@ -119,129 +119,123 @@ const StatCalculator = () => {
 
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
-      <GridContainer>
-        <Grid item xs={12}>
-          <CmtCard>
-            <CharacterInfo
-              level={level}
-              setLevel={setLevel}
-              charClass={charClass}
-              updateCharClass={updateCharClass}
-              race={race}
-              updateRace={updateRace}
-            />
-            <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
-            <CmtCardHeader title="Stat Information" />
-            <CmtCardContent>
-              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
-                <TableContainer>
-                  <Table style={{ maxWidth: '800px' }} size="small">
-                    <TableBody>
-                      {stats.map((stat, index) => (
-                        <TableRow key={index}>
-                          <TableCell size="small">
-                            <Typography>{stat}</Typography>
-                          </TableCell>
-                          <TableCell align="right">
-                            <TextField
-                              size="small"
-                              type="number"
-                              inputProps={{ min: 0, max: 500 }}
-                              value={statLevels[stat]}
-                              variant="outlined"
-                              onChange={event => updateStatLevels(stat, event.target.value)}
-                              InputProps={{
-                                endAdornment: (
-                                  <InputAdornment position="end" size="small">
-                                    <Typography>{`/ ${getMaxStat(stat, charClass, race, level)}`}</Typography>
-                                  </InputAdornment>
-                                ),
-                              }}
-                            />
-                          </TableCell>
-                          <TableCell>
-                            <TextField
-                              size="small"
-                              type="number"
-                              label="+"
-                              inputProps={{ min: 0, max: 500 }}
-                              value={statInc[stat]}
-                              variant="outlined"
-                              onChange={event => updateStatInc(stat, event.target.value)}
-                            />
-                          </TableCell>
-                          <TableCell align="right">
-                            <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                              <Typography>
-                                {intToString(parseInt(statCost[stat]), 2)}
-                                {' exp'}
-                              </Typography>
-                            </Tooltip>
-                          </TableCell>
-                        </TableRow>
-                      ))}
-                      <TableRow>
-                        <TableCell />
-                        <TableCell align="right">
-                          <Typography style={{ paddingRight: '22px' }}>
-                            {charStatTotal} / {statTotal}
-                          </Typography>
-                        </TableCell>
-                        <TableCell />
-                        <TableCell align="right">
-                          <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                            <Typography style={{ paddingLeft: '14px' }}>
-                              {intToString(parseInt(expTotal), 2)}
-                              {' exp'}
-                            </Typography>
-                          </Tooltip>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            </CmtCardContent>
-            <CmtCardHeader title="Character Information" />
-            <CmtCardContent>
-              <Box pb={{ xs: 6, md: 10, xl: 16 }}>
-                <TableContainer>
-                  <Table size="small">
-                    <TableBody>
-                      <TableRow>
-                        <TableCell>
-                          <Typography>Vitals</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>
-                            {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography>Encumbrance</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
-                        </TableCell>
-                      </TableRow>
-                      <TableRow>
-                        <TableCell>
-                          <Typography>Weight</Typography>
-                        </TableCell>
-                        <TableCell>
-                          <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
-                        </TableCell>
-                      </TableRow>
-                    </TableBody>
-                  </Table>
-                </TableContainer>
-              </Box>
-            </CmtCardContent>
-          </CmtCard>
-        </Grid>
-      </GridContainer>
+      <CmtCard>
+        <CharacterInfo
+          level={level}
+          setLevel={setLevel}
+          charClass={charClass}
+          updateCharClass={updateCharClass}
+          race={race}
+          updateRace={updateRace}
+        />
+        <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
+        <CmtCardHeader title="Stat Information" />
+        <CmtCardContent>
+          {stats.map((stat, index) => (
+            <Fragment key={index}>
+              <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
+                <Grid item xs={6} sm={3}>
+                  <Typography>{stat}</Typography>
+                </Grid>
+                <Grid item xs={6} sm={3} align={{ xs: 'left', sm: 'center' }}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    inputProps={{ min: 0, max: 500 }}
+                    style={{ minWidth: '115px' }}
+                    value={statLevels[stat]}
+                    variant="outlined"
+                    onChange={(event) => updateStatLevels(stat, event.target.value)}
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end" size="small">
+                          <Typography>{`/ ${getMaxStat(stat, charClass, race, level)}`}</Typography>
+                        </InputAdornment>
+                      ),
+                    }}
+                  />
+                </Grid>
+                <Grid item xs={6} sm={3} order={{ xs: 3, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
+                  <TextField
+                    size="small"
+                    type="number"
+                    label="+"
+                    inputProps={{ min: 0, max: 500 }}
+                    style={{ minWidth: '75px' }}
+                    value={statInc[stat]}
+                    variant="outlined"
+                    onChange={(event) => updateStatInc(stat, event.target.value)}
+                  />
+                </Grid>
+                <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
+                  <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
+                    <Typography>
+                      {intToString(parseInt(statCost[stat]), 2)}
+                      {' exp'}
+                    </Typography>
+                  </Tooltip>
+                </Grid>
+              </Grid>
+              <Divider />
+            </Fragment>
+          ))}
+          <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
+            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
+            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 0 }} align={{ xs: 'left', sm: 'center' }}>
+              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
+                {charStatTotal} / {statTotal}
+              </Typography>
+            </Grid>
+            <Grid item xs={0} sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
+            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 1 }}>
+              <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                <Typography>
+                  {intToString(parseInt(expTotal), 2)}
+                  {' exp'}
+                </Typography>
+              </Tooltip>
+            </Grid>
+          </Grid>
+          <Divider />
+        </CmtCardContent>
+        <CmtCardHeader title="Character Information" />
+        <CmtCardContent>
+          <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+            <TableContainer>
+              <Table size="small">
+                <TableBody>
+                  <TableRow>
+                    <TableCell>
+                      <Typography>Vitals</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>
+                        {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
+                      </Typography>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Typography>Encumbrance</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Typography>Weight</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          </Box>
+        </CmtCardContent>
+      </CmtCard>
     </PageContainer>
   );
 };
