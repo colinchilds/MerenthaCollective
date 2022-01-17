@@ -5,13 +5,13 @@ import NavSection from './NavSection';
 import NavCollapse from './NavCollapse';
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   sideNavMenu: {
     position: 'relative',
   },
 }));
 
-const CmtVertical = props => {
+const CmtVertical = (props) => {
   const { menuItems } = props;
   const classes = useStyles();
   return (

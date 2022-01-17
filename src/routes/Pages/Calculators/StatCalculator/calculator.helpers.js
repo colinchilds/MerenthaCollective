@@ -111,7 +111,7 @@ export function getRaceModifier(race, stat) {
   } else if (!raceStats[stat]) {
     rank = 3;
   } else {
-    Object.keys(raceStats[stat]).forEach(tier => {
+    Object.keys(raceStats[stat]).forEach((tier) => {
       if (raceStats[stat][tier].indexOf(race) > -1) {
         rank = +tier;
       }

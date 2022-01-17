@@ -16,8 +16,8 @@ export default function CharacterInfo(props) {
             <Grid item xs={12} sm={4}>
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Class</InputLabel>
-                <Select label="Class" value={charClass} onChange={event => updateCharClass(event.target.value)}>
-                  {classes.map(item => (
+                <Select label="Class" value={charClass} onChange={(event) => updateCharClass(event.target.value)}>
+                  {classes.map((item) => (
                     <MenuItem key={item} value={item}>
                       {item}
                     </MenuItem>
@@ -28,9 +28,9 @@ export default function CharacterInfo(props) {
             <Grid item xs={12} sm={4}>
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Race</InputLabel>
-                <Select label="Race" value={race} onChange={event => updateRace(event.target.value)}>
+                <Select label="Race" value={race} onChange={(event) => updateRace(event.target.value)}>
                   <ListSubheader disableSticky={true}>Regular</ListSubheader>
-                  {races.map(item => {
+                  {races.map((item) => {
                     return item === 'Dragon' ? (
                       [
                         <ListSubheader>Special</ListSubheader>,
@@ -53,7 +53,7 @@ export default function CharacterInfo(props) {
                   label="Level"
                   type="number"
                   value={level}
-                  onChange={event => setLevel(parseInt(event.target.value))}
+                  onChange={(event) => setLevel(parseInt(event.target.value))}
                 />
               </FormControl>
             </Grid>

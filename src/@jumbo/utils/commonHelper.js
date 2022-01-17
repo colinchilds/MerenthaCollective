@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 
-export const capitalizeFLetter = string => {
+export const capitalizeFLetter = (string) => {
   return string[0].toUpperCase() + string.slice(1);
 };
 
-export const isValidEmail = value => {
+export const isValidEmail = (value) => {
   return value && /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,8}$/i.test(value);
 };
 
@@ -12,7 +12,7 @@ export const idGenerator = () => {
   return Math.floor(Math.random() * 100000);
 };
 
-export const linkify = inputText => {
+export const linkify = (inputText) => {
   let replacedText, replacePattern1, replacePattern2, replacePattern3;
 
   //URLs starting with http://, https://, or ftp://
@@ -76,12 +76,10 @@ export const useDebounce = (value, delay) => {
 export const useStickyState = (key, defaultValue) => {
   const [value, setValue] = useState(() => {
     const stickyValue = window.localStorage.getItem(key);
-    return stickyValue !== null
-      ? JSON.parse(stickyValue)
-      : defaultValue;
+    return stickyValue !== null ? JSON.parse(stickyValue) : defaultValue;
   });
   useEffect(() => {
     window.localStorage.setItem(key, JSON.stringify(value));
   }, [key, value]);
   return [value, setValue];
-}
+};

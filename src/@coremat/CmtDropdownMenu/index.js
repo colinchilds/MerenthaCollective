@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import { Menu, MenuItem } from '@mui/material';
 
-const CmtDropdownMenu = ({ TriggerComponent, items, onItemClick }) => {
+const CmtDropdownMenu = ({ triggerComponent, items, onItemClick }) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [menuItems, setMenuItems] = useState([]);
   const open = Boolean(anchorEl);
@@ -12,7 +12,7 @@ const CmtDropdownMenu = ({ TriggerComponent, items, onItemClick }) => {
     setMenuItems(items);
   }, [items]);
 
-  const openMenu = event => {
+  const openMenu = (event) => {
     event.stopPropagation();
     setAnchorEl(event.currentTarget);
   };
@@ -50,7 +50,7 @@ const CmtDropdownMenu = ({ TriggerComponent, items, onItemClick }) => {
   return (
     <React.Fragment>
       <div className="pointer">
-        <TriggerComponent.type {...TriggerComponent.props} onClick={openMenu} />
+        <triggerComponent.type {...triggerComponent.props} onClick={openMenu} />
       </div>
       <Menu
         anchorEl={anchorEl}
@@ -61,7 +61,10 @@ const CmtDropdownMenu = ({ TriggerComponent, items, onItemClick }) => {
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}>
         {menuItems.map((item, index) => {
           return (
-            <MenuItem key={index} disabled={item.disabled} onClick={event => handleMenuItemClick({ ...item }, index, event)}>
+            <MenuItem
+              key={index}
+              disabled={item.disabled}
+              onClick={(event) => handleMenuItemClick({ ...item }, index, event)}>
               {item.icon}
               <div className="ml-2">{item.label}</div>
             </MenuItem>

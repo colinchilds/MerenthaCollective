@@ -41,7 +41,7 @@ const getBackgroundStyle = (backgroundColor, backgroundImage, gradientDirection)
   return null;
 };
 
-const getOverLayStyle = overlay => {
+const getOverLayStyle = (overlay) => {
   if (overlay.colors) {
     if (typeof overlay.colors === 'string' || (Array.isArray(overlay.colors) && overlay.colors.length === 1)) {
       return {
@@ -81,7 +81,7 @@ const getSeparatorStyle = (separator, topBorder = false) => {
   return null;
 };
 
-const hexToRgba = input => {
+const hexToRgba = (input) => {
   input = input + '';
   input = input.replace('#', '');
   let hexRegex = /[0-9A-Fa-f]/g;

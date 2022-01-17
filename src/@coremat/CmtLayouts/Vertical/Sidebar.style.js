@@ -4,7 +4,7 @@ const useStyles = makeStyles(() => ({
   appSidebar: {
     display: 'flex',
     flexDirection: 'column',
-    width: props => props.sidebarWidth,
+    width: (props) => props.sidebarWidth,
     height: '100%',
     boxSizing: 'border-box',
     transition: 'all 0.3s ease',
@@ -15,14 +15,14 @@ const useStyles = makeStyles(() => ({
     height: '100%',
     position: 'relative',
     transition: 'all 0.3s ease',
-    backgroundColor: props => props.sidebarTheme.bgColor,
-    color: props => props.sidebarTheme.textColor,
+    backgroundColor: (props) => props.sidebarTheme.bgColor,
+    color: (props) => props.sidebarTheme.textColor,
     overflow: 'hidden',
     boxShadow: '0px 1px 8px rgba(0, 0, 0, 0.2), 0px 3px 3px rgba(0, 0, 0, 0.12), 0px 3px 4px rgba(0, 0, 0, 0.14)',
     '.Cmt-miniLayout &': {
-      width: props => props.miniSidebarWidth,
+      width: (props) => props.miniSidebarWidth,
       '&:hover': {
-        width: props => props.sidebarWidth,
+        width: (props) => props.sidebarWidth,
       },
     },
     '& > *': {
@@ -32,11 +32,11 @@ const useStyles = makeStyles(() => ({
   },
   actionSidebarWrapper: {
     display: 'flex',
-    width: props => props.sidebarWidth + props.actionSidebarWidth,
+    width: (props) => props.sidebarWidth + props.actionSidebarWidth,
     transition: 'all 0.3s ease',
 
     '& .actionSidebar': {
-      width: props => props.actionSidebarWidth,
+      width: (props) => props.actionSidebarWidth,
     },
   },
   overlayRoot: {

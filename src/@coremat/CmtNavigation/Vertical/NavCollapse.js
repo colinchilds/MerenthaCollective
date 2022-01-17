@@ -12,7 +12,7 @@ import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThe
 import { isUrlInChildren } from '../../CmtHelpers/JssHelper';
 import { useLocation } from 'react-router';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   navCollapseBtn: {
     position: 'relative',
     padding: '0 16px 0 0',
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     '&.open': {
       '& .Cmt-navCollapseBtn': {
-        color: props => props.sidebarTheme.textDarkColor,
+        color: (props) => props.sidebarTheme.textDarkColor,
       },
       '& .Cmt-iconRoot': {
         color: theme.palette.primary.main,
@@ -49,10 +49,10 @@ const useStyles = makeStyles(theme => ({
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
     '&:hover, &:focus': {
-      color: props => props.sidebarTheme.textDarkColor,
-      backgroundColor: props => props.sidebarTheme.navHoverBgColor,
+      color: (props) => props.sidebarTheme.textDarkColor,
+      backgroundColor: (props) => props.sidebarTheme.navHoverBgColor,
       '& .Cmt-iconRoot': {
-        color: props => props.sidebarTheme.textDarkColor,
+        color: (props) => props.sidebarTheme.textDarkColor,
       },
     },
     '.Cmt-miniLayout &': {
@@ -141,7 +141,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavCollapse = props => {
+const NavCollapse = (props) => {
   const location = useLocation();
   const { sidebarTheme } = useContext(SidebarThemeContext);
   const classes = useStyles({ sidebarTheme });

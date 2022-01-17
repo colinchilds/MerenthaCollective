@@ -3,7 +3,7 @@ import { Box } from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Footer = props => {
+const Footer = (props) => {
   const classes = useStyles();
   const date = new Date();
 

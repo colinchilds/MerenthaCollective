@@ -9,7 +9,7 @@ import NavMenuItem from './NavMenuItem';
 import NavCollapse from './NavCollapse';
 import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   navHeader: {
     position: 'relative',
     padding: '24px 16px 20px 16px',
@@ -25,12 +25,12 @@ const useStyles = makeStyles(theme => ({
     position: 'relative',
     fontWeight: theme.typography.fontWeightRegular,
     '&:not(:first-child) .Cmt-navHeader': {
-      borderTop: props => `solid 1px ${props.sidebarTheme.borderColor}`,
+      borderTop: (props) => `solid 1px ${props.sidebarTheme.borderColor}`,
       marginTop: 10,
     },
     '&:not(:last-child)': {
       '.Cmt-miniLayout .Cmt-sidebar-content:not(:hover) &': {
-        borderBottom: props => `solid 1px ${props.sidebarTheme.borderColor}`,
+        borderBottom: (props) => `solid 1px ${props.sidebarTheme.borderColor}`,
         paddingTop: 10,
         paddingBottom: 10,
       },
@@ -38,7 +38,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavSection = props => {
+const NavSection = (props) => {
   const { name, children = [] } = props;
   const isExpandable = children && children.length > 0;
   const { sidebarTheme } = useContext(SidebarThemeContext);

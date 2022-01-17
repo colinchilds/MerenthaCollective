@@ -13,7 +13,7 @@ for (let count = 1; count <= 8; count++) {
   marginClasses[`.mb-${count}`] = { marginBottom: `${count * 4}px !important` };
 }
 
-const globalStyles = makeStyles(theme => ({
+const globalStyles = makeStyles((theme) => ({
   '@global': {
     '*': {
       boxSizing: 'border-box',

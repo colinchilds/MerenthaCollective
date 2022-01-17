@@ -8,7 +8,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import SidebarThemeContext from '../../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 import LayoutContext from '@coremat/CmtLayouts/LayoutContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   navMenuItem: {
     padding: '0 16px 0 0',
     position: 'relative',
@@ -23,23 +23,23 @@ const useStyles = makeStyles(theme => ({
     borderTopRightRadius: 30,
     borderBottomRightRadius: 30,
     textDecoration: 'none',
-    color: props => props.sidebarTheme.textColor,
+    color: (props) => props.sidebarTheme.textColor,
     '&:hover, &:focus': {
-      color: props => props.sidebarTheme.textDarkColor,
-      backgroundColor: props => props.sidebarTheme.navHoverBgColor,
+      color: (props) => props.sidebarTheme.textDarkColor,
+      backgroundColor: (props) => props.sidebarTheme.navHoverBgColor,
       '& .Cmt-icon-root, & .Cmt-nav-text': {
-        color: props => props.sidebarTheme.textDarkColor,
+        color: (props) => props.sidebarTheme.textDarkColor,
       },
     },
     '&.active': {
-      color: props => props.sidebarTheme.textActiveColor,
-      backgroundColor: props => props.sidebarTheme.navActiveBgColor,
+      color: (props) => props.sidebarTheme.textActiveColor,
+      backgroundColor: (props) => props.sidebarTheme.navActiveBgColor,
       '& .Cmt-icon-root, & .Cmt-nav-text': {
-        color: props => props.sidebarTheme.textActiveColor,
+        color: (props) => props.sidebarTheme.textActiveColor,
       },
       '&:hover, &:focus': {
         '& .Cmt-nav-text, & .Cmt-icon-root': {
-          color: props => props.sidebarTheme.textActiveColor,
+          color: (props) => props.sidebarTheme.textActiveColor,
         },
       },
     },
@@ -69,7 +69,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavMenuItem = props => {
+const NavMenuItem = (props) => {
   const { name, icon, link } = props;
   const { sidebarTheme } = useContext(SidebarThemeContext);
 
