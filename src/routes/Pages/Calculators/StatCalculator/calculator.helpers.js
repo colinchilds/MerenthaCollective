@@ -165,7 +165,7 @@ export function getBaseCost(level) {
 export function getStatCost(stat, charClass, race, statLevel = 1, count = 1) {
   statLevel = parseInt(statLevel);
   count = parseInt(count);
-  if (count <= 0) {
+  if (!count || count <= 0) {
     return 0;
   } else if (count > 500) {
     count = 500;

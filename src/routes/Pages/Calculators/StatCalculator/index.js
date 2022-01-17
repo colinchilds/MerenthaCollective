@@ -65,7 +65,7 @@ const StatCalculator = () => {
   };
 
   const updateStatLevels = (k, v) => {
-    if (!v || v < 0) {
+    if (v < 0) {
       v = 0;
     } else if (v > 500) {
       v = 500;
@@ -77,7 +77,7 @@ const StatCalculator = () => {
   };
 
   const updateStatInc = (k, v) => {
-    if (!v || v < 0) {
+    if (v < 0) {
       v = 0;
     } else if (v > 500) {
       v = 500;
