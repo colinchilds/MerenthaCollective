@@ -3,13 +3,13 @@ import GridContainer from '@jumbo/components/GridContainer';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
 import { Divider, Typography } from '@mui/material';
-import { emotes } from 'data/Emotes';
+import { socials } from 'data/Socials';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
-  { label: 'Emotes', isActive: true },
+  { label: 'Social', isActive: true },
 ];
 
 function hasTarget(emote) {
@@ -55,13 +55,13 @@ function getEmoteText(emote) {
   return text;
 }
 
-const Emotes = () => {
+const Socials = () => {
   return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Emotes">
+    <PageContainer breadcrumbs={breadcrumbs} heading="Socials (Emotes)">
       <GridContainer>
         <Grid item xs={12}>
           <CmtCard>
-            {emotes.map((emote, index) => (
+            {socials.map((emote, index) => (
               <React.Fragment key={index}>
                 <Divider />
                 <CmtCardContent>
@@ -85,4 +85,4 @@ const Emotes = () => {
   );
 };
 
-export default Emotes;
+export default Socials;

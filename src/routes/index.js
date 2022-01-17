@@ -12,7 +12,7 @@ import Mage from './Pages/Guides/Mage';
 import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
-import Emotes from './Pages/General/Emotes';
+import Socials from './Pages/General/Socials';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -41,7 +41,7 @@ const Routes = () => {
           <Route path="/coords" component={Coordinates} />
           <Route path="/party" component={Party} />
           <Route path="/combat" component={Combat} />
-          <Route path="/emotes" component={Emotes} />
+          <Route path="/socials" component={Socials} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />

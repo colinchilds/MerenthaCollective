@@ -1,4 +1,4 @@
-export const emotes = [
+export const socials = [
   {
     name: 'ack',
     undirected: {
@@ -778,6 +778,19 @@ export const emotes = [
     undirected: {
       theirmsg: '<name> fidgets anxiously',
       mymsg: 'You fidget anxiously',
+    },
+  },
+  {
+    name: 'fingerguns',
+    prepositions: 'at',
+    adverbs: 'directly, accusingly, harassingly, innocently, lovingly, playfully, straight, non-binarily',
+    undirected: {
+      theirmsg: '<name> snaps <pronoun> fingers <adverb> while making a CLICK with <pronoun> mouth',
+      mymsg: 'You snap your fingers <adverb> while making a CLICK with your mouth',
+    },
+    directed: {
+      theirmsg: '<name> snaps <pronoun> fingers and points <adverb> at <target> while making a CLICK with <pronoun> mouth',
+      mymsg: 'You snap your fingers and point <adverb> at <target> while making a CLICK with your mouth',
     },
   },
   {

@@ -543,6 +543,15 @@
     (undirected
       *((theirmsg [$TP_NAME fidgets anxiously])
         (mymsg    [You fidget anxiously])))))
+(fingerguns
+  *((prepositions [at])
+    (adverbs ,directly,accusingly,harassingly,innocently,lovingly,playfully,straight,non-binarily)
+    (undirected
+      *((theirmsg [$TP_NAME snaps $TP_POSS fingers $ADJ while making a CLICK with $TP_POSS mouth])
+        (mymsg    [You snap your fingers $ADJ while making a CLICK with your mouth]))
+      (directed
+        *((theirmsg [$TP_NAME snaps $TP_POSS fingers and points $ADJ at $OB_NAME while making a CLICK with $TP_POSS mouth])
+          (mymsg    [You snap your fingers and point $ADJ at $OB_NAME while making a CLICK with your mouth]))))))
 (flap
   *((undirected
       *((adverbs  ears,arms,wings,eyelashes)

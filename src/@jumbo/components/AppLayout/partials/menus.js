@@ -43,10 +43,10 @@ export const sidebarNavs = [
         link: '/combat',
       },
       {
-        name: 'Emotes',
+        name: 'Social',
         type: 'item',
         icon: <Textsms />,
-        link: '/emotes',
+        link: '/social',
       },
     ],
   },
