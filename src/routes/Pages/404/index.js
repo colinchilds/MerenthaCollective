@@ -1,8 +1,5 @@
 import React from 'react';
 import Box from '@mui/material/Box';
-import { Button, IconButton, InputBase } from '@mui/material';
-import SearchIcon from '@mui/icons-material/Search';
-import { alpha } from '@mui/material/styles';
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -21,38 +18,6 @@ const useStyles = makeStyles((theme) => ({
     marginBottom: 30,
     textShadow: '10px 6px 8px hsla(0,0%,45.9%,.8)',
   },
-  searchRoot: {
-    position: 'relative',
-    width: 260,
-    [theme.breakpoints.up('md')]: {
-      width: 350,
-    },
-    '& .searchBtn': {
-      position: 'absolute',
-      right: 0,
-      top: '50%',
-      transform: 'translateY(-50%)',
-      zIndex: 1,
-    },
-    '& .MuiInputBase-root': {
-      width: '100%',
-    },
-    '& .MuiInputBase-input': {
-      height: 48,
-      borderRadius: 4,
-      position: 'relative',
-      backgroundColor: theme.palette.background.paper,
-      border: '1px solid #ced4da',
-      fontSize: 16,
-      boxSizing: 'border-box',
-      padding: '5px 50px 5px 15px',
-      transition: theme.transitions.create(['border-color', 'box-shadow']),
-      '&:focus': {
-        boxShadow: `${alpha(theme.palette.primary.main, 0.25)} 0 0 0 0.2rem`,
-        borderColor: theme.palette.primary.main,
-      },
-    },
-  },
 }));
 
 const Error404 = () => {
@@ -65,17 +30,6 @@ const Error404 = () => {
       </Box>
       <Box fontSize={{ xs: 16, sm: 24 }} mb={8} color="grey.500">
         Oops, an error has occurred. Page not found!
-      </Box>
-      <Box className={classes.searchRoot}>
-        <InputBase placeholder={'Search...'} inputProps={{ 'aria-label': 'search' }} />
-        <IconButton className="searchBtn" size="large">
-          <SearchIcon />
-        </IconButton>
-      </Box>
-      <Box mt={8}>
-        <Button variant="contained" color="primary">
-          Go to home
-        </Button>
       </Box>
     </Box>
   );
