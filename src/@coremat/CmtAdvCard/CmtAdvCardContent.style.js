@@ -1,7 +1,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 
 const useStyles = makeStyles(() => ({
-  advCardContent: props => ({
+  advCardContent: (props) => ({
     ...props.backgroundStyles,
     padding: 24,
     position: 'relative',

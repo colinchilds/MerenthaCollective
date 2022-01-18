@@ -5,12 +5,12 @@ import { useBottomScrollListener } from 'react-bottom-scroll-listener';
 
 import { Box } from '@mui/material';
 
-const getEmptyContainer = ListEmptyComponent => {
+const getEmptyContainer = (ListEmptyComponent) => {
   if (ListEmptyComponent) return React.isValidElement(ListEmptyComponent) ? ListEmptyComponent : <ListEmptyComponent />;
   return null;
 };
 
-const getFooterContainer = ListFooterComponent => {
+const getFooterContainer = (ListFooterComponent) => {
   if (ListFooterComponent) return React.isValidElement(ListFooterComponent) ? ListFooterComponent : <ListFooterComponent />;
   return null;
 };

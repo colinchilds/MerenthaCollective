@@ -11,7 +11,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import CmtList from '../CmtList';
 import CmtGridList from '../CmtGridView';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   collapseHeader: {
     display: 'flex',
     alignItems: 'center',

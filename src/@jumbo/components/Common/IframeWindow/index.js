@@ -42,7 +42,7 @@ FramedWindow.propTypes = {
   document: PropTypes.object.isRequired,
 };
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   frame: {
     backgroundColor: theme.palette.background.default,
     height: 300,
@@ -52,7 +52,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const IframeWindow = props => {
+const IframeWindow = (props) => {
   const { children, title, ...other } = props;
   const classes = useStyles();
   /**

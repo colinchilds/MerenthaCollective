@@ -8,7 +8,7 @@ import clsx from 'clsx';
 import { getBackgroundStyle, getSeparatorStyle } from '../CmtHelpers/JssHelper';
 
 const useStyles = makeStyles(() => ({
-  footerRoot: props => ({
+  footerRoot: (props) => ({
     ...props.separatorStyles,
     position: 'relative',
     zIndex: 1,

@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
 import clsx from 'clsx';
 import useStyles from './index.style';
 
-const getCarouselSetting = settings => {
+const getCarouselSetting = (settings) => {
   return {
     dots: true,
     infinite: true,

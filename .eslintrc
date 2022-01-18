@@ -10,7 +10,7 @@
   ],
   "extends": [
     "react-app",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "parser": "@babel/eslint-parser",
   "parserOptions": {

@@ -1,7 +1,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
-  headerRoot: props => ({
+const useStyles = makeStyles((theme) => ({
+  headerRoot: (props) => ({
     display: 'flex',
     flexDirection: 'row',
     position: 'relative',
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
       paddingTop: 0,
     },
   }),
-  headerAlignCenter: props => ({
+  headerAlignCenter: (props) => ({
     paddingLeft: props.contentWidth + 12,
     '& .Cmt-content-head': {
       justifyContent: 'center',

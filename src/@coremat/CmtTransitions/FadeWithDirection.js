@@ -1,7 +1,7 @@
 import React, { cloneElement } from 'react';
 import { Transition } from 'react-transition-group';
 
-const getTransitionStyles = direction => {
+const getTransitionStyles = (direction) => {
   if (direction === 'up') {
     return {
       entering: { opacity: 1, height: '100%', transform: 'translateY(0%)' },
@@ -37,7 +37,7 @@ const getTransitionStyles = direction => {
   };
 };
 
-const transitionDefaultStyle = duration => {
+const transitionDefaultStyle = (duration) => {
   return {
     transition: `all ${duration}ms ease-in-out`,
     opacity: 0,

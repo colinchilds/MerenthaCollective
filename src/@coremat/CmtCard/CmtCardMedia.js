@@ -7,7 +7,7 @@ import { Fab, Typography } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import CardMedia from '@mui/material/CardMedia';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   media: {
     position: 'relative',
     zIndex: 2,

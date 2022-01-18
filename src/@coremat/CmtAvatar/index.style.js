@@ -1,7 +1,7 @@
 import makeStyles from '@mui/styles/makeStyles';
 import { amber, blue, brown, deepOrange, green, grey, purple, red, yellow } from '@mui/material/colors';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     cursor: 'pointer',
   },
@@ -49,7 +49,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.getContrastText(purple[500]),
     backgroundColor: purple[500],
   },
-  customSize: props => ({
+  customSize: (props) => ({
     height: props.size,
     width: props.size,
   }),

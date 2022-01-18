@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import { CircularProgress } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listFooterRoot: {
     padding: 10,
     color: theme.palette.text.secondary,

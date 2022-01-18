@@ -6,7 +6,7 @@ import clsx from 'clsx';
 import AppBar from '@mui/material/AppBar';
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appHeader: {
     width: '100%',
     boxSizing: 'border-box',
@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CmtHeader = props => {
+const CmtHeader = (props) => {
   const { className, children } = props;
 
   const classes = useStyles();

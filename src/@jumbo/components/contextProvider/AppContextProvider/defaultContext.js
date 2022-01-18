@@ -9,7 +9,7 @@ import {
   THEME_TYPES,
 } from '../../../constants/ThemeOptions';
 
-export default {
+const context = {
   theme: defaultTheme,
   defaultLng: {
     languageId: 'english',
@@ -27,3 +27,5 @@ export default {
   sidebarWidth: SIDEBAR_WIDTH.DEFAULT,
   showFooter: false,
 };
+
+export default context;

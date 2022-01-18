@@ -3,7 +3,7 @@ import { hexToRgba } from '../CmtHelpers/JssHelper';
 import { amber, blue, brown, deepOrange, green, grey, purple, red, yellow } from '@mui/material/colors';
 
 const hoverOpacity = 0.7;
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',

@@ -46,7 +46,7 @@ export const sidebarNavs = [
         name: 'Social',
         type: 'item',
         icon: <Textsms />,
-        link: '/social',
+        link: '/socials',
       },
     ],
   },

@@ -9,20 +9,20 @@ import { Box } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 
 // FIXME checkout https://mui.com/components/use-media-query/#migrating-from-withwidth
-const withWidth = () => WrappedComponent => props => <WrappedComponent {...props} width="xs" />;
+const withWidth = () => (WrappedComponent) => (props) => <WrappedComponent {...props} width="xs" />;
 
 const useStyles = makeStyles(() => ({
   gridContainer: {
     width: '100%',
     overflow: 'hidden',
   },
-  columnRow: props => ({
+  columnRow: (props) => ({
     display: 'flex',
     flexDirection: 'row',
     flexWrap: 'wrap',
     margin: `-${props.itemPadding / 2}px`,
   }),
-  columnCount: props => ({
+  columnCount: (props) => ({
     flexGrow: 0,
     maxWidth: `${100 / props.displayColumn}%`,
     flexBasis: `${100 / props.displayColumn}%`,
@@ -49,14 +49,14 @@ const getColumnCount = (responsive, width, column) => {
   }
 };
 
-const getEmptyContainer = ListEmptyComponent => {
+const getEmptyContainer = (ListEmptyComponent) => {
   if (ListEmptyComponent) {
     return React.isValidElement(ListEmptyComponent) ? ListEmptyComponent : <ListEmptyComponent />;
   }
   return null;
 };
 
-const getFooterContainer = ListFooterComponent => {
+const getFooterContainer = (ListFooterComponent) => {
   if (ListFooterComponent) {
     return React.isValidElement(ListFooterComponent) ? ListFooterComponent : <ListFooterComponent />;
   }

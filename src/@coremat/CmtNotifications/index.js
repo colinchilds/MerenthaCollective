@@ -12,7 +12,7 @@ import CmtNotificationItem from './CmtNotificationItem';
 import CmtList from '../CmtList';
 import CmtMediaObject from '../CmtMediaObject';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   headingRoot: {
     padding: 8,
     display: 'flex',
@@ -84,11 +84,11 @@ const CmtNotifications = ({ title, controlOption }) => {
   const classes = useStyles();
   const [data, setData] = useState(notifications);
 
-  const handleReadUnread = notification => {
+  const handleReadUnread = (notification) => {
     notification.status = notification.status === 'read' ? 'unread' : 'read';
 
     setData(
-      data.map(item => {
+      data.map((item) => {
         if (item.id === notification.id) {
           return notification;
         }

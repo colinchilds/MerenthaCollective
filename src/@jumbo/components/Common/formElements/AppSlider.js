@@ -38,7 +38,7 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const AppSlider = props => {
+const AppSlider = (props) => {
   const classes = useStyles();
 
   return (

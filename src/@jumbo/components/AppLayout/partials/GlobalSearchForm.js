@@ -8,7 +8,7 @@ import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   searchRoot: {
     position: 'relative',
     width: 260,
@@ -68,7 +68,7 @@ const GlobalSearchForm = () => {
   const classes = useStyles();
   const [showCategories, setShowCategories] = React.useState(null);
 
-  const onShowCategories = event => {
+  const onShowCategories = (event) => {
     setShowCategories(event.currentTarget);
   };
 

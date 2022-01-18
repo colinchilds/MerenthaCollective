@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import PropTypes from 'prop-types';
 import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   appFooter: {
     width: '100%',
     backgroundColor: theme.palette.background.paper,

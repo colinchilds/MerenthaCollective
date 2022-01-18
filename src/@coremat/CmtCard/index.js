@@ -42,7 +42,7 @@ const CmtCard = ({ backgroundColor, backgroundImage, gradientDirection, overlay,
     if (headerRef.current) headerRef.current.onHeaderMouseLeft();
   };
 
-  const childrenWithProps = Children.map(children, child => {
+  const childrenWithProps = Children.map(children, (child) => {
     // Checking isValidElement is the safe way and avoids a TS error too.
     if (isValidElement(child)) {
       if (child.type.render && child.type.render.name) {

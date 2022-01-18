@@ -12,7 +12,7 @@ import { makeStyles } from '@mui/styles';
 import { lighten } from '@mui/material';
 import SidebarThemeContext from '../../../../../@coremat/CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   list: {
     padding: '30px 24px',
     marginTop: 10,
@@ -97,8 +97,7 @@ const buttons = [
     },
     icon: <GroupWorkIcon />,
     backgroundColor: '#FFF1D2',
-    link:
-      'https://jumbo-react.slack.com/join/shared_invite/enQtNTQyMTA4MDk5NjIwLWFiYjk0YzBmY2E4MTRmOGQwOGE4ZWNkNTFmMjBiZGU5ZjY5ZmYyOTgwYjgzZjM5MWIxMmY5ZjE5M2UxMTkwOGE#/',
+    link: 'https://jumbo-react.slack.com/join/shared_invite/enQtNTQyMTA4MDk5NjIwLWFiYjk0YzBmY2E4MTRmOGQwOGE4ZWNkNTFmMjBiZGU5ZjY5ZmYyOTgwYjgzZjM5MWIxMmY5ZjE5M2UxMTkwOGE#/',
   },
   {
     title: {

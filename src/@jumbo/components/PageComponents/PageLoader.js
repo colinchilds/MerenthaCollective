@@ -3,7 +3,7 @@ import Box from '@mui/material/Box';
 import makeStyles from '@mui/styles/makeStyles';
 import CircularProgress from '@mui/material/CircularProgress';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   circularProgressRoot: {
     position: 'absolute',
     left: 0,

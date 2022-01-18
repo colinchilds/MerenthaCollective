@@ -7,7 +7,7 @@ import { CircularProgress } from '@mui/material';
 import makeStyles from '@mui/styles/makeStyles';
 import SidebarThemeContext from '../CmtLayouts/SidebarThemeContext/SidebarThemeContext';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   listFooterRoot: {
     padding: 10,
     color: theme.palette.text.secondary,
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
     color: theme.palette.text.secondary,
     justifyContent: 'center',
     padding: 8,
-    borderTop: props => `1px solid ${props.sidebarTheme.borderColor}`,
+    borderTop: (props) => `1px solid ${props.sidebarTheme.borderColor}`,
     boxSizing: 'border-box',
   },
 }));

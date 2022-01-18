@@ -10,7 +10,7 @@ const HEADER_TYPES = ['fixed', 'static'];
 let sidebarFixed = true;
 let headerFixed = true;
 
-const LayoutContextProvider = props => {
+const LayoutContextProvider = (props) => {
   const location = useLocation();
   const [layoutStyle, setLayoutStyle] = useState(props.layoutStyle ? props.layoutStyle : LAYOUT_STYLES[0]);
 

@@ -38,9 +38,7 @@ const AppSwitch = ({
   ...rest
 }) => {
   const classes = useStyles();
-  const unique = Math.random()
-    .toString(36)
-    .slice(2);
+  const unique = Math.random().toString(36).slice(2);
 
   return (
     <Box className={classes.root} {...rest}>

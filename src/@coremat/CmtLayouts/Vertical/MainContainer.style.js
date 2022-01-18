@@ -2,8 +2,8 @@ import { darken } from '@mui/material';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
-  appRoot: props => ({
+const useStyles = makeStyles((theme) => ({
+  appRoot: (props) => ({
     display: 'flex',
     flexDirection: 'column',
     width: '100%',
@@ -155,7 +155,7 @@ const useStyles = makeStyles(theme => ({
       },
     },
   }),
-  appMain: props => ({
+  appMain: (props) => ({
     display: 'flex',
     flexDirection: 'column',
     height: '100%',
@@ -310,10 +310,11 @@ const useStyles = makeStyles(theme => ({
           '&.Cmt-fixedHeaderLayout $appMain': {
             paddingTop: 0,
           },
-          '&.Cmt-miniLayout.Cmt-fixedHeaderLayout .Cmt-header, &.Cmt-fullMiniLayout.Cmt-fixedHeaderLayout .Cmt-header, &.Cmt-drawerLayout.Cmt-fixedHeaderLayout .Cmt-header': {
-            left: 0,
-            width: '100%',
-          },
+          '&.Cmt-miniLayout.Cmt-fixedHeaderLayout .Cmt-header, &.Cmt-fullMiniLayout.Cmt-fixedHeaderLayout .Cmt-header, &.Cmt-drawerLayout.Cmt-fixedHeaderLayout .Cmt-header':
+            {
+              left: 0,
+              width: '100%',
+            },
         },
         '& .Cmt-sidebar-fixed $appMainContainer': {
           overflow: 'hidden',

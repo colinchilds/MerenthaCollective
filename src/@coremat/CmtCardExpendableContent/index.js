@@ -11,7 +11,7 @@ import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import CmtCardContent from '../CmtCard/CmtCardContent';
 import CmtCardActions from '../CmtCard/CmtCardActions';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     zIndex: 1,

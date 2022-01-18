@@ -5,7 +5,7 @@ const defaultStyle = {
   transition: `transform 0.3s ease`,
 };
 
-const getTransitionStyles = height => {
+const getTransitionStyles = (height) => {
   return {
     entering: { transform: `translateY(${height}px)` },
     entered: { transform: `translateY(${height}px)` },

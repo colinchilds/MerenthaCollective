@@ -13,7 +13,7 @@ import { CmtTitle } from '../CmtTypography';
 import RevealEffect from '../CmtTransitions/RevealEffect';
 import CmtCard from '../CmtCard';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   revealHeader: {
     display: 'flex',
     flexDirection: 'row',

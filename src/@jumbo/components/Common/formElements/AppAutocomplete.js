@@ -6,7 +6,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import Box from '@mui/material/Box';
 import CmtImage from '../../../../@coremat/CmtImage';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   option: {
     borderTop: `1px solid ${theme.palette.borderColor.main}`,
     backgroundColor: theme.palette.background.paper,
@@ -46,7 +46,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: '50%',
   },
   textFieldRoot: {
-    backgroundColor: props => props.backgroundColor,
+    backgroundColor: (props) => props.backgroundColor,
   },
 }));
 
@@ -91,7 +91,7 @@ const AppAutocomplete = React.forwardRef((props, ref) => {
         onChange={onChange}
         getOptionLabel={getOptionLabel}
         renderOption={renderOption}
-        renderInput={params => (
+        renderInput={(params) => (
           <React.Fragment>
             {avatar && typeof avatar === 'string' ? (
               <CmtImage className={classes.avatar} src={avatar} alt="Avatar" />
@@ -106,7 +106,7 @@ const AppAutocomplete = React.forwardRef((props, ref) => {
               }}
               name={name}
               value={textValue}
-              onChange={e => (onChangeText ? onChangeText(e.target.value) : {})}
+              onChange={(e) => (onChangeText ? onChangeText(e.target.value) : {})}
               className={classes.textFieldRoot}
               label={label}
               placeholder={placeholder}

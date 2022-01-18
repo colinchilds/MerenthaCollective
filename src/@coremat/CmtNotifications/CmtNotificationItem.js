@@ -9,7 +9,7 @@ import { alpha } from '@mui/material/styles';
 import Brightness1Icon from '@mui/icons-material/Brightness1';
 import RadioButtonUncheckedIcon from '@mui/icons-material/RadioButtonUnchecked';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     position: 'relative',
     display: 'flex',

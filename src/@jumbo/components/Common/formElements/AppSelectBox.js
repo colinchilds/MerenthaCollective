@@ -5,7 +5,7 @@ import FormHelperText from '@mui/material/FormHelperText';
 import makeStyles from '@mui/styles/makeStyles';
 import clsx from 'clsx';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   formControlRoot: {
     '& .MuiOutlinedInput-input': {
       paddingTop: 10.5,
@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const AppSelectBox = props => {
+const AppSelectBox = (props) => {
   const classes = useStyles(props);
   const {
     data,

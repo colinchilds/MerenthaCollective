@@ -1,6 +1,6 @@
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
     alignItems: 'center',
@@ -14,7 +14,7 @@ const useStyles = makeStyles(theme => ({
     fontSize: 16,
     lineHeight: 1,
   },
-  sliderRoot: props => ({
+  sliderRoot: (props) => ({
     position: 'relative',
     '&.top': {
       paddingTop: 25,

@@ -1,6 +1,6 @@
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     marginBottom: 8,
   },
@@ -8,11 +8,11 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     alignItems: 'center',
   },
-  barContainer: props => ({
+  barContainer: (props) => ({
     borderRadius: props.thickness,
     height: props.thickness,
   }),
-  fillStyle: props => ({
+  fillStyle: (props) => ({
     position: 'relative',
     borderRadius: props.thickness,
     height: props.thickness,

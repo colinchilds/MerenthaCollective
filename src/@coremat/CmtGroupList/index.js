@@ -14,7 +14,7 @@ const CmtGroupList = ({ isExpandable, isGrid, itemPadding, column, data, renderH
       let groupDetail = null;
       groupDetail = groupIdentifier(dataItem);
       if (groupDetail && groupDetail.id) {
-        if (!groupList.some(item => item.id === groupDetail.id)) {
+        if (!groupList.some((item) => item.id === groupDetail.id)) {
           groupList.push(groupDetail);
         }
         if (!groupItems[groupDetail.id]) {
@@ -29,7 +29,7 @@ const CmtGroupList = ({ isExpandable, isGrid, itemPadding, column, data, renderH
     setGroupItems(groupListItems);
   }, [data, groupIdentifier]);
 
-  const renderRow = group => (
+  const renderRow = (group) => (
     <CmtGroupListItem
       key={group.id}
       isExpandable={isExpandable}

@@ -1,6 +1,6 @@
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   revealArea: {
     position: 'relative',
     overflow: 'hidden',
@@ -30,7 +30,7 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     },
   },
-  frontLayer: props => ({
+  frontLayer: (props) => ({
     position: 'relative',
     zIndex: 2,
     marginBottom: props.headerSize,

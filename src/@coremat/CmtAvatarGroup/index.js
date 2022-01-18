@@ -9,8 +9,8 @@ import makeStyles from '@mui/styles/makeStyles';
 
 import CmtAvatar from '../CmtAvatar';
 
-const useStyles = makeStyles(theme => ({
-  rootAvatarGroup: props => ({
+const useStyles = makeStyles((theme) => ({
+  rootAvatarGroup: (props) => ({
     '& .MuiAvatar-root': {
       borderColor: props.avatarStyle.outlineColor,
       borderWidth: props.avatarStyle.outlineThickness,
@@ -114,7 +114,7 @@ const CmtAvatarGroup = ({
               alt={item[titleKey]}
               src={item[srcKey]}
               size={avatarSize}
-              onClick={event => handleItemClick(item, index, event)}
+              onClick={(event) => handleItemClick(item, index, event)}
               style={{ cursor: 'pointer', zIndex: index }}>
               {getPlaceholderChar(item[titleKey], phCharLength)}
             </CmtAvatar>
@@ -126,7 +126,7 @@ const CmtAvatarGroup = ({
             alt={item[titleKey]}
             src={item[srcKey]}
             size={avatarSize}
-            onClick={event => handleItemClick(item, index, event)}
+            onClick={(event) => handleItemClick(item, index, event)}
             style={{ cursor: 'pointer', zIndex: index }}>
             {getPlaceholderChar(item[titleKey], phCharLength)}
           </CmtAvatar>
@@ -140,7 +140,7 @@ const CmtAvatarGroup = ({
             alt={restItems.length.toString()}
             size={avatarSize}
             style={{ cursor: 'pointer', zIndex: max }}
-            onClick={event => {
+            onClick={(event) => {
               if ((onMoreClick && typeof onMoreClick) === 'function') onMoreClick(event);
 
               if (moreVisibleOn === 'click') {

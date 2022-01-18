@@ -2,7 +2,7 @@ import { alpha } from '@mui/material/styles';
 
 import makeStyles from '@mui/styles/makeStyles';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     display: 'flex',
   },
@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
       display: 'block',
     },
   },
-  search: props => ({
+  search: (props) => ({
     position: 'relative',
     borderRadius: theme.shape.borderRadius,
     backgroundColor: alpha(theme.palette.common.white, 0.15),
