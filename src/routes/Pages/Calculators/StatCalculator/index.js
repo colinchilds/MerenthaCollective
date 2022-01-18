@@ -19,7 +19,17 @@ import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
 import { getEncumbrance, getVitals, getWeight } from './vitals';
-import { classes, stats, getAdvanceExp, getMaxExp, getStatCost, getMaxStat, intToString } from './calculator.helpers';
+import {
+  classes,
+  stats,
+  getAdvanceExp,
+  getMaxExp,
+  getStatCost,
+  getMaxStat,
+  intToString,
+  getPartyRangeMin,
+  getPartyRangeMax,
+} from './calculator.helpers';
 import { races } from 'data/Races';
 import LevelInfo from './level-info.component';
 import CharacterInfo from './character-info.component';
@@ -228,6 +238,16 @@ const StatCalculator = () => {
                     </TableCell>
                     <TableCell>
                       <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
+                    </TableCell>
+                  </TableRow>
+                  <TableRow>
+                    <TableCell>
+                      <Typography>Party Range</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>
+                        {getPartyRangeMin(level)} - {getPartyRangeMax(level)}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                 </TableBody>

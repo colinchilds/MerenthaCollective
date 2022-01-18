@@ -210,3 +210,11 @@ export function intToString(num, fixed) {
     e = d + ' ' + ['', 'K', 'M', 'B', 'T'][k]; // append power
   return e;
 }
+
+export function getPartyRangeMin(level) {
+  return Math.max(level <= 20 ? level - 5 : Math.floor((5 * level - 5) / 6), 1);
+}
+
+export function getPartyRangeMax(level) {
+  return (level < 20 ? level : Math.floor((level - 20) / 5) + level) + 5;
+}
