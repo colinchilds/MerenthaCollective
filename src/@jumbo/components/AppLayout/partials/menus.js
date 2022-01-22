@@ -12,6 +12,12 @@ export const sidebarNavs = [
         icon: <InsertChart />,
         link: '/calculators/stats',
       },
+      {
+        name: 'Skills',
+        type: 'item',
+        icon: <InsertChart />,
+        link: '/calculators/skills',
+      },
     ],
   },
   {

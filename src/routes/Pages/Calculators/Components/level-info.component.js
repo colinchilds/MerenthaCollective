@@ -2,12 +2,12 @@ import React from 'react';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Tooltip, Typography } from '@mui/material';
-import { intToString } from './calculator.helpers';
+import { intToString } from '../Helpers/calculator.helpers';
 
 export default function LevelInfo(props) {
   const { level, advExp, maxExp } = props;
   return (
-    <div>
+    <React.Fragment>
       <CmtCardHeader title="Level Information" />
       <CmtCardContent>
         <Box pb={{ xs: 6, md: 10, xl: 16 }}>
@@ -51,6 +51,6 @@ export default function LevelInfo(props) {
           </TableContainer>
         </Box>
       </CmtCardContent>
-    </div>
+    </React.Fragment>
   );
 }

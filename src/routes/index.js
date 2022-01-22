@@ -13,6 +13,7 @@ import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
 import Socials from './Pages/General/Socials';
+import SkillCalculator from './Pages/Calculators/SkillCalculator';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -45,6 +46,7 @@ const Routes = () => {
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />
+          <Route path="/calculators/skills" component={SkillCalculator} />
 
           {/* Guides */}
           <Route path="/guides/cleric" component={Cleric} />

@@ -19,20 +19,11 @@ import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
 import { getEncumbrance, getVitals, getWeight } from './vitals';
-import {
-  classes,
-  stats,
-  getAdvanceExp,
-  getMaxExp,
-  getStatCost,
-  getMaxStat,
-  intToString,
-  getPartyRangeMin,
-  getPartyRangeMax,
-} from './calculator.helpers';
+import { getAdvanceExp, getMaxExp, getStatCost, getMaxStat } from '../Helpers/stats.helpers';
+import { classes, stats, intToString, getPartyRangeMin, getPartyRangeMax } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
-import LevelInfo from './level-info.component';
-import CharacterInfo from './character-info.component';
+import LevelInfo from '../Components/level-info.component';
+import CharacterInfo from '../Components/character-info.component';
 
 const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
 
