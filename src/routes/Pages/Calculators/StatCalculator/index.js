@@ -47,24 +47,6 @@ const StatCalculator = () => {
 
   const [vitals, setVitals] = useState({});
 
-  const updateCharClass = (c) => {
-    if (c === 'Dragon') {
-      setRace(c);
-    } else if (race === 'Dragon') {
-      setRace(races[0]);
-    }
-    setCharClass(c);
-  };
-
-  const updateRace = (r) => {
-    if (r === 'Dragon') {
-      setCharClass(r);
-    } else if (charClass === 'Dragon') {
-      setCharClass(classes[0]);
-    }
-    setRace(r);
-  };
-
   const updateStatLevels = (k, v) => {
     if (v < 0) {
       v = 0;
@@ -125,9 +107,9 @@ const StatCalculator = () => {
           level={level}
           setLevel={setLevel}
           charClass={charClass}
-          updateCharClass={updateCharClass}
+          setCharClass={setCharClass}
           race={race}
-          updateRace={updateRace}
+          setRace={setRace}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         <CmtCardHeader title="Stat Information" />

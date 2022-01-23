@@ -7,7 +7,26 @@ import { classes } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 
 export default function CharacterInfo(props) {
-  const { level, setLevel, charClass, updateCharClass, race, updateRace } = props;
+  const { level, setLevel, charClass, setCharClass, race, setRace } = props;
+
+  const updateCharClass = (c) => {
+    if (c === 'Dragon') {
+      setRace(c);
+    } else if (race === 'Dragon') {
+      setRace(races[0]);
+    }
+    setCharClass(c);
+  };
+
+  const updateRace = (r) => {
+    if (r === 'Dragon') {
+      setCharClass(r);
+    } else if (charClass === 'Dragon') {
+      setCharClass(classes[0]);
+    }
+    setRace(r);
+  };
+
   return (
     <div>
       <CmtCardContent>
