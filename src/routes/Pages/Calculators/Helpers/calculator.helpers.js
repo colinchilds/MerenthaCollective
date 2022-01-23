@@ -1,4 +1,12 @@
 export const classes = ['Cleric', 'Dragon', 'Fighter', 'Monk', 'Mage', 'Rogue'];
+export const subclasses = {
+  Cleric: ['White', 'Grey', 'Black'],
+  Dragon: ['Air', 'Bone', 'Earth', 'Fire', 'Ice', 'Water'],
+  Fighter: ['Berserker', 'Mercenary', 'Paladin', 'Ranger', 'Warrior'],
+  Mage: ['Druid', 'Healer', 'Illusionist', 'Necromancer', 'Sorcerer', 'Warlock', 'Wizard'],
+  Monk: ['Healer', 'Priest', 'Scholar', 'Shaman'],
+  Rogue: ['Assassin', 'Bard', 'Thief'],
+};
 export const stats = ['Strength', 'Charisma', 'Constitution', 'Dexterity', 'Intelligence', 'Wisdom'];
 
 export function intToString(num, fixed) {

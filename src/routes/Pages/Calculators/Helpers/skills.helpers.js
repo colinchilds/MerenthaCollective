@@ -1,164 +1,137 @@
-const skillNames = [
-  // Combat
-  'attack',
-  'defense',
-  'charging',
-  'melee',
-  'double wielding',
-  'two handed',
-  'riding',
-  // Weapons
-  'axe',
-  'blade',
-  'blunt',
-  'knife',
-  'flail',
-  'projectile',
-  'ranged',
-  // Magic/Nature
-  'conjuring',
-  'faith',
-  'magic attack',
-  'magic defense',
-  'telepathy',
-  'healing',
-  'nature',
-  // Deception
-  'acrobatics',
-  'bargaining',
-  'entertaining',
-  'locks',
-  'murder',
-  'stealing',
-  'stealth',
-];
+export const skillNames = {
+  Combat: ['attack', 'defense', 'charging', 'melee', 'double wielding', 'two handed', 'riding'],
+  Weapons: ['axe', 'blade', 'blunt', 'knife', 'flail', 'projectile', 'ranged'],
+  'Magic/Nature': ['conjuring', 'faith', 'healing', 'magic attack', 'magic defense', 'nature', 'telepathy'],
+  Deception: ['acrobatics', 'bargaining', 'entertaining', 'locks', 'murder', 'stealing', 'stealth'],
+};
 
-function initSkills(charClass) {
+function getBaseMultipliers(charClass) {
   charClass = charClass.toLowerCase();
-  const skills = {};
+  const multipliers = {
+    melee: 20,
+    attack: 20,
+    defense: 20,
+    'double wielding': 0,
+    knife: 20,
+    blunt: 20,
+    projectile: 0,
+    blade: 20,
+    ranged: 0,
+    'two handed': 0,
+    murder: 0,
+    stealing: 0,
+    locks: 0,
+    'magic defense': 0,
+    'magic attack': 0,
+    healing: 0,
+    faith: 0,
+    conjuring: 0,
+  };
   switch (charClass) {
     case 'fighter':
-      skills['melee'] = { base: 1, multiplier: 100 };
-      skills['attack'] = { base: 5, multiplier: 100 };
-      skills['defense'] = { base: 2, multiplier: 90 };
-      skills['double wielding'] = { base: 0, multiplier: 100 };
-      skills['knife'] = { base: 1, multiplier: 70 };
-      skills['blunt'] = { base: 1, multiplier: 75 };
-      skills['projectile'] = { base: 0, multiplier: 60 };
-      skills['blade'] = { base: 10, multiplier: 90 };
-      skills['two handed'] = { base: 1, multiplier: 100 };
-      skills['murder'] = { base: 0, multiplier: 0 };
-      skills['stealing'] = { base: 0, multiplier: 10 };
-      skills['locks'] = { base: 0, multiplier: 5 };
-      skills['stealth'] = { base: 0, multiplier: 10 };
-      skills['magic defense'] = { base: 0, multiplier: 0 };
-      skills['magic attack'] = { base: 0, multiplier: 0 };
-      skills['healing'] = { base: 0, multiplier: 0 };
-      skills['faith'] = { base: 0, multiplier: 0 };
-      skills['conjuring'] = { base: 0, multiplier: 0 };
+      multipliers['melee'] = 100;
+      multipliers['attack'] = 100;
+      multipliers['defense'] = 90;
+      multipliers['double wielding'] = 100;
+      multipliers['knife'] = 70;
+      multipliers['blunt'] = 75;
+      multipliers['projectile'] = 60;
+      multipliers['blade'] = 90;
+      multipliers['two handed'] = 100;
+      multipliers['murder'] = 0;
+      multipliers['stealing'] = 10;
+      multipliers['locks'] = 5;
+      multipliers['stealth'] = 10;
+      multipliers['magic defense'] = 0;
+      multipliers['magic attack'] = 0;
+      multipliers['healing'] = 0;
+      multipliers['faith'] = 0;
+      multipliers['conjuring'] = 0;
       break;
     case 'rogue':
-      skills['melee'] = { base: 1, multiplier: 100 };
-      skills['attack'] = { base: 1, multiplier: 100 };
-      skills['defense'] = { base: 5, multiplier: 100 };
-      skills['double wielding'] = { base: 0, multiplier: 75 };
-      skills['knife'] = { base: 10, multiplier: 100 };
-      skills['blunt'] = { base: 2, multiplier: 100 };
-      skills['projectile'] = { base: 7, multiplier: 100 };
-      skills['blade'] = { base: 0, multiplier: 40 };
-      skills['two handed'] = { base: 0, multiplier: 10 };
-      skills['murder'] = { base: 3, multiplier: 100 };
-      skills['stealth'] = { base: 10, multiplier: 100 };
-      skills['stealing'] = { base: 7, multiplier: 100 };
-      skills['locks'] = { base: 10, multiplier: 100 };
-      skills['magic defense'] = { base: 0, multiplier: 0 };
-      skills['magic attack'] = { base: 0, multiplier: 0 };
-      skills['healing'] = { base: 0, multiplier: 0 };
-      skills['faith'] = { base: 0, multiplier: 0 };
-      skills['conjuring'] = { base: 0, multiplier: 0 };
+      multipliers['melee'] = 100;
+      multipliers['attack'] = 100;
+      multipliers['defense'] = 100;
+      multipliers['double wielding'] = 75;
+      multipliers['knife'] = 100;
+      multipliers['blunt'] = 100;
+      multipliers['projectile'] = 100;
+      multipliers['blade'] = 40;
+      multipliers['two handed'] = 10;
+      multipliers['murder'] = 100;
+      multipliers['stealth'] = 100;
+      multipliers['stealing'] = 100;
+      multipliers['locks'] = 100;
+      multipliers['magic defense'] = 0;
+      multipliers['magic attack'] = 0;
+      multipliers['healing'] = 0;
+      multipliers['faith'] = 0;
+      multipliers['conjuring'] = 0;
       break;
     case 'mage':
-      skills['melee'] = { base: 1, multiplier: 50 };
-      skills['attack'] = { base: 0, multiplier: 30 };
-      skills['defense'] = { base: 1, multiplier: 60 };
-      skills['double wielding'] = { base: 0, multiplier: 10 };
-      skills['knife'] = { base: 1, multiplier: 50 };
-      skills['blunt'] = { base: 5, multiplier: 90 };
-      skills['projectile'] = { base: 0, multiplier: 53 };
-      skills['blade'] = { base: 0, multiplier: 20 };
-      skills['two handed'] = { base: 0, multiplier: 17 };
-      skills['murder'] = { base: 0, multiplier: 0 };
-      skills['stealing'] = { base: 0, multiplier: 0 };
-      skills['locks'] = { base: 0, multiplier: 28 };
-      skills['magic defense'] = { base: 1, multiplier: 61 };
-      skills['magic attack'] = { base: 10, multiplier: 100 };
-      skills['healing'] = { base: 0, multiplier: 20 };
-      skills['faith'] = { base: 0, multiplier: 0 };
-      skills['conjuring'] = { base: 7, multiplier: 100 };
+      multipliers['melee'] = 50;
+      multipliers['attack'] = 30;
+      multipliers['defense'] = 60;
+      multipliers['double wielding'] = 10;
+      multipliers['knife'] = 50;
+      multipliers['blunt'] = 90;
+      multipliers['projectile'] = 53;
+      multipliers['blade'] = 20;
+      multipliers['two handed'] = 17;
+      multipliers['murder'] = 0;
+      multipliers['stealing'] = 0;
+      multipliers['locks'] = 28;
+      multipliers['magic defense'] = 61;
+      multipliers['magic attack'] = 100;
+      multipliers['healing'] = 20;
+      multipliers['faith'] = 0;
+      multipliers['conjuring'] = 100;
       break;
     case 'monk':
-      skills['melee'] = { base: 10, multiplier: 100 };
-      skills['attack'] = { base: 1, multiplier: 70 };
-      skills['defense'] = { base: 10, multiplier: 100 };
-      skills['double wielding'] = { base: 0, multiplier: 0 };
-      skills['knife'] = { base: 0, multiplier: 30 };
-      skills['blunt'] = { base: 3, multiplier: 95 };
-      skills['projectile'] = { base: 7, multiplier: 100 };
-      skills['blade'] = { base: 0, multiplier: 3 };
-      skills['two handed'] = { base: 0, multiplier: 0 };
-      skills['murder'] = { base: 0, multiplier: 0 };
-      skills['stealing'] = { base: 0, multiplier: 0 };
-      skills['locks'] = { base: 0, multiplier: 0 };
-      skills['magic defense'] = { base: 3, multiplier: 100 };
-      skills['magic attack'] = { base: 1, multiplier: 25 };
-      skills['healing'] = { base: 0, multiplier: 37 };
-      skills['faith'] = { base: 7, multiplier: 100 };
-      skills['conjuring'] = { base: 0, multiplier: 15 };
+      multipliers['melee'] = 100;
+      multipliers['attack'] = 70;
+      multipliers['defense'] = 100;
+      multipliers['double wielding'] = 0;
+      multipliers['knife'] = 30;
+      multipliers['blunt'] = 95;
+      multipliers['projectile'] = 100;
+      multipliers['blade'] = 3;
+      multipliers['two handed'] = 0;
+      multipliers['murder'] = 0;
+      multipliers['stealing'] = 0;
+      multipliers['locks'] = 0;
+      multipliers['magic defense'] = 100;
+      multipliers['magic attack'] = 25;
+      multipliers['healing'] = 37;
+      multipliers['faith'] = 100;
+      multipliers['conjuring'] = 15;
       break;
     case 'cleric':
-      skills['melee'] = { base: 1, multiplier: 50 };
-      skills['attack'] = { base: 0, multiplier: 10 };
-      skills['defense'] = { base: 1, multiplier: 20 };
-      skills['double wielding'] = { base: 0, multiplier: 1 };
-      skills['knife'] = { base: 5, multiplier: 90 };
-      skills['blunt'] = { base: 1, multiplier: 70 };
-      skills['projectile'] = { base: 0, multiplier: 20 };
-      skills['blade'] = { base: 0, multiplier: 15 };
-      skills['two handed'] = { base: 0, multiplier: 1 };
-      skills['murder'] = { base: 0, multiplier: 0 };
-      skills['stealing'] = { base: 0, multiplier: 0 };
-      skills['locks'] = { base: 0, multiplier: 0 };
-      skills['magic defense'] = { base: 0, multiplier: 80 };
-      skills['magic attack'] = { base: 0, multiplier: 7 };
-      skills['healing'] = { base: 10, multiplier: 100 };
-      skills['faith'] = { base: 5, multiplier: 90 };
-      skills['conjuring'] = { base: 0, multiplier: 30 };
+      multipliers['melee'] = 50;
+      multipliers['attack'] = 10;
+      multipliers['defense'] = 20;
+      multipliers['double wielding'] = 1;
+      multipliers['knife'] = 90;
+      multipliers['blunt'] = 70;
+      multipliers['projectile'] = 20;
+      multipliers['blade'] = 15;
+      multipliers['two handed'] = 1;
+      multipliers['murder'] = 0;
+      multipliers['stealing'] = 0;
+      multipliers['locks'] = 0;
+      multipliers['magic defense'] = 80;
+      multipliers['magic attack'] = 7;
+      multipliers['healing'] = 100;
+      multipliers['faith'] = 90;
+      multipliers['conjuring'] = 30;
       break;
     default:
-      skills['melee'] = { base: 1, multiplier: 20 };
-      skills['attack'] = { base: 1, multiplier: 20 };
-      skills['defense'] = { base: 1, multiplier: 20 };
-      skills['double wielding'] = { base: 0, multiplier: 0 };
-      skills['knife'] = { base: 1, multiplier: 20 };
-      skills['blunt'] = { base: 1, multiplier: 20 };
-      skills['projectile'] = { base: 0, multiplier: 0 };
-      skills['blade'] = { base: 1, multiplier: 20 };
-      skills['ranged'] = { base: 0, multiplier: 0 };
-      skills['two handed'] = { base: 0, multiplier: 0 };
-      skills['murder'] = { base: 0, multiplier: 0 };
-      skills['stealing'] = { base: 0, multiplier: 0 };
-      skills['locks'] = { base: 0, multiplier: 0 };
-      skills['magic defense'] = { base: 0, multiplier: 0 };
-      skills['magic attack'] = { base: 0, multiplier: 0 };
-      skills['healing'] = { base: 0, multiplier: 0 };
-      skills['faith'] = { base: 0, multiplier: 0 };
-      skills['conjuring'] = { base: 0, multiplier: 0 };
       break;
   }
-  return skills;
+  return multipliers;
 }
 
-function training_formula(charClass, lvl, skill) {
+function trainingFormula(charClass, skill, lvl) {
   charClass = charClass.toLowerCase();
   if (charClass === 'dragon') {
     switch (skill) {
@@ -181,7 +154,6 @@ function training_formula(charClass, lvl, skill) {
       case 'murder':
       case 'entertaining':
         return lvl * lvl * 3;
-      //return to_int( sqrt(to_float(lvl))*lvl*lvl);
       default:
         return lvl * lvl * lvl * lvl;
     }
@@ -316,206 +288,11 @@ function training_formula(charClass, lvl, skill) {
   }
 }
 
-function query_melee_ac(charClass) {
-  switch (charClass) {
-    case 'fighter':
-      return 15;
-    case 'monk':
-      return 20;
-    case 'rogue':
-      return 20;
-    case 'cleric':
-      return 5;
-    case 'mage':
-      return 8;
-    case 'dragon':
-      return 30;
-    default:
-      return 1;
-  }
-}
-
-function calculateSkillCost(charClass, skill, level) {
-  switch (charClass) {
-    case 'dragon':
-      switch (skill) {
-        case 'attack':
-        case 'defense':
-        case 'melee':
-        case 'charging':
-        case 'stealth':
-        case 'entertianing':
-        case 'acrobatics':
-        case 'conjuring':
-        case 'faith':
-        case 'healing':
-        case 'magic attack':
-        case 'magic defense':
-        case 'telepathy':
-        case 'nature':
-        case 'bargaining':
-        case 'stealing':
-        case 'murder':
-        case 'entertaining':
-          return calculateCostByTier(level, 2);
-        default:
-          break;
-      }
-      break;
-    case 'fighter':
-      switch (skill) {
-        case 'axe':
-        case 'flail':
-        case 'melee':
-        case 'attack':
-        case 'defense':
-        case 'double wielding':
-        case 'charging':
-        case 'riding':
-        case 'two handed':
-        case 'blade':
-        case 'knife':
-        case 'blunt':
-        case 'projectile':
-        case 'ranged':
-        case 'blocking':
-          return calculateCostByTier(level, 1);
-        case 'stealing':
-        case 'bargaining':
-        case 'murder':
-          return calculateCostByTier(level, 3);
-        default:
-          break;
-      }
-      break;
-    case 'cleric':
-      switch (skill) {
-        case 'magic defense':
-        case 'healing':
-        case 'faith':
-        case 'flail':
-        case 'blunt':
-        case 'bargaining':
-          return calculateCostByTier(level, 1);
-        case 'melee':
-        case 'defense':
-        case 'knife':
-        case 'murder':
-          return calculateCostByTier(level, 3);
-        case 'conjuring':
-        case 'magic attack':
-          return calculateCostByTier(level, 2);
-        default:
-          break;
-      }
-      break;
-    case 'mage':
-      switch (skill) {
-        case 'magic attack':
-        case 'magic defense':
-        case 'conjuring':
-        case 'blunt':
-        case 'flail':
-        case 'telepathy':
-        case 'nature':
-          return calculateCostByTier(level, 1);
-        case 'projectile':
-        case 'melee':
-        case 'attack':
-        case 'knife':
-        case 'healing':
-          return calculateCostByTier(level, 3);
-        case 'bargaining':
-          return calculateCostByTier(level, 2);
-        default:
-          break;
-      }
-      break;
-    case 'monk':
-      switch (skill) {
-        case 'melee':
-        case 'defense':
-        case 'blunt':
-        case 'projectile':
-        case 'attack':
-        case 'flail':
-        case 'bargaining':
-        case 'magic defense':
-        case 'faith':
-          return calculateCostByTier(level, 1);
-        case 'magic attack':
-        case 'nature':
-          return calculateCostByTier(level, 2);
-        case 'healing':
-          return calculateCostByTier(level, 3);
-        default:
-          break;
-      }
-      break;
-    case 'rogue':
-      switch (skill) {
-        case 'stealth':
-        case 'melee':
-        case 'attack':
-        case 'defense':
-        case 'knife':
-        case 'bargaining':
-        case 'murder':
-        case 'stealing':
-        case 'locks':
-        case 'entertaining':
-        case 'blunt':
-          return calculateCostByTier(level, 1);
-        case 'flail':
-        case 'axe':
-        case 'nature':
-        case 'telepathy':
-        case 'acrobatics':
-        case 'blade':
-        case 'projectile':
-        case 'double wielding':
-          return calculateCostByTier(level, 3);
-        default:
-          break;
-      }
-      break;
-    default:
-      break;
-  }
-
-  return calculateCostByTier(level, 4);
-}
-
-function calculateCostByTier(level, tier) {
-  switch (tier) {
-    case 1:
-      return level * level;
-    case 2:
-      return level * level * 3;
-    case 3:
-      return level * level * 6;
-    default:
-      return level * level * 10;
-  }
-}
-
-function getSkillMultiplier(skills, skill) {
-  console.log(skill + ' ' + skills[skill]);
-  if (!skills[skill]) return 0;
-  else return skills[skill]['multiplier'];
-}
-
-function getSkillBase(skills, skill) {
-  if (!skills || !skills[skill]) return 0;
-  else return skills[skill]['base'];
-}
-
-export function getSkills(charClass, subclass, race) {
+export function getSkillMultipliers(charClass, subclass, race) {
   charClass = charClass.toLowerCase();
   subclass = subclass.toLowerCase();
   race = race.toLowerCase();
 
-  var skills = initSkills(charClass);
   subclass = subclass + (subclass === 'healer' ? charClass : '');
   const horseSkill = race === 'centaur' || race === 'satyr' ? 'charging' : 'riding';
   var multipliers = {
@@ -542,10 +319,10 @@ export function getSkills(charClass, subclass, race) {
     'magic defense': 0,
     telepathy: 0,
     healing: 0,
-    acrobatics: 0,
-    entertaining: 0,
     nature: 0,
     // Deception
+    acrobatics: 0,
+    entertaining: 0,
     locks: 0,
     murder: 0,
     stealing: 0,
@@ -998,24 +775,38 @@ export function getSkills(charClass, subclass, race) {
       break;
   }
 
+  var baseMultipliers = getBaseMultipliers(charClass);
   for (const skill in multipliers) {
-    if (getSkillMultiplier(skills, skill) !== multipliers[skill]) {
-      const new_base = getSkillBase(skills, skill);
-      const new_multiplier = multipliers[skill];
-      skills[skill] = { base: new_base, multiplier: new_multiplier };
+    if (baseMultipliers[skill] !== multipliers[skill]) {
+      const newMultiplier = multipliers[skill];
+      baseMultipliers[skill] = newMultiplier;
     }
   }
 
   var result = {};
-  for (const skill in skills) {
-    if (skills[skill]['multiplier'] > 0) {
-      result[skill] = skills[skill];
+  for (const skill in baseMultipliers) {
+    if (baseMultipliers[skill] > 0) {
+      result[skill] = baseMultipliers[skill];
     }
   }
   return result;
 }
 
-export function getSkillMax(skills, skill, level) {
-  const multiplier = getSkillMultiplier(skills, skill);
+export function getSkillMax(multipliers, skill, level) {
+  const multiplier = multipliers[skill];
   return Math.floor((multiplier / 20) * (level + 1));
+}
+
+export function getSkillCost(multipliers, charClass, skill, skillLevel, count) {
+  skillLevel = parseInt(skillLevel);
+  count = parseInt(count);
+
+  if (!count || count <= 0) {
+    return 0;
+  } else if (count > 999) {
+    count = 999;
+  }
+
+  const cost = (trainingFormula(charClass, skill, skillLevel) + 1) * 4;
+  return cost + getSkillCost(multipliers, charClass, skill, skillLevel + 1, count - 1);
 }

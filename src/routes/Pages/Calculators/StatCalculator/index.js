@@ -20,7 +20,7 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { useStickyState } from '@jumbo/utils/commonHelper';
 import { getEncumbrance, getVitals, getWeight } from './vitals';
 import { getAdvanceExp, getMaxExp, getStatCost, getMaxStat } from '../Helpers/stats.helpers';
-import { classes, stats, intToString, getPartyRangeMin, getPartyRangeMax } from '../Helpers/calculator.helpers';
+import { classes, stats, intToString, getPartyRangeMin, getPartyRangeMax, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import LevelInfo from '../Components/level-info.component';
 import CharacterInfo from '../Components/character-info.component';
@@ -28,9 +28,10 @@ import CharacterInfo from '../Components/character-info.component';
 const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
 
 const StatCalculator = () => {
-  const [charClass, setCharClass] = useStickyState('statCalc_charClass', classes[0]);
-  const [race, setRace] = useStickyState('statCalc_race', races[0]);
-  const [level, setLevel] = useStickyState('statCalc_level', 1);
+  const [charClass, setCharClass] = useStickyState('calc_charClass', classes[0]);
+  const [subclass, setSubclass] = useStickyState('calc_subclass', subclasses[charClass][0]);
+  const [race, setRace] = useStickyState('calc_race', races[0]);
+  const [level, setLevel] = useStickyState('calc_level', 1);
   const [advExp, setAdvExp] = useState(0);
   const [maxExp, setMaxExp] = useState(0);
 
@@ -39,7 +40,7 @@ const StatCalculator = () => {
     ...initStats,
   });
   const [statInc, setStatInc] = useState({ ...initStats });
-  const [statCost, setStatCost] = useState(initStats);
+  const [statCost, setStatCost] = useState({ ...initStats });
 
   const [charStatTotal, setCharStatTotal] = useState(0);
   const [statTotal, setStatTotal] = useState(0);
@@ -104,10 +105,13 @@ const StatCalculator = () => {
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
       <CmtCard>
         <CharacterInfo
+          showSubclass={false}
           level={level}
           setLevel={setLevel}
           charClass={charClass}
           setCharClass={setCharClass}
+          subclass={subclass}
+          setSubclass={setSubclass}
           race={race}
           setRace={setRace}
         />
