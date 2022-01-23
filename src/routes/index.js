@@ -16,6 +16,7 @@ import Socials from './Pages/General/Socials';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import Maps from './Pages/General/Maps';
 import Builder from './Pages/Guides/Builder';
+import BuilderRooms from './Pages/Guides/Builder/Rooms';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -58,6 +59,7 @@ const Routes = () => {
           <Route path="/guides/monk" component={Monk} />
           <Route path="/guides/rogue" component={Rogue} />
           <Route path="/guides/newbie" component={Newbie} />
+          <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
           <Route component={Error404} />
         </Switch>
