@@ -131,7 +131,7 @@ const StatCalculator = () => {
                     size="small"
                     type="number"
                     inputProps={{ min: 0, max: 500 }}
-                    style={{ minWidth: '115px' }}
+                    style={{ minWidth: '120px' }}
                     value={statLevels[stat]}
                     variant="outlined"
                     onChange={(event) => updateStatLevels(stat, event.target.value)}

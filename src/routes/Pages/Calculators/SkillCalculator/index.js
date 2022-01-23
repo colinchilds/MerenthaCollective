@@ -124,7 +124,7 @@ const SkillCalculator = () => {
                               size="small"
                               type="number"
                               inputProps={{ min: 0, max: 500 }}
-                              style={{ minWidth: '115px' }}
+                              style={{ minWidth: '120px' }}
                               value={skillLevels[skill]}
                               variant="outlined"
                               onChange={(event) => updateSkillLevels(skill, event.target.value)}

@@ -199,7 +199,7 @@ function trainingFormula(charClass, skill, lvl) {
       case 'knife':
       case 'murder':
       case 'projectile':
-        return lvl * lvl * (lvl / 2);
+        return lvl * lvl * Math.floor(lvl / 2);
       case 'axe':
       case 'melee':
       case 'defense':
@@ -229,9 +229,9 @@ function trainingFormula(charClass, skill, lvl) {
       case 'healing':
         return lvl * lvl * 5;
       case 'defense':
-        return lvl * lvl * (lvl / 10) * (lvl / 20);
+        return lvl * lvl * Math.floor(lvl / 10) * Math.floor(lvl / 20);
       case 'faith':
-        return lvl * lvl * lvl * (lvl / 5);
+        return lvl * lvl * lvl * Math.floor(lvl / 5);
       default:
         return lvl * lvl * lvl * lvl;
     }
@@ -249,7 +249,7 @@ function trainingFormula(charClass, skill, lvl) {
         return lvl * lvl;
       case 'magic attack':
       case 'axe':
-        return (lvl * lvl * lvl) / 2;
+        return Math.floor((lvl * lvl * lvl) / 2);
       case 'healing':
       case 'nature':
         return lvl * lvl * 5;
