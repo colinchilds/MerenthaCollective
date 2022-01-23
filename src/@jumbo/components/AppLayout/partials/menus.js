@@ -9,6 +9,8 @@ import {
   Textsms,
   Map,
   Calculate,
+  Construction,
+  House,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -112,6 +114,25 @@ export const sidebarNavs = [
         icon: <AccessibilityNew />,
         link: '/guides/rogue',
       },
+      // {
+      //   name: 'Builder',
+      //   type: 'collapse',
+      //   icon: <Construction />,
+      //   children: [
+      //     {
+      //       name: 'General',
+      //       type: 'item',
+      //       icon: <Construction />,
+      //       link: '/guides/builder',
+      //     },
+      //     {
+      //       name: 'Rooms',
+      //       type: 'item',
+      //       icon: <House />,
+      //       link: '/guides/builder/rooms',
+      //     },
+      //   ],
+      // },
     ],
   },
 ];

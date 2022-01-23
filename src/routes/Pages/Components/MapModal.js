@@ -13,6 +13,8 @@ const mapStyle = {
   position: 'absolute',
   top: '50%',
   left: '50%',
+  maxHeight: '90%',
+  overflow: 'auto',
   transform: 'translate(-50%, -50%)',
   bgcolor: 'background.paper',
   boxShadow: 24,

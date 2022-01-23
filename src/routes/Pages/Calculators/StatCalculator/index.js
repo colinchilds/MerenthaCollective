@@ -100,9 +100,9 @@ const StatCalculator = () => {
   }, [level]);
 
   useEffect(() => {
-    var v = getVitals(charClass, race, level, statLevels);
+    var v = getVitals(charClass, race, level, statLevels, subclass);
     setVitals(v);
-  }, [charClass, race, level, statLevels]);
+  }, [charClass, race, level, statLevels, subclass]);
 
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">

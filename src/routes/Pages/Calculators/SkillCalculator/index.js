@@ -40,6 +40,10 @@ const SkillCalculator = () => {
   const [skillInc, setSkillInc] = useState({ ...initSkills });
   const [skillCost, setSkillCost] = useState({ ...initSkills });
 
+  const [charSkillTotal, setCharSkillTotal] = useState(0);
+  const [skillTotal, setSkillTotal] = useState(0);
+  const [expTotal, setExpTotal] = useState(0);
+
   const updateSkillLevels = (k, v) => {
     if (v < 0) {
       v = 0;
@@ -78,9 +82,9 @@ const SkillCalculator = () => {
       st += parseInt(getSkillMax(multipliers, skill, level));
       et += parseInt(cost);
     });
-    // setCharSkillTotal(cst);
-    // setSkillTotal(st);
-    // setExpTotal(et);
+    setCharSkillTotal(cst);
+    setSkillTotal(st);
+    setExpTotal(et);
   }, [skillLevels, skillInc, charClass, subclass, race, level]);
 
   useEffect(() => {
@@ -167,6 +171,27 @@ const SkillCalculator = () => {
             )}
           </Fragment>
         ))}
+        <CmtCardHeader title="Total" />
+        <CmtCardContent>
+          <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
+            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
+            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 0 }} align={{ xs: 'left', sm: 'center' }}>
+              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
+                {charSkillTotal} / {skillTotal}
+              </Typography>
+            </Grid>
+            <Grid item xs={0} sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
+            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 1 }}>
+              <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                <Typography>
+                  {intToString(parseInt(expTotal), 2)}
+                  {' exp'}
+                </Typography>
+              </Tooltip>
+            </Grid>
+          </Grid>
+          <Divider />
+        </CmtCardContent>
       </CmtCard>
     </PageContainer>
   );

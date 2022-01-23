@@ -117,12 +117,11 @@ function getManaAdjustment(charClass, race) {
   return (adjustments[race]['mp'] || 0) + getClassManaAdjustment(charClass);
 }
 
-export function getVitals(charClass, race, level, statLevels) {
-  // TODO: deal with dragons
-  // charClass != "dragon" ? charClass : getSubRace();
-  var hpAdj = getHealthAdjustment(charClass, race);
-  var spAdj = getStaminaAdjustment(charClass, race);
-  var mpAdj = getManaAdjustment(charClass, race);
+export function getVitals(charClass, race, level, statLevels, subclass) {
+  const cl = charClass === 'Dragon' ? subclass : charClass;
+  var hpAdj = getHealthAdjustment(cl, race);
+  var spAdj = getStaminaAdjustment(cl, race);
+  var mpAdj = getManaAdjustment(cl, race);
 
   var maxHP = 50 + level * (10 + hpAdj) + statLevels['Constitution'] * (10 + hpAdj);
   var maxSP = 5 + level * (2 + spAdj) + statLevels['Dexterity'] * (6 + spAdj);
