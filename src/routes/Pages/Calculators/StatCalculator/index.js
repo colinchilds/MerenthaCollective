@@ -25,7 +25,10 @@ import { races } from 'data/Races';
 import LevelInfo from '../Components/level-info.component';
 import CharacterInfo from '../Components/character-info.component';
 
-const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
+const breadcrumbs = [
+  { label: 'Calculators', link: '/calculators' },
+  { label: 'Stats', isActive: true },
+];
 
 const StatCalculator = () => {
   const [charClass, setCharClass] = useStickyState('calc_charClass', classes[0]);
@@ -105,7 +108,6 @@ const StatCalculator = () => {
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
       <CmtCard>
         <CharacterInfo
-          showSubclass={false}
           level={level}
           setLevel={setLevel}
           charClass={charClass}

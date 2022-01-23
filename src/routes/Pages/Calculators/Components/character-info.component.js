@@ -7,7 +7,7 @@ import { classes, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 
 export default function CharacterInfo(props) {
-  const { showSubclass, level, setLevel, charClass, setCharClass, subclass, setSubclass, race, setRace } = props;
+  const { level, setLevel, charClass, setCharClass, subclass, setSubclass, race, setRace } = props;
 
   const updateCharClass = (c) => {
     if (c === 'Dragon') {
@@ -48,20 +48,18 @@ export default function CharacterInfo(props) {
                 </Select>
               </FormControl>
             </Grid>
-            {showSubclass && (
-              <Grid item xs={6} sm={3}>
-                <FormControl style={{ width: '100%' }}>
-                  <InputLabel>Subclass</InputLabel>
-                  <Select label="Class" value={subclass} onChange={(event) => setSubclass(event.target.value)}>
-                    {subclasses[charClass].map((item) => (
-                      <MenuItem key={item} value={item}>
-                        {item}
-                      </MenuItem>
-                    ))}
-                  </Select>
-                </FormControl>
-              </Grid>
-            )}
+            <Grid item xs={6} sm={3}>
+              <FormControl style={{ width: '100%' }}>
+                <InputLabel>Subclass</InputLabel>
+                <Select label="Class" value={subclass} onChange={(event) => setSubclass(event.target.value)}>
+                  {subclasses[charClass].map((item) => (
+                    <MenuItem key={item} value={item}>
+                      {item}
+                    </MenuItem>
+                  ))}
+                </Select>
+              </FormControl>
+            </Grid>
             <Grid item xs={6} sm={3}>
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Race</InputLabel>

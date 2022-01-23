@@ -10,7 +10,10 @@ import { Divider, Grid, InputAdornment, TextField, Tooltip, Typography } from '@
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 
-const breadcrumbs = [{ label: 'Calculators', link: '/calculators' }, { label: 'Stats' }];
+const breadcrumbs = [
+  { label: 'Calculators', link: '/calculators' },
+  { label: 'Skills', isActive: true },
+];
 
 function hasItemInSection(section, multipliers) {
   const sectionSkills = skillNames[section];
@@ -88,7 +91,6 @@ const SkillCalculator = () => {
     <PageContainer breadcrumbs={breadcrumbs} heading="Skill Calculator">
       <CmtCard>
         <CharacterInfo
-          showSubclass={true}
           level={level}
           setLevel={setLevel}
           charClass={charClass}
