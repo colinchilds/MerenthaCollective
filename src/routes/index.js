@@ -14,6 +14,7 @@ import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
 import Socials from './Pages/General/Socials';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
+import Maps from './Pages/General/Maps';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -40,6 +41,7 @@ const Routes = () => {
           {/* General */}
           <Route exact path="/" component={HomePage} />
           <Route path="/coords" component={Coordinates} />
+          <Route path="/maps" component={Maps} />
           <Route path="/party" component={Party} />
           <Route path="/combat" component={Combat} />
           <Route path="/socials" component={Socials} />

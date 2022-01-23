@@ -1,5 +1,15 @@
 import React from 'react';
-import { InsertChart, AccessibilityNew, Home, MyLocation, People, Report, Textsms } from '@mui/icons-material';
+import {
+  InsertChart,
+  AccessibilityNew,
+  Home,
+  MyLocation,
+  People,
+  Report,
+  Textsms,
+  Map,
+  Calculate,
+} from '@mui/icons-material';
 
 export const sidebarNavs = [
   {
@@ -15,7 +25,7 @@ export const sidebarNavs = [
       {
         name: 'Skills',
         type: 'item',
-        icon: <InsertChart />,
+        icon: <Calculate />,
         link: '/calculators/skills',
       },
     ],
@@ -35,6 +45,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <MyLocation />,
         link: '/coords',
+      },
+      {
+        name: 'Maps',
+        type: 'item',
+        icon: <Map />,
+        link: '/maps',
       },
       {
         name: 'Party',

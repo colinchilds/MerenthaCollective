@@ -7,6 +7,7 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Link, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { flyingCoords, sailingCoords } from 'data/Coords';
+import MapModal from 'routes/Pages/Components/MapModal';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -20,7 +21,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Sailing">
-              <Link href="/images/maps/world_map.png">World Map</Link>
+              <MapModal name="World Map" url="/images/maps/world_map.png" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
@@ -30,11 +31,8 @@ const Coordinates = () => {
                       <TableCell>
                         <Typography>{area.name}</Typography>
                       </TableCell>
-                      <TableCell>
+                      <TableCell style={{ minWidth: '100px' }}>
                         <Typography>{area.coords}</Typography>
-                      </TableCell>
-                      <TableCell>
-                        <Typography>{area.id}</Typography>
                       </TableCell>
                     </TableRow>
                   ))}
@@ -46,7 +44,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Flying">
-              <Link href="/images/maps/flying_map.gif">Flying Map</Link>
+              <MapModal name="Flying Map" url="/images/maps/flying_map.gif" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
