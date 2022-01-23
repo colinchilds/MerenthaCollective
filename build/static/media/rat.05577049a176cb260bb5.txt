@@ -1,0 +1,62 @@
+--- /domains/Praxis/obj/mon/rat.c 61 ---
+//  /domains/Praxis/obj/mon/rat.c
+//  Semi-Random rats for the Pit of Rats
+//  Part of the Mortal Law system at Nightmare
+//  Created by Manny@Nightmare 940831
+// Dearth typos for Merentha 031125
+#include <std.h>
+
+inherit MONSTER;
+
+create() {
+    ::create();
+    set_name("rat");
+    switch(random(6)) {
+    case 0:
+        set_id( ({ "rat", "leaper", "black rat" }) );
+        set_name("large black rat");
+        set_short("large black rat");
+        set_long("There are few rats larger and more gruesome than "
+          "the infamous black rat..");
+        set_level(10);
+        break;
+    case 1:
+    case 2:
+        set_name("grey rat");
+        set_id( ({ "rat", "timber rat", "giant timber rat" }) );
+        set_short("grey rat");
+        set_long("A very large and ugly grey rat.  It looks quite "
+          "hungry.");
+        set_level(8);
+        break;
+    default:
+        set_name("small white rat");
+        set_id( ({ "rat", "sewer rat" }) );
+        set_short("small white rat");
+        set_long("A medium-sized brown rat with a crescent-shaped "
+          "moon on its tail end.");
+        set_level(6);
+        break;
+    }
+    set_race("rat");
+    set_gender(random(2) ? "male" : "female");
+    set_body_type("quadruped");
+    set_aggressive(10);
+    set_die( (: call_other, this_object(),"death_func":) );
+}
+
+int death_func() {
+    message("say", "%^RED%^"+this_object()->query_cap_name()+" squeals out "
+      "a loud shriek, then falls dead.", environment(this_object()));
+    if(!present("rat", environment(this_object()))) {
+        int x;
+
+        message("say", "%^RED%^You notice additional rats "
+          "creeping in from cracks at the base of the pit!", 
+          environment(this_object()));
+        for(x=0; x<10; ++x) {
+            new("/domains/Praxis/obj/mon/rat")->move(environment(this_object()));
+        }
+    }
+    return 1;
+}

@@ -4,7 +4,7 @@ import PageContainer from '@jumbo/components/PageComponents/layouts/PageContaine
 import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Link, Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
+import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { flyingCoords, sailingCoords } from 'data/Coords';
 import MapModal from 'routes/Pages/Components/MapModal';
