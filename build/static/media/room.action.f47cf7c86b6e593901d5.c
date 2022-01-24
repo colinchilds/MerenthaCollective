@@ -20,4 +20,5 @@ int cmd_push(string input) {
     }
     write("You push the button.");
     say(this_player()->query_cap_name() + " pushes the button.");
+    return 1;
 }
