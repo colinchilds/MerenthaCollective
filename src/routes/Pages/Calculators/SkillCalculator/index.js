@@ -171,10 +171,11 @@ const SkillCalculator = () => {
             )}
           </Fragment>
         ))}
-        <CmtCardHeader title="Total" />
         <CmtCardContent>
           <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
-            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
+            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
+              <Typography variant="h4">Total</Typography>
+            </Grid>
             <Grid item xs={6} sm={3} order={{ xs: 1, sm: 0 }} align={{ xs: 'left', sm: 'center' }}>
               <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
                 {charSkillTotal} / {skillTotal}
