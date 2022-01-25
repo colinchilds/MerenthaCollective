@@ -18,6 +18,7 @@ import BuilderRooms from './Pages/Guides/Builder/Rooms';
 import HomePage from './Pages/General/Home';
 import Socials from './Pages/General/Socials';
 import Fireworks from './Pages/General/Fireworks';
+import Rolling from './Pages/General/Rolling';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -49,6 +50,7 @@ const Routes = () => {
           <Route path="/combat" component={Combat} />
           <Route path="/socials" component={Socials} />
           <Route path="/fireworks" component={Fireworks} />
+          <Route path="/rolling" component={Rolling} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />

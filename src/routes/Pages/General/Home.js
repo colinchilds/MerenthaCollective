@@ -14,6 +14,10 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '1/24/2022',
+    message: 'Added stat rolling info and firework messages',
+  },
+  {
     date: '1/23/2022',
     message: 'Added list of maps',
   },

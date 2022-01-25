@@ -10,6 +10,7 @@ import {
   Map,
   Calculate,
   LocalFireDepartment,
+  Casino,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -58,6 +59,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <People />,
         link: '/party',
+      },
+      {
+        name: 'Rolling',
+        type: 'item',
+        icon: <Casino />,
+        link: '/rolling',
       },
       {
         name: 'Combat Messages',
