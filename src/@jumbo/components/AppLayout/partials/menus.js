@@ -9,8 +9,7 @@ import {
   Textsms,
   Map,
   Calculate,
-  Construction,
-  House,
+  LocalFireDepartment,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -71,6 +70,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Textsms />,
         link: '/socials',
+      },
+      {
+        name: 'Fireworks',
+        type: 'item',
+        icon: <LocalFireDepartment />,
+        link: '/fireworks',
       },
     ],
   },
