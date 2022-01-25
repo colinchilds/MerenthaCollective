@@ -10,61 +10,43 @@ import roomAction from './room.action.c';
 
 const breadcrumbs = [
   { label: 'Guides', link: '/guides' },
-  { label: 'Builder', link: '/guides' },
+  { label: 'Builder', link: '/guides/builder' },
   { label: 'Rooms', isActive: true },
 ];
 
-const Builder = () => {
-  const [roomBasicCode, setRoomBasicCode] = useState('');
-  const [roomDetailedCode, setRoomDetailedCode] = useState('');
-  const [roomDaynightCode, setRoomDaynightCode] = useState('');
-  const [roomIndoorsCode, setRoomIndoorsCode] = useState('');
-  const [roomActionCode, setRoomActionCode] = useState('');
+function MerenthaCodeViewerCard(props) {
+  const { file, children } = props;
+  const [code, setCode] = useState('');
 
-  fetch(roomBasic)
+  fetch(file)
     .then((t) => t.text())
-    .then((text) => {
-      setRoomBasicCode(text);
-    });
-  fetch(roomDetailed)
-    .then((t) => t.text())
-    .then((text) => {
-      setRoomDetailedCode(text);
-    });
-  fetch(roomDaynight)
-    .then((t) => t.text())
-    .then((text) => {
-      setRoomDaynightCode(text);
-    });
-  fetch(roomIndoors)
-    .then((t) => t.text())
-    .then((text) => {
-      setRoomIndoorsCode(text);
-    });
-  fetch(roomAction)
-    .then((t) => t.text())
-    .then((text) => {
-      setRoomActionCode(text);
-    });
+    .then((text) => setCode(text));
 
   return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Rooms">
-      <CodeViewerCard code={roomBasicCode} language="c">
-        <Typography>Room with basic attributes</Typography>
-      </CodeViewerCard>
-      <CodeViewerCard code={roomDetailedCode} language="c">
-        <Typography>Room with more detailed attributes</Typography>
-      </CodeViewerCard>
-      <CodeViewerCard code={roomDaynightCode} language="c">
-        <Typography>Room with more day and night differences</Typography>
-      </CodeViewerCard>
+    <CodeViewerCard code={code} language="c">
+      {children}
+    </CodeViewerCard>
+  );
+}
 
-      <CodeViewerCard code={roomIndoorsCode} language="c">
+const Builder = () => {
+  return (
+    <PageContainer breadcrumbs={breadcrumbs} heading="Rooms">
+      <MerenthaCodeViewerCard file={roomBasic}>
+        <Typography>Room with basic attributes</Typography>
+      </MerenthaCodeViewerCard>
+      <MerenthaCodeViewerCard file={roomDetailed}>
+        <Typography>Room with more detailed attributes</Typography>
+      </MerenthaCodeViewerCard>
+      <MerenthaCodeViewerCard file={roomDaynight}>
+        <Typography>Room with more day and night differences</Typography>
+      </MerenthaCodeViewerCard>
+      <MerenthaCodeViewerCard file={roomIndoors}>
         <Typography>Room which is indoors</Typography>
-      </CodeViewerCard>
-      <CodeViewerCard code={roomActionCode} language="c">
+      </MerenthaCodeViewerCard>
+      <MerenthaCodeViewerCard file={roomAction}>
         <Typography>Room with action</Typography>
-      </CodeViewerCard>
+      </MerenthaCodeViewerCard>
     </PageContainer>
   );
 };

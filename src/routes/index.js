@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router';
-import HomePage from './Pages/General/HomePage';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
 import Coordinates from './Pages/General/Coordinates';
@@ -12,11 +11,12 @@ import Mage from './Pages/Guides/Mage';
 import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
-import Socials from './Pages/General/Socials';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import Maps from './Pages/General/Maps';
 import Builder from './Pages/Guides/Builder';
 import BuilderRooms from './Pages/Guides/Builder/Rooms';
+import HomePage from './Pages/General/Home';
+import Socials from './Pages/General/Socials';
 
 function ScrollToTop({ children }) {
   const location = useLocation();

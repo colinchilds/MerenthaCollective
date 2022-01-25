@@ -13,6 +13,7 @@ import Box from '@mui/material/Box';
 const useStyles = makeStyles((theme) => ({
   card: {
     overflow: 'unset',
+    marginBottom: 30,
   },
   cardContent: {
     position: 'relative',
