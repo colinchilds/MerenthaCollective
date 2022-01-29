@@ -6,6 +6,7 @@ import clsx from 'clsx';
 const useStyles = makeStyles(() => ({
   root: () => ({
     padding: 24,
+    overflowX: 'auto',
   }),
 }));
 

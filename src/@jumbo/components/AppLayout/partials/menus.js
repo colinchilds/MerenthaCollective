@@ -5,12 +5,12 @@ import {
   Home,
   MyLocation,
   People,
-  Report,
   Textsms,
   Map,
   Calculate,
   LocalFireDepartment,
   Casino,
+  Shield,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -69,11 +69,11 @@ export const sidebarNavs = [
       {
         name: 'Combat Messages',
         type: 'item',
-        icon: <Report />,
+        icon: <Shield />,
         link: '/combat',
       },
       {
-        name: 'Social',
+        name: 'Socials',
         type: 'item',
         icon: <Textsms />,
         link: '/socials',
