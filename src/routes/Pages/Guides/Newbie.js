@@ -42,7 +42,7 @@ const Newbie = () => {
                 <br />
                 <br />
                 Pick a gender you want your character to be. Remember that this is not your gender, but the one you'd like
-                your character to be.
+                your character to be. Some races are gender dependent.
                 <br />
                 <br />
                 Display name allows you to add a ' or a -, and you can modify the capitalization. Don't use a name with all
