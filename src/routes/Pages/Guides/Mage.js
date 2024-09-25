@@ -126,7 +126,7 @@ const data = [
   },
   {
     question: 'What armour should I wear?',
-    answer: `Whatever protects you best. Really though, lots of faeries and imps become mages and find it hard to carry good armour around. Lightweight armour exists, but doesn't protect as well. You'll probably have to improve your strength if you want to wear heavy platemail.`,
+    answer: `Whatever protects you best. Really though, lots of faeries and imps become mages and find it hard to carry good armour around. Lightweight armour exists, but doesn't protect as well. You'll probably have to improve your strength if you want to wear heavy platemail. Look at your magic defense spells. Buffer is short lived, but will boost your armour. You can check your armour levels by typing \"armour\"`,
   },
   {
     question: "I have a question this FAQ didn't answer, who should I ask?",
