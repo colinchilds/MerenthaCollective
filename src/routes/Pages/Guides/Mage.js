@@ -118,7 +118,7 @@ const data = [
   {
     question:
       "Ok, I'm casting a lot of spells and running out of magic a lot now, is there a better way to get it back besides sleeping?",
-    answer: `From levels 1 to 3 you can drink from the Cabeiri fountain. After that you'll probably want to start buying mana orbs in Whitestorm for 35 platinum each. The shop is to the west, in the magic district. These orbs heal your magic constantly and much faster than sleep. You can have up to 3 draining at a time, with 3 in reserve. If you buy more than 6, they will start to meld together randomly. There are some other ways to recover magic, as well as other orb shops, but you'll have to find those for yourself.`,
+    answer: `From levels 1 to 3 you can drink from the Cabeiri fountain. After that you'll probably want to start buying mana orbs in Whitestorm for 35 platinum each. The shop is to the west, in the magic district. These orbs heal your magic constantly and much faster than sleep. You can have up to 3 draining at a time, with extras reserve. You can change the speed at which they drain with "drain <speed>" (quickly, normally, or slowly). There are some other ways to recover magic, as well as other orb shops, but you'll have to find those for yourself.`,
   },
   {
     question: 'What weapons should I use?',
@@ -126,7 +126,7 @@ const data = [
   },
   {
     question: 'What armour should I wear?',
-    answer: `Whatever protects you best. Really though, lots of faeries and imps become mages and find it hard to carry good armour around. Lightweight armour exists, but doesn't protect as well. You'll probably have to improve your strength if you want to wear heavy platemail.`,
+    answer: `Whatever protects you best. Really though, lots of faeries and imps become mages and find it hard to carry good armour around. Lightweight armour exists, but doesn't protect as well. You'll probably have to improve your strength if you want to wear heavy platemail. Look at your magic defense spells. Buffer is short lived, but will boost your armour. You can check your armour levels by typing \"armour\"`,
   },
   {
     question: "I have a question this FAQ didn't answer, who should I ask?",
