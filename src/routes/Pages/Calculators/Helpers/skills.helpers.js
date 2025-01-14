@@ -602,6 +602,7 @@ export function getSkillMultipliers(charClass, subclass, race) {
       break;
     case 'shaman':
       // Magic/Nature
+      multipliers['magic attack'] = 50;
       multipliers['conjuring'] = 20;
       multipliers['faith'] = 110;
       multipliers['healing'] = 30;
