@@ -532,9 +532,16 @@ export function getSkillMultipliers(charClass, subclass, race) {
       // Magic/Nature
       multipliers['nature'] = 55;
       break;
-    case 'warrior': // handled by /std/subclass/warrior/specialize.c
+    case 'warrior': // TODO: specializations need to be accounted for
+      multipliers['attack'] = 100;
       multipliers['defense'] = 110;
       multipliers[horseSkill] = 100;
+      multipliers['axe'] = 95;
+      multipliers['blade'] = 95;
+      multipliers['blunt'] = 95;
+      multipliers['knife'] = 95;
+      multipliers['flail'] = 95;
+      multipliers['projectile'] = 95;
       break;
     case 'druid':
       // Magic/Nature
@@ -586,7 +593,6 @@ export function getSkillMultipliers(charClass, subclass, race) {
       break;
     case 'priest':
       // Magic/Nature
-      // multipliers['faith']             = 110;
       multipliers['nature'] = 50;
       break;
     case 'healermonk':
@@ -668,7 +674,7 @@ export function getSkillMultipliers(charClass, subclass, race) {
     case 'bone':
       // Combat
       multipliers['attack'] = 100;
-      multipliers['defense'] = 55;
+      multipliers['defense'] = 84;
       multipliers['melee'] = 110;
       multipliers['charging'] = 126;
       // Magic/Nature
@@ -676,7 +682,7 @@ export function getSkillMultipliers(charClass, subclass, race) {
       multipliers['faith'] = 136;
       multipliers['magic attack'] = 130;
       multipliers['magic defense'] = 130;
-      multipliers['telepathy'] = 23;
+      multipliers['telepathy'] = 126;
       multipliers['healing'] = 120;
       multipliers['acrobatics'] = 63;
       multipliers['entertaining'] = 25;
@@ -698,7 +704,7 @@ export function getSkillMultipliers(charClass, subclass, race) {
       multipliers['faith'] = 84;
       multipliers['magic attack'] = 105;
       multipliers['magic defense'] = 105;
-      multipliers['telepathy'] = 126;
+      multipliers['telepathy'] = 105;
       multipliers['healing'] = 84;
       multipliers['acrobatics'] = 63;
       multipliers['entertaining'] = 63;
