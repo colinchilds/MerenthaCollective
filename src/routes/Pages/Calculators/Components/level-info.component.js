@@ -19,7 +19,7 @@ export default function LevelInfo(props) {
                     <Typography>Stat Requirement</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>{Math.max(0, (level - 6) * 10)}</Typography>
+                    <Typography>{Math.max(0, (level - 7) * 10)}</Typography>
                   </TableCell>
                   <TableCell>
                     <Typography>Skill Requirement</Typography>
