@@ -3,6 +3,7 @@ import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/
 import Grid from '@mui/material/Grid';
 import {
   Box,
+  Button,
   Table,
   TableBody,
   TableCell,
@@ -75,6 +76,13 @@ const StatCalculator = () => {
     }));
   };
 
+  const handleMaxIncrement = (stat) => {
+    const currentValue = parseInt(statLevels[stat]) || 0;
+    const maxValue = parseInt(getMaxStat(stat, charClass, race, level)) || 0;
+    const maxIncrement = Math.max(0, maxValue - currentValue);
+    updateStatInc(stat, maxIncrement);
+  };
+
   useEffect(() => {
     var cst = 0;
     var st = 0;
@@ -145,16 +153,29 @@ const StatCalculator = () => {
                   />
                 </Grid>
                 <Grid item xs={6} sm={3} order={{ xs: 3, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
-                  <TextField
-                    size="small"
-                    type="number"
-                    label="+"
-                    inputProps={{ min: 0, max: 500 }}
-                    style={{ minWidth: '75px' }}
-                    value={statInc[stat]}
-                    variant="outlined"
-                    onChange={(event) => updateStatInc(stat, event.target.value)}
-                  />
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <TextField
+                      size="small"
+                      type="number"
+                      label="+"
+                      inputProps={{ min: 0, max: 500 }}
+                      style={{ minWidth: '75px' }}
+                      value={statInc[stat]}
+                      variant="outlined"
+                      onChange={(event) => updateStatInc(stat, event.target.value)}
+                    />
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={() => handleMaxIncrement(stat)}
+                      style={{
+                        minWidth: '45px',
+                        fontSize: '0.7rem',
+                        padding: '4px 8px',
+                      }}>
+                      MAX
+                    </Button>
+                  </Box>
                 </Grid>
                 <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
                   <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
@@ -180,7 +201,10 @@ const StatCalculator = () => {
               <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
                 <Typography>
                   {intToString(parseInt(expTotal), 2)}
-                  {' exp'}
+                  {' exp '}
+                  {maxExp > 0 && expTotal > 0 && (
+                    <span style={{ fontSize: '0.9em', color: '#666' }}>({(expTotal / maxExp).toFixed(2)} maxes)</span>
+                  )}
                 </Typography>
               </Tooltip>
             </Grid>

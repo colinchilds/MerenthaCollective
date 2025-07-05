@@ -6,7 +6,8 @@ import { classes, intToString, subclasses } from '../Helpers/calculator.helpers'
 import { races } from 'data/Races';
 import CharacterInfo from '../Components/character-info.component';
 import { getSkillCost, getSkillMax, getSkillMultipliers, skillNames } from '../Helpers/skills.helpers';
-import { Divider, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import { getMaxExp } from '../Helpers/stats.helpers';
+import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 
@@ -30,7 +31,7 @@ const SkillCalculator = () => {
   const [subclass, setSubclass] = useStickyState('calc_subclass', subclasses[charClass][0]);
   const [race, setRace] = useStickyState('calc_race', races[0]);
   const [level, setLevel] = useStickyState('calc_level', 1);
-  const [multipliers, setMultipliers] = useState({});
+  const [multipliers, setMultipliers] = useState(getSkillMultipliers(charClass, subclass, race));
 
   var sn = [].concat.apply([], Object.values(skillNames));
   const initSkills = sn.reduce((result, skill) => ({ ...result, [skill]: 0 }), {});
@@ -43,6 +44,7 @@ const SkillCalculator = () => {
   const [charSkillTotal, setCharSkillTotal] = useState(0);
   const [skillTotal, setSkillTotal] = useState(0);
   const [expTotal, setExpTotal] = useState(0);
+  const [maxExp, setMaxExp] = useState(0);
 
   const updateSkillLevels = (k, v) => {
     if (v < 0) {
@@ -68,6 +70,13 @@ const SkillCalculator = () => {
     }));
   };
 
+  const handleMaxIncrement = (skill) => {
+    const currentValue = parseInt(skillLevels[skill]) || 0;
+    const maxValue = parseInt(getSkillMax(multipliers, skill, level)) || 0;
+    const maxIncrement = Math.max(0, maxValue - currentValue);
+    updateSkillInc(skill, maxIncrement);
+  };
+
   useEffect(() => {
     var cst = 0;
     var st = 0;
@@ -90,6 +99,10 @@ const SkillCalculator = () => {
   useEffect(() => {
     setMultipliers(getSkillMultipliers(charClass, subclass, race));
   }, [charClass, subclass, race]);
+
+  useEffect(() => {
+    setMaxExp(getMaxExp(level));
+  }, [level]);
 
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Skill Calculator">
@@ -142,16 +155,29 @@ const SkillCalculator = () => {
                             />
                           </Grid>
                           <Grid item xs={6} sm={3} order={{ xs: 3, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
-                            <TextField
-                              size="small"
-                              type="number"
-                              label="+"
-                              inputProps={{ min: 0, max: 500 }}
-                              style={{ minWidth: '75px' }}
-                              value={skillInc[skill]}
-                              variant="outlined"
-                              onChange={(event) => updateSkillInc(skill, event.target.value)}
-                            />
+                            <Box display="flex" alignItems="center" gap={1}>
+                              <TextField
+                                size="small"
+                                type="number"
+                                label="+"
+                                inputProps={{ min: 0, max: 500 }}
+                                style={{ minWidth: '75px' }}
+                                value={skillInc[skill]}
+                                variant="outlined"
+                                onChange={(event) => updateSkillInc(skill, event.target.value)}
+                              />
+                              <Button
+                                size="small"
+                                variant="outlined"
+                                onClick={() => handleMaxIncrement(skill)}
+                                style={{
+                                  minWidth: '45px',
+                                  fontSize: '0.7rem',
+                                  padding: '4px 8px',
+                                }}>
+                                MAX
+                              </Button>
+                            </Box>
                           </Grid>
                           <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
                             <Tooltip title={parseInt(skillCost[skill]).toLocaleString('en-US') + ' exp'}>
@@ -186,7 +212,10 @@ const SkillCalculator = () => {
               <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
                 <Typography>
                   {intToString(parseInt(expTotal), 2)}
-                  {' exp'}
+                  {' exp '}
+                  {maxExp > 0 && expTotal > 0 && (
+                    <span style={{ fontSize: '0.9em', color: '#666' }}>({(expTotal / maxExp).toFixed(2)} maxes)</span>
+                  )}
                 </Typography>
               </Tooltip>
             </Grid>

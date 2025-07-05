@@ -15,7 +15,9 @@ const breadcrumbs = [
 const updates = [
   {
     date: '7/5/2025',
-    message: 'Improve map viewer with zoom and pan functionality',
+    message:
+      'Improve map viewer with zoom and pan functionality. Added skill and stat max button, as well as exp max calculation to quickly calculate ' +
+      'required experience.',
   },
   {
     date: '1/24/2022',
