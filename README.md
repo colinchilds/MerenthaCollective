@@ -1,16 +1,5 @@
 Welcome to the new Merentha Collective! All feedback is welcome. Please submit an issue if you find a bug or have suggestions to offer.
 
-## Deployment
-To deploy to GitHub Pages, we just push whatever is in `build` to a branch called `gh-pages`.
-To do this, make sure everything in `build` is committed and pushed to `main` then run the following commands:
-
-```
-git checkout main
-git subtree split --prefix build -b gh-pages
-git push -f origin gh-pages:gh-pages 
-git branch -D gh-pages
-```
-
 ## Available Scripts
 
 In the project directory, you can run:
