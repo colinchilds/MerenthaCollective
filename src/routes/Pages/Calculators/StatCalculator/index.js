@@ -14,7 +14,9 @@ import {
   Typography,
   InputAdornment,
   Divider,
+  IconButton,
 } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
@@ -175,6 +177,18 @@ const StatCalculator = () => {
                       }}>
                       MAX
                     </Button>
+                    {statInc[stat] > 0 && (
+                      <IconButton
+                        size="small"
+                        onClick={() => updateStatInc(stat, 0)}
+                        style={{
+                          border: '1px solid rgba(0, 0, 0, 0.23)',
+                          borderRadius: '4px',
+                          padding: '4px',
+                        }}>
+                        <ClearIcon fontSize="small" />
+                      </IconButton>
+                    )}
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
@@ -191,13 +205,23 @@ const StatCalculator = () => {
           ))}
           <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
             <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
-            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 0 }} align={{ xs: 'left', sm: 'center' }}>
+            <Grid item xs={6} sm={3} order={{ xs: 2, sm: 1 }} align={{ xs: 'left', sm: 'center' }}>
               <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
                 {charStatTotal} / {statTotal}
               </Typography>
             </Grid>
-            <Grid item xs={0} sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
-            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 1 }}>
+            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
+              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
+                {(() => {
+                  let totalWithPlanned = 0;
+                  stats.forEach((stat) => {
+                    totalWithPlanned += parseInt(statLevels[stat] || 0) + parseInt(statInc[stat] || 0);
+                  });
+                  return `${totalWithPlanned} / ${statTotal}`;
+                })()}
+              </Typography>
+            </Grid>
+            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 3 }}>
               <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
                 <Typography>
                   {intToString(parseInt(expTotal), 2)}
