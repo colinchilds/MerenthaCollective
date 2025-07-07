@@ -7,7 +7,8 @@ import { races } from 'data/Races';
 import CharacterInfo from '../Components/character-info.component';
 import { getSkillCost, getSkillMax, getSkillMultipliers, skillNames } from '../Helpers/skills.helpers';
 import { getMaxExp } from '../Helpers/stats.helpers';
-import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typography } from '@mui/material';
+import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typography, IconButton } from '@mui/material';
+import ClearIcon from '@mui/icons-material/Clear';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 
@@ -177,6 +178,18 @@ const SkillCalculator = () => {
                                 }}>
                                 MAX
                               </Button>
+                              {skillInc[skill] > 0 && (
+                                <IconButton
+                                  size="small"
+                                  onClick={() => updateSkillInc(skill, 0)}
+                                  style={{
+                                    border: '1px solid rgba(0, 0, 0, 0.23)',
+                                    borderRadius: '4px',
+                                    padding: '4px',
+                                  }}>
+                                  <ClearIcon fontSize="small" />
+                                </IconButton>
+                              )}
                             </Box>
                           </Grid>
                           <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
@@ -202,13 +215,23 @@ const SkillCalculator = () => {
             <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }}>
               <Typography variant="h4">Total</Typography>
             </Grid>
-            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 0 }} align={{ xs: 'left', sm: 'center' }}>
+            <Grid item xs={6} sm={3} order={{ xs: 2, sm: 1 }} align={{ xs: 'left', sm: 'center' }}>
               <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
                 {charSkillTotal} / {skillTotal}
               </Typography>
             </Grid>
-            <Grid item xs={0} sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
-            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 1 }}>
+            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
+              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
+                {(() => {
+                  let totalWithPlanned = 0;
+                  Object.keys(multipliers).forEach((skill) => {
+                    totalWithPlanned += parseInt(skillLevels[skill] || 0) + parseInt(skillInc[skill] || 0);
+                  });
+                  return `${totalWithPlanned} / ${skillTotal}`;
+                })()}
+              </Typography>
+            </Grid>
+            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 3 }}>
               <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
                 <Typography>
                   {intToString(parseInt(expTotal), 2)}
