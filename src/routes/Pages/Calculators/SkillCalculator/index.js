@@ -95,7 +95,7 @@ const SkillCalculator = () => {
     setCharSkillTotal(cst);
     setSkillTotal(st);
     setExpTotal(et);
-  }, [skillLevels, skillInc, charClass, subclass, race, level]);
+  }, [skillLevels, skillInc, charClass, subclass, race, level, multipliers]);
 
   useEffect(() => {
     setMultipliers(getSkillMultipliers(charClass, subclass, race));

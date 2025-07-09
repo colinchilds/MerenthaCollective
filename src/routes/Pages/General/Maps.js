@@ -4,8 +4,7 @@ import PageContainer from '@jumbo/components/PageComponents/layouts/PageContaine
 import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import { Table, TableBody, TableCell, TableRow } from '@mui/material';
 import MapModal from 'routes/Pages/Components/MapModal';
 
 const breadcrumbs = [
