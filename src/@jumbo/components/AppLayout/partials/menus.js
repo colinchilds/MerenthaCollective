@@ -11,6 +11,7 @@ import {
   LocalFireDepartment,
   Casino,
   Shield,
+  Terrain,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -53,6 +54,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Map />,
         link: '/maps',
+      },
+      {
+        name: 'Areas',
+        type: 'item',
+        icon: <Terrain />,
+        link: '/areas',
       },
       {
         name: 'Party',
