@@ -326,6 +326,10 @@ const maps = [
     url: '/images/maps/WDUpperDeatherSpirals.jpg',
   },
   {
+    name: 'Wolvesdale - Full',
+    url: '/images/maps/Wolvesdale-Full.png',
+  },
+  {
     name: 'Whitestorm',
     url: '/images/maps/Whitestorm.jpg',
   },
