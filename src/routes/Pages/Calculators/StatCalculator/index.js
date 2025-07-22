@@ -20,13 +20,14 @@ import ClearIcon from '@mui/icons-material/Clear';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { useStickyState } from '@jumbo/utils/commonHelper';
 import { getEncumbrance, getVitals, getWeight } from './vitals';
 import { getAdvanceExp, getMaxExp, getStatCost, getMaxStat } from '../Helpers/stats.helpers';
 import { classes, stats, intToString, getPartyRangeMin, getPartyRangeMax, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import LevelInfo from '../Components/level-info.component';
 import CharacterInfo from '../Components/character-info.component';
+import { useSharedCharacterState } from '../shared/useSharedCharacterState';
+import CharacterSelector from './CharacterSelector';
 
 const breadcrumbs = [
   { label: 'Calculators', link: '/calculators' },
@@ -34,19 +35,34 @@ const breadcrumbs = [
 ];
 
 const StatCalculator = () => {
-  const [charClass, setCharClass] = useStickyState('calc_charClass', classes[0]);
-  const [subclass, setSubclass] = useStickyState('calc_subclass', subclasses[charClass][0]);
-  const [race, setRace] = useStickyState('calc_race', races[0]);
-  const [level, setLevel] = useStickyState('calc_level', 1);
+  const {
+    characters,
+    activeCharacter,
+    addCharacter,
+    deleteCharacter,
+    renameCharacter,
+    duplicateCharacter,
+    updateActiveCharacter,
+    switchCharacter,
+    characterList,
+  } = useSharedCharacterState();
+
   const [advExp, setAdvExp] = useState(0);
   const [maxExp, setMaxExp] = useState(0);
 
   const initStats = stats.reduce((result, stat) => ({ ...result, [stat]: 0 }), {});
-  const [statLevels, setStatLevels] = useStickyState('statCalc_statLevels', {
-    ...initStats,
-  });
-  const [statInc, setStatInc] = useState({ ...initStats });
   const [statCost, setStatCost] = useState({ ...initStats });
+
+  const charClass = (activeCharacter && activeCharacter.charClass) || classes[0];
+  const validSubclass =
+    subclasses[charClass] && subclasses[charClass].includes(activeCharacter && activeCharacter.subclass)
+      ? activeCharacter.subclass
+      : subclasses[charClass][0];
+  const subclass = validSubclass;
+  const race = (activeCharacter && activeCharacter.race) || races[0];
+  const level = (activeCharacter && activeCharacter.level) || 1;
+  const statLevels = (activeCharacter && activeCharacter.statLevels) || initStats;
+  const statInc = (activeCharacter && activeCharacter.statIncrements) || initStats;
 
   const [charStatTotal, setCharStatTotal] = useState(0);
   const [statTotal, setStatTotal] = useState(0);
@@ -60,10 +76,32 @@ const StatCalculator = () => {
     } else if (v > 500) {
       v = 500;
     }
-    setStatLevels((statLevels) => ({
-      ...statLevels,
-      [k]: v,
-    }));
+    updateActiveCharacter({
+      statLevels: {
+        ...statLevels,
+        [k]: v,
+      },
+    });
+  };
+
+  const setCharClass = (newCharClass) => {
+    const newSubclass = subclasses[newCharClass][0];
+    updateActiveCharacter({
+      charClass: newCharClass,
+      subclass: newSubclass,
+    });
+  };
+
+  const setSubclass = (newSubclass) => {
+    updateActiveCharacter({ subclass: newSubclass });
+  };
+
+  const setRace = (newRace) => {
+    updateActiveCharacter({ race: newRace });
+  };
+
+  const setLevel = (newLevel) => {
+    updateActiveCharacter({ level: newLevel });
   };
 
   const updateStatInc = (k, v) => {
@@ -72,10 +110,12 @@ const StatCalculator = () => {
     } else if (v > 500) {
       v = 500;
     }
-    setStatInc((statInc) => ({
-      ...statInc,
-      [k]: v,
-    }));
+    updateActiveCharacter({
+      statIncrements: {
+        ...statInc,
+        [k]: v,
+      },
+    });
   };
 
   const handleMaxIncrement = (stat) => {
@@ -114,9 +154,29 @@ const StatCalculator = () => {
     setVitals(v);
   }, [charClass, race, level, statLevels, subclass]);
 
+  if (!activeCharacter) {
+    return (
+      <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
+        <Typography>Loading...</Typography>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Stat Calculator">
       <CmtCard>
+        <CmtCardContent>
+          <CharacterSelector
+            characters={characters}
+            activeCharacter={activeCharacter}
+            characterList={characterList}
+            onAddCharacter={addCharacter}
+            onDeleteCharacter={deleteCharacter}
+            onRenameCharacter={renameCharacter}
+            onDuplicateCharacter={duplicateCharacter}
+            onSwitchCharacter={switchCharacter}
+          />
+        </CmtCardContent>
         <CharacterInfo
           level={level}
           setLevel={setLevel}

@@ -1,7 +1,6 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
 import CmtCard from '@coremat/CmtCard';
-import { useStickyState } from '@jumbo/utils/commonHelper';
 import { classes, intToString, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import CharacterInfo from '../Components/character-info.component';
@@ -11,6 +10,8 @@ import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typogra
 import ClearIcon from '@mui/icons-material/Clear';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import { useSharedCharacterState } from '../shared/useSharedCharacterState';
+import CharacterSelector from '../StatCalculator/CharacterSelector';
 
 const breadcrumbs = [
   { label: 'Calculators', link: '/calculators' },
@@ -28,18 +29,32 @@ function hasItemInSection(section, multipliers) {
 }
 
 const SkillCalculator = () => {
-  const [charClass, setCharClass] = useStickyState('calc_charClass', classes[0]);
-  const [subclass, setSubclass] = useStickyState('calc_subclass', subclasses[charClass][0]);
-  const [race, setRace] = useStickyState('calc_race', races[0]);
-  const [level, setLevel] = useStickyState('calc_level', 1);
-  const [multipliers, setMultipliers] = useState(getSkillMultipliers(charClass, subclass, race));
+  const {
+    characters,
+    activeCharacter,
+    addCharacter,
+    deleteCharacter,
+    renameCharacter,
+    duplicateCharacter,
+    updateActiveCharacter,
+    switchCharacter,
+    characterList,
+  } = useSharedCharacterState();
 
   var sn = [].concat.apply([], Object.values(skillNames));
   const initSkills = sn.reduce((result, skill) => ({ ...result, [skill]: 0 }), {});
-  const [skillLevels, setSkillLevels] = useStickyState('skillCalc_skillLevels', {
-    ...initSkills,
-  });
-  const [skillInc, setSkillInc] = useState({ ...initSkills });
+
+  const charClass = (activeCharacter && activeCharacter.charClass) || classes[0];
+  const validSubclass =
+    subclasses[charClass] && subclasses[charClass].includes(activeCharacter && activeCharacter.subclass)
+      ? activeCharacter.subclass
+      : subclasses[charClass][0];
+  const subclass = validSubclass;
+  const race = (activeCharacter && activeCharacter.race) || races[0];
+  const level = (activeCharacter && activeCharacter.level) || 1;
+  const skillLevels = (activeCharacter && activeCharacter.skillLevels) || initSkills;
+  const skillInc = (activeCharacter && activeCharacter.skillIncrements) || initSkills;
+  const [multipliers, setMultipliers] = useState(getSkillMultipliers(charClass, subclass, race));
   const [skillCost, setSkillCost] = useState({ ...initSkills });
 
   const [charSkillTotal, setCharSkillTotal] = useState(0);
@@ -50,13 +65,35 @@ const SkillCalculator = () => {
   const updateSkillLevels = (k, v) => {
     if (v < 0) {
       v = 0;
-    } else if (v > 999) {
-      v = 999;
+    } else if (v > 500) {
+      v = 500;
     }
-    setSkillLevels((skillLevels) => ({
-      ...skillLevels,
-      [k]: v,
-    }));
+    updateActiveCharacter({
+      skillLevels: {
+        ...skillLevels,
+        [k]: v,
+      },
+    });
+  };
+
+  const setCharClass = (newCharClass) => {
+    const newSubclass = subclasses[newCharClass][0];
+    updateActiveCharacter({
+      charClass: newCharClass,
+      subclass: newSubclass,
+    });
+  };
+
+  const setSubclass = (newSubclass) => {
+    updateActiveCharacter({ subclass: newSubclass });
+  };
+
+  const setRace = (newRace) => {
+    updateActiveCharacter({ race: newRace });
+  };
+
+  const setLevel = (newLevel) => {
+    updateActiveCharacter({ level: newLevel });
   };
 
   const updateSkillInc = (k, v) => {
@@ -65,10 +102,12 @@ const SkillCalculator = () => {
     } else if (v > 999) {
       v = 999;
     }
-    setSkillInc((skillInc) => ({
-      ...skillInc,
-      [k]: v,
-    }));
+    updateActiveCharacter({
+      skillIncrements: {
+        ...skillInc,
+        [k]: v,
+      },
+    });
   };
 
   const handleMaxIncrement = (skill) => {
@@ -105,9 +144,41 @@ const SkillCalculator = () => {
     setMaxExp(getMaxExp(level));
   }, [level]);
 
+  useEffect(() => {
+    if (
+      activeCharacter &&
+      activeCharacter.subclass &&
+      !(subclasses[charClass] && subclasses[charClass].includes(activeCharacter.subclass))
+    ) {
+      updateActiveCharacter({
+        subclass: subclasses[charClass][0],
+      });
+    }
+  }, [activeCharacter, charClass, updateActiveCharacter]);
+
+  if (!activeCharacter) {
+    return (
+      <PageContainer breadcrumbs={breadcrumbs} heading="Skill Calculator">
+        <Typography>Loading...</Typography>
+      </PageContainer>
+    );
+  }
+
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Skill Calculator">
       <CmtCard>
+        <CmtCardContent>
+          <CharacterSelector
+            characters={characters}
+            activeCharacter={activeCharacter}
+            characterList={characterList}
+            onAddCharacter={addCharacter}
+            onDeleteCharacter={deleteCharacter}
+            onRenameCharacter={renameCharacter}
+            onDuplicateCharacter={duplicateCharacter}
+            onSwitchCharacter={switchCharacter}
+          />
+        </CmtCardContent>
         <CharacterInfo
           level={level}
           setLevel={setLevel}

@@ -16,17 +16,14 @@ export default function CharacterInfo(props) {
       setRace(races[0]);
     }
     setCharClass(c);
-    setSubclass(subclasses[c][0]);
   };
 
   const updateRace = (r) => {
     if (r === 'Dragon') {
       setCharClass(r);
-      setSubclass(subclasses[r][0]);
     } else if (charClass === 'Dragon') {
       const c = classes[0];
       setCharClass(c);
-      setSubclass(subclasses[c][0]);
     }
     setRace(r);
   };
