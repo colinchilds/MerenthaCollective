@@ -7,7 +7,26 @@ import { classes, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 
 export default function CharacterInfo(props) {
-  const { level, charClass, subclass, race, setLevel, setCharClass, setSubclass, setRace } = props;
+  const { level, setLevel, charClass, setCharClass, subclass, setSubclass, race, setRace } = props;
+
+  const updateCharClass = (c) => {
+    if (c === 'Dragon') {
+      setRace(c);
+    } else if (race === 'Dragon') {
+      setRace(races[0]);
+    }
+    setCharClass(c);
+  };
+
+  const updateRace = (r) => {
+    if (r === 'Dragon') {
+      setCharClass(r);
+    } else if (charClass === 'Dragon') {
+      const c = classes[0];
+      setCharClass(c);
+    }
+    setRace(r);
+  };
 
   return (
     <div>
@@ -17,7 +36,7 @@ export default function CharacterInfo(props) {
             <Grid item xs={6} sm={3}>
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Class</InputLabel>
-                <Select label="Class" value={charClass} onChange={(event) => setCharClass(event.target.value)}>
+                <Select label="Class" value={charClass} onChange={(event) => updateCharClass(event.target.value)}>
                   {classes.map((item) => (
                     <MenuItem key={item} value={item}>
                       {item}
@@ -41,7 +60,7 @@ export default function CharacterInfo(props) {
             <Grid item xs={6} sm={3}>
               <FormControl style={{ width: '100%' }}>
                 <InputLabel>Race</InputLabel>
-                <Select label="Race" value={race} onChange={(event) => setRace(event.target.value)}>
+                <Select label="Race" value={race} onChange={(event) => updateRace(event.target.value)}>
                   <ListSubheader disableSticky={true}>Regular</ListSubheader>
                   {races.map((item) => {
                     return item === 'Dragon' ? (
@@ -67,7 +86,6 @@ export default function CharacterInfo(props) {
                   type="number"
                   value={level}
                   onChange={(event) => setLevel(parseInt(event.target.value))}
-                  inputProps={{ max: 250 }}
                 />
               </FormControl>
             </Grid>

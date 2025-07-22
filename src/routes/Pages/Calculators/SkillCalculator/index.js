@@ -40,10 +40,6 @@ const SkillCalculator = () => {
     updateActiveCharacter,
     switchCharacter,
     characterList,
-    setCharacterLevel,
-    setCharacterClass,
-    setCharacterRace,
-    setCharacterSubclass,
   } = useSharedCharacterState();
 
   var sn = [].concat.apply([], Object.values(skillNames));
@@ -72,8 +68,8 @@ const SkillCalculator = () => {
   const updateSkillLevels = (k, v) => {
     if (v < 0) {
       v = 0;
-    } else if (v > 999) {
-      v = 999;
+    } else if (v > 500) {
+      v = 500;
     }
     updateActiveCharacter({
       skillLevels: {
@@ -82,6 +78,27 @@ const SkillCalculator = () => {
       },
     });
   };
+
+  const setCharClass = (newCharClass) => {
+    const newSubclass = subclasses[newCharClass][0];
+    updateActiveCharacter({
+      charClass: newCharClass,
+      subclass: newSubclass,
+    });
+  };
+
+  const setSubclass = (newSubclass) => {
+    updateActiveCharacter({ subclass: newSubclass });
+  };
+
+  const setRace = (newRace) => {
+    updateActiveCharacter({ race: newRace });
+  };
+
+  const setLevel = (newLevel) => {
+    updateActiveCharacter({ level: newLevel });
+  };
+
   const updateSkillInc = (k, v) => {
     if (v < 0) {
       v = 0;
@@ -200,13 +217,13 @@ const SkillCalculator = () => {
         </CmtCardContent>
         <CharacterInfo
           level={level}
+          setLevel={setLevel}
           charClass={charClass}
+          setCharClass={setCharClass}
           subclass={subclass}
+          setSubclass={setSubclass}
           race={race}
-          setLevel={setCharacterLevel}
-          setCharClass={setCharacterClass}
-          setSubclass={setCharacterSubclass}
-          setRace={setCharacterRace}
+          setRace={setRace}
         />
         {subclass === 'Warrior' && (
           <Fragment>

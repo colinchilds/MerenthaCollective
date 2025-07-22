@@ -1,8 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useStickyState } from '../../../../@jumbo/utils/commonHelper';
 import { skillNames } from '../Helpers/skills.helpers';
-import { classes, subclasses } from '../Helpers/calculator.helpers';
-import { races } from '../../../../data/Races';
 
 const STATS = ['Strength', 'Charisma', 'Constitution', 'Dexterity', 'Intelligence', 'Wisdom'];
 
@@ -346,60 +344,6 @@ export const useSharedCharacterState = () => {
     return false;
   };
 
-  const setCharacterLevel = (newLevel) => {
-    if (!activeCharacter) return;
-
-    const parsedLevel = parseInt(newLevel);
-
-    if (isNaN(parsedLevel)) return;
-    const validatedLevel = Math.max(1, Math.min(250, parsedLevel));
-    updateActiveCharacter({ level: validatedLevel });
-  };
-
-  const setCharacterClass = (newClass) => {
-    if (!activeCharacter) return;
-    if (!classes.includes(newClass)) return;
-
-    const updates = {
-      charClass: newClass,
-      subclass: subclasses[newClass]?.[0] || '',
-    };
-
-    if (newClass === 'Dragon') {
-      updates.race = 'Dragon';
-    } else if (activeCharacter.race === 'Dragon') {
-      updates.race = races[0];
-    }
-
-    updateActiveCharacter(updates);
-  };
-
-  const setCharacterRace = (newRace) => {
-    if (!activeCharacter) return;
-    if (!races.includes(newRace)) return;
-
-    const updates = { race: newRace };
-
-    if (newRace === 'Dragon') {
-      updates.charClass = 'Dragon';
-      updates.subclass = subclasses['Dragon']?.[0] || '';
-    } else if (activeCharacter.charClass === 'Dragon') {
-      updates.charClass = classes[0];
-      updates.subclass = subclasses[classes[0]]?.[0] || '';
-    }
-
-    updateActiveCharacter(updates);
-  };
-
-  const setCharacterSubclass = (newSubclass) => {
-    if (!activeCharacter) return;
-
-    const validSubclasses = subclasses[activeCharacter.charClass] || [];
-    if (!validSubclasses.includes(newSubclass)) return;
-
-    updateActiveCharacter({ subclass: newSubclass });
-  };
-
   return {
     characters,
     activeCharacter,
@@ -410,10 +354,6 @@ export const useSharedCharacterState = () => {
     duplicateCharacter,
     updateActiveCharacter,
     switchCharacter,
-    setCharacterLevel,
-    setCharacterClass,
-    setCharacterRace,
-    setCharacterSubclass,
     characterList: Object.values(characters).sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())),
   };
 };
