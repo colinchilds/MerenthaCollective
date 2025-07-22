@@ -10,7 +10,7 @@ export default function LevelInfo(props) {
     <React.Fragment>
       <CmtCardHeader title="Level Information" />
       <CmtCardContent>
-        <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+        <Box pb={{ xs: 3, md: 4, xl: 6 }}>
           <TableContainer>
             <Table size="small">
               <TableBody>

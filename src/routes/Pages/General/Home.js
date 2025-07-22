@@ -14,6 +14,12 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '7/22/2025',
+    message:
+      'Added new character selector in calculators to allow for multiple characters. Added Warrior specializations to skill calculator. ' +
+      'Added more maps for Cab and Wolvesdale.',
+  },
+  {
     date: '7/5/2025',
     message:
       'Improve map viewer with zoom and pan functionality. Added skill and stat max button, as well as exp max calculation to quickly calculate ' +

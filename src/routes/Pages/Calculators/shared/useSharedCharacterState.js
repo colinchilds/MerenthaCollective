@@ -49,6 +49,11 @@ const createDefaultCharacter = (name = 'Character 1', id = null) => ({
   statLevels: createDefaultStatLevels(),
   skillIncrements: createDefaultSkillIncrements(),
   statIncrements: createDefaultStatIncrements(),
+  warriorSpecializations: {
+    newbie: null,
+    elite: null,
+    legend: null,
+  },
   createdAt: Date.now(),
   lastModified: Date.now(),
 });
@@ -88,6 +93,11 @@ export const useSharedCharacterState = () => {
             skillLevels: char.skillLevels || createDefaultSkillLevels(),
             skillIncrements: createDefaultSkillIncrements(),
             statIncrements: createDefaultStatIncrements(),
+            warriorSpecializations: char.warriorSpecializations || {
+              newbie: null,
+              elite: null,
+              legend: null,
+            },
           };
         });
         if (skillActiveId && skillChars[JSON.parse(skillActiveId)]) {
@@ -100,6 +110,11 @@ export const useSharedCharacterState = () => {
         Object.values(statChars).forEach((char) => {
           if (migratedCharacters[char.id]) {
             migratedCharacters[char.id].statLevels = char.statLevels || createDefaultStatLevels();
+            migratedCharacters[char.id].warriorSpecializations = char.warriorSpecializations || {
+              newbie: null,
+              elite: null,
+              legend: null,
+            };
           } else {
             migratedCharacters[char.id] = {
               ...char,
@@ -107,6 +122,11 @@ export const useSharedCharacterState = () => {
               statLevels: char.statLevels || createDefaultStatLevels(),
               skillIncrements: createDefaultSkillIncrements(),
               statIncrements: createDefaultStatIncrements(),
+              warriorSpecializations: char.warriorSpecializations || {
+                newbie: null,
+                elite: null,
+                legend: null,
+              },
             };
           }
         });
@@ -170,13 +190,18 @@ export const useSharedCharacterState = () => {
     (character) => {
       if (!character) return character;
 
-      const needsUpdate = !character.skillIncrements || !character.statIncrements;
+      const needsUpdate = !character.skillIncrements || !character.statIncrements || !character.warriorSpecializations;
 
       if (needsUpdate) {
         const updatedCharacter = {
           ...character,
           skillIncrements: character.skillIncrements || createDefaultSkillIncrements(),
           statIncrements: character.statIncrements || createDefaultStatIncrements(),
+          warriorSpecializations: character.warriorSpecializations || {
+            newbie: null,
+            elite: null,
+            legend: null,
+          },
         };
 
         setCharacters((prev) => ({

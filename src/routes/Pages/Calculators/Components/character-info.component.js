@@ -31,7 +31,7 @@ export default function CharacterInfo(props) {
   return (
     <div>
       <CmtCardContent>
-        <Box pb={{ xs: 6, md: 10, xl: 16 }}>
+        <Box pb={{ xs: 3, md: 4, xl: 6 }}>
           <GridContainer>
             <Grid item xs={6} sm={3}>
               <FormControl style={{ width: '100%' }}>

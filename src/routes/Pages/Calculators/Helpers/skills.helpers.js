@@ -288,7 +288,7 @@ function trainingFormula(charClass, skill, lvl) {
   }
 }
 
-export function getSkillMultipliers(charClass, subclass, race) {
+export function getSkillMultipliers(charClass, subclass, race, warriorSpecializations = null) {
   charClass = charClass.toLowerCase();
   subclass = subclass.toLowerCase();
   race = race.toLowerCase();
@@ -532,7 +532,7 @@ export function getSkillMultipliers(charClass, subclass, race) {
       // Magic/Nature
       multipliers['nature'] = 55;
       break;
-    case 'warrior': // TODO: specializations need to be accounted for
+    case 'warrior':
       multipliers['attack'] = 100;
       multipliers['defense'] = 110;
       multipliers[horseSkill] = 100;
@@ -542,6 +542,26 @@ export function getSkillMultipliers(charClass, subclass, race) {
       multipliers['knife'] = 95;
       multipliers['flail'] = 95;
       multipliers['projectile'] = 95;
+
+      // Apply warrior specializations
+      if (warriorSpecializations) {
+        const specializableSkills = ['attack', 'two handed', 'axe', 'blade', 'blunt', 'knife', 'flail', 'projectile'];
+
+        // Apply newbie specialization (110 multiplier)
+        if (warriorSpecializations.newbie && specializableSkills.includes(warriorSpecializations.newbie)) {
+          multipliers[warriorSpecializations.newbie] = 110;
+        }
+
+        // Apply elite specialization (110 multiplier)
+        if (warriorSpecializations.elite && specializableSkills.includes(warriorSpecializations.elite)) {
+          multipliers[warriorSpecializations.elite] = 110;
+        }
+
+        // Apply legend specialization (125 multiplier, overwrites previous specialization)
+        if (warriorSpecializations.legend && specializableSkills.includes(warriorSpecializations.legend)) {
+          multipliers[warriorSpecializations.legend] = 125;
+        }
+      }
       break;
     case 'druid':
       // Magic/Nature

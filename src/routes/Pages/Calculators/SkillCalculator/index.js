@@ -4,6 +4,7 @@ import CmtCard from '@coremat/CmtCard';
 import { classes, intToString, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import CharacterInfo from '../Components/character-info.component';
+import WarriorSpecializations from '../Components/WarriorSpecializations';
 import { getSkillCost, getSkillMax, getSkillMultipliers, skillNames } from '../Helpers/skills.helpers';
 import { getMaxExp } from '../Helpers/stats.helpers';
 import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typography, IconButton } from '@mui/material';
@@ -54,7 +55,9 @@ const SkillCalculator = () => {
   const level = (activeCharacter && activeCharacter.level) || 1;
   const skillLevels = (activeCharacter && activeCharacter.skillLevels) || initSkills;
   const skillInc = (activeCharacter && activeCharacter.skillIncrements) || initSkills;
-  const [multipliers, setMultipliers] = useState(getSkillMultipliers(charClass, subclass, race));
+  const [multipliers, setMultipliers] = useState(
+    getSkillMultipliers(charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations),
+  );
   const [skillCost, setSkillCost] = useState({ ...initSkills });
 
   const [charSkillTotal, setCharSkillTotal] = useState(0);
@@ -117,6 +120,37 @@ const SkillCalculator = () => {
     updateSkillInc(skill, maxIncrement);
   };
 
+  const updateWarriorSpecializations = (newSpecializations) => {
+    updateActiveCharacter({
+      warriorSpecializations: newSpecializations,
+    });
+  };
+
+  const getSkillSpecializationLevel = (skill) => {
+    if (!activeCharacter || !activeCharacter.warriorSpecializations || subclass !== 'Warrior') {
+      return null;
+    }
+
+    const specs = activeCharacter.warriorSpecializations;
+    if (specs.legend === skill) return 'legend';
+    if (specs.elite === skill) return 'elite';
+    if (specs.newbie === skill) return 'newbie';
+    return null;
+  };
+
+  const getSpecializationIndicator = (specializationLevel) => {
+    switch (specializationLevel) {
+      case 'legend':
+        return '★★';
+      case 'elite':
+        return '★';
+      case 'newbie':
+        return '★';
+      default:
+        return '';
+    }
+  };
+
   useEffect(() => {
     var cst = 0;
     var st = 0;
@@ -137,8 +171,10 @@ const SkillCalculator = () => {
   }, [skillLevels, skillInc, charClass, subclass, race, level, multipliers]);
 
   useEffect(() => {
-    setMultipliers(getSkillMultipliers(charClass, subclass, race));
-  }, [charClass, subclass, race]);
+    setMultipliers(
+      getSkillMultipliers(charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations),
+    );
+  }, [charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations]);
 
   useEffect(() => {
     setMaxExp(getMaxExp(level));
@@ -189,6 +225,17 @@ const SkillCalculator = () => {
           race={race}
           setRace={setRace}
         />
+        {subclass === 'Warrior' && (
+          <Fragment>
+            <CmtCardHeader title="Specializations" />
+            <CmtCardContent>
+              <WarriorSpecializations
+                warriorSpecializations={activeCharacter && activeCharacter.warriorSpecializations}
+                onUpdate={updateWarriorSpecializations}
+              />
+            </CmtCardContent>
+          </Fragment>
+        )}
         {Object.keys(skillNames).map((section, sectionIndex) => (
           <Fragment key={sectionIndex}>
             {hasItemInSection(section, multipliers) && (
@@ -206,7 +253,19 @@ const SkillCalculator = () => {
                           style={{ padding: 10 }}
                           display={multipliers[skill] ? 'div' : 'none'}>
                           <Grid item xs={6} sm={3}>
-                            <Typography>{skill}</Typography>
+                            <Box display="flex" alignItems="center" gap={1}>
+                              <Typography>{skill}</Typography>
+                              {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
+                                <Typography
+                                  variant="body2"
+                                  sx={{
+                                    color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
+                                    fontWeight: 'bold',
+                                  }}>
+                                  {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
+                                </Typography>
+                              )}
+                            </Box>
                           </Grid>
                           <Grid item xs={6} sm={3} align={{ xs: 'left', sm: 'center' }}>
                             <TextField
