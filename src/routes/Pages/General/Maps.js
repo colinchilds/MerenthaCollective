@@ -18,10 +18,6 @@ const maps = [
     url: '/images/maps/Aerioth.gif',
   },
   {
-    name: 'Ancient Forest',
-    url: '/images/maps/AncientForest.jpg',
-  },
-  {
     name: 'Asmar Caves',
     url: '/images/maps/AsmarCaves.gif',
   },
@@ -72,6 +68,10 @@ const maps = [
   {
     name: 'Boar Island',
     url: '/images/maps/BoarIsland.gif',
+  },
+  {
+    name: 'Cabeiri',
+    url: '/images/maps/Cabeiri.png',
   },
   {
     name: 'Calamyr City',
