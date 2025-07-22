@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { FormControl, InputLabel, Select, MenuItem, Typography, Grid, Divider } from '@mui/material';
 
 const SPECIALIZABLE_SKILLS = ['attack', 'two handed', 'axe', 'blade', 'blunt', 'knife', 'flail', 'projectile'];
@@ -7,10 +7,19 @@ const WarriorSpecializations = ({ warriorSpecializations = {}, onUpdate }) => {
   const { newbie, elite, legend } = warriorSpecializations;
 
   const handleSpecializationChange = (tier, value) => {
-    const updatedSpecializations = {
+    let updatedSpecializations = {
       ...warriorSpecializations,
       [tier]: value || null,
     };
+
+    // If we're updating newbie or elite and it conflicts with legend, clear legend
+    if ((tier === 'newbie' || tier === 'elite') && updatedSpecializations.legend) {
+      const otherTier = tier === 'newbie' ? updatedSpecializations.elite : updatedSpecializations.newbie;
+      if (value === otherTier && value === updatedSpecializations.legend) {
+        updatedSpecializations.legend = null;
+      }
+    }
+
     onUpdate(updatedSpecializations);
   };
 
@@ -19,13 +28,25 @@ const WarriorSpecializations = ({ warriorSpecializations = {}, onUpdate }) => {
     switch (tier) {
       case 'newbie':
       case 'elite':
-        // Can select any skill except already specialized ones
-        const usedSkills = [tier === 'newbie' ? elite : newbie, legend].filter(Boolean);
-        return SPECIALIZABLE_SKILLS.filter((skill) => !usedSkills.includes(skill));
+        // Can select any skill except the other tier's selection (legend can overlap)
+        // Always include the current tier's selection so it doesn't disappear
+        const currentTierSkill = tier === 'newbie' ? newbie : elite;
+        const otherTierSkill = tier === 'newbie' ? elite : newbie;
+        const availableSkills = SPECIALIZABLE_SKILLS.filter(
+          (skill) => skill === currentTierSkill || !otherTierSkill || skill !== otherTierSkill,
+        );
+        return availableSkills;
 
       case 'legend':
-        // Can only select from already specialized skills
-        return [newbie, elite].filter(Boolean);
+        // Can only select from skills specialized in newbie OR elite, but not both
+        const availableForLegend = [];
+        if (newbie && newbie !== elite) {
+          availableForLegend.push(newbie);
+        }
+        if (elite && elite !== newbie) {
+          availableForLegend.push(elite);
+        }
+        return availableForLegend;
 
       default:
         return [];
@@ -48,6 +69,26 @@ const WarriorSpecializations = ({ warriorSpecializations = {}, onUpdate }) => {
         return '';
     }
   };
+
+  // Clear legend if it becomes invalid
+  useEffect(() => {
+    if (legend) {
+      const availableForLegend = [];
+      if (newbie && newbie !== elite) {
+        availableForLegend.push(newbie);
+      }
+      if (elite && elite !== newbie) {
+        availableForLegend.push(elite);
+      }
+
+      if (!availableForLegend.includes(legend)) {
+        onUpdate({
+          ...warriorSpecializations,
+          legend: null,
+        });
+      }
+    }
+  }, [newbie, elite, legend, onUpdate, warriorSpecializations]);
 
   return (
     <Fragment>
