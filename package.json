@@ -12,28 +12,29 @@
     "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.3",
     "@testing-library/jest-dom": "^4.2.4",
-    "@testing-library/react": "^9.3.2",
-    "@testing-library/user-event": "^7.1.2",
+    "@testing-library/react": "^9.5.0",
+    "@testing-library/user-event": "^7.2.1",
     "clipboard-copy": "^4.0.1",
-    "clsx": "^1.1.1",
-    "jss": "^10.2.0",
-    "prismjs": "^1.26.0",
-    "prop-types": "^15.7.2",
+    "clsx": "^1.2.1",
+    "jss": "^10.10.0",
+    "prismjs": "^1.30.0",
+    "prop-types": "^15.8.1",
     "react": "^17.0.2",
     "react-app-polyfill": "^2.0.0",
-    "react-bottom-scroll-listener": "^5.0.0",
+    "react-bottom-scroll-listener": "^5.2.0",
     "react-dom": "^17.0.2",
-    "react-number-format": "^4.4.1",
+    "react-is": "^19.1.0",
+    "react-number-format": "^4.9.4",
     "react-perfect-scrollbar": "^1.5.8",
-    "react-router": "^5.2.0",
-    "react-router-dom": "^5.2.0",
+    "react-router": "^5.3.4",
+    "react-router-dom": "^5.3.4",
     "react-router-hash-link": "^2.4.3",
-    "react-scripts": "^5.0.0",
+    "react-scripts": "^5.0.1",
     "react-slick": "^0.26.1",
     "react-viewer": "^3.2.2",
     "slick-carousel": "^1.8.1",
-    "styled-components": "^5.3.3",
-    "typescript": "^3.9.5"
+    "styled-components": "^5.3.11",
+    "typescript": "^3.9.10"
   },
   "resolutions": {
     "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
@@ -52,7 +53,11 @@
     "extends": "react-app"
   },
   "browserslist": {
-    "production": [ ">0.2%", "not dead", "not op_mini all" ],
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
     "development": [
       "ie 11",
       "last 1 chrome version",
@@ -61,24 +66,26 @@
     ]
   },
   "devDependencies": {
-    "@babel/core": "^7.16.7",
-    "@babel/eslint-parser": "^7.16.5",
-    "@typescript-eslint/eslint-plugin": "^5.9.1",
-    "@typescript-eslint/parser": "^5.9.1",
+    "@babel/core": "^7.28.0",
+    "@babel/eslint-parser": "^7.28.0",
+    "@babel/preset-env": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
+    "@typescript-eslint/parser": "^5.62.0",
     "babel-eslint": "^10.1.0",
-    "eslint": "^8.6.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-config-react-app": "^7.0.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^8.10.2",
+    "eslint-config-react-app": "^7.0.1",
     "eslint-plugin-flowtype": "^8.0.3",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jsx-a11y": "^6.5.1",
-    "eslint-plugin-prettier": "^4.0.0",
-    "eslint-plugin-react": "^7.28.0",
-    "eslint-plugin-react-hooks": "^4.3.0",
-    "husky": "^4.2.3",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-jsx-a11y": "^6.10.2",
+    "eslint-plugin-prettier": "^4.2.5",
+    "eslint-plugin-react": "^7.37.5",
+    "eslint-plugin-react-hooks": "^4.6.2",
+    "husky": "^4.3.8",
     "jest": "24.9.0",
-    "lint-staged": "^10.0.8",
-    "prettier": "^2.5.1",
+    "lint-staged": "^10.5.4",
+    "prettier": "^2.8.8",
     "prettier-miscellaneous": "^1.5.3"
   },
   "husky": {
@@ -87,8 +94,12 @@
     }
   },
   "lint-staged": {
-    "*.+(js|jsx)": [ "eslint --fix" ],
-    "*.+(js|jsx|json|css)": [ "prettier --write" ]
+    "*.+(js|jsx)": [
+      "eslint --fix"
+    ],
+    "*.+(js|jsx|json|css)": [
+      "prettier --write"
+    ]
   },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  "packageManager": "yarn@4.9.2"
 }

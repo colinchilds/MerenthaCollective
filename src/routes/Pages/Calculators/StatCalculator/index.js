@@ -45,6 +45,10 @@ const StatCalculator = () => {
     updateActiveCharacter,
     switchCharacter,
     characterList,
+    setCharacterLevel,
+    setCharacterClass,
+    setCharacterRace,
+    setCharacterSubclass,
   } = useSharedCharacterState();
 
   const [advExp, setAdvExp] = useState(0);
@@ -83,27 +87,6 @@ const StatCalculator = () => {
       },
     });
   };
-
-  const setCharClass = (newCharClass) => {
-    const newSubclass = subclasses[newCharClass][0];
-    updateActiveCharacter({
-      charClass: newCharClass,
-      subclass: newSubclass,
-    });
-  };
-
-  const setSubclass = (newSubclass) => {
-    updateActiveCharacter({ subclass: newSubclass });
-  };
-
-  const setRace = (newRace) => {
-    updateActiveCharacter({ race: newRace });
-  };
-
-  const setLevel = (newLevel) => {
-    updateActiveCharacter({ level: newLevel });
-  };
-
   const updateStatInc = (k, v) => {
     if (v < 0) {
       v = 0;
@@ -179,13 +162,13 @@ const StatCalculator = () => {
         </CmtCardContent>
         <CharacterInfo
           level={level}
-          setLevel={setLevel}
           charClass={charClass}
-          setCharClass={setCharClass}
           subclass={subclass}
-          setSubclass={setSubclass}
           race={race}
-          setRace={setRace}
+          setLevel={setCharacterLevel}
+          setCharClass={setCharacterClass}
+          setSubclass={setCharacterSubclass}
+          setRace={setCharacterRace}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         <CmtCardHeader title="Stat Information" />
