@@ -357,7 +357,7 @@ export function getSkillMultipliers(charClass, subclass, race, warriorSpecializa
       multipliers['attack'] = 100;
       multipliers['defense'] = 90;
       multipliers['melee'] = 100;
-      multipliers['two handed'] = 100;
+      multipliers['two handed'] = 95;
       multipliers['double wielding'] = 100;
       // Weapons
       multipliers['blade'] = 90;
