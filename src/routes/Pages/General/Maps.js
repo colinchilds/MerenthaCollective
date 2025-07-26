@@ -331,7 +331,7 @@ const maps = [
   },
   {
     name: 'Whitestorm',
-    url: '/images/maps/Whitestorm.jpg',
+    url: '/images/maps/Whitestorm.png',
   },
   {
     name: 'Whitestorm 2',
