@@ -339,7 +339,7 @@ const maps = [
   },
   {
     name: 'Whitestorm 3',
-    url: '/images/maps/Whitestorm3.gif',
+    url: '/images/maps/Whitestorm.jpg',
   },
   {
     name: 'Whitestorm Farm',
