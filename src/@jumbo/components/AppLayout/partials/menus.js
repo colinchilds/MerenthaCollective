@@ -4,7 +4,6 @@ import {
   AccessibilityNew,
   Home,
   MyLocation,
-  People,
   Textsms,
   Map,
   Calculate,
@@ -12,6 +11,7 @@ import {
   Casino,
   Shield,
   Terrain,
+  Groups,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -30,6 +30,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Calculate />,
         link: '/calculators/skills',
+      },
+      {
+        name: 'Party',
+        type: 'item',
+        icon: <Groups />,
+        link: '/calculators/party',
       },
     ],
   },
@@ -60,12 +66,6 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Terrain />,
         link: '/areas',
-      },
-      {
-        name: 'Party',
-        type: 'item',
-        icon: <People />,
-        link: '/party',
       },
       {
         name: 'Rolling',
