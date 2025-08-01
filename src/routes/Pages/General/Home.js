@@ -14,6 +14,11 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '8/1/2025',
+    message:
+      'Removed werewolf as a separate race and made it a checkbox with day/night toggle on only classes and races that can be werewolves. ',
+  },
+  {
     date: '7/22/2025',
     message:
       'Added new character selector in calculators to allow for multiple characters. Added Warrior specializations to skill calculator. ' +

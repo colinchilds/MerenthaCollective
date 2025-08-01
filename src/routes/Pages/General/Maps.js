@@ -322,8 +322,8 @@ const maps = [
     url: '/images/maps/WDMiddleDeathSpirals.jpg',
   },
   {
-    name: 'Wolvesdale Upper Deather Spirals',
-    url: '/images/maps/WDUpperDeatherSpirals.jpg',
+    name: 'Wolvesdale Upper Death Spirals',
+    url: '/images/maps/WDUpperDeathSpirals.jpg',
   },
   {
     name: 'Wolvesdale - Full',

@@ -154,10 +154,9 @@ const SkillCalculator = () => {
   }, [skillLevels, skillInc, charClass, subclass, race, level, multipliers]);
 
   useEffect(() => {
-    setMultipliers(
-      getSkillMultipliers(charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations),
-    );
-  }, [charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations]);
+    const warriorSpecs = activeCharacter && activeCharacter.warriorSpecializations;
+    setMultipliers(getSkillMultipliers(charClass, subclass, race, warriorSpecs));
+  }, [charClass, subclass, race, activeCharacter]);
 
   useEffect(() => {
     setMaxExp(getMaxExp(level));
@@ -207,6 +206,7 @@ const SkillCalculator = () => {
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
+          showWerewolf={false}
         />
         {subclass === 'Warrior' && (
           <Fragment>

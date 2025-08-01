@@ -159,7 +159,7 @@ export function getBaseCost(level) {
   }
 }
 
-export function getStatCost(stat, charClass, race, statLevel = 1, count = 1) {
+export function getStatCost(stat, charClass, race, statLevel = 1, count = 1, isWerewolf = false, werewolfTimeOfDay = 'day') {
   statLevel = parseInt(statLevel);
   count = parseInt(count);
   if (!count || count <= 0) {
@@ -170,23 +170,31 @@ export function getStatCost(stat, charClass, race, statLevel = 1, count = 1) {
 
   let cost = 0;
   const classModifier = getClassModifier(charClass, stat);
-  const raceModifier = getRaceModifier(race, stat);
-  cost = Math.trunc(getBaseCost(statLevel) * (1.0 + classModifier + raceModifier)) * 1000;
+  let effectiveRaceModifier = getRaceModifier(race, stat);
 
-  /* // @TODO need a Were-wolf toggle
-    if((this_player()->query_were_wolf() && (this_player()->query_race() != "were-wolf")))
-      if((stat == "wisdom") || (stat == "intelligence") || (stat == "charisma"))
-        cost *= 1.15;
-  */
+  // Apply werewolf mechanics - determine which race stats to use
+  if (isWerewolf && werewolfTimeOfDay === 'night') {
+    // During night: use werewolf stats instead of base race
+    effectiveRaceModifier = getRaceModifier('Were-wolf', stat);
+  }
 
-  return cost + getStatCost(stat, charClass, race, statLevel + 1, count - 1);
+  cost = Math.trunc(getBaseCost(statLevel) * (1.0 + classModifier + effectiveRaceModifier)) * 1000;
+
+  // Apply 15% penalty to mental stats for werewolves ONLY during day
+  if (isWerewolf && werewolfTimeOfDay === 'day') {
+    if (stat === 'Wisdom' || stat === 'Intelligence' || stat === 'Charisma') {
+      cost = Math.trunc(cost * 1.15);
+    }
+  }
+
+  return cost + getStatCost(stat, charClass, race, statLevel + 1, count - 1, isWerewolf, werewolfTimeOfDay);
 }
 
-export function getMaxStat(stat, charClass, race, level) {
+export function getMaxStat(stat, charClass, race, level, isWerewolf = false, werewolfTimeOfDay = 'day') {
   const maxEXP = getMaxExp(level);
   let statLvl = 0;
 
-  while (statLvl < 500 && getStatCost(stat, charClass, race, statLvl, 1) <= maxEXP) {
+  while (statLvl < 500 && getStatCost(stat, charClass, race, statLvl, 1, isWerewolf, werewolfTimeOfDay) <= maxEXP) {
     statLvl++;
   }
   return statLvl;
