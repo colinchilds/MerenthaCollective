@@ -12,6 +12,7 @@ import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import PartyCalculator from './Pages/Calculators/PartyCalculator';
+import WorldMap from './Pages/General/WorldMap';
 import Maps from './Pages/General/Maps';
 import Builder from './Pages/Guides/Builder';
 import BuilderRooms from './Pages/Guides/Builder/Rooms';
@@ -46,6 +47,7 @@ const Routes = () => {
           {/* General */}
           <Route exact path="/" component={HomePage} />
           <Route path="/coords" component={Coordinates} />
+          <Route path="/worldmap" component={WorldMap} />
           <Route path="/maps" component={Maps} />
           <Route path="/combat" component={Combat} />
           <Route path="/socials" component={Socials} />
