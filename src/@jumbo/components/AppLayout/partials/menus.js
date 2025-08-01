@@ -12,6 +12,7 @@ import {
   Shield,
   Terrain,
   Groups,
+  TravelExplore,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -54,6 +55,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <MyLocation />,
         link: '/coords',
+      },
+      {
+        name: 'World Map',
+        type: 'item',
+        icon: <TravelExplore />,
+        link: '/worldmap',
       },
       {
         name: 'Maps',
