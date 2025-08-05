@@ -103,17 +103,21 @@ export function formatGameTime(gameTime) {
   const { year, month, day, hour, minute } = gameTime;
   const monthName = GAME_TIME_CONSTANTS.MONTH_NAMES[month];
 
-  // In Merentha's 20-hour system: 10 PM = noon (hour 10), 10 AM = midnight (hour 22)
-  // So hours 0-9 are AM (midnight to 9 AM), hours 10-19 are PM (noon to 9 PM)
-  const period = hour >= 10 ? 'PM' : 'AM';
-  let displayHour;
-
-  if (hour >= 10) {
-    // PM hours: 10 = 12 PM (noon), 11 = 1 PM, ..., 19 = 9 PM
-    displayHour = hour === 10 ? 12 : hour - 9;
+  // Convert internal hour (0-19) to display format (1-10 + AM/PM)
+  // 10 AM = hour 0, 1-9 AM = hours 1-9, 10 PM = hour 10, 1-9 PM = hours 11-19
+  let displayHour, period;
+  if (hour === 0) {
+    displayHour = 10;
+    period = 'AM';
+  } else if (hour <= 9) {
+    displayHour = hour;
+    period = 'AM';
+  } else if (hour === 10) {
+    displayHour = 10;
+    period = 'PM';
   } else {
-    // AM hours: 0 = 12 AM (midnight), 1 = 1 AM, ..., 9 = 9 AM
-    displayHour = hour === 0 ? 12 : hour;
+    displayHour = hour - 10;
+    period = 'PM';
   }
 
   return `${day}${getOrdinalSuffix(day)} day of ${monthName} in year ${year} NM, ${displayHour}:${minute
