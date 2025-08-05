@@ -14,6 +14,10 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '8/5/2025',
+    message: 'Added a date/time calculator to convert between Merentha time and real time. ',
+  },
+  {
     date: '8/1/2025',
     message:
       'Removed werewolf as a separate race and made it a checkbox with day/night toggle on only classes and races that can be werewolves. ',

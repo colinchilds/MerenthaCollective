@@ -12,6 +12,7 @@ import {
   Shield,
   Terrain,
   Groups,
+  AccessTime,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -36,6 +37,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Groups />,
         link: '/calculators/party',
+      },
+      {
+        name: 'Time Converter',
+        type: 'item',
+        icon: <AccessTime />,
+        link: '/calculators/time',
       },
     ],
   },

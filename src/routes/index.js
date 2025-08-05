@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
+import TimeCalculator from './Pages/Calculators/TimeCalculator';
 import Coordinates from './Pages/General/Coordinates';
 import Combat from './Pages/General/Combat';
 import Cleric from './Pages/Guides/Cleric';
@@ -57,6 +58,7 @@ const Routes = () => {
           <Route path="/calculators/stats" component={StatCalculator} />
           <Route path="/calculators/skills" component={SkillCalculator} />
           <Route path="/calculators/party" component={PartyCalculator} />
+          <Route path="/calculators/time" component={TimeCalculator} />
 
           {/* Guides */}
           <Route path="/guides/cleric" component={Cleric} />
