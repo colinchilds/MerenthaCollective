@@ -186,9 +186,9 @@ const TimeCalculator = () => {
       <Grid container spacing={3}>
         {/* Real Time to Game Time */}
         <Grid item xs={12} md={6}>
-          <CmtCard>
+          <CmtCard sx={{ height: '320px', minWidth: '340px', display: 'flex', flexDirection: 'column' }}>
             <CmtCardHeader title="Real Time → Game Time" />
-            <CmtCardContent>
+            <CmtCardContent sx={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ mt: 2, mb: 3 }}>
                 <TextField
                   fullWidth
@@ -204,11 +204,13 @@ const TimeCalculator = () => {
                   sx={{ mb: 2 }}
                 />
                 <Box sx={{ display: 'flex', gap: 1, mb: 2 }}>
-                  <Button variant="outlined" size="small" onClick={setToNow}>
+                  <Button variant="outlined" size="medium" onClick={setToNow}>
                     Current Time
                   </Button>
                 </Box>
               </Box>
+
+              <Box sx={{ flexGrow: 1 }} />
 
               <Divider sx={{ my: 2 }} />
 
@@ -228,9 +230,9 @@ const TimeCalculator = () => {
 
         {/* Game Time to Real Time */}
         <Grid item xs={12} md={6}>
-          <CmtCard>
+          <CmtCard sx={{ height: '320px', minWidth: '340px', display: 'flex', flexDirection: 'column' }}>
             <CmtCardHeader title="Game Time → Real Time" />
-            <CmtCardContent>
+            <CmtCardContent sx={{ flex: 1, overflow: 'auto', display: 'flex', flexDirection: 'column' }}>
               <Box sx={{ mt: 2, mb: 3 }}>
                 <Grid container spacing={2}>
                   <Grid item xs={6}>
@@ -305,6 +307,8 @@ const TimeCalculator = () => {
                   </Typography>
                 )}
               </Box>
+
+              <Box sx={{ flexGrow: 1 }} />
 
               <Divider sx={{ my: 2 }} />
 
