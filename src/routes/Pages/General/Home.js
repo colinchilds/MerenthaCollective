@@ -14,6 +14,10 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '8/9/2025',
+    message: 'Added a page for helping with some common commands and their syntax.',
+  },
+  {
     date: '8/5/2025',
     message: 'Added a date/time calculator to convert between Merentha time and real time. ',
   },

@@ -21,6 +21,7 @@ import Socials from './Pages/General/Socials';
 import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
 import Areas from './Pages/General/Areas';
+import PlayerCommands from './Pages/General/PlayerCommands';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -53,6 +54,7 @@ const Routes = () => {
           <Route path="/fireworks" component={Fireworks} />
           <Route path="/rolling" component={Rolling} />
           <Route path="/areas" component={Areas} />
+          <Route path="/commands" component={PlayerCommands} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />

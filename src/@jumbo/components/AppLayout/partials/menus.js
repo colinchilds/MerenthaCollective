@@ -13,6 +13,7 @@ import {
   Terrain,
   Groups,
   AccessTime,
+  Terminal,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -97,6 +98,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <LocalFireDepartment />,
         link: '/fireworks',
+      },
+      {
+        name: 'Common Commands',
+        type: 'item',
+        icon: <Terminal />,
+        link: '/commands',
       },
     ],
   },
