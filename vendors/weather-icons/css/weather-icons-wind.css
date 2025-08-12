@@ -1,13 +1,11 @@
 @font-face {
   font-family: 'weathericons';
   src: url('../font/weathericons-regular-webfont.eot');
-  src: url('../font/weathericons-regular-webfont.eot?#iefix')
-      format('embedded-opentype'),
+  src: url('../font/weathericons-regular-webfont.eot?#iefix') format('embedded-opentype'),
     url('../font/weathericons-regular-webfont.woff2') format('woff2'),
     url('../font/weathericons-regular-webfont.woff') format('woff'),
     url('../font/weathericons-regular-webfont.ttf') format('truetype'),
-    url('../font/weathericons-regular-webfont.svg#weather_iconsregular')
-      format('svg');
+    url('../font/weathericons-regular-webfont.svg#weather_iconsregular') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -63,7 +61,7 @@
 }
 
 .wi-wind:before {
-  content: "\f0b1";
+  content: '\f0b1';
 }
 
 .wi-wind.towards-0-deg {
