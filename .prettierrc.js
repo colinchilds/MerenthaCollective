@@ -3,8 +3,8 @@ module.exports = {
   bracketSpacing: true,
   jsxBracketSameLine: true,
   singleQuote: true,
-  trailingComma: "all",
+  trailingComma: 'all',
   tabWidth: 2,
-  endOfLine: "auto"
+  endOfLine: 'auto',
   // Override any other rules you want
 };

@@ -4,7 +4,6 @@ import GridContainer from '@jumbo/components/GridContainer';
 import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { Typography, Box, Chip, Paper, Link } from '@mui/material';
 import { alpha } from '@mui/material/styles';
 
@@ -671,9 +670,7 @@ const PlayerCommands = () => {
   };
 
   const renderDescriptionWithLinks = (description) => {
-    const commandNames = commands.map((cmd) => cmd.name);
     const parts = [];
-    let lastIndex = 0;
 
     // Look for "See also:" pattern and link commands after it
     const seeAlsoMatch = description.match(/(.*See also:\s*)(.+)/i);
@@ -713,7 +710,8 @@ const PlayerCommands = () => {
                 '&:hover': {
                   color: 'primary.dark',
                 },
-              }}>
+              }}
+            >
               {commandName}
             </Link>,
           );
@@ -771,7 +769,8 @@ const PlayerCommands = () => {
                       mb: 2,
                       color: 'primary.main',
                       textTransform: 'lowercase',
-                    }}>
+                    }}
+                  >
                     {selectedCommand.name}
                   </Typography>
                   <Typography variant="h6" sx={{ mb: 1 }}>
