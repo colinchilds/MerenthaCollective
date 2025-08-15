@@ -17,6 +17,7 @@ import {
   IconButton,
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
@@ -110,6 +111,25 @@ const StatCalculator = () => {
     const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
     const maxIncrement = Math.max(0, maxValue - currentValue);
     updateStatInc(stat, maxIncrement);
+  };
+
+  const handleApplyIncrement = (stat) => {
+    const currentValue = parseInt(statLevels[stat]) || 0;
+    const incrementValue = parseInt(statInc[stat]) || 0;
+    const newValue = currentValue + incrementValue;
+    const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
+    const finalValue = Math.min(newValue, maxValue);
+
+    updateActiveCharacter({
+      statLevels: {
+        ...statLevels,
+        [stat]: finalValue,
+      },
+      statIncrements: {
+        ...statInc,
+        [stat]: 0,
+      },
+    });
   };
 
   useEffect(() => {
@@ -238,16 +258,29 @@ const StatCalculator = () => {
                       MAX
                     </Button>
                     {statInc[stat] > 0 && (
-                      <IconButton
-                        size="small"
-                        onClick={() => updateStatInc(stat, 0)}
-                        style={{
-                          border: '1px solid rgba(0, 0, 0, 0.23)',
-                          borderRadius: '4px',
-                          padding: '4px',
-                        }}>
-                        <ClearIcon fontSize="small" />
-                      </IconButton>
+                      <>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleApplyIncrement(stat)}
+                          style={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                            color: '#4caf50',
+                          }}>
+                          <CheckIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => updateStatInc(stat, 0)}
+                          style={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                          }}>
+                          <ClearIcon fontSize="small" />
+                        </IconButton>
+                      </>
                     )}
                   </Box>
                 </Grid>
