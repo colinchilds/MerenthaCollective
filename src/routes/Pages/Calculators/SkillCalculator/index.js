@@ -274,7 +274,7 @@ const SkillCalculator = () => {
                             <TextField
                               size="small"
                               type="number"
-                              inputProps={{ min: 0, max: 500 }}
+                              inputProps={{ min: 0, max: 999 }}
                               style={{ minWidth: '120px' }}
                               value={skillLevels[skill]}
                               variant="outlined"
@@ -294,7 +294,7 @@ const SkillCalculator = () => {
                                 size="small"
                                 type="number"
                                 label="+"
-                                inputProps={{ min: 0, max: 500 }}
+                                inputProps={{ min: 0, max: 999 }}
                                 style={{ minWidth: '75px' }}
                                 value={skillInc[skill]}
                                 variant="outlined"
