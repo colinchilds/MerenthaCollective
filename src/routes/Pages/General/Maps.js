@@ -114,6 +114,10 @@ const maps = [
     url: '/images/maps/Drow2.jpg',
   },
   {
+    name: 'Ensi Fire Ants',
+    url: '/images/maps/EnsiFireAnts.png',
+  },
+  {
     name: 'Fairdale',
     url: '/images/maps/Fairdale.png',
   },
@@ -339,7 +343,7 @@ const maps = [
   },
   {
     name: 'Whitestorm 3',
-    url: '/images/maps/Whitestorm.jpg',
+    url: '/images/maps/Whitestorm3.jpg',
   },
   {
     name: 'Whitestorm Farm',
