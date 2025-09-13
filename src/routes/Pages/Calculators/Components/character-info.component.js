@@ -24,7 +24,7 @@ const natureClasses = {
   Mage: ['Druid', 'Healer', 'Wizard'],
   Fighter: ['Ranger'],
   Monk: ['Healer', 'Priest', 'Scholar', 'Shaman'],
-  Cleric: ['Priest'],
+  Cleric: false,
   Rogue: ['Bard'],
 };
 
@@ -52,9 +52,15 @@ export default function CharacterInfo(props) {
     return natureClasses[charClass].includes(subclass);
   }, [charClass, subclass]);
 
-  // Check if race can be werewolf (exclude Dragon, Lich, Drow)
+  // Check if race can be werewolf
+  // Exclude Dragon and Lich
+  // Include all Drow-elf
+  // Include all Nature subclasses
   const canBeWerewolf = useCallback(() => {
-    return race !== 'Dragon' && race !== 'Lich' && race !== 'Drow-elf' && hasNatureAccess();
+    if (level < 20) return false;
+    if (race === 'Dragon' || race === 'Lich') return false;
+    if (race === 'Drow-elf') return true;
+    return hasNatureAccess();
   }, [race, hasNatureAccess]);
 
   // Automatically clear werewolf when conditions are no longer met
