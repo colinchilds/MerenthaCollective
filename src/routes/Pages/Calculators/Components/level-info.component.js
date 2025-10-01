@@ -16,45 +16,14 @@ export default function LevelInfo(props) {
             <Table size="small">
               <TableBody>
                 <TableRow>
-                  <TableCell align="right">
-                    <Typography>
-                      <strong>Level {level} Requirements</strong>
-                    </Typography>
-                  </TableCell>
-                  <TableCell></TableCell>
-                  <TableCell align="right">
-                    <Typography>
-                      <strong>Level {level + 1} Requirements</strong>
-                    </Typography>
-                  </TableCell>
-                  <TableCell></TableCell>
-                </TableRow>
-
-                <TableRow>
                   <TableCell>
-                    <Typography>Stat Requirement</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>{Math.max(0, (level - 7) * 10)}</Typography>
-                  </TableCell>
-
-                  <TableCell>
-                    <Typography>Stat Requirement</Typography>
+                    <Typography>Next Stat Requirement</Typography>
                   </TableCell>
                   <TableCell>
                     <Typography>{Math.max(0, (level - 6) * 10)}</Typography>
                   </TableCell>
-                </TableRow>
-
-                <TableRow>
                   <TableCell>
-                    <Typography>Skill Requirement</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>{14 * (level + 1)}</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Typography>Skill Requirement</Typography>
+                    <Typography>Next Skill Requirement</Typography>
                   </TableCell>
                   <TableCell>
                     <Typography>{14 * (level + 2)}</Typography>
@@ -63,19 +32,19 @@ export default function LevelInfo(props) {
 
                 <TableRow>
                   <TableCell>
-                    <Typography>Max Experience</Typography>
-                  </TableCell>
-                  <TableCell>
-                    <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
-                      <Typography>{intToString(maxExp, 2)}</Typography>
-                    </Tooltip>
-                  </TableCell>
-                  <TableCell>
                     <Typography>Level Cost</Typography>
                   </TableCell>
                   <TableCell>
                     <Tooltip title={parseInt(advExp).toLocaleString('en-US')}>
                       <Typography>{intToString(advExp, 2)}</Typography>
+                    </Tooltip>
+                  </TableCell>
+                  <TableCell>
+                    <Typography>Max Experience</Typography>
+                  </TableCell>
+                  <TableCell>
+                    <Tooltip title={parseInt(maxExp).toLocaleString('en-US')}>
+                      <Typography>{intToString(maxExp, 2)}</Typography>
                     </Tooltip>
                   </TableCell>
                 </TableRow>
