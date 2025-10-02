@@ -3,6 +3,7 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { Box, Table, TableBody, TableCell, TableContainer, TableRow, Tooltip, Typography } from '@mui/material';
 import { intToString } from '../Helpers/calculator.helpers';
+import { alignProperty } from '@mui/material/styles/cssUtils';
 
 export default function LevelInfo(props) {
   const { level, advExp, maxExp } = props;
@@ -16,18 +17,19 @@ export default function LevelInfo(props) {
               <TableBody>
                 <TableRow>
                   <TableCell>
-                    <Typography>Stat Requirement</Typography>
+                    <Typography>Next Stat Requirement</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>{Math.max(0, (level - 7) * 10)}</Typography>
+                    <Typography>{Math.max(0, (level - 6) * 10)}</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>Skill Requirement</Typography>
+                    <Typography>Next Skill Requirement</Typography>
                   </TableCell>
                   <TableCell>
-                    <Typography>{14 * (level + 1)}</Typography>
+                    <Typography>{14 * (level + 2)}</Typography>
                   </TableCell>
                 </TableRow>
+
                 <TableRow>
                   <TableCell>
                     <Typography>Level Cost</Typography>
