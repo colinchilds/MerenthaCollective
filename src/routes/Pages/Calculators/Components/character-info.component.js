@@ -128,7 +128,7 @@ export default function CharacterInfo(props) {
                   type="number"
                   value={level}
                   onChange={(event) => setLevel(parseInt(event.target.value))}
-                  inputProps={{ max: 250 }}
+                  inputProps={{ max: 140 }}
                 />
               </FormControl>
             </Grid>
