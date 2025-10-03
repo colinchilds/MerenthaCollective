@@ -414,6 +414,15 @@ export const areas = [
     legendary: '',
   },
   {
+    name: 'Shanadan',
+    minLevel: 50,
+    maxLevel: 80,
+    aoe: '',
+    strong: '',
+    elite: '',
+    legendary: '',
+  },
+  {
     name: 'Sunken City',
     minLevel: null,
     maxLevel: null,
