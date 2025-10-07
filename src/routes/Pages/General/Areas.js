@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import {
+  Link,
   Table,
   TableBody,
   TableCell,
@@ -17,9 +18,10 @@ import {
   Paper,
 } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { continents } from 'data/Areas/index'; // ✅ use continents now
+import { continents } from 'data/Areas/index';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import QuestionMark from '@mui/icons-material/QuestionMark';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -44,7 +46,7 @@ const Areas = () => {
         </Typography>
       );
     }
-    return '-';
+    return <QuestionMark fontSize="small" />;
   };
 
   // Function to get level range display
@@ -89,6 +91,14 @@ const Areas = () => {
               </Box>
             </CmtCardHeader>
             <CmtCardContent>
+              <Typography size="medium">These values are player provided and may need updated.</Typography>
+              <Typography size="medium">
+                If you have any information missing below, please reach out via our{' '}
+                <Link href="https://github.com/colinchilds/MerenthaCollective/issues">GitHub&#8658;Issues</Link>
+              </Typography>
+              {/* ADD SOME PADDING BELOW THE ABOVE */}
+              <Typography>&nbsp;</Typography>
+
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
                 <Table size="small" stickyHeader>
                   <TableHead>

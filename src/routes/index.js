@@ -11,6 +11,7 @@ import Mage from './Pages/Guides/Mage';
 import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
+import Pet from './Pages/Guides/Pet';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import PartyCalculator from './Pages/Calculators/PartyCalculator';
 import Maps from './Pages/General/Maps';
@@ -69,6 +70,7 @@ const Routes = () => {
           <Route path="/guides/monk" component={Monk} />
           <Route path="/guides/rogue" component={Rogue} />
           <Route path="/guides/newbie" component={Newbie} />
+          <Route path="/guides/pets" component={Pet} />
           <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
           <Route component={Error404} />

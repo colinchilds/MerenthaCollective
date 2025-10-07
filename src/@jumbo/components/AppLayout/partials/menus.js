@@ -147,6 +147,12 @@ export const sidebarNavs = [
         icon: <AccessibilityNew />,
         link: '/guides/rogue',
       },
+      {
+        name: 'Pet',
+        type: 'item',
+        icon: <AccessibilityNew />,
+        link: '/guides/pets',
+      },
       // {
       //   name: 'Builder',
       //   type: 'collapse',
