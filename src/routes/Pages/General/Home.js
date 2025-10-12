@@ -14,6 +14,10 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '10/13/2025',
+    message: 'Added Pet Guide',
+  },
+  {
     date: '10/5/2025',
     message: 'Updated Areas Page',
   },

@@ -15,11 +15,11 @@ const breadcrumbs = [
 const data = [
   {
     question: 'Where do I buy a pet?',
-    answer: `Look east of the Whitestorm square. One of the shops nearby sells pets.`,
+    answer: `Look east of the Whitestorm []. One of the shops nearby sells pets.\r\nThere's also one west of the Haven []`,
   },
   {
     question: 'What pets can I purchase?',
-    answer: `Before a pet reaches level 50, you can purchase a dog, cat, monkey, or bird.\r\nOnce a pet reaches level 50, you can turn them in for a bear, snake, elephant, or bat.`,
+    answer: `Before a pet reaches level 50, you can purchase a dog, cat, monkey, or bird.\r\nOnce a pet reaches level 50, you can trade them for a bear, snake, elephant, or bat.`,
   },
   {
     question: 'What commands can my pet do?',
