@@ -14,6 +14,7 @@ import {
   Groups,
   AccessTime,
   Terminal,
+  Science,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -74,6 +75,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Terrain />,
         link: '/areas',
+      },
+      {
+        name: 'Alchemy',
+        type: 'item',
+        icon: <Science />,
+        link: '/alchemy',
       },
       {
         name: 'Rolling',

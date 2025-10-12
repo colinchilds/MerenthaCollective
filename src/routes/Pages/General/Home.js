@@ -18,6 +18,10 @@ const updates = [
     message: 'Added Pet Guide',
   },
   {
+    date: '10/12/2025',
+    message: 'Added Alchemy page with potion recipes.',
+  },
+  {
     date: '10/5/2025',
     message: 'Updated Areas Page',
   },
