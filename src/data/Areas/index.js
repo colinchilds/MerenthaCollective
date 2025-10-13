@@ -383,7 +383,7 @@ export const continents = [
       },
       {
         name: 'Rimaga',
-        areas: [add('Island', 'Mid High Mortal')],
+        areas: [add('Island', 'Mid High Mortal', 'yes', 'yes')],
       },
       {
         name: 'Mjharr',
