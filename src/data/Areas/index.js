@@ -267,7 +267,7 @@ export const continents = [
           add('Tundra', 'Mid High Mortal'),
           add('Fortress', 'Late High Mortal'),
           add('Onyx Mines', 'Late High Mortal'),
-          add('City', 'Mid High Mortal'),
+          add('City', 'Mid High Mortal', 'yes', 'yes'),
           add('Sewers', 'Late High Mortal'),
         ],
       },
@@ -278,7 +278,12 @@ export const continents = [
     regions: [
       {
         name: 'Shanadan',
-        areas: [add('Cliffs', 'Elite'), add('Gardens', 'Elite'), add('Castle', 'Elite'), add('Bat Caves', 'Elite')],
+        areas: [
+          add('Cliffs', 'Elite'),
+          add('Gardens', 'Elite', 'no', 'yes', '', 'yes'),
+          add('Castle', 'Elite', 'no', 'yes'),
+          add('Bat Caves', 'Elite'),
+        ],
       },
     ],
   },
@@ -339,9 +344,7 @@ export const continents = [
       },
       {
         name: 'Dragon',
-        areas: [
-          add('Island'), // N/A
-        ],
+        areas: [add('Island')],
       },
       {
         name: 'Trinlar',
