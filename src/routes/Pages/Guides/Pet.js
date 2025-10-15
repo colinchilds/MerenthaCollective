@@ -19,11 +19,13 @@ const data = [
   },
   {
     question: 'What pets can I purchase?',
-    answer: `Before a pet reaches level 50, you can purchase a dog, cat, monkey, or bird.\r\nOnce a pet reaches level 50, you can trade them for a bear, snake, elephant, or bat.`,
+    answer: `Before a pet reaches level 50, you can purchase a dog, cat, monkey, or bird.
+            \r\nOnce a pet reaches level 50, you can trade them for a bear, snake, elephant, or bat.`,
   },
   {
     question: 'What commands can my pet do?',
-    answer: `Commands currently need reworked, but for fighting you can use 'order pet claw $*' or 'order pet rage'.\r\nIn addition, pets can do most actions you can do (drop, get, apply salve, eat food, etc.).`,
+    answer: `Commands currently need reworked, but for fighting you can use 'order pet claw $*' or 'order pet rage'.
+            \r\nIn addition, pets can do most actions you can do (drop, get, apply salve, eat food, etc.).`,
   },
   {
     question: 'How do I get my pet to stop following me?',
