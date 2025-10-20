@@ -155,6 +155,12 @@ export const sidebarNavs = [
         link: '/guides/rogue',
       },
       {
+        name: 'Areas',
+        type: 'item',
+        icon: <AccessibilityNew />,
+        link: '/guides/areas',
+      },
+      {
         name: 'Pet',
         type: 'item',
         icon: <AccessibilityNew />,
