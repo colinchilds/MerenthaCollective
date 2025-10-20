@@ -6,7 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { flyingCoords, sailingCoords } from 'data/Coords';
+import { flyingCoords, balloonCoords, shipsCoords, sailingCoords } from 'data/Coords';
 import MapModal from 'routes/Pages/Components/MapModal';
 
 const breadcrumbs = [
@@ -41,6 +41,58 @@ const Coordinates = () => {
             </CmtCardContent>
           </CmtCard>
         </Grid>
+
+        <Grid item xs={12}>
+          <CmtCard>
+            <CmtCardHeader title="Balloon">
+              <MapModal name="World Map" url="/images/maps/world_map.png" />
+            </CmtCardHeader>
+            <CmtCardContent>
+              <Table size="small">
+                <TableBody>
+                  {balloonCoords.map((area, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        <Typography>{area.name}</Typography>
+                      </TableCell>
+                      <TableCell style={{ minWidth: '100px' }}>
+                        <Typography>{area.coords}</Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CmtCardContent>
+          </CmtCard>
+        </Grid>
+
+        <Grid item xs={12}>
+          <CmtCard>
+            <CmtCardHeader title="Ships">
+              <MapModal name="World Map" url="/images/maps/world_map.png" />
+            </CmtCardHeader>
+            <CmtCardContent>
+              <Table size="small">
+                <TableBody>
+                  {shipsCoords.map((area, index) => (
+                    <TableRow key={index}>
+                      <TableCell>
+                        <Typography>{area.name}</Typography>
+                      </TableCell>
+                      <TableCell style={{ minWidth: '100px' }}>
+                        <Typography>{area.coords}</Typography>
+                      </TableCell>
+                      <TableCell>
+                        <Typography>{area.description}</Typography>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                </TableBody>
+              </Table>
+            </CmtCardContent>
+          </CmtCard>
+        </Grid>
+
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Flying">
