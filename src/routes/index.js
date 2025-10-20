@@ -2,6 +2,7 @@ import React, { Fragment, useEffect } from 'react';
 import { Redirect, Route, Switch, useLocation } from 'react-router';
 import Error404 from './Pages/404';
 import StatCalculator from './Pages/Calculators/StatCalculator';
+import TimeCalculator from './Pages/Calculators/TimeCalculator';
 import Coordinates from './Pages/General/Coordinates';
 import Combat from './Pages/General/Combat';
 import Cleric from './Pages/Guides/Cleric';
@@ -10,6 +11,7 @@ import Mage from './Pages/Guides/Mage';
 import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
+import Pet from './Pages/Guides/Pet';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import PartyCalculator from './Pages/Calculators/PartyCalculator';
 import WorldMap from './Pages/General/WorldMap';
@@ -21,6 +23,8 @@ import Socials from './Pages/General/Socials';
 import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
 import Areas from './Pages/General/Areas';
+import Alchemy from './Pages/General/Alchemy';
+import PlayerCommands from './Pages/General/PlayerCommands';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -54,11 +58,14 @@ const Routes = () => {
           <Route path="/fireworks" component={Fireworks} />
           <Route path="/rolling" component={Rolling} />
           <Route path="/areas" component={Areas} />
+          <Route path="/alchemy" component={Alchemy} />
+          <Route path="/commands" component={PlayerCommands} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />
           <Route path="/calculators/skills" component={SkillCalculator} />
           <Route path="/calculators/party" component={PartyCalculator} />
+          <Route path="/calculators/time" component={TimeCalculator} />
 
           {/* Guides */}
           <Route path="/guides/cleric" component={Cleric} />
@@ -67,6 +74,7 @@ const Routes = () => {
           <Route path="/guides/monk" component={Monk} />
           <Route path="/guides/rogue" component={Rogue} />
           <Route path="/guides/newbie" component={Newbie} />
+          <Route path="/guides/pets" component={Pet} />
           <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
           <Route component={Error404} />

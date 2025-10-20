@@ -13,6 +13,9 @@ import {
   Terrain,
   Groups,
   TravelExplore,
+  AccessTime,
+  Terminal,
+  Science,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -37,6 +40,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Groups />,
         link: '/calculators/party',
+      },
+      {
+        name: 'Time Converter',
+        type: 'item',
+        icon: <AccessTime />,
+        link: '/calculators/time',
       },
     ],
   },
@@ -75,6 +84,12 @@ export const sidebarNavs = [
         link: '/areas',
       },
       {
+        name: 'Alchemy',
+        type: 'item',
+        icon: <Science />,
+        link: '/alchemy',
+      },
+      {
         name: 'Rolling',
         type: 'item',
         icon: <Casino />,
@@ -97,6 +112,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <LocalFireDepartment />,
         link: '/fireworks',
+      },
+      {
+        name: 'Common Commands',
+        type: 'item',
+        icon: <Terminal />,
+        link: '/commands',
       },
     ],
   },
@@ -139,6 +160,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <AccessibilityNew />,
         link: '/guides/rogue',
+      },
+      {
+        name: 'Pet',
+        type: 'item',
+        icon: <AccessibilityNew />,
+        link: '/guides/pets',
       },
       // {
       //   name: 'Builder',

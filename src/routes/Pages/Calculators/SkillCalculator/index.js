@@ -9,6 +9,7 @@ import { getSkillCost, getSkillMax, getSkillMultipliers, skillNames } from '../H
 import { getMaxExp } from '../Helpers/stats.helpers';
 import { Box, Button, Divider, Grid, InputAdornment, TextField, Tooltip, Typography, IconButton } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { useSharedCharacterState } from '../shared/useSharedCharacterState';
@@ -103,6 +104,25 @@ const SkillCalculator = () => {
     updateSkillInc(skill, maxIncrement);
   };
 
+  const handleApplyIncrement = (skill) => {
+    const currentValue = parseInt(skillLevels[skill]) || 0;
+    const incrementValue = parseInt(skillInc[skill]) || 0;
+    const newValue = currentValue + incrementValue;
+    const maxValue = parseInt(getSkillMax(multipliers, skill, level)) || 0;
+    const finalValue = Math.min(newValue, maxValue);
+
+    updateActiveCharacter({
+      skillLevels: {
+        ...skillLevels,
+        [skill]: finalValue,
+      },
+      skillIncrements: {
+        ...skillInc,
+        [skill]: 0,
+      },
+    });
+  };
+
   const updateWarriorSpecializations = (newSpecializations) => {
     updateActiveCharacter({
       warriorSpecializations: newSpecializations,
@@ -154,10 +174,9 @@ const SkillCalculator = () => {
   }, [skillLevels, skillInc, charClass, subclass, race, level, multipliers]);
 
   useEffect(() => {
-    setMultipliers(
-      getSkillMultipliers(charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations),
-    );
-  }, [charClass, subclass, race, activeCharacter && activeCharacter.warriorSpecializations]);
+    const warriorSpecs = activeCharacter && activeCharacter.warriorSpecializations;
+    setMultipliers(getSkillMultipliers(charClass, subclass, race, warriorSpecs));
+  }, [charClass, subclass, race, activeCharacter]);
 
   useEffect(() => {
     setMaxExp(getMaxExp(level));
@@ -207,6 +226,7 @@ const SkillCalculator = () => {
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
+          showWerewolf={false}
         />
         {subclass === 'Warrior' && (
           <Fragment>
@@ -254,7 +274,7 @@ const SkillCalculator = () => {
                             <TextField
                               size="small"
                               type="number"
-                              inputProps={{ min: 0, max: 500 }}
+                              inputProps={{ min: 0, max: 999 }}
                               style={{ minWidth: '120px' }}
                               value={skillLevels[skill]}
                               variant="outlined"
@@ -274,7 +294,7 @@ const SkillCalculator = () => {
                                 size="small"
                                 type="number"
                                 label="+"
-                                inputProps={{ min: 0, max: 500 }}
+                                inputProps={{ min: 0, max: 999 }}
                                 style={{ minWidth: '75px' }}
                                 value={skillInc[skill]}
                                 variant="outlined"
@@ -292,16 +312,29 @@ const SkillCalculator = () => {
                                 MAX
                               </Button>
                               {skillInc[skill] > 0 && (
-                                <IconButton
-                                  size="small"
-                                  onClick={() => updateSkillInc(skill, 0)}
-                                  style={{
-                                    border: '1px solid rgba(0, 0, 0, 0.23)',
-                                    borderRadius: '4px',
-                                    padding: '4px',
-                                  }}>
-                                  <ClearIcon fontSize="small" />
-                                </IconButton>
+                                <>
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => handleApplyIncrement(skill)}
+                                    style={{
+                                      border: '1px solid rgba(0, 0, 0, 0.23)',
+                                      borderRadius: '4px',
+                                      padding: '4px',
+                                      color: '#4caf50',
+                                    }}>
+                                    <CheckIcon fontSize="small" />
+                                  </IconButton>
+                                  <IconButton
+                                    size="small"
+                                    onClick={() => updateSkillInc(skill, 0)}
+                                    style={{
+                                      border: '1px solid rgba(0, 0, 0, 0.23)',
+                                      borderRadius: '4px',
+                                      padding: '4px',
+                                    }}>
+                                    <ClearIcon fontSize="small" />
+                                  </IconButton>
+                                </>
                               )}
                             </Box>
                           </Grid>

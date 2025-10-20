@@ -17,6 +17,7 @@ import {
   IconButton,
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
+import CheckIcon from '@mui/icons-material/Check';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
@@ -49,6 +50,8 @@ const StatCalculator = () => {
     setCharacterClass,
     setCharacterRace,
     setCharacterSubclass,
+    setCharacterWerewolf,
+    setCharacterWerewolfTime,
   } = useSharedCharacterState();
 
   const [advExp, setAdvExp] = useState(0);
@@ -65,6 +68,8 @@ const StatCalculator = () => {
   const subclass = validSubclass;
   const race = (activeCharacter && activeCharacter.race) || races[0];
   const level = (activeCharacter && activeCharacter.level) || 1;
+  const isWerewolf = (activeCharacter && activeCharacter.isWerewolf) || false;
+  const werewolfTimeOfDay = (activeCharacter && activeCharacter.werewolfTimeOfDay) || 'day';
   const statLevels = (activeCharacter && activeCharacter.statLevels) || initStats;
   const statInc = (activeCharacter && activeCharacter.statIncrements) || initStats;
 
@@ -103,9 +108,28 @@ const StatCalculator = () => {
 
   const handleMaxIncrement = (stat) => {
     const currentValue = parseInt(statLevels[stat]) || 0;
-    const maxValue = parseInt(getMaxStat(stat, charClass, race, level)) || 0;
+    const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
     const maxIncrement = Math.max(0, maxValue - currentValue);
     updateStatInc(stat, maxIncrement);
+  };
+
+  const handleApplyIncrement = (stat) => {
+    const currentValue = parseInt(statLevels[stat]) || 0;
+    const incrementValue = parseInt(statInc[stat]) || 0;
+    const newValue = currentValue + incrementValue;
+    const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
+    const finalValue = Math.min(newValue, maxValue);
+
+    updateActiveCharacter({
+      statLevels: {
+        ...statLevels,
+        [stat]: finalValue,
+      },
+      statIncrements: {
+        ...statInc,
+        [stat]: 0,
+      },
+    });
   };
 
   useEffect(() => {
@@ -113,19 +137,19 @@ const StatCalculator = () => {
     var st = 0;
     var et = 0;
     stats.forEach((stat) => {
-      const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat]);
+      const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat], isWerewolf, werewolfTimeOfDay);
       setStatCost((statCost) => ({
         ...statCost,
         [stat]: cost,
       }));
       cst += parseInt(statLevels[stat]);
-      st += parseInt(getMaxStat(stat, charClass, race, level));
+      st += parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay));
       et += parseInt(cost);
     });
     setCharStatTotal(cst);
     setStatTotal(st);
     setExpTotal(et);
-  }, [statLevels, statInc, charClass, race, level]);
+  }, [statLevels, statInc, charClass, race, level, isWerewolf, werewolfTimeOfDay]);
 
   useEffect(() => {
     setAdvExp(getAdvanceExp(level));
@@ -133,9 +157,11 @@ const StatCalculator = () => {
   }, [level]);
 
   useEffect(() => {
-    var v = getVitals(charClass, race, level, statLevels, subclass);
+    // Determine effective race for vitals calculations
+    const effectiveRace = isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race;
+    var v = getVitals(charClass, effectiveRace, level, statLevels, subclass);
     setVitals(v);
-  }, [charClass, race, level, statLevels, subclass]);
+  }, [charClass, race, level, statLevels, subclass, isWerewolf, werewolfTimeOfDay]);
 
   if (!activeCharacter) {
     return (
@@ -165,10 +191,14 @@ const StatCalculator = () => {
           charClass={charClass}
           subclass={subclass}
           race={race}
+          isWerewolf={isWerewolf}
+          werewolfTimeOfDay={werewolfTimeOfDay}
           setLevel={setCharacterLevel}
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
+          setWerewolf={setCharacterWerewolf}
+          setWerewolfTime={setCharacterWerewolfTime}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         <CmtCardHeader title="Stat Information" />
@@ -191,7 +221,14 @@ const StatCalculator = () => {
                     InputProps={{
                       endAdornment: (
                         <InputAdornment position="end" size="small">
-                          <Typography>{`/ ${getMaxStat(stat, charClass, race, level)}`}</Typography>
+                          <Typography>{`/ ${getMaxStat(
+                            stat,
+                            charClass,
+                            race,
+                            level,
+                            isWerewolf,
+                            werewolfTimeOfDay,
+                          )}`}</Typography>
                         </InputAdornment>
                       ),
                     }}
@@ -221,16 +258,29 @@ const StatCalculator = () => {
                       MAX
                     </Button>
                     {statInc[stat] > 0 && (
-                      <IconButton
-                        size="small"
-                        onClick={() => updateStatInc(stat, 0)}
-                        style={{
-                          border: '1px solid rgba(0, 0, 0, 0.23)',
-                          borderRadius: '4px',
-                          padding: '4px',
-                        }}>
-                        <ClearIcon fontSize="small" />
-                      </IconButton>
+                      <>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleApplyIncrement(stat)}
+                          style={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                            color: '#4caf50',
+                          }}>
+                          <CheckIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => updateStatInc(stat, 0)}
+                          style={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                          }}>
+                          <ClearIcon fontSize="small" />
+                        </IconButton>
+                      </>
                     )}
                   </Box>
                 </Grid>
@@ -299,7 +349,12 @@ const StatCalculator = () => {
                       <Typography>Encumbrance</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
+                      <Typography>
+                        {getEncumbrance(
+                          isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race,
+                          statLevels,
+                        ).toLocaleString('en-US')}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -307,7 +362,12 @@ const StatCalculator = () => {
                       <Typography>Weight</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
+                      <Typography>
+                        {getWeight(
+                          isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race,
+                          statLevels,
+                        ).toLocaleString('en-US')}
+                      </Typography>
                     </TableCell>
                   </TableRow>
                   <TableRow>

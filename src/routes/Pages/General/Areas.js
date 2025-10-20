@@ -5,6 +5,7 @@ import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import {
+  Link,
   Table,
   TableBody,
   TableCell,
@@ -17,9 +18,10 @@ import {
   Paper,
 } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { areas } from 'data/Areas';
+import { continents } from 'data/Areas/index';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
+import QuestionMark from '@mui/icons-material/QuestionMark';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -30,24 +32,6 @@ const Areas = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [minLevelFilter, setMinLevelFilter] = useState('');
   const [maxLevelFilter, setMaxLevelFilter] = useState('');
-
-  const filteredAreas = areas.filter((area) => {
-    const matchesSearch = area.name.toLowerCase().includes(searchTerm.toLowerCase());
-
-    const matchesMinLevel = !minLevelFilter || (area.minLevel && area.minLevel >= parseInt(minLevelFilter));
-
-    const matchesMaxLevel = !maxLevelFilter || (area.maxLevel && area.maxLevel <= parseInt(maxLevelFilter));
-
-    return matchesSearch && matchesMinLevel && matchesMaxLevel;
-  });
-
-  // Sort areas by minimum level (null values at the end)
-  const sortedAreas = [...filteredAreas].sort((a, b) => {
-    if (a.minLevel === null && b.minLevel === null) return 0;
-    if (a.minLevel === null) return 1;
-    if (b.minLevel === null) return -1;
-    return a.minLevel - b.minLevel;
-  });
 
   // Helper function to render boolean indicators
   const renderBooleanCell = (value) => {
@@ -62,7 +46,7 @@ const Areas = () => {
         </Typography>
       );
     }
-    return '-';
+    return <QuestionMark fontSize="small" />;
   };
 
   // Function to get level range display
@@ -107,6 +91,14 @@ const Areas = () => {
               </Box>
             </CmtCardHeader>
             <CmtCardContent>
+              <Typography size="medium">These values are player provided and may need updated.</Typography>
+              <Typography size="medium">
+                If you have any information missing below, please reach out via our{' '}
+                <Link href="https://github.com/colinchilds/MerenthaCollective/issues">GitHub&#8658;Issues</Link>
+              </Typography>
+              {/* ADD SOME PADDING BELOW THE ABOVE */}
+              <Typography>&nbsp;</Typography>
+
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
                 <Table size="small" stickyHeader>
                   <TableHead>
@@ -143,33 +135,76 @@ const Areas = () => {
                       </TableCell>
                     </TableRow>
                   </TableHead>
+
                   <TableBody>
-                    {sortedAreas.length === 0 ? (
-                      <TableRow>
-                        <TableCell colSpan={6} align="center">
-                          <Typography variant="body2" color="textSecondary">
-                            No areas found matching your criteria
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
-                    ) : (
-                      sortedAreas.map((area, index) => (
-                        <TableRow key={index} hover>
-                          <TableCell>
-                            <Typography variant="body2" fontWeight="medium">
-                              {area.name}
+                    {continents.map((continent) => (
+                      <React.Fragment key={continent.name}>
+                        {/* Continent Row */}
+                        <TableRow>
+                          <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
+                            <Typography variant="subtitle1" fontWeight="bold">
+                              {continent.name}
                             </Typography>
                           </TableCell>
-                          <TableCell align="center">
-                            <Typography variant="body2">{getLevelRange(area)}</Typography>
-                          </TableCell>
-                          <TableCell align="center">{renderBooleanCell(area.aoe)}</TableCell>
-                          <TableCell align="center">{renderBooleanCell(area.strong)}</TableCell>
-                          <TableCell align="center">{renderBooleanCell(area.elite)}</TableCell>
-                          <TableCell align="center">{renderBooleanCell(area.legendary)}</TableCell>
                         </TableRow>
-                      ))
-                    )}
+
+                        {continent.regions.map((region) => {
+                          // Filter + sort areas within each region
+                          const regionAreas = region.areas
+                            .filter((area) => {
+                              const matchesSearch = area.name.toLowerCase().includes(searchTerm.toLowerCase());
+
+                              const matchesMinLevel =
+                                !minLevelFilter || (area.minLevel !== null && area.minLevel >= parseInt(minLevelFilter));
+
+                              const matchesMaxLevel =
+                                !maxLevelFilter || (area.maxLevel !== null && area.maxLevel <= parseInt(maxLevelFilter));
+
+                              return matchesSearch && matchesMinLevel && matchesMaxLevel;
+                            })
+                            .sort((a, b) => {
+                              if (a.minLevel === null && b.minLevel === null) return 0;
+                              if (a.minLevel === null) return 1;
+                              if (b.minLevel === null) return -1;
+                              return a.minLevel - b.minLevel;
+                            });
+
+                          // Skip empty regions if no areas match filters
+                          if (regionAreas.length === 0) return null;
+
+                          return (
+                            <React.Fragment key={region.name}>
+                              {/* Region Row */}
+                              <TableRow>
+                                <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
+                                  <Typography variant="subtitle2" fontWeight="medium">
+                                    {region.name}
+                                  </Typography>
+                                </TableCell>
+                              </TableRow>
+
+                              {/* Areas Rows */}
+                              {regionAreas.map((area, index) => (
+                                <TableRow key={index} hover>
+                                  <TableCell>
+                                    <Typography variant="body2" fontWeight="medium">
+                                      {area.name}
+                                    </Typography>
+                                  </TableCell>
+                                  <TableCell align="center">
+                                    <Typography variant="body2">{getLevelRange(area)}</Typography>
+                                  </TableCell>
+                                  <TableCell align="center">{renderBooleanCell(area.aoe)}</TableCell>
+                                  <TableCell align="center">{renderBooleanCell(area.strong)}</TableCell>
+                                  <TableCell align="center">{renderBooleanCell(area.elite)}</TableCell>
+                                  <TableCell align="center">{renderBooleanCell(area.legendary)}</TableCell>
+                                </TableRow>
+                              ))}
+                            </React.Fragment>
+                          );
+                        })}
+                      </React.Fragment>
+                    ))}
                   </TableBody>
                 </Table>
               </TableContainer>

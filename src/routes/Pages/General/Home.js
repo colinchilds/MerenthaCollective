@@ -14,6 +14,35 @@ const breadcrumbs = [
 
 const updates = [
   {
+    date: '10/13/2025',
+    message: 'Added Pet Guide',
+  },
+  {
+    date: '10/12/2025',
+    message: 'Added Alchemy page with potion recipes.',
+  },
+  {
+    date: '10/5/2025',
+    message: 'Updated Areas Page',
+  },
+  {
+    date: '10/1/2025',
+    message: 'Updated Stats Calculator Page',
+  },
+  {
+    date: '8/9/2025',
+    message: 'Added a page for helping with some common commands and their syntax.',
+  },
+  {
+    date: '8/5/2025',
+    message: 'Added a date/time calculator to convert between Merentha time and real time. ',
+  },
+  {
+    date: '8/1/2025',
+    message:
+      'Removed werewolf as a separate race and made it a checkbox with day/night toggle on only classes and races that can be werewolves. ',
+  },
+  {
     date: '7/22/2025',
     message:
       'Added new character selector in calculators to allow for multiple characters. Added Warrior specializations to skill calculator. ' +

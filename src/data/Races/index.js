@@ -26,7 +26,6 @@ export const races = [
   'Dragon',
   'Drow-elf',
   'Lich',
-  'Were-wolf',
 ];
 
 export const raceStats = {
