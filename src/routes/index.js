@@ -12,6 +12,7 @@ import Monk from './Pages/Guides/Monk';
 import Rogue from './Pages/Guides/Rogue';
 import Newbie from './Pages/Guides/Newbie';
 import Pet from './Pages/Guides/Pet';
+import AreaGuides from './Pages/Guides/Areas';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import PartyCalculator from './Pages/Calculators/PartyCalculator';
 import Maps from './Pages/General/Maps';
@@ -40,7 +41,7 @@ const Routes = () => {
   if (location.pathname === '/calculators') {
     return <Redirect to={'/calculators/stats'} />;
   } else if (location.pathname === '/guides') {
-    return <Redirect to={'/guides/cleric'} />;
+    return <Redirect to={'/guides/newbie'} />;
   }
 
   return (
@@ -73,6 +74,7 @@ const Routes = () => {
           <Route path="/guides/rogue" component={Rogue} />
           <Route path="/guides/newbie" component={Newbie} />
           <Route path="/guides/pets" component={Pet} />
+          <Route path="/guides/areas" component={AreaGuides} />
           <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
           <Route component={Error404} />
