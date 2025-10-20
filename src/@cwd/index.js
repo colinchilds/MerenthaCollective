@@ -46,7 +46,9 @@ export const TabbedSelector = ({ data }) => {
           overflowY: 'auto',
         }}>
         {selectedData.data.map((d, i) => (
-          <p key={i}>{d.message}</p>
+          <p key={i} style={{ paddingTop: '0.25rem' }}>
+            {d.message}
+          </p>
         ))}
       </section>
     </div>
