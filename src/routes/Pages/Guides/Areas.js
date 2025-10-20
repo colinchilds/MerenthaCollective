@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import { TabbedSelector } from '@cwd';
+import { TabbedSelector } from '@cwd/TabbedSelector';
 import { Typography } from '@mui/material';
 import { areas } from '../../../data/Guides';
 
