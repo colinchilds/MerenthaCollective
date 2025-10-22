@@ -71,12 +71,6 @@ export const sidebarNavs = [
         link: '/maps',
       },
       {
-        name: 'Areas',
-        type: 'item',
-        icon: <Terrain />,
-        link: '/areas',
-      },
-      {
         name: 'Alchemy',
         type: 'item',
         icon: <Science />,
@@ -111,6 +105,54 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Terminal />,
         link: '/commands',
+      },
+    ],
+  },
+  {
+    name: 'Areas',
+    type: 'section',
+    children: [
+      {
+        name: 'Atheria',
+        type: 'collapse',
+        children: [
+          {
+            name: 'Cabeiri',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/atheria/cabeiri',
+          },
+          {
+            name: 'Fenris',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/atheria/fenris',
+          },
+          {
+            name: 'Whitestorm',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/atheria/whitestorm',
+          },
+        ],
+      },
+      {
+        name: 'Cardania',
+        type: 'collapse',
+        children: [
+          {
+            name: 'Death Spiral',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/deathspiral',
+          },
+          {
+            name: 'Wolvesdale',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/wolvesdale',
+          },
+        ],
       },
     ],
   },
