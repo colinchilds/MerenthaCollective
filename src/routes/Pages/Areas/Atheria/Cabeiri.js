@@ -17,34 +17,6 @@ const toc = [
     name: 'Map',
     id: 'cabeiri-map',
   },
-  // {
-  //     name: "Town",
-  //     id: "cabeiri-town"
-  // },
-  // {
-  //     name: "Cemetary",
-  //     id: "cabeiri-cemetary"
-  // },
-  // {
-  //     name: "Island",
-  //     id: "cabeiri-island"
-  // },
-  // {
-  //     name: "Orc Valley",
-  //     id: "cabeiri-orc-valley"
-  // },
-  // {
-  //     name: "Faerie Forest",
-  //     id: "cabeiri-faerie-forest"
-  // },
-  // {
-  //     name: "Clouds",
-  //     id: "cabeiri-clouds"
-  // },
-  // {
-  //     name: "Mountains",
-  //     id: "cabeiri-mountains"
-  // },
 ];
 
 const areas = [
