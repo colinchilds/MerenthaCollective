@@ -100,37 +100,24 @@ const Areas = () => {
               <Typography>&nbsp;</Typography>
 
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
-                <Table size="small" stickyHeader>
+                <Table size="small" stickyHeader sx={{ tableLayout: 'auto', width: '100%' }}>
                   <TableHead>
                     <TableRow>
-                      <TableCell>
+                      <TableCell sx={{ whiteSpace: 'nowrap', width: 'clamp(200px, 1%, 250px)' }}>
                         <Typography variant="subtitle2" fontWeight="bold">
                           Zone
                         </Typography>
                       </TableCell>
-                      <TableCell align="center" style={{ minWidth: '120px' }}>
+
+                      <TableCell align="center" sx={{ whiteSpace: 'nowrap', width: 'clamp(150px, 1%, 200px)' }}>
                         <Typography variant="subtitle2" fontWeight="bold">
                           Level Range
                         </Typography>
                       </TableCell>
-                      <TableCell align="center">
+
+                      <TableCell align="left" sx={{ width: '100%' }}>
                         <Typography variant="subtitle2" fontWeight="bold">
-                          AOE
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          Strong
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          Elite
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          Legendary
+                          Notes
                         </Typography>
                       </TableCell>
                     </TableRow>
@@ -141,7 +128,7 @@ const Areas = () => {
                       <React.Fragment key={continent.name}>
                         {/* Continent Row */}
                         <TableRow>
-                          <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
+                          <TableCell colSpan={3} sx={{ backgroundColor: 'grey.200' }}>
                             <Typography variant="subtitle1" fontWeight="bold">
                               {continent.name}
                             </Typography>
@@ -149,7 +136,6 @@ const Areas = () => {
                         </TableRow>
 
                         {continent.regions.map((region) => {
-                          // Filter + sort areas within each region
                           const regionAreas = region.areas
                             .filter((area) => {
                               const matchesSearch = area.name.toLowerCase().includes(searchTerm.toLowerCase());
@@ -169,35 +155,39 @@ const Areas = () => {
                               return a.minLevel - b.minLevel;
                             });
 
-                          // Skip empty regions if no areas match filters
                           if (regionAreas.length === 0) return null;
 
                           return (
                             <React.Fragment key={region.name}>
-                              {/* Region Row */}
                               <TableRow>
-                                <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
+                                <TableCell colSpan={3} sx={{ backgroundColor: 'grey.100' }}>
                                   <Typography variant="subtitle2" fontWeight="medium">
                                     {region.name}
                                   </Typography>
                                 </TableCell>
                               </TableRow>
 
-                              {/* Areas Rows */}
                               {regionAreas.map((area, index) => (
                                 <TableRow key={index} hover>
                                   <TableCell>
-                                    <Typography variant="body2" fontWeight="medium">
+                                    <Typography
+                                      variant="body2"
+                                      fontWeight="medium"
+                                      sx={{
+                                        whiteSpace: 'nowrap',
+                                        overflow: 'hidden',
+                                        textOverflow: 'ellipsis',
+                                      }}
+                                      title={area.name}>
                                       {area.name}
                                     </Typography>
                                   </TableCell>
                                   <TableCell align="center">
                                     <Typography variant="body2">{getLevelRange(area)}</Typography>
                                   </TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.aoe)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.strong)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.elite)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.legendary)}</TableCell>
+                                  <TableCell align="left">
+                                    <Typography>{area.notes}</Typography>
+                                  </TableCell>
                                 </TableRow>
                               ))}
                             </React.Fragment>

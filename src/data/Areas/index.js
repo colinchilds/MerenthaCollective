@@ -1,7 +1,7 @@
 // helper function
-const add = (name, level = 'n/a', aoe = '', strong = '', elite = '', legendary = '') => {
+const add = (name, level = 'n/a', notes = '') => {
   const [minLevel, maxLevel] = getLevel(level);
-  return { name, minLevel, maxLevel, aoe, strong, elite, legendary };
+  return { name, minLevel, maxLevel, notes };
 };
 
 // Level Ranges
@@ -43,44 +43,44 @@ export const continents = [
       {
         name: 'Cabeiri',
         areas: [
-          add('Town', 'Newbie', 'no', 'no', 'no', 'no'),
-          add('Cemetary', 'Newbie', '', 'some'),
+          add('Town', 'Newbie'),
+          add('Cemetary', 'Newbie', 'Some strong enemies'),
           add('Faerie Forest', 'Mid'),
           add('Clouds', 'Mid'),
           add('Island', 'Newbie'),
-          add('Orc Valley', 'Newbie', 'some', 'some'),
+          add('Orc Valley', 'Newbie', 'Some AOE and strong enemies'),
           add('Mountains', 'Mid'),
         ],
       },
       {
         name: 'Whitestorm',
         areas: [
-          add('City', 'Mid', 'no'),
-          add('Farms', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Strongwood Fortress', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Desert', 'High Mortal', 'some', 'no', 'no', 'no'),
+          add('City', 'Mid'),
+          add('Farms', 'Late Mid'),
+          add('Strongwood Fortress', 'Late Mid'),
+          add('Desert', 'High Mortal', 'Some AOE'),
           add('Palace'),
-          add('Forest', 'Mid', 'no'),
+          add('Forest', 'Mid'),
           add('Uruk Fortress', 'Late Mid'),
           add('Badlands', 'Late Mid'),
-          add('Orc Caves', 'High Mortal', 'yes'),
+          add('Orc Caves', 'High Mortal', 'AOE Area'),
         ],
       },
       {
         name: 'Fenris',
         areas: [
-          add('Forest of Deception', 'Mid', 'no', 'no', 'no', 'no'),
+          add('Forest of Deception', 'Mid'),
           add('Marrdan', 'Mid'),
           add('Mudforest', 'High Mortal'),
           add('Rainforest', 'High Mortal'),
           add('Swamp', 'Mid'),
           add('Trogrelin', 'Late Mid'),
-          add('Oz', 'High Mortal', 'yes'),
+          add('Oz', 'High Mortal', 'AOE Area'),
         ],
       },
       {
         name: 'Clouds',
-        areas: [add('City', 'Late High Mortal', 'no')],
+        areas: [add('City', 'Late High Mortal')],
       },
     ],
   },
@@ -90,8 +90,8 @@ export const continents = [
       {
         name: 'Wolvesdale',
         areas: [
-          add('City', 'Late Mid', '', '', '', 'yes'),
-          add('Tower', 'Late Mid', 'yes', 'some'),
+          add('City', 'Late Mid', 'Legendary mob present'),
+          add('Tower', 'Late Mid', 'AOE and some strong enemies'),
           add('Mountain', 'Late Mid'),
         ],
       },
@@ -100,15 +100,15 @@ export const continents = [
         areas: [
           add('Forest', 'Late Mid'),
           add('Underworld', 'High Mortal'),
-          add("Velomuzst's Lair", 'High Mortal', 'yes', 'no', 'no', 'no'),
+          add("Velomuzst's Lair", 'High Mortal', 'AOE area'),
           add('Tree Tower', 'High Mortal'),
         ],
       },
       {
         name: 'DeathSpiral',
         areas: [
-          add('Mountains', 'Late Mid', 'some', 'no', 'no', 'no'),
-          add('Imladris', 'Late Mid', 'yes', 'yes', 'yes', 'no'),
+          add('Mountains', 'Late Mid', 'Some AOE areas'),
+          add('Imladris', 'Late Mid', 'AOE area with strong and elite mobs.'),
         ],
       },
       {
@@ -124,21 +124,21 @@ export const continents = [
       {
         name: 'Jewel',
         areas: [
-          add('City', 'Late Mid', 'yes', 'no', 'no', 'no'),
-          add('Catacombs', 'Late Mid', 'yes', 'no', 'no', 'no'),
-          add('Forest', 'Late Mid', 'yes', 'no', 'no', 'no'),
-          add('Artrell Hive', 'Late Mid', 'yes', 'no', 'no', 'no'),
+          add('City', 'Late Mid', 'AOE area'),
+          add('Catacombs', 'Late Mid', 'AOE area'),
+          add('Forest', 'Late Mid', 'AOE area'),
+          add('Artrell Hive', 'Late Mid', 'AOE area'),
         ],
       },
       {
         name: 'Hiemelia',
         areas: [
-          add('Glacier', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Palace', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Northern Outpost', 'no', 'no', 'no', 'no'),
-          add('Mountains', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Wilderness', 'Late Mid', 'no', 'no', 'no', 'no'),
-          add('Ice Path', 'High Mortal', 'no', 'no', 'no', 'no'),
+          add('Glacier', 'Late Mid'),
+          add('Palace', 'Late Mid'),
+          add('Northern Outpost'),
+          add('Mountains', 'Late Mid'),
+          add('Wilderness', 'Late Mid'),
+          add('Ice Path', 'High Mortal'),
         ],
       },
       {
@@ -150,7 +150,7 @@ export const continents = [
           add('Gablesville', 'Late High Mortal'),
           add('Town', 'Late Mid'),
           add('Mines', 'Late Mid'),
-          add('Fortress', 'Mid High Mortal', 'yes', 'yes', 'yes', 'yes'),
+          add('Fortress', 'Mid High Mortal', 'AOE area with strong, elite, and legendary enemies'),
           add('Zalaria'),
         ],
       },
@@ -177,9 +177,9 @@ export const continents = [
       {
         name: 'Dreywold',
         areas: [
-          add('Ancient Forest', 'Elite', 'yes', '', 'yes'),
-          add('Crystal Cavern', 'Late Elite', 'no', 'yes', 'no', 'yes'),
-          add('Imp Treetops', 'Late Elite', 'yes', 'yes', 'no', 'yes'),
+          add('Ancient Forest', 'Elite', 'AOE areas with elite mobs'),
+          add('Crystal Cavern', 'Late Elite', 'Strong and legendary mobs present'),
+          add('Imp Treetops', 'Late Elite', 'AOE area with strong and legendary mobs'),
         ],
       },
       {
@@ -205,10 +205,10 @@ export const continents = [
       {
         name: 'Ottograd',
         areas: [
-          add('Town', 'Elite', 'no', 'yes', 'yes'),
-          add('Lower Steppes', 'Elite', 'yes'),
+          add('Town', 'Elite', 'Strong and elite mobs'),
+          add('Lower Steppes', 'Elite', 'AOE Area'),
           add('Base Steppes', 'Elite'),
-          add('Upper Steppes', 'Late Elite', 'yes', 'yes', 'yes'),
+          add('Upper Steppes', 'Late Elite', 'AOE area with strong and elite mobs'),
         ],
       },
     ],
@@ -219,15 +219,15 @@ export const continents = [
       {
         name: 'Haven',
         areas: [
-          add('Town', 'High Mortal', '', 'no', 'no', 'no'),
-          add('Fields', 'High Mortal', '', 'no', 'no', 'no'),
-          add('Farms', 'High Mortal', '', 'no', 'no', 'no'),
-          add('Woods', 'High Mortal', '', 'no', 'no', 'no'),
+          add('Town', 'High Mortal'),
+          add('Fields', 'High Mortal'),
+          add('Farms', 'High Mortal'),
+          add('Woods', 'High Mortal'),
         ],
       },
       {
         name: 'Gofur',
-        areas: [add('Town', 'Mid High Mortal', 'no', 'yes', 'yes', 'no'), add('Mines', 'Mid High Mortal')],
+        areas: [add('Town', 'Mid High Mortal', 'Strong and elite mobs present'), add('Mines', 'Mid High Mortal')],
       },
     ],
   },
@@ -237,15 +237,15 @@ export const continents = [
       {
         name: 'Aerioth',
         areas: [
-          add('City', 'Mid High Mortal', 'no'),
-          add('Castle', 'Elite', 'no'),
-          add('Goblin Lair', 'Elite', 'no'),
-          add('Valley', 'Late Elite', 'no'),
-          add('Abbey', 'Late Elite', 'no'),
-          add('Wilds', 'Mid High Mortal', 'no'),
-          add('Ice Cavern', 'Elite', 'no'),
-          add('Frozen Lake', 'Late Elite', 'no'),
-          add('Dead Fields', 'Late Elite', 'no'),
+          add('City', 'Mid High Mortal'),
+          add('Castle', 'Elite'),
+          add('Goblin Lair', 'Elite'),
+          add('Valley', 'Late Elite'),
+          add('Abbey', 'Late Elite'),
+          add('Wilds', 'Mid High Mortal'),
+          add('Ice Cavern', 'Elite'),
+          add('Frozen Lake', 'Late Elite'),
+          add('Dead Fields', 'Late Elite'),
         ],
       },
       {
@@ -295,8 +295,8 @@ export const continents = [
           add('Imperial Forest', 'Late Elite'),
           add('Imperial Fortress', 'Late Elite'),
           add('Diamondback Flats', 'Elite'),
-          add('Broadhurst', 'Elite', '', 'yes', 'yes', 'yes'),
-          add('Lost Caverns', 'Elite', 'no'),
+          add('Broadhurst', 'Elite', 'Strong, elite, and legendary mobs present'),
+          add('Lost Caverns', 'Elite'),
           add('Troll Halls', 'Elite'),
           add('Imperial City', 'Late Elite'),
           add('Spiral Caverns', 'Late Elite'),
@@ -331,7 +331,7 @@ export const continents = [
     regions: [
       {
         name: 'Fucawee',
-        areas: [add('Island', 'Late Mid', '', 'no', 'no', 'no')],
+        areas: [add('Island', 'Late Mid')],
       },
       {
         name: 'Boar',
@@ -339,13 +339,11 @@ export const continents = [
       },
       {
         name: 'Dragon',
-        areas: [
-          add('Island'), // N/A
-        ],
+        areas: [add('Island')],
       },
       {
         name: 'Trinlar',
-        areas: [add('Island', 'High Mortal', 'yes')],
+        areas: [add('Island', 'High Mortal', 'AOE Area')],
       },
       {
         name: 'Talus',
@@ -391,15 +389,15 @@ export const continents = [
       },
       {
         name: 'Charanth',
-        areas: [add('City', 'Late Elite', 'yes'), add('Caves', 'Late Elite')],
+        areas: [add('City', 'Late Elite', 'AOE Area'), add('Caves', 'Late Elite')],
       },
       {
         name: "Mon'kay",
-        areas: [add('Island', 'Late Elite', 'yes')],
+        areas: [add('Island', 'Late Elite', 'AOE Area')],
       },
       {
         name: 'Holgresh',
-        areas: [add('Cliffs', 'Late Elite', 'no'), add('Temple', 'Late Elite', 'no')],
+        areas: [add('Cliffs', 'Late Elite'), add('Temple', 'Late Elite')],
       },
       {
         name: 'Ensi',
@@ -414,16 +412,16 @@ export const continents = [
       {
         name: 'Abbadon',
         areas: [
-          add('Forest', 'Legend', 'yes', 'yes', 'yes', 'yes'),
-          add('Mountains', 'Mid Legend', 'yes', 'yes', 'yes', 'yes'),
-          add('Drow-elf City', 'Mid Legend', 'yes', 'yes', 'yes', 'yes'),
-          add('Spider Caves', 'Mid Legend', 'yes', 'yes', 'yes', 'yes'),
-          add('Illithid Airship', 'Mid Legend', 'yes', 'yes', 'yes', 'yes'),
+          add('Forest', 'Legend', 'AOE Area with strong, elite, and legendary mobs'),
+          add('Mountains', 'Mid Legend', 'AOE Area with strong, elite, and legendary mobs'),
+          add('Drow-elf City', 'Mid Legend', 'AOE Area with strong, elite, and legendary mobs'),
+          add('Spider Caves', 'Mid Legend', 'AOE Area with strong, elite, and legendary mobs'),
+          add('Illithid Airship', 'Mid Legend', 'AOE Area with strong, elite, and legendary mobs'),
         ],
       },
       {
         name: "Kit'tay",
-        areas: [add('Island', 'Mid Legend', 'yes', 'yes', 'yes')],
+        areas: [add('Island', 'Mid Legend', 'AOE Area with strong, and elite mobs')],
       },
     ],
   },
