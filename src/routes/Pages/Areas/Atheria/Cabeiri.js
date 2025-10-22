@@ -7,62 +7,21 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
 import Box from '@mui/material/Box';
 import CmtImage from '@coremat/CmtImage';
+import { areas as allAreas } from 'data/Areas';
 
 const toc = [
   {
     name: 'Summary',
-    id: 'cabeiri-summary',
+    id: 'subzone-summary',
   },
   {
     name: 'Map',
-    id: 'cabeiri-map',
+    id: 'subzone-map',
   },
 ];
 
-const areas = [
-  {
-    name: 'Town',
-    id: 'cabeiri-town',
-    levels: '1-5',
-    summary: 'Kill Edwina and Edwards on sight!',
-  },
-  {
-    name: 'Cemetary',
-    id: 'cabeiri-cemetary',
-    levels: '1-5',
-    summary: 'Dead things!',
-  },
-  {
-    name: 'Island',
-    id: 'cabeiri-island',
-    levels: '1-5',
-    summary: "They're surrounded by water...",
-  },
-  {
-    name: 'Orc Valley',
-    id: 'cabeiri-orc-valley',
-    levels: '1-5',
-    summary: 'Hulk Smash',
-  },
-  {
-    name: 'Faerie Forest',
-    id: 'cabeiri-faerie-forest',
-    levels: '6-15',
-    summary: "I'll do it for your first born child..",
-  },
-  {
-    name: 'Clouds',
-    id: 'cabeiri-clouds',
-    levels: '6-15',
-    summary: 'Fluffy Sky Sheep',
-  },
-  {
-    name: 'Mountains',
-    id: 'cabeiri-mountains',
-    levels: '6-15',
-    summary: 'Tall... exhausting',
-  },
-];
+const subarea = allAreas.atheria.cabeiri;
+const zones = subarea.zones;
 
 const Cabeiri = () => {
   const handleScroll = (id) => {
@@ -91,17 +50,17 @@ const Cabeiri = () => {
                 </TableCell>
               </TableRow>
             ))}
-            {areas.map((area, index) => (
+            {zones.map((zone, index) => (
               <TableRow key={index}>
                 <TableCell align="center">
                   <Typography
-                    onClick={() => handleScroll(area.id)}
+                    onClick={() => handleScroll(zone.id)}
                     sx={{
                       cursor: 'pointer',
                       textDecoration: 'underline',
                       '&:hover': { color: 'primary.main' },
                     }}>
-                    {area.name}
+                    {zone.name}
                   </Typography>
                 </TableCell>
               </TableRow>
@@ -110,21 +69,21 @@ const Cabeiri = () => {
         </Table>
 
         {/* Summary section */}
-        <CmtCard id="cabeiri-summary">
+        <CmtCard id="subzone-summary">
           <CmtCardContent>
             <Typography variant="h2" align="center">
               Summary
             </Typography>
             <Typography varient="h4" align="center">
-              Level Range: 1-15
+              Level Range: {subarea.levels}
             </Typography>
 
-            <Typography>SUMMARY GOES HERE</Typography>
+            <Typography>{subarea.summary}</Typography>
           </CmtCardContent>
         </CmtCard>
 
         {/* Map section */}
-        <CmtCard id="cabeiri-map">
+        <CmtCard id="subzone-map">
           <CmtCardContent>
             <Typography variant="h2" align="center">
               Map
@@ -145,16 +104,16 @@ const Cabeiri = () => {
         </CmtCard>
 
         {/* Areas */}
-        {areas.map((area, index) => (
-          <CmtCard id={area.id}>
+        {zones.map((zone, index) => (
+          <CmtCard id={zone.id} key={zone.id || index}>
             <CmtCardContent>
               <Typography variant="h3" align="center">
-                {area.name}
+                {zone.name}
               </Typography>
               <Typography variant="h4" align="center">
-                Level Range: {area.levels}
+                Level Range: {zone.levels}
               </Typography>
-              <Typography>{area.summary}</Typography>
+              <Typography>{zone.summary}</Typography>
             </CmtCardContent>
           </CmtCard>
         ))}
