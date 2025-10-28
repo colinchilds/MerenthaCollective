@@ -123,6 +123,12 @@ export const sidebarNavs = [
             link: '/areas/atheria/cabeiri',
           },
           {
+            name: 'Clouds',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/atheria/clouds',
+          },
+          {
             name: 'Fenris',
             type: 'item',
             icon: <Terrain />,
@@ -141,16 +147,52 @@ export const sidebarNavs = [
         type: 'collapse',
         children: [
           {
+            name: 'Wolvesdale',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/wolvesdale',
+          },
+          {
+            name: 'Mystic',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/mystic',
+          },
+          {
             name: 'Death Spiral',
             type: 'item',
             icon: <Terrain />,
             link: '/areas/cardania/deathspiral',
           },
           {
-            name: 'Wolvesdale',
+            name: 'Lanerell',
             type: 'item',
             icon: <Terrain />,
-            link: '/areas/cardania/wolvesdale',
+            link: '/areas/cardania/lanerell',
+          },
+          {
+            name: 'Jewel',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/jewel',
+          },
+          {
+            name: 'Hiemelia',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/hiemelia',
+          },
+          {
+            name: 'Xenora',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/xenora',
+          },
+          {
+            name: 'Lakehurst',
+            type: 'item',
+            icon: <Terrain />,
+            link: '/areas/cardania/lakehurst',
           },
         ],
       },
