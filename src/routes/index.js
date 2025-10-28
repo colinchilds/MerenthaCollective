@@ -23,7 +23,7 @@ import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
 import Alchemy from './Pages/General/Alchemy';
 import PlayerCommands from './Pages/General/PlayerCommands';
-import Area from './Pages/Areas/Area';
+import Area from './Pages/Areas/Area.js';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
