@@ -30,25 +30,45 @@ const AreaTemplate = ({ areaData, areaName }) => {
     <GridContainer>
       <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
         {/* Table of Contents */}
-        <Table size="small" sx={{ margin: '0 auto', width: 'fit-content' }}>
-          <TableBody>
-            {toc.map((item, index) => (
-              <TableRow key={`${item.id}-${index}`}>
-                <TableCell align="center">
-                  <Typography
-                    onClick={() => handleScroll(item.id)}
-                    sx={{
-                      cursor: 'pointer',
-                      textDecoration: 'underline',
-                      '&:hover': { color: 'primary.main' },
-                    }}>
-                    {item.name}
-                  </Typography>
-                </TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
+        <CmtCard id="subzone-toc">
+          <CmtCardContent>
+            <Typography variant="h3" align="center" gutterBottom>
+              Table of Contents
+            </Typography>
+
+            {toc.length > 0 ? (
+              <Grid container spacing={2} justifyContent="center" alignItems="center">
+                {toc.map((item, index) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={`${item.id}-${index}`}>
+                    <Box
+                      sx={{
+                        textAlign: 'center',
+                        p: 1,
+                        border: '1px solid rgba(0,0,0,0.1)',
+                        borderRadius: 1,
+                        transition: '0.2s',
+                        '&:hover': { boxShadow: 3, cursor: 'pointer' },
+                      }}
+                      onClick={() => handleScroll(item.id)}>
+                      <Typography
+                        variant="subtitle1"
+                        sx={{
+                          textDecoration: 'underline',
+                          '&:hover': { color: 'primary.main' },
+                        }}>
+                        {item.name}
+                      </Typography>
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
+            ) : (
+              <Typography variant="body2" align="center" sx={{ mt: 1 }}>
+                No sections available.
+              </Typography>
+            )}
+          </CmtCardContent>
+        </CmtCard>
 
         {/* Summary */}
         <CmtCard id="subzone-summary">
