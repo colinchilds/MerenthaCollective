@@ -118,26 +118,10 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          {
-            name: 'Cabeiri',
-            type: 'item',
-            link: '/areas/atheria/cabeiri',
-          },
-          {
-            name: 'Clouds',
-            type: 'item',
-            link: '/areas/atheria/clouds',
-          },
-          {
-            name: 'Fenris',
-            type: 'item',
-            link: '/areas/atheria/fenris',
-          },
-          {
-            name: 'Whitestorm',
-            type: 'item',
-            link: '/areas/atheria/whitestorm',
-          },
+          { name: 'Cabeiri', type: 'item', link: '/areas/atheria/cabeiri' },
+          { name: 'Clouds', type: 'item', link: '/areas/atheria/clouds' },
+          { name: 'Fenris', type: 'item', link: '/areas/atheria/fenris' },
+          { name: 'Whitestorm', type: 'item', link: '/areas/atheria/whitestorm' },
         ],
       },
       {
@@ -145,46 +129,14 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          {
-            name: 'Wolvesdale',
-            type: 'item',
-            link: '/areas/cardania/wolvesdale',
-          },
-          {
-            name: 'Mystic',
-            type: 'item',
-            link: '/areas/cardania/mystic',
-          },
-          {
-            name: 'Death Spiral',
-            type: 'item',
-            link: '/areas/cardania/deathspiral',
-          },
-          {
-            name: 'Lanerell',
-            type: 'item',
-            link: '/areas/cardania/lanerell',
-          },
-          {
-            name: 'Jewel',
-            type: 'item',
-            link: '/areas/cardania/jewel',
-          },
-          {
-            name: 'Hiemelia',
-            type: 'item',
-            link: '/areas/cardania/hiemelia',
-          },
-          {
-            name: 'Xenora',
-            type: 'item',
-            link: '/areas/cardania/xenora',
-          },
-          {
-            name: 'Lakehurst',
-            type: 'item',
-            link: '/areas/cardania/lakehurst',
-          },
+          { name: 'Death Spiral', type: 'item', link: '/areas/cardania/deathspiral' },
+          { name: 'Hiemelia', type: 'item', link: '/areas/cardania/hiemelia' },
+          { name: 'Jewel', type: 'item', link: '/areas/cardania/jewel' },
+          { name: 'Lakehurst', type: 'item', link: '/areas/cardania/lakehurst' },
+          { name: 'Lanerell', type: 'item', link: '/areas/cardania/lanerell' },
+          { name: 'Mystic', type: 'item', link: '/areas/cardania/mystic' },
+          { name: 'Wolvesdale', type: 'item', link: '/areas/cardania/wolvesdale' },
+          { name: 'Xenora', type: 'item', link: '/areas/cardania/xenora' },
         ],
       },
       {
@@ -192,43 +144,10 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          {
-            name: 'Asmar',
-            type: 'item',
-            link: '/areas/asmar/asmar',
-          },
-          {
-            name: 'Drewold',
-            type: 'item',
-            link: '/areas/asmar/drewold',
-          },
-          {
-            name: 'Fairdale',
-            type: 'item',
-            link: '/areas/asmar/fairdale',
-          },
-          {
-            name: 'Ottograd',
-            type: 'item',
-            link: '/areas/asmar/ottograd',
-          },
-        ],
-      },
-      {
-        name: 'Kyria',
-        type: 'collapse',
-        icon: <Terrain />,
-        children: [
-          {
-            name: 'Haven',
-            type: 'item',
-            link: '/areas/kyria/haven',
-          },
-          {
-            name: 'Gofur',
-            type: 'item',
-            link: '/areas/kyria/gofur',
-          },
+          { name: 'Asmar', type: 'item', link: '/areas/asmar/asmar' },
+          { name: 'Drewold', type: 'item', link: '/areas/asmar/drewold' },
+          { name: 'Fairdale', type: 'item', link: '/areas/asmar/fairdale' },
+          { name: 'Ottograd', type: 'item', link: '/areas/asmar/ottograd' },
         ],
       },
       {
@@ -236,57 +155,50 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          {
-            name: 'Aeiroth',
-            type: 'item',
-            link: '/areas/iceflows/aeiroth',
-          },
-          {
-            name: 'Ice Flows',
-            type: 'item',
-            link: '/areas/iceflows/iceflows',
-          },
-          {
-            name: 'Christmas',
-            type: 'item',
-            link: '/areas/iceflows/christmas',
-          },
+          { name: 'Aeiroth', type: 'item', link: '/areas/iceflows/aeiroth' },
+          { name: 'Christmas', type: 'item', link: '/areas/iceflows/christmas' },
+          { name: 'Ice Flows', type: 'item', link: '/areas/iceflows/iceflows' },
+        ],
+      },
+      {
+        name: 'Kyria',
+        type: 'collapse',
+        icon: <Terrain />,
+        children: [
+          { name: 'Gofur', type: 'item', link: '/areas/kyria/gofur' },
+          { name: 'Haven', type: 'item', link: '/areas/kyria/haven' },
         ],
       },
       {
         name: 'Puntos',
         type: 'collapse',
         icon: <Terrain />,
-        children: [
-          {
-            name: 'Calamyr',
-            type: 'item',
-            link: '/areas/puntos/calamyr',
-          },
-        ],
-      },
-      {
-        name: 'South Teile',
-        type: 'collapse',
-        icon: <Terrain />,
-        children: [
-          {
-            name: 'Shanadan',
-            type: 'item',
-            link: '/areas/teile/shanadan',
-          },
-        ],
+        children: [{ name: 'Calamyr', type: 'item', link: '/areas/puntos/calamyr' }],
       },
       {
         name: 'Raptor-Sa-Tori',
         type: 'collapse',
         icon: <Terrain />,
+        children: [{ name: 'Liku', type: 'item', link: '/areas/raptorSaTori/liku' }],
+      },
+      {
+        name: 'South Teile',
+        type: 'collapse',
+        icon: <Terrain />,
+        children: [{ name: 'Shanadan', type: 'item', link: '/areas/teile/shanadan' }],
+      },
+      {
+        name: 'Isles',
+        type: 'collapse',
+        icon: <Terrain />,
         children: [
-          {
-            name: 'Liku',
-            type: 'item',
-            link: '/areas/raptorSaTori/liku',
-          },
+          { name: 'Abbadon', type: 'item', link: '/areas/isles/abbadon' },
+          { name: 'Charanth', type: 'item', link: '/areas/isles/charanth' },
+          { name: 'Ensi', type: 'item', link: '/areas/isles/ensi' },
+          { name: 'Holgresh', type: 'item', link: '/areas/isles/holgresh' },
+          { name: 'Islands', type: 'item', link: '/areas/isles/islands' },
+          { name: 'Kobold', type: 'item', link: '/areas/isles/kobold' },
+          { name: 'Mjharr', type: 'item', link: '/areas/isles/mjharr' },
         ],
       },
       {
@@ -294,68 +206,11 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          {
-            name: 'Ocean',
-            type: 'item',
-            link: '/areas/world/ocean',
-          },
-          {
-            name: 'Sky',
-            type: 'item',
-            link: '/areas/world/sky',
-          },
-          {
-            name: 'Plane',
-            type: 'item',
-            link: '/areas/world/plane',
-          },
-          {
-            name: 'Sunken City',
-            type: 'item',
-            link: '/areas/world/sunkenCity',
-          },
-        ],
-      },
-      {
-        name: 'Isles',
-        type: 'collapse',
-        icon: <Terrain />,
-        children: [
-          {
-            name: 'Islands',
-            type: 'item',
-            link: '/areas/isles/islands',
-          },
-          {
-            name: 'Kobold',
-            type: 'item',
-            link: '/areas/isles/kobold',
-          },
-          {
-            name: 'Mjharr',
-            type: 'item',
-            link: '/areas/isles/mjharr',
-          },
-          {
-            name: 'Charanth',
-            type: 'item',
-            link: '/areas/isles/charanth',
-          },
-          {
-            name: 'Holgresh',
-            type: 'item',
-            link: '/areas/isles/holgresh',
-          },
-          {
-            name: 'Ensi',
-            type: 'item',
-            link: '/areas/isles/ensi',
-          },
-          {
-            name: 'Abbadon',
-            type: 'item',
-            link: '/areas/isles/abbadon',
-          },
+          // "City" would go first if it existed
+          { name: 'Ocean', type: 'item', link: '/areas/world/ocean' },
+          { name: 'Plane', type: 'item', link: '/areas/world/plane' },
+          { name: 'Sky', type: 'item', link: '/areas/world/sky' },
+          { name: 'Sunken City', type: 'item', link: '/areas/world/sunkenCity' },
         ],
       },
     ],
