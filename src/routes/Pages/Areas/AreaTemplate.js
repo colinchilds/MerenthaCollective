@@ -79,7 +79,8 @@ const AreaTemplate = ({ areaData, areaName }) => {
             <Typography variant="h4" align="center">
               Level Range: {areaData.levels}
             </Typography>
-            <Typography>{areaData.summary}</Typography>
+
+            {<Typography align="center">{areaData.summary}</Typography>}
           </CmtCardContent>
         </CmtCard>
 
@@ -125,7 +126,16 @@ const AreaTemplate = ({ areaData, areaName }) => {
               <Typography variant="h4" align="center">
                 Level Range: {zone.levels}
               </Typography>
-              <Typography>{zone.summary}</Typography>
+
+              {Array.isArray(zone.summary) ? (
+                zone.summary.map((item, index) => (
+                  <Typography key={index} display="block">
+                    {item}
+                  </Typography>
+                ))
+              ) : (
+                <Typography>{zone.summary}</Typography>
+              )}
             </CmtCardContent>
           </CmtCard>
         ))}
