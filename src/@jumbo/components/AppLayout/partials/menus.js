@@ -18,36 +18,36 @@ import {
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
-  {
-    name: 'Calculators',
-    type: 'section',
-    children: [
-      {
-        name: 'Stats',
-        type: 'item',
-        icon: <InsertChart />,
-        link: '/calculators/stats',
-      },
-      {
-        name: 'Skills',
-        type: 'item',
-        icon: <Calculate />,
-        link: '/calculators/skills',
-      },
-      {
-        name: 'Party',
-        type: 'item',
-        icon: <Groups />,
-        link: '/calculators/party',
-      },
-      {
-        name: 'Time Converter',
-        type: 'item',
-        icon: <AccessTime />,
-        link: '/calculators/time',
-      },
-    ],
-  },
+  // {
+  //   name: 'Calculators',
+  //   type: 'section',
+  //   children: [
+  //     {
+  //       name: 'Stats',
+  //       type: 'item',
+  //       icon: <InsertChart />,
+  //       link: '/calculators/stats',
+  //     },
+  //     {
+  //       name: 'Skills',
+  //       type: 'item',
+  //       icon: <Calculate />,
+  //       link: '/calculators/skills',
+  //     },
+  //     {
+  //       name: 'Party',
+  //       type: 'item',
+  //       icon: <Groups />,
+  //       link: '/calculators/party',
+  //     },
+  //     {
+  //       name: 'Time Converter',
+  //       type: 'item',
+  //       icon: <AccessTime />,
+  //       link: '/calculators/time',
+  //     },
+  //   ],
+  // },
   {
     name: 'General',
     type: 'section',
@@ -59,28 +59,41 @@ export const sidebarNavs = [
         link: '/',
       },
       {
-        name: 'Coordinates',
-        type: 'item',
-        icon: <MyLocation />,
-        link: '/coords',
-      },
-      {
-        name: 'Maps',
-        type: 'item',
-        icon: <Map />,
-        link: '/maps',
-      },
-      {
         name: 'Alchemy',
         type: 'item',
         icon: <Science />,
         link: '/alchemy',
       },
       {
-        name: 'Rolling',
-        type: 'item',
-        icon: <Casino />,
-        link: '/rolling',
+        name: 'Calculators',
+        type: 'collapse',
+        icon: <Calculate />,
+        children: [
+          {
+            name: 'Stats',
+            type: 'item',
+            icon: <InsertChart />,
+            link: '/calculators/stats',
+          },
+          {
+            name: 'Skills',
+            type: 'item',
+            icon: <Calculate />,
+            link: '/calculators/skills',
+          },
+          {
+            name: 'Party',
+            type: 'item',
+            icon: <Groups />,
+            link: '/calculators/party',
+          },
+          {
+            name: 'Time Converter',
+            type: 'item',
+            icon: <AccessTime />,
+            link: '/calculators/time',
+          },
+        ],
       },
       {
         name: 'Combat Messages',
@@ -89,10 +102,16 @@ export const sidebarNavs = [
         link: '/combat',
       },
       {
-        name: 'Socials',
+        name: 'Common Commands',
         type: 'item',
-        icon: <Textsms />,
-        link: '/socials',
+        icon: <Terminal />,
+        link: '/commands',
+      },
+      {
+        name: 'Coordinates',
+        type: 'item',
+        icon: <MyLocation />,
+        link: '/coords',
       },
       {
         name: 'Fireworks',
@@ -101,10 +120,22 @@ export const sidebarNavs = [
         link: '/fireworks',
       },
       {
-        name: 'Common Commands',
+        name: 'Maps',
         type: 'item',
-        icon: <Terminal />,
-        link: '/commands',
+        icon: <Map />,
+        link: '/maps',
+      },
+      {
+        name: 'Rolling',
+        type: 'item',
+        icon: <Casino />,
+        link: '/rolling',
+      },
+      {
+        name: 'Socials',
+        type: 'item',
+        icon: <Textsms />,
+        link: '/socials',
       },
     ],
   },
@@ -115,29 +146,26 @@ export const sidebarNavs = [
       {
         name: 'Atheria',
         type: 'collapse',
+        icon: <Terrain />,
         children: [
           {
             name: 'Cabeiri',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/atheria/cabeiri',
           },
           {
             name: 'Clouds',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/atheria/clouds',
           },
           {
             name: 'Fenris',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/atheria/fenris',
           },
           {
             name: 'Whitestorm',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/atheria/whitestorm',
           },
         ],
@@ -145,53 +173,46 @@ export const sidebarNavs = [
       {
         name: 'Cardania',
         type: 'collapse',
+        icon: <Terrain />,
         children: [
           {
             name: 'Wolvesdale',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/wolvesdale',
           },
           {
             name: 'Mystic',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/mystic',
           },
           {
             name: 'Death Spiral',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/deathspiral',
           },
           {
             name: 'Lanerell',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/lanerell',
           },
           {
             name: 'Jewel',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/jewel',
           },
           {
             name: 'Hiemelia',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/hiemelia',
           },
           {
             name: 'Xenora',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/xenora',
           },
           {
             name: 'Lakehurst',
             type: 'item',
-            icon: <Terrain />,
             link: '/areas/cardania/lakehurst',
           },
         ],
@@ -209,34 +230,41 @@ export const sidebarNavs = [
         link: '/guides/newbie',
       },
       {
-        name: 'Cleric',
-        type: 'item',
+        name: 'Classes',
+        type: 'collapse',
         icon: <AccessibilityNew />,
-        link: '/guides/cleric',
-      },
-      {
-        name: 'Fighter',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/fighter',
-      },
-      {
-        name: 'Mage',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/mage',
-      },
-      {
-        name: 'Monk',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/monk',
-      },
-      {
-        name: 'Rogue',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/rogue',
+        children: [
+          {
+            name: 'Cleric',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/cleric',
+          },
+          {
+            name: 'Fighter',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/fighter',
+          },
+          {
+            name: 'Mage',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/mage',
+          },
+          {
+            name: 'Monk',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/monk',
+          },
+          {
+            name: 'Rogue',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/rogue',
+          },
+        ],
       },
       {
         name: 'Pet',
