@@ -1,36 +1,17 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import * as Atheria from './Atheria';
-import * as Cardania from './Cardania';
-
-const areas = {
-  atheria: Atheria,
-  cardania: Cardania,
-};
+import { areas } from 'data/Areas';
+import AreaTemplate from './AreaTemplate';
 
 const Area = () => {
-  const { area, subarea } = useParams(); // e.g. /areas/atheria/cabeiri
+  const { area, subarea } = useParams();
+  const areaData = areas?.[area]?.[subarea];
 
-  const AreaPack = areas[area?.toLowerCase()];
-  const Component = AreaPack ? AreaPack[subarea?.charAt(0).toUpperCase() + subarea?.slice(1)] : null;
+  if (!areaData) {
+    return <p>Area not found</p>;
+  }
 
-  // Uppercase the first character for the breadcrumbs
-  const breadcrumbArea = area ? area[0].toUpperCase() + area.slice(1) : '';
-  const breadcrumbSubarea = subarea ? subarea[0].toUpperCase() + subarea.slice(1) : '';
-
-  const breadcrumbs = [
-    { label: 'Main', link: '/' },
-    { label: `Areas / ${breadcrumbArea} / ${breadcrumbSubarea}`, isActive: true },
-  ];
-
-  const header = `Area Guide - ${subarea?.charAt(0).toUpperCase() + subarea?.slice(1)}`;
-
-  return (
-    <PageContainer breadcrumbs={breadcrumbs} heading={header}>
-      {Component ? <Component /> : <p>Area not found.</p>}
-    </PageContainer>
-  );
+  return <AreaTemplate areaData={areaData} areaName={subarea.charAt(0).toUpperCase() + subarea.slice(1)} />;
 };
 
 export default Area;
