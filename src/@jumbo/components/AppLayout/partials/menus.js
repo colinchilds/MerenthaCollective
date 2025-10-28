@@ -206,7 +206,6 @@ export const sidebarNavs = [
         type: 'collapse',
         icon: <Terrain />,
         children: [
-          // "City" would go first if it existed
           { name: 'Ocean', type: 'item', link: '/areas/world/ocean' },
           { name: 'Plane', type: 'item', link: '/areas/world/plane' },
           { name: 'Sky', type: 'item', link: '/areas/world/sky' },
