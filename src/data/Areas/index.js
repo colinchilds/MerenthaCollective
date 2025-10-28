@@ -13,42 +13,48 @@ export const areas = {
         {
           name: 'Town',
           levels: '1-5',
-          summary: 'Kill Edwina and Edwards on sight!',
+          summary: [
+            'Area includes:',
+            '> Shop to the east',
+            '> Bar to the northeast',
+            '> Bank to the south',
+            '> Library to the west',
+          ],
         },
         {
           name: 'Cemetary',
           levels: '1-5',
-          summary: 'Dead things!',
+          summary: 'Northeast of the square, sports ghouls (minor and major). Be sure to *consider* your enemies',
         },
         {
           name: 'Island',
           levels: '1-5',
-          summary: "They're surrounded by water...",
+          summary: 'Take the dinghy to the south of the square.',
         },
         {
           name: 'Orc Valley',
           levels: '1-5',
-          summary: 'Hulk Smash',
+          summary: 'West of the square and has some descently strong enemies for this zone.',
         },
         {
           name: 'Faerie Forest',
           levels: '6-15',
-          summary: "I'll do it for your first born child..",
+          summary: "A 'quest' area, so don't ask how to get here. Take a look east of the square.",
         },
         {
           name: 'Clouds',
           levels: '6-15',
-          summary: 'Fluffy Sky Sheep',
+          summary: '',
         },
         {
           name: 'Mountains',
           levels: '6-15',
-          summary: 'Tall... exhausting',
+          summary: 'The Kobold Mountains are to the west of Orc Valley. Be sure to check your surroundings carefully.',
         },
       ],
     },
     fenris: {
-      summary: 'Fenris is gross.',
+      summary: 'Basically a swamp and rainforest, Fenris boosts a multitude of quests and deeds. Check everywhere!',
       levels: '6-30',
       maps: [
         {
@@ -80,42 +86,50 @@ export const areas = {
         {
           name: 'Forest of Deception',
           levels: '6-15',
-          summary: 'LIES!',
+          summary: ['Imagine folktales come to life.', 'Area has multiple quests and deeds. Keep an eye out.'],
         },
         {
           name: 'Marrdan',
           levels: '6-15',
-          summary: "It's the 'town'",
+          summary: [
+            'The town in Fenris.',
+            'West is the Forest of Deception.',
+            'South is the balloon back to Whitestorm.',
+            'Southwest is Trogrelin',
+          ],
         },
         {
           name: 'Mudforest',
           levels: '20-30',
-          summary: 'A forest... of mud...',
+          summary: '',
         },
         {
           name: 'Rainforest',
           levels: '20-30',
-          summary: 'There once was a rainforest... Then it was turned in to paper.',
+          summary: '',
         },
         {
           name: 'Swamp',
           levels: '6-15',
-          summary: 'Washington DC',
+          summary: '',
         },
         {
           name: 'Trogrelin',
           levels: '15-20',
-          summary: 'Also Washington DC',
+          summary: 'Nice little area with a few deeds/quests.',
         },
         {
           name: 'Oz',
           levels: '20-50',
-          summary: 'No wizard here.',
+          summary: [
+            'This area is leveled by AOE type players.',
+            'Be sure to watch your surrounding rooms for other players.',
+          ],
         },
       ],
     },
     whitestorm: {
-      summary: 'Whitestorm is the center of the world.',
+      summary: 'Whitestorm is largely considered the center of the world.',
       levels: '6-30',
       maps: [
         {
@@ -151,66 +165,76 @@ export const areas = {
         {
           name: 'City',
           levels: '6-15',
-          summary: "It's the 'town'",
+          summary: [
+            'Teens to the east and west are good level 10-15 targets.',
+            'Shops to the east and west, with a library to the south.',
+            'Players frequently leave free items in the square.Be sure to check the chest.',
+          ],
         },
         {
           name: 'Forest',
           levels: '6-15',
-          summary: "It's the 'forest'",
+          summary: [
+            'Located to the east of Whitestorm, contains many animals (good for AOE hunting).',
+            'Strongwood, Uruk, and the Orc Caves are all found in here.',
+          ],
         },
         {
           name: 'Farms',
           levels: '15-20',
-          summary: "There's like, cows and stuff",
+          summary: ['North of Whitestorm and the balloon.', 'Has a couple quests/deeds, so keep an eye out.'],
         },
         {
           name: 'Strongwood Fortress',
           levels: '15-20',
-          summary: 'Elven Fortress - hates Satyrs',
+          summary: ['Elven Fortress.', 'Located on the southeastern area of the forest.', 'Attacks Satyrs on sight'],
         },
         {
           name: 'Uruk Fortress',
           levels: '15-20',
-          summary: 'Satyr Fortress - hates Elves',
+          summary: ['Satyr Fortress.', 'Located on the northwestern area of the forest.', 'Attacks Elves on sight'],
         },
         {
           name: 'Badlands',
           levels: '15-20',
-          summary: "It's... bad",
+          summary: '',
         },
         {
           name: 'Desert',
           levels: '20-30',
-          summary: 'I hate sand, it gets everywhere',
+          summary: [
+            "North of the farms. Can be very confusing if it's your first time here.",
+            'Airship is located in this area',
+          ],
         },
         {
           name: 'Orc Caves',
           levels: '20-30',
-          summary: 'Orc Smash',
+          summary: ['Located in a hidden area of the forest.', 'Been said to have good AOE hunting'],
         },
         {
           name: 'Palace',
           levels: '???',
-          summary: 'Ohhh shiney',
+          summary: '',
         },
       ],
     },
     clouds: {
-      summary: 'I can show you the world!',
+      summary: "On top of the clouds above Whitestorm. Quest area, so don't ask how to get here",
       levels: '40-50',
       maps: [],
       zones: [
         {
           name: 'City',
           levels: '40-50',
-          summary: 'I can show you the world!',
+          summary: '',
         },
       ],
     },
   },
   cardania: {
     wolvesdale: {
-      summary: 'Summary Goes Here',
+      summary: 'The balloon is to the east with ships to the south. The tower is to the north. Mountains to the south.',
       levels: '15-50',
       maps: [
         {
@@ -231,24 +255,24 @@ export const areas = {
           name: 'City',
           id: 'city',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: "Watch out for the bounty hunter. *You* can't kill them",
         },
         {
           name: 'Tower',
           id: 'tower',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: 'Descent pre-High Mortal AOE hunting ground',
         },
         {
           name: 'Mountain',
           id: 'mountain',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     mystic: {
-      summary: 'Summary Goes Here',
+      summary: 'West of Wolvesdale',
       levels: '15-30',
       maps: [
         {
@@ -264,27 +288,30 @@ export const areas = {
         {
           name: 'Forest',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Underworld',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: "Velomuzst's Lair",
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: [
+            'Be careful of Velomuzst. There is a quest that you need to take part in to kill his shade.',
+            "Don't try and kill it without the quest.",
+          ],
         },
         {
           name: 'Tree Tower',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     deathspiral: {
-      summary: 'Summary Goes Here',
+      summary: 'Mountains to the south of Wolvesdale',
       levels: '15-20',
       maps: [
         {
@@ -304,17 +331,21 @@ export const areas = {
         {
           name: 'Mountains',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: "Very confusing area if you're not used to it. check the maps.",
         },
         {
           name: 'Imlandris',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: [
+            'South of Death Spiral.',
+            'Requires 18 Intelligence to enter.',
+            'Sometimes you can hear howling from the south.',
+          ],
         },
       ],
     },
     lanerell: {
-      summary: 'Summary Goes Here',
+      summary: 'The Kingdom of Lanerell',
       levels: '20-30',
       maps: [
         {
@@ -330,59 +361,59 @@ export const areas = {
         {
           name: 'City',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forest',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Cave',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forgotten Kingdom',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mountains',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     jewel: {
-      summary: 'Summary Goes Here',
+      summary: 'The Queendom of Jewel',
       levels: '15-20',
       maps: [],
       zones: [
         {
           name: 'City',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Catacombs',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forest',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Artrell Hive',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     hiemelia: {
-      summary: 'Summary Goes Here',
+      summary: 'The Kingdom of Ice',
       levels: '15-30',
       maps: [
         {
@@ -394,37 +425,37 @@ export const areas = {
         {
           name: 'Glacier',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Palace',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mountains',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Wilderness',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ice Path',
           levels: '20-29',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Northern Outpost',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     xenora: {
-      summary: 'Summary Goes Here',
+      summary: 'The Kingdom of Fire',
       levels: '15-20 & 30-50',
       maps: [
         {
@@ -448,61 +479,61 @@ export const areas = {
         {
           name: 'Palace',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: 'The walls are a good place to AOE hunt. Also, bring multiple bags.',
         },
         {
           name: 'Caves',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Town',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mines',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Fire Lake',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Fortress',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Gablesville',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Zalaria',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: 'Do not enter Drow Lands without an invitation, or you may be hunted.',
         },
       ],
     },
     lakehurst: {
-      summary: 'Summary Goes Here',
+      summary: 'West of the Lanerell balloon, north of the town.',
       levels: '???',
       maps: [],
       zones: [
         {
           name: 'Lakehurst',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   asmar: {
     asmar: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '30-50',
       maps: [
         {
@@ -554,37 +585,37 @@ export const areas = {
         {
           name: 'Airfield',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Plains',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'City Walls',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forest',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'City',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Tunnels',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     drewold: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-90',
       maps: [
         {
@@ -596,22 +627,22 @@ export const areas = {
         {
           name: 'Ancient Forest',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Crystal Cavern',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Imp Treetops',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     fairdale: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '90-130',
       maps: [
         {
@@ -623,57 +654,57 @@ export const areas = {
         {
           name: 'Harbor',
           levels: '90-110',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Pastures',
           levels: '90-110',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'City',
           levels: '90-110',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Barrows',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forest',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Sewers',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Crypts',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mountain',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Plains',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Airship',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     ottograd: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-90',
       maps: [
         {
@@ -685,29 +716,29 @@ export const areas = {
         {
           name: 'Town',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Lower Steppes',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Base Steppes',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Upper Steppes',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   kyria: {
     haven: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '20-30',
       maps: [
         {
@@ -719,27 +750,27 @@ export const areas = {
         {
           name: 'Town',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Fields',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Farms',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Woods',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     gofur: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '30-40',
       maps: [
         {
@@ -767,19 +798,19 @@ export const areas = {
         {
           name: 'Town',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mines',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   iceflows: {
     aeiroth: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '30-90',
       maps: [
         {
@@ -791,78 +822,78 @@ export const areas = {
         {
           name: 'City',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Wilds',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Castle',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Goblin Lair',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ice Cavern',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Valley',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Abbey',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Frozen Lake',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Dead Fields',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     iceflows: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '20-30',
       maps: [],
       zones: [
         {
           name: 'Ice Flows',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     christmas: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '???',
       maps: [],
       zones: [
         {
           name: 'Island',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   puntos: {
     calamyr: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '30-50',
       maps: [
         {
@@ -882,34 +913,34 @@ export const areas = {
         {
           name: 'Tundra',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'City',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: ['Check in your hall for a class specific quest.'],
         },
         {
           name: 'Fortress',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Onyx Mines',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Sewers',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   teile: {
     shanadan: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-70',
       maps: [
         {
@@ -929,29 +960,32 @@ export const areas = {
         {
           name: 'Cliffs',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Gardens',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: [
+            'Monsters here can stat poison you. Be sure to have the Antivenin, or it may just kill you.',
+            'Search for Alchemy ingredients here.',
+          ],
         },
         {
           name: 'Castle',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: ['Can mix alchemic potions northeast of the square.', 'Search for Alchemy ingredients here.'],
         },
         {
           name: 'Bat Caves',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   raptorSaTori: {
     liku: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-90',
       maps: [
         {
@@ -979,69 +1013,69 @@ export const areas = {
         {
           name: 'Village',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Highlands',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ogre Gorge',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: "Widow's Ravine",
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Diamondback Flats',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Broadhurst',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Lost Caverns',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Troll Halls',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Imperial Forest',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Imperial Fortress',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Imperial City',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Spiral Caverns',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   world: {
     ocean: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: 'See Local Areas',
       maps: [
         {
@@ -1061,27 +1095,27 @@ export const areas = {
         {
           name: 'Ghost Ship',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Pirate Ship',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ushil Uzol Uker',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Sailing',
           levels: 'N/A',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     sky: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: 'Unknown',
       maps: [
         {
@@ -1093,29 +1127,29 @@ export const areas = {
         {
           name: 'Flying',
           levels: 'Unknown',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     plane: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-70',
       maps: [],
       zones: [
         {
           name: 'Fire',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Astral',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     sunkenCity: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '20-30',
       maps: [
         {
@@ -1131,14 +1165,14 @@ export const areas = {
         {
           name: 'City',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
   isles: {
     islands: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '15-20',
       maps: [
         {
@@ -1162,67 +1196,67 @@ export const areas = {
         {
           name: 'Fucawee',
           levels: '15-19',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Boar',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Dragon',
           levels: '???',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Trinlar',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Talus',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Cove',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Coral',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Kender',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Tsfaru',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Rimaga',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: "Mon'kay",
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: "Kit'tay",
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     kobold: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '15-50',
       maps: [
         {
@@ -1234,32 +1268,32 @@ export const areas = {
         {
           name: 'Suface',
           levels: '15-20',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Forest',
           levels: '20-30',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Tunnels',
           levels: '30-40',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ruins',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'City',
           levels: '40-50',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     mjharr: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '50-70',
       maps: [
         {
@@ -1271,27 +1305,27 @@ export const areas = {
         {
           name: 'Desert',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mines',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mountain',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Tombs',
           levels: '50-70',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     charanth: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '70-90',
       maps: [
         {
@@ -1307,17 +1341,17 @@ export const areas = {
         {
           name: 'City',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Caves',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     holgresh: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '70-90',
       maps: [
         {
@@ -1329,17 +1363,17 @@ export const areas = {
         {
           name: 'Cliffs',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Temple',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     ensi: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '70-110',
       maps: [
         {
@@ -1355,32 +1389,32 @@ export const areas = {
         {
           name: 'Beach',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Minotaur Hills',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Centaur Forest',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Ant Tunnels',
           levels: '70-90',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Orc Caves',
           levels: '90-110',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
     abbadon: {
-      summary: 'Summary Goes Here',
+      summary: '',
       levels: '90-130',
       maps: [
         {
@@ -1396,52 +1430,29 @@ export const areas = {
         {
           name: 'Forest',
           levels: '90-110',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Mountains',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Drow-elf City',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Spider Caves',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
         {
           name: 'Illithid Airship',
           levels: '110-130',
-          summary: 'Summary goes here',
+          summary: '',
         },
       ],
     },
   },
 };
-
-/*
-const template = {
-  area: {
-
-    subarea: {
-      summary: 'Summary Goes Here',
-      levels: '',
-      maps: [],
-      zones: [
-
-        {
-          name: '',
-          levels: '',
-          summary: 'Summary goes here',
-        },
-
-      ],
-    },
-
-  },
-};
-*/
