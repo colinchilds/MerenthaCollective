@@ -217,7 +217,6 @@ const StatCalculator = () => {
               <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
                 <Grid item xs={6} sm={3}>
                   <Box display="flex" alignItems="center" gap={1}>
-                    <Typography>{stat}</Typography>
                     {isWerewolf && statWerewolfToggles && (
                       <Tooltip title={statWerewolfToggles[stat] === 'night' ? 'Night (Werewolf)' : `Day (${race})`}>
                         <IconButton
@@ -237,6 +236,7 @@ const StatCalculator = () => {
                         </IconButton>
                       </Tooltip>
                     )}
+                    <Typography>{stat}</Typography>
                   </Box>
                 </Grid>
                 <Grid item xs={6} sm={3} align={{ xs: 'left', sm: 'center' }}>
