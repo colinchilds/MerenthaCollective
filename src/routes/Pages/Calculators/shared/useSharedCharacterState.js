@@ -3,6 +3,7 @@ import { useStickyState } from '../../../../@jumbo/utils/commonHelper';
 import { skillNames } from '../Helpers/skills.helpers';
 import { classes, subclasses } from '../Helpers/calculator.helpers';
 import { races } from '../../../../data/Races';
+import { createDefaultStatWerewolfToggles } from '../Helpers/stats.helpers';
 
 const STATS = ['Strength', 'Charisma', 'Constitution', 'Dexterity', 'Intelligence', 'Wisdom'];
 
@@ -48,7 +49,7 @@ const createDefaultCharacter = (name = 'Character 1', id = null) => ({
   race: 'Human',
   level: 1,
   isWerewolf: false,
-  werewolfTimeOfDay: 'day',
+  statWerewolfToggles: null, // Will be initialized when werewolf is enabled
   skillLevels: createDefaultSkillLevels(),
   statLevels: createDefaultStatLevels(),
   skillIncrements: createDefaultSkillIncrements(),
@@ -91,11 +92,15 @@ export const useSharedCharacterState = () => {
       if (skillCalcCharacters) {
         const skillChars = JSON.parse(skillCalcCharacters);
         Object.values(skillChars).forEach((char) => {
+          const isWerewolf = char.isWerewolf || char.race === 'Were-wolf';
+          const actualRace = char.race === 'Were-wolf' ? 'Human' : char.race;
           migratedCharacters[char.id] = {
             ...char,
-            isWerewolf: char.isWerewolf || char.race === 'Were-wolf',
-            werewolfTimeOfDay: char.werewolfTimeOfDay || 'day',
-            race: char.race === 'Were-wolf' ? 'Human' : char.race,
+            isWerewolf: isWerewolf,
+            race: actualRace,
+            statWerewolfToggles: isWerewolf
+              ? createDefaultStatWerewolfToggles(char.charClass, actualRace, char.level)
+              : null,
             statLevels: createDefaultStatLevels(),
             skillLevels: char.skillLevels || createDefaultSkillLevels(),
             skillIncrements: createDefaultSkillIncrements(),
@@ -115,11 +120,15 @@ export const useSharedCharacterState = () => {
       if (statCalcCharacters) {
         const statChars = JSON.parse(statCalcCharacters);
         Object.values(statChars).forEach((char) => {
+          const isWerewolf = char.isWerewolf || char.race === 'Were-wolf';
+          const actualRace = char.race === 'Were-wolf' ? 'Human' : char.race;
           if (migratedCharacters[char.id]) {
             migratedCharacters[char.id].statLevels = char.statLevels || createDefaultStatLevels();
-            migratedCharacters[char.id].isWerewolf = char.isWerewolf || char.race === 'Were-wolf';
-            migratedCharacters[char.id].werewolfTimeOfDay = char.werewolfTimeOfDay || 'day';
-            migratedCharacters[char.id].race = char.race === 'Were-wolf' ? 'Human' : char.race;
+            migratedCharacters[char.id].isWerewolf = isWerewolf;
+            migratedCharacters[char.id].race = actualRace;
+            migratedCharacters[char.id].statWerewolfToggles = isWerewolf
+              ? createDefaultStatWerewolfToggles(char.charClass, actualRace, char.level)
+              : null;
             migratedCharacters[char.id].warriorSpecializations = char.warriorSpecializations || {
               newbie: null,
               elite: null,
@@ -128,9 +137,11 @@ export const useSharedCharacterState = () => {
           } else {
             migratedCharacters[char.id] = {
               ...char,
-              isWerewolf: char.isWerewolf || char.race === 'Were-wolf',
-              werewolfTimeOfDay: char.werewolfTimeOfDay || 'day',
-              race: char.race === 'Were-wolf' ? 'Human' : char.race,
+              isWerewolf: isWerewolf,
+              race: actualRace,
+              statWerewolfToggles: isWerewolf
+                ? createDefaultStatWerewolfToggles(char.charClass, actualRace, char.level)
+                : null,
               skillLevels: createDefaultSkillLevels(),
               statLevels: char.statLevels || createDefaultStatLevels(),
               skillIncrements: createDefaultSkillIncrements(),
@@ -163,9 +174,15 @@ export const useSharedCharacterState = () => {
           if (oldSubclass) migratedCharacter.subclass = JSON.parse(oldSubclass);
           if (oldRace) {
             const parsedRace = JSON.parse(oldRace);
-            migratedCharacter.isWerewolf = parsedRace === 'Were-wolf';
-            migratedCharacter.werewolfTimeOfDay = 'day';
-            migratedCharacter.race = parsedRace === 'Were-wolf' ? 'Human' : parsedRace;
+            const isWerewolf = parsedRace === 'Were-wolf';
+            const actualRace = parsedRace === 'Were-wolf' ? 'Human' : parsedRace;
+            migratedCharacter.isWerewolf = isWerewolf;
+            migratedCharacter.race = actualRace;
+            if (isWerewolf) {
+              const level = oldLevel ? JSON.parse(oldLevel) : 1;
+              const charClass = oldCharClass ? JSON.parse(oldCharClass) : 'Cleric';
+              migratedCharacter.statWerewolfToggles = createDefaultStatWerewolfToggles(charClass, actualRace, level);
+            }
           }
           if (oldLevel) migratedCharacter.level = JSON.parse(oldLevel);
           if (oldSkillLevels) migratedCharacter.skillLevels = JSON.parse(oldSkillLevels);
@@ -208,19 +225,21 @@ export const useSharedCharacterState = () => {
     (character) => {
       if (!character) return character;
 
+      const isWerewolf = character.isWerewolf !== undefined ? character.isWerewolf : character.race === 'Were-wolf';
+      const actualRace = character.race === 'Were-wolf' ? 'Human' : character.race;
+
       const needsUpdate =
         !character.skillIncrements ||
         !character.statIncrements ||
         !character.warriorSpecializations ||
         character.isWerewolf === undefined ||
-        character.werewolfTimeOfDay === undefined;
+        (isWerewolf && !character.statWerewolfToggles);
 
       if (needsUpdate) {
         const updatedCharacter = {
           ...character,
-          isWerewolf: character.isWerewolf !== undefined ? character.isWerewolf : character.race === 'Were-wolf',
-          werewolfTimeOfDay: character.werewolfTimeOfDay || 'day',
-          race: character.race === 'Were-wolf' ? 'Human' : character.race,
+          isWerewolf: isWerewolf,
+          race: actualRace,
           skillIncrements: character.skillIncrements || createDefaultSkillIncrements(),
           statIncrements: character.statIncrements || createDefaultStatIncrements(),
           warriorSpecializations: character.warriorSpecializations || {
@@ -229,6 +248,15 @@ export const useSharedCharacterState = () => {
             legend: null,
           },
         };
+
+        // Initialize statWerewolfToggles for werewolf characters that don't have them
+        if (isWerewolf && !character.statWerewolfToggles) {
+          updatedCharacter.statWerewolfToggles = createDefaultStatWerewolfToggles(
+            character.charClass,
+            actualRace,
+            character.level,
+          );
+        }
 
         setCharacters((prev) => ({
           ...prev,
@@ -426,12 +454,32 @@ export const useSharedCharacterState = () => {
 
   const setCharacterWerewolf = (isWerewolf) => {
     if (!activeCharacter) return;
-    updateActiveCharacter({ isWerewolf });
+    const updates = { isWerewolf };
+
+    // Initialize toggles when enabling werewolf
+    if (isWerewolf && !activeCharacter.statWerewolfToggles) {
+      updates.statWerewolfToggles = createDefaultStatWerewolfToggles(
+        activeCharacter.charClass,
+        activeCharacter.race,
+        activeCharacter.level,
+      );
+    } else if (!isWerewolf) {
+      // Clear toggles when disabling werewolf
+      updates.statWerewolfToggles = null;
+    }
+
+    updateActiveCharacter(updates);
   };
 
-  const setCharacterWerewolfTime = (werewolfTimeOfDay) => {
-    if (!activeCharacter) return;
-    updateActiveCharacter({ werewolfTimeOfDay });
+  const setStatWerewolfToggle = (stat, mode) => {
+    if (!activeCharacter || !activeCharacter.isWerewolf) return;
+
+    const updatedToggles = {
+      ...activeCharacter.statWerewolfToggles,
+      [stat]: mode,
+    };
+
+    updateActiveCharacter({ statWerewolfToggles: updatedToggles });
   };
 
   return {
@@ -449,7 +497,7 @@ export const useSharedCharacterState = () => {
     setCharacterRace,
     setCharacterSubclass,
     setCharacterWerewolf,
-    setCharacterWerewolfTime,
+    setStatWerewolfToggle,
     characterList: Object.values(characters).sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase())),
   };
 };

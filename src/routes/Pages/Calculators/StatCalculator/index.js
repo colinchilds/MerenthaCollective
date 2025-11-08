@@ -18,6 +18,8 @@ import {
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
+import WbSunnyIcon from '@mui/icons-material/WbSunny';
+import NightsStayIcon from '@mui/icons-material/NightsStay';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
@@ -51,7 +53,7 @@ const StatCalculator = () => {
     setCharacterRace,
     setCharacterSubclass,
     setCharacterWerewolf,
-    setCharacterWerewolfTime,
+    setStatWerewolfToggle,
   } = useSharedCharacterState();
 
   const [advExp, setAdvExp] = useState(0);
@@ -69,7 +71,7 @@ const StatCalculator = () => {
   const race = (activeCharacter && activeCharacter.race) || races[0];
   const level = (activeCharacter && activeCharacter.level) || 1;
   const isWerewolf = (activeCharacter && activeCharacter.isWerewolf) || false;
-  const werewolfTimeOfDay = (activeCharacter && activeCharacter.werewolfTimeOfDay) || 'day';
+  const statWerewolfToggles = (activeCharacter && activeCharacter.statWerewolfToggles) || null;
   const statLevels = (activeCharacter && activeCharacter.statLevels) || initStats;
   const statInc = (activeCharacter && activeCharacter.statIncrements) || initStats;
 
@@ -78,6 +80,7 @@ const StatCalculator = () => {
   const [expTotal, setExpTotal] = useState(0);
 
   const [vitals, setVitals] = useState({});
+  const [vitalsNight, setVitalsNight] = useState({});
 
   const updateStatLevels = (k, v) => {
     if (v < 0) {
@@ -108,6 +111,7 @@ const StatCalculator = () => {
 
   const handleMaxIncrement = (stat) => {
     const currentValue = parseInt(statLevels[stat]) || 0;
+    const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
     const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
     const maxIncrement = Math.max(0, maxValue - currentValue);
     updateStatInc(stat, maxIncrement);
@@ -117,6 +121,7 @@ const StatCalculator = () => {
     const currentValue = parseInt(statLevels[stat]) || 0;
     const incrementValue = parseInt(statInc[stat]) || 0;
     const newValue = currentValue + incrementValue;
+    const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
     const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
     const finalValue = Math.min(newValue, maxValue);
 
@@ -137,6 +142,7 @@ const StatCalculator = () => {
     var st = 0;
     var et = 0;
     stats.forEach((stat) => {
+      const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
       const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat], isWerewolf, werewolfTimeOfDay);
       setStatCost((statCost) => ({
         ...statCost,
@@ -149,7 +155,7 @@ const StatCalculator = () => {
     setCharStatTotal(cst);
     setStatTotal(st);
     setExpTotal(et);
-  }, [statLevels, statInc, charClass, race, level, isWerewolf, werewolfTimeOfDay]);
+  }, [statLevels, statInc, charClass, race, level, isWerewolf, statWerewolfToggles]);
 
   useEffect(() => {
     setAdvExp(getAdvanceExp(level));
@@ -157,11 +163,16 @@ const StatCalculator = () => {
   }, [level]);
 
   useEffect(() => {
-    // Determine effective race for vitals calculations
-    const effectiveRace = isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race;
-    var v = getVitals(charClass, effectiveRace, level, statLevels, subclass);
-    setVitals(v);
-  }, [charClass, race, level, statLevels, subclass, isWerewolf, werewolfTimeOfDay]);
+    // Calculate vitals for base race (day form)
+    var vDay = getVitals(charClass, race, level, statLevels, subclass);
+    setVitals(vDay);
+
+    // If werewolf, also calculate vitals for werewolf form (night)
+    if (isWerewolf) {
+      var vNight = getVitals(charClass, 'Were-wolf', level, statLevels, subclass);
+      setVitalsNight(vNight);
+    }
+  }, [charClass, race, level, statLevels, subclass, isWerewolf]);
 
   if (!activeCharacter) {
     return (
@@ -192,13 +203,11 @@ const StatCalculator = () => {
           subclass={subclass}
           race={race}
           isWerewolf={isWerewolf}
-          werewolfTimeOfDay={werewolfTimeOfDay}
           setLevel={setCharacterLevel}
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
           setWerewolf={setCharacterWerewolf}
-          setWerewolfTime={setCharacterWerewolfTime}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         <CmtCardHeader title="Stat Information" />
@@ -207,7 +216,28 @@ const StatCalculator = () => {
             <Fragment key={index}>
               <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
                 <Grid item xs={6} sm={3}>
-                  <Typography>{stat}</Typography>
+                  <Box display="flex" alignItems="center" gap={1}>
+                    <Typography>{stat}</Typography>
+                    {isWerewolf && statWerewolfToggles && (
+                      <Tooltip title={statWerewolfToggles[stat] === 'night' ? 'Night (Werewolf)' : `Day (${race})`}>
+                        <IconButton
+                          size="small"
+                          onClick={() =>
+                            setStatWerewolfToggle(stat, statWerewolfToggles[stat] === 'night' ? 'day' : 'night')
+                          }
+                          sx={{
+                            padding: '2px',
+                            color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
+                          }}>
+                          {statWerewolfToggles[stat] === 'night' ? (
+                            <NightsStayIcon fontSize="small" />
+                          ) : (
+                            <WbSunnyIcon fontSize="small" />
+                          )}
+                        </IconButton>
+                      </Tooltip>
+                    )}
+                  </Box>
                 </Grid>
                 <Grid item xs={6} sm={3} align={{ xs: 'left', sm: 'center' }}>
                   <TextField
@@ -227,7 +257,7 @@ const StatCalculator = () => {
                             race,
                             level,
                             isWerewolf,
-                            werewolfTimeOfDay,
+                            isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
                           )}`}</Typography>
                         </InputAdornment>
                       ),
@@ -339,9 +369,26 @@ const StatCalculator = () => {
                       <Typography>Vitals</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>
-                        {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
-                      </Typography>
+                      {isWerewolf ? (
+                        <Box display="flex" flexDirection="column" gap={0.5}>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <WbSunnyIcon fontSize="small" sx={{ color: '#f57c00' }} />
+                            <Typography>
+                              {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
+                            </Typography>
+                          </Box>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <NightsStayIcon fontSize="small" sx={{ color: '#1976d2' }} />
+                            <Typography>
+                              {vitalsNight['hp']} hp, {vitalsNight['sp']} sp, {vitalsNight['mp']} mp
+                            </Typography>
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Typography>
+                          {vitals['hp']} hp, {vitals['sp']} sp, {vitals['mp']} mp
+                        </Typography>
+                      )}
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -349,12 +396,20 @@ const StatCalculator = () => {
                       <Typography>Encumbrance</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>
-                        {getEncumbrance(
-                          isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race,
-                          statLevels,
-                        ).toLocaleString('en-US')}
-                      </Typography>
+                      {isWerewolf ? (
+                        <Box display="flex" flexDirection="column" gap={0.5}>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <WbSunnyIcon fontSize="small" sx={{ color: '#f57c00' }} />
+                            <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
+                          </Box>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <NightsStayIcon fontSize="small" sx={{ color: '#1976d2' }} />
+                            <Typography>{getEncumbrance('Were-wolf', statLevels).toLocaleString('en-US')}</Typography>
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Typography>{getEncumbrance(race, statLevels).toLocaleString('en-US')}</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
                   <TableRow>
@@ -362,12 +417,20 @@ const StatCalculator = () => {
                       <Typography>Weight</Typography>
                     </TableCell>
                     <TableCell>
-                      <Typography>
-                        {getWeight(
-                          isWerewolf && werewolfTimeOfDay === 'night' ? 'Were-wolf' : race,
-                          statLevels,
-                        ).toLocaleString('en-US')}
-                      </Typography>
+                      {isWerewolf ? (
+                        <Box display="flex" flexDirection="column" gap={0.5}>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <WbSunnyIcon fontSize="small" sx={{ color: '#f57c00' }} />
+                            <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
+                          </Box>
+                          <Box display="flex" alignItems="center" gap={1}>
+                            <NightsStayIcon fontSize="small" sx={{ color: '#1976d2' }} />
+                            <Typography>{getWeight('Were-wolf', statLevels).toLocaleString('en-US')}</Typography>
+                          </Box>
+                        </Box>
+                      ) : (
+                        <Typography>{getWeight(race, statLevels).toLocaleString('en-US')}</Typography>
+                      )}
                     </TableCell>
                   </TableRow>
                   <TableRow>

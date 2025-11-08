@@ -533,6 +533,13 @@ const commands = [
       "List all of the available spells for the given argument. Use 'healermonk' or 'healermage' to clarify which healer subclass to query.",
   },
   {
+    id: 'start',
+    name: 'start',
+    syntax: 'start here',
+    description:
+      'The <start here> command allows you to start in specific locations within the game. You are only able to start in certain locations, for example class halls, the town square of major cities and the central square of kingdoms. See also: setenv',
+  },
+  {
     id: 'stats',
     name: 'stats',
     syntax: 'stats',
@@ -710,8 +717,7 @@ const PlayerCommands = () => {
                 '&:hover': {
                   color: 'primary.dark',
                 },
-              }}
-            >
+              }}>
               {commandName}
             </Link>,
           );
@@ -769,8 +775,7 @@ const PlayerCommands = () => {
                       mb: 2,
                       color: 'primary.main',
                       textTransform: 'lowercase',
-                    }}
-                  >
+                    }}>
                     {selectedCommand.name}
                   </Typography>
                   <Typography variant="h6" sx={{ mb: 1 }}>

@@ -11,8 +11,6 @@ import {
   MenuItem,
   Select,
   TextField,
-  Switch,
-  Typography,
 } from '@mui/material';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { classes, subclasses } from '../Helpers/calculator.helpers';
@@ -35,13 +33,11 @@ export default function CharacterInfo(props) {
     subclass,
     race,
     isWerewolf,
-    werewolfTimeOfDay,
     setLevel,
     setCharClass,
     setSubclass,
     setRace,
     setWerewolf,
-    setWerewolfTime,
     showWerewolf = true,
   } = props;
 
@@ -57,7 +53,6 @@ export default function CharacterInfo(props) {
   // Include all Drow-elf
   // Include all Nature subclasses
   const canBeWerewolf = useCallback(() => {
-    if (level < 20) return false;
     if (race === 'Dragon' || race === 'Lich') return false;
     if (race === 'Drow-elf') return true;
     return hasNatureAccess();
@@ -134,29 +129,12 @@ export default function CharacterInfo(props) {
             </Grid>
             {showWerewolf && canBeWerewolf() && (
               <Grid item xs={12}>
-                <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox
-                        checked={isWerewolf}
-                        onChange={(event) => setWerewolf(event.target.checked)}
-                        name="werewolf"
-                      />
-                    }
-                    label="Werewolf"
-                  />
-                  {isWerewolf && (
-                    <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
-                      <Typography variant="body2">Day</Typography>
-                      <Switch
-                        checked={werewolfTimeOfDay === 'night'}
-                        onChange={(event) => setWerewolfTime(event.target.checked ? 'night' : 'day')}
-                        size="small"
-                      />
-                      <Typography variant="body2">Night</Typography>
-                    </Box>
-                  )}
-                </Box>
+                <FormControlLabel
+                  control={
+                    <Checkbox checked={isWerewolf} onChange={(event) => setWerewolf(event.target.checked)} name="werewolf" />
+                  }
+                  label="Werewolf"
+                />
               </Grid>
             )}
           </GridContainer>

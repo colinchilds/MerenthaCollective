@@ -199,3 +199,23 @@ export function getMaxStat(stat, charClass, race, level, isWerewolf = false, wer
   }
   return statLvl;
 }
+
+export function getOptimalWerewolfMode(stat, charClass, race, level) {
+  // Calculate max stat for both day and night modes
+  const dayMax = getMaxStat(stat, charClass, race, level, true, 'day');
+  const nightMax = getMaxStat(stat, charClass, race, level, true, 'night');
+
+  // Return 'night' if night mode gives higher max, otherwise 'day'
+  return nightMax > dayMax ? 'night' : 'day';
+}
+
+export function createDefaultStatWerewolfToggles(charClass, race, level) {
+  const STATS = ['Strength', 'Charisma', 'Constitution', 'Dexterity', 'Intelligence', 'Wisdom'];
+  const toggles = {};
+
+  STATS.forEach((stat) => {
+    toggles[stat] = getOptimalWerewolfMode(stat, charClass, race, level);
+  });
+
+  return toggles;
+}
