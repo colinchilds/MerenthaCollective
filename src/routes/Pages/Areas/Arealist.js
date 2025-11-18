@@ -97,6 +97,7 @@ const Arealist = () => {
                 If you have any information missing below, please reach out via our{' '}
                 <Link href="https://github.com/colinchilds/MerenthaCollective/issues">GitHub&#8658;Issues</Link>
               </Typography>
+              <Typography>You can click on the Subarea names (e.g.: Cabeiri) to get an area guide for that area.</Typography>
               {/* ADD SOME PADDING BELOW THE ABOVE */}
               <Typography>&nbsp;</Typography>
 
