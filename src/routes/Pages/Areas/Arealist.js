@@ -25,10 +25,10 @@ import QuestionMark from '@mui/icons-material/QuestionMark';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
-  { label: 'Areas', isActive: true },
+  { label: 'Area List', isActive: true },
 ];
 
-const Areas = () => {
+const Arealist = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [minLevelFilter, setMinLevelFilter] = useState('');
   const [maxLevelFilter, setMaxLevelFilter] = useState('');
@@ -216,4 +216,4 @@ const Areas = () => {
   );
 };
 
-export default Areas;
+export default Arealist;
