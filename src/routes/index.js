@@ -14,14 +14,14 @@ import Newbie from './Pages/Guides/Newbie';
 import Pet from './Pages/Guides/Pet';
 import SkillCalculator from './Pages/Calculators/SkillCalculator';
 import PartyCalculator from './Pages/Calculators/PartyCalculator';
-import Maps from './Pages/General/Maps';
+import Maps from './Pages/Areas/Maps';
 import Builder from './Pages/Guides/Builder';
 import BuilderRooms from './Pages/Guides/Builder/Rooms';
 import HomePage from './Pages/General/Home';
 import Socials from './Pages/General/Socials';
 import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
-import Areas from './Pages/General/Areas';
+import Arealist from './Pages/Areas/Arealist';
 import Alchemy from './Pages/General/Alchemy';
 import PlayerCommands from './Pages/General/PlayerCommands';
 
@@ -47,23 +47,25 @@ const Routes = () => {
     <Fragment>
       <ScrollToTop>
         <Switch>
-          {/* General */}
-          <Route exact path="/" component={HomePage} />
-          <Route path="/coords" component={Coordinates} />
+          {/* Areas */}
+          <Route path="/arealist" component={Arealist} />
           <Route path="/maps" component={Maps} />
-          <Route path="/combat" component={Combat} />
-          <Route path="/socials" component={Socials} />
-          <Route path="/fireworks" component={Fireworks} />
-          <Route path="/rolling" component={Rolling} />
-          <Route path="/areas" component={Areas} />
-          <Route path="/alchemy" component={Alchemy} />
-          <Route path="/commands" component={PlayerCommands} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />
           <Route path="/calculators/skills" component={SkillCalculator} />
           <Route path="/calculators/party" component={PartyCalculator} />
           <Route path="/calculators/time" component={TimeCalculator} />
+
+          {/* General */}
+          <Route exact path="/" component={HomePage} />
+          <Route path="/coords" component={Coordinates} />
+          <Route path="/combat" component={Combat} />
+          <Route path="/socials" component={Socials} />
+          <Route path="/fireworks" component={Fireworks} />
+          <Route path="/rolling" component={Rolling} />
+          <Route path="/alchemy" component={Alchemy} />
+          <Route path="/commands" component={PlayerCommands} />
 
           {/* Guides */}
           <Route path="/guides/cleric" component={Cleric} />
@@ -73,8 +75,12 @@ const Routes = () => {
           <Route path="/guides/rogue" component={Rogue} />
           <Route path="/guides/newbie" component={Newbie} />
           <Route path="/guides/pets" component={Pet} />
+
+          {/* ! Guides >> Hidden ! */}
           <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
+
+          {/* 404 Not Found */}
           <Route component={Error404} />
         </Switch>
       </ScrollToTop>

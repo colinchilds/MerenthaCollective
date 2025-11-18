@@ -49,6 +49,25 @@ export const sidebarNavs = [
     ],
   },
   {
+    name: 'Areas',
+    type: 'section',
+    icon: <Terrain />,
+    children: [
+      {
+        name: 'Area List',
+        type: 'item',
+        icon: <Terrain />,
+        link: '/arealist',
+      },
+      {
+        name: 'Maps',
+        type: 'item',
+        icon: <Map />,
+        link: '/maps',
+      },
+    ],
+  },
+  {
     name: 'General',
     type: 'section',
     children: [
@@ -63,12 +82,6 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Science />,
         link: '/alchemy',
-      },
-      {
-        name: 'Areas',
-        type: 'item',
-        icon: <Terrain />,
-        link: '/areas',
       },
       {
         name: 'Combat Messages',
@@ -93,12 +106,6 @@ export const sidebarNavs = [
         type: 'item',
         icon: <LocalFireDepartment />,
         link: '/fireworks',
-      },
-      {
-        name: 'Maps',
-        type: 'item',
-        icon: <Map />,
-        link: '/maps',
       },
       {
         name: 'Rolling',
