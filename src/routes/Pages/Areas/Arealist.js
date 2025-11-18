@@ -137,30 +137,21 @@ const Arealist = () => {
                   </TableHead>
 
                   <TableBody>
-                    {continents.map((continent) => (
-                      <React.Fragment key={continent.name}>
-                        {/* Continent Row */}
-                        <TableRow>
-                          <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
-                            <Typography variant="subtitle1" fontWeight="bold">
-                              {continent.name}
-                            </Typography>
-                          </TableCell>
-                        </TableRow>
-
-                        {continent.regions.map((region) => {
-                          // Filter + sort areas within each region
+                    {continents.map((continent) => {
+                      // Filter each region to include only regions with matching areas
+                      const filteredRegions = continent.regions
+                        .map((region) => {
                           const regionAreas = region.areas
                             .filter((area) => {
                               const matchesSearch = area.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-                              const matchesMinLevel =
+                              const matchesMin =
                                 !minLevelFilter || (area.minLevel !== null && area.minLevel >= parseInt(minLevelFilter));
 
-                              const matchesMaxLevel =
+                              const matchesMax =
                                 !maxLevelFilter || (area.maxLevel !== null && area.maxLevel <= parseInt(maxLevelFilter));
 
-                              return matchesSearch && matchesMinLevel && matchesMaxLevel;
+                              return matchesSearch && matchesMin && matchesMax;
                             })
                             .sort((a, b) => {
                               if (a.minLevel === null && b.minLevel === null) return 0;
@@ -169,12 +160,26 @@ const Arealist = () => {
                               return a.minLevel - b.minLevel;
                             });
 
-                          // Skip empty regions if no areas match filters
-                          if (regionAreas.length === 0) return null;
+                          return { ...region, regionAreas };
+                        })
+                        .filter((region) => region.regionAreas.length > 0); // <== REMOVE empty regions
 
-                          return (
+                      if (filteredRegions.length === 0) return null; // <== REMOVE empty continents
+
+                      return (
+                        <React.Fragment key={continent.name}>
+                          {/* CONTINENT ROW */}
+                          <TableRow>
+                            <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
+                              <Typography variant="subtitle1" fontWeight="bold">
+                                {continent.name}
+                              </Typography>
+                            </TableCell>
+                          </TableRow>
+
+                          {filteredRegions.map((region) => (
                             <React.Fragment key={region.name}>
-                              {/* Region Row */}
+                              {/* REGION ROW */}
                               <TableRow>
                                 <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
                                   <Typography variant="subtitle2" fontWeight="medium">
@@ -183,17 +188,19 @@ const Arealist = () => {
                                 </TableCell>
                               </TableRow>
 
-                              {/* Areas Rows */}
-                              {regionAreas.map((area, index) => (
+                              {/* AREAS */}
+                              {region.regionAreas.map((area, index) => (
                                 <TableRow key={index} hover>
                                   <TableCell>
                                     <Typography variant="body2" fontWeight="medium">
                                       {area.name}
                                     </Typography>
                                   </TableCell>
+
                                   <TableCell align="center">
                                     <Typography variant="body2">{getLevelRange(area)}</Typography>
                                   </TableCell>
+
                                   <TableCell align="center">{renderBooleanCell(area.aoe)}</TableCell>
                                   <TableCell align="center">{renderBooleanCell(area.strong)}</TableCell>
                                   <TableCell align="center">{renderBooleanCell(area.elite)}</TableCell>
@@ -201,10 +208,10 @@ const Arealist = () => {
                                 </TableRow>
                               ))}
                             </React.Fragment>
-                          );
-                        })}
-                      </React.Fragment>
-                    ))}
+                          ))}
+                        </React.Fragment>
+                      );
+                    })}
                   </TableBody>
                 </Table>
               </TableContainer>
