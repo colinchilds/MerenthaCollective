@@ -39,9 +39,12 @@ const getLevel = (level) => {
 export const continents = [
   {
     name: 'Atheria',
+    slug: 'atheria',
     regions: [
       {
         name: 'Cabeiri',
+        slug: 'cabeiri',
+        link: '/areas/atheria/cabeiri',
         areas: [
           add('Town', 'Newbie', 'no', 'no', 'no', 'no'),
           add('Cemetary', 'Newbie', '', 'some'),
@@ -54,6 +57,8 @@ export const continents = [
       },
       {
         name: 'Whitestorm',
+        slug: 'whitestorm',
+        link: '/areas/atheria/whitestorm',
         areas: [
           add('City', 'Mid', 'no'),
           add('Farms', 'Late Mid', 'no', 'no', 'no', 'no'),
@@ -68,6 +73,8 @@ export const continents = [
       },
       {
         name: 'Fenris',
+        slug: 'fenris',
+        link: '/areas/atheria/fenris',
         areas: [
           add('Forest of Deception', 'Mid', 'no', 'no', 'no', 'no'),
           add('Marrdan', 'Mid'),
@@ -80,15 +87,21 @@ export const continents = [
       },
       {
         name: 'Clouds',
+        slug: 'clouds',
+        link: '/areas/atheria/clouds',
         areas: [add('City', 'Late High Mortal', 'no')],
       },
     ],
   },
+
   {
     name: 'Cardania',
+    slug: 'cardania',
     regions: [
       {
         name: 'Wolvesdale',
+        slug: 'wolvesdale',
+        link: '/areas/cardania/wolvesdale',
         areas: [
           add('City', 'Late Mid', '', '', '', 'yes'),
           add('Tower', 'Late Mid', 'yes', 'some'),
@@ -97,6 +110,8 @@ export const continents = [
       },
       {
         name: 'Mystic',
+        slug: 'mystic',
+        link: '/areas/cardania/mystic',
         areas: [
           add('Forest', 'Late Mid'),
           add('Underworld', 'High Mortal'),
@@ -106,6 +121,8 @@ export const continents = [
       },
       {
         name: 'DeathSpiral',
+        slug: 'deathspiral',
+        link: '/areas/cardania/deathspiral',
         areas: [
           add('Mountains', 'Late Mid', 'some', 'no', 'no', 'no'),
           add('Imladris', 'Late Mid', 'yes', 'yes', 'yes', 'no'),
@@ -113,6 +130,8 @@ export const continents = [
       },
       {
         name: 'Lanerell',
+        slug: 'lanerell',
+        link: '/areas/cardania/lanerell',
         areas: [
           add('City', 'High Mortal'),
           add('Forest', 'High Mortal'),
@@ -123,6 +142,8 @@ export const continents = [
       },
       {
         name: 'Jewel',
+        slug: 'jewel',
+        link: '/areas/cardania/jewel',
         areas: [
           add('City', 'Late Mid', 'yes', 'no', 'no', 'no'),
           add('Catacombs', 'Late Mid', 'yes', 'no', 'no', 'no'),
@@ -132,6 +153,8 @@ export const continents = [
       },
       {
         name: 'Hiemelia',
+        slug: 'hiemelia',
+        link: '/areas/cardania/hiemelia',
         areas: [
           add('Glacier', 'Late Mid', 'no', 'no', 'no', 'no'),
           add('Palace', 'Late Mid', 'no', 'no', 'no', 'no'),
@@ -143,6 +166,8 @@ export const continents = [
       },
       {
         name: 'Xenora',
+        slug: 'xenora',
+        link: '/areas/cardania/xenora',
         areas: [
           add('Palace', 'Late Mid'),
           add('Caves', 'Late Mid'),
@@ -156,15 +181,21 @@ export const continents = [
       },
       {
         name: 'Lakehurst',
+        slug: 'lakehurst',
+        link: '/areas/cardania/lakehurst',
         areas: [add('Palace')],
       },
     ],
   },
+
   {
     name: 'Asmar',
+    slug: 'asmar',
     regions: [
       {
         name: 'Asmar',
+        slug: 'asmar',
+        link: '/areas/asmar/asmar',
         areas: [
           add('Airfield', 'Mid High Mortal', 'yes'),
           add('Plains', 'Mid High Mortal', 'yes'),
@@ -176,6 +207,8 @@ export const continents = [
       },
       {
         name: 'Dreywold',
+        slug: 'dreywold',
+        link: '/areas/asmar/dreywold',
         areas: [
           add('Ancient Forest', 'Elite', 'yes', '', 'yes'),
           add('Crystal Cavern', 'Late Elite', 'no', 'yes', 'no', 'yes'),
@@ -184,6 +217,8 @@ export const continents = [
       },
       {
         name: 'Fairdale',
+        slug: 'fairdale',
+        link: '/areas/asmar/fairdale',
         areas: [
           add('Harbor', 'Legend'),
           add('Pastures', 'Legend'),
@@ -199,11 +234,15 @@ export const continents = [
       },
     ],
   },
+
   {
     name: 'Asmar-kon',
+    slug: 'asmar-kon',
     regions: [
       {
         name: 'Ottograd',
+        slug: 'ottograd',
+        link: '/areas/asmar-kon/ottograd',
         areas: [
           add('Town', 'Elite', 'no', 'yes', 'yes'),
           add('Lower Steppes', 'Elite', 'yes'),
@@ -213,11 +252,15 @@ export const continents = [
       },
     ],
   },
+
   {
     name: 'Kyria',
+    slug: 'kyria',
     regions: [
       {
         name: 'Haven',
+        slug: 'haven',
+        link: '/areas/kyria/haven',
         areas: [
           add('Town', 'High Mortal', '', 'no', 'no', 'no'),
           add('Fields', 'High Mortal', '', 'no', 'no', 'no'),
@@ -227,15 +270,21 @@ export const continents = [
       },
       {
         name: 'Gofur',
+        slug: 'gofur',
+        link: '/areas/kyria/gofur',
         areas: [add('Town', 'Mid High Mortal', 'no', 'yes', 'yes', 'no'), add('Mines', 'Mid High Mortal')],
       },
     ],
   },
+
   {
     name: 'Ice Flows',
+    slug: 'ice-flows',
     regions: [
       {
         name: 'Aerioth',
+        slug: 'aerioth',
+        link: '/areas/ice-flows/aerioth',
         areas: [
           add('City', 'Mid High Mortal', 'no'),
           add('Castle', 'Elite', 'no'),
@@ -250,19 +299,27 @@ export const continents = [
       },
       {
         name: 'Ice Flows',
+        slug: 'ice-flows',
+        link: '/areas/ice-flows/ice-flows',
         areas: [add('Ice Flows', 'High Mortal')],
       },
       {
         name: 'Christmas',
+        slug: 'christmas',
+        link: '/areas/ice-flows/christmas',
         areas: [add('Island')],
       },
     ],
   },
+
   {
     name: 'Puntos',
+    slug: 'puntos',
     regions: [
       {
         name: 'Calamyr',
+        slug: 'calamyr',
+        link: '/areas/puntos/calamyr',
         areas: [
           add('Tundra', 'Mid High Mortal'),
           add('Fortress', 'Late High Mortal'),
@@ -273,20 +330,28 @@ export const continents = [
       },
     ],
   },
+
   {
     name: 'South Teile',
+    slug: 'south-teile',
     regions: [
       {
         name: 'Shanadan',
+        slug: 'shanadan',
+        link: '/areas/south-teile/shanadan',
         areas: [add('Cliffs', 'Elite'), add('Gardens', 'Elite'), add('Castle', 'Elite'), add('Bat Caves', 'Elite')],
       },
     ],
   },
+
   {
     name: 'Raptor-Sa-Tori',
+    slug: 'raptor-sa-tori',
     regions: [
       {
         name: 'Liku',
+        slug: 'liku',
+        link: '/areas/raptor-sa-tori/liku',
         areas: [
           add('Village', 'Elite'),
           add('Highlands', 'Elite'),
@@ -304,11 +369,15 @@ export const continents = [
       },
     ],
   },
+
   {
     name: 'World',
+    slug: 'world',
     regions: [
       {
         name: 'Ocean',
+        slug: 'ocean',
+        link: '/areas/world/ocean',
         areas: [
           add('Sailing'),
           add('Pirate Ship', 'Late High Mortal'),
@@ -318,53 +387,75 @@ export const continents = [
       },
       {
         name: 'Sky',
+        slug: 'sky',
+        link: '/areas/world/sky',
         areas: [add('Flying')],
       },
       {
         name: 'Plane',
+        slug: 'plane',
+        link: '/areas/world/plane',
         areas: [add('Fire', 'Elite'), add('Astral', 'Elite')],
       },
     ],
   },
+
   {
     name: 'Isles',
+    slug: 'isles',
     regions: [
       {
         name: 'Fucawee',
+        slug: 'fucawee',
+        link: '/areas/isles/fucawee',
         areas: [add('Island', 'Late Mid', '', 'no', 'no', 'no')],
       },
       {
         name: 'Boar',
+        slug: 'boar',
+        link: '/areas/isles/boar',
         areas: [add('Island', 'Late Mid')],
       },
       {
         name: 'Dragon',
-        areas: [
-          add('Island'), // N/A
-        ],
+        slug: 'dragon',
+        link: '/areas/isles/dragon',
+        areas: [add('Island')],
       },
       {
         name: 'Trinlar',
+        slug: 'trinlar',
+        link: '/areas/isles/trinlar',
         areas: [add('Island', 'High Mortal', 'yes')],
       },
       {
         name: 'Talus',
+        slug: 'talus',
+        link: '/areas/isles/talus',
         areas: [add('Island', 'Late Mid')],
       },
       {
         name: 'Cove',
+        slug: 'cove',
+        link: '/areas/isles/cove',
         areas: [add('Island', 'Late Mid')],
       },
       {
         name: 'Sunken City',
+        slug: 'sunken-city',
+        link: '/areas/isles/sunken-city',
         areas: [add('City', 'High Mortal')],
       },
       {
         name: 'Coral Islands',
+        slug: 'coral-islands',
+        link: '/areas/isles/coral-islands',
         areas: [add('Islands', 'Late Mid')],
       },
       {
         name: 'Kobold',
+        slug: 'kobold',
+        link: '/areas/isles/kobold',
         areas: [
           add('Surface', 'Late Mid'),
           add('Tunnels', 'Mid High Mortal'),
@@ -375,34 +466,50 @@ export const continents = [
       },
       {
         name: 'Kender',
+        slug: 'kender',
+        link: '/areas/isles/kender',
         areas: [add('Island', 'High Mortal')],
       },
       {
         name: 'Tsfaru',
+        slug: 'tsfaru',
+        link: '/areas/isles/tsfaru',
         areas: [add('Isle', 'Mid High Mortal')],
       },
       {
         name: 'Rimaga',
+        slug: 'rimaga',
+        link: '/areas/isles/rimaga',
         areas: [add('Island', 'Mid High Mortal')],
       },
       {
         name: 'Mjharr',
+        slug: 'mjharr',
+        link: '/areas/isles/mjharr',
         areas: [add('Desert', 'Elite'), add('Mines', 'Elite'), add('Mountain', 'Elite'), add('Tombs', 'Elite')],
       },
       {
         name: 'Charanth',
+        slug: 'charanth',
+        link: '/areas/isles/charanth',
         areas: [add('City', 'Late Elite', 'yes'), add('Caves', 'Late Elite')],
       },
       {
         name: "Mon'kay",
+        slug: 'monkay',
+        link: '/areas/isles/monkay',
         areas: [add('Island', 'Late Elite', 'yes')],
       },
       {
         name: 'Holgresh',
+        slug: 'holgresh',
+        link: '/areas/isles/holgresh',
         areas: [add('Cliffs', 'Late Elite', 'no'), add('Temple', 'Late Elite', 'no')],
       },
       {
         name: 'Ensi',
+        slug: 'ensi',
+        link: '/areas/isles/ensi',
         areas: [
           add('Beach', 'Late Elite'),
           add('Minotaur Hills', 'Late Elite'),
@@ -413,6 +520,8 @@ export const continents = [
       },
       {
         name: 'Abbadon',
+        slug: 'abbadon',
+        link: '/areas/isles/abbadon',
         areas: [
           add('Forest', 'Legend', 'yes', 'yes', 'yes', 'yes'),
           add('Mountains', 'Mid Legend', 'yes', 'yes', 'yes', 'yes'),
@@ -423,6 +532,8 @@ export const continents = [
       },
       {
         name: "Kit'tay",
+        slug: 'kittay',
+        link: '/areas/isles/kittay',
         areas: [add('Island', 'Mid Legend', 'yes', 'yes', 'yes')],
       },
     ],
