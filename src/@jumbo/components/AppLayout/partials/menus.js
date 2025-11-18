@@ -19,6 +19,36 @@ import {
 
 export const sidebarNavs = [
   {
+    name: 'Calculators',
+    type: 'section',
+    children: [
+      {
+        name: 'Stats',
+        type: 'item',
+        icon: <InsertChart />,
+        link: '/calculators/stats',
+      },
+      {
+        name: 'Skills',
+        type: 'item',
+        icon: <Calculate />,
+        link: '/calculators/skills',
+      },
+      {
+        name: 'Party',
+        type: 'item',
+        icon: <Groups />,
+        link: '/calculators/party',
+      },
+      {
+        name: 'Time Converter',
+        type: 'item',
+        icon: <AccessTime />,
+        link: '/calculators/time',
+      },
+    ],
+  },
+  {
     name: 'General',
     type: 'section',
     children: [
@@ -39,37 +69,6 @@ export const sidebarNavs = [
         type: 'item',
         icon: <Terrain />,
         link: '/areas',
-      },
-      {
-        name: 'Calculators',
-        type: 'collapse',
-        icon: <Calculate />,
-        children: [
-          {
-            name: 'Stats',
-            type: 'item',
-            icon: <InsertChart />,
-            link: '/calculators/stats',
-          },
-          {
-            name: 'Skills',
-            type: 'item',
-            icon: <Calculate />,
-            link: '/calculators/skills',
-          },
-          {
-            name: 'Party',
-            type: 'item',
-            icon: <Groups />,
-            link: '/calculators/party',
-          },
-          {
-            name: 'Time Converter',
-            type: 'item',
-            icon: <AccessTime />,
-            link: '/calculators/time',
-          },
-        ],
       },
       {
         name: 'Combat Messages',
