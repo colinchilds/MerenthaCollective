@@ -24,6 +24,7 @@ import Rolling from './Pages/General/Rolling';
 import Arealist from './Pages/Areas/Arealist';
 import Alchemy from './Pages/General/Alchemy';
 import PlayerCommands from './Pages/General/PlayerCommands';
+import AreaPage from './Pages/Areas/Guides/index';
 
 function ScrollToTop({ children }) {
   const location = useLocation();
@@ -48,8 +49,10 @@ const Routes = () => {
       <ScrollToTop>
         <Switch>
           {/* Areas */}
-          <Route path="/arealist" component={Arealist} />
-          <Route path="/maps" component={Maps} />
+          <Route path="/areas/arealist" component={Arealist} />
+          <Route path="/areas/maps" component={Maps} />
+          {/* SUPER IMPORTANT: this must go last for the areas list */}
+          <Route path="/areas/:area/:subarea" component={AreaPage} />
 
           {/* Calculator */}
           <Route path="/calculators/stats" component={StatCalculator} />
