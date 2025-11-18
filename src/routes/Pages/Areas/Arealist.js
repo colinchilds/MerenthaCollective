@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import GridContainer from '@jumbo/components/GridContainer';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
@@ -143,7 +144,12 @@ const Arealist = () => {
                         .map((region) => {
                           const regionAreas = region.areas
                             .filter((area) => {
-                              const matchesSearch = area.name.toLowerCase().includes(searchTerm.toLowerCase());
+                              const term = searchTerm.toLowerCase();
+
+                              const matchesSearch =
+                                area.name.toLowerCase().includes(term) || // Area: "Island"
+                                region.name.toLowerCase().includes(term) || // Region: "Cabeiri"
+                                continent.name.toLowerCase().includes(term); // (Optional) Continent: "Atheria"
 
                               const matchesMin =
                                 !minLevelFilter || (area.minLevel !== null && area.minLevel >= parseInt(minLevelFilter));
@@ -183,7 +189,9 @@ const Arealist = () => {
                               <TableRow>
                                 <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
                                   <Typography variant="subtitle2" fontWeight="medium">
-                                    {region.name}
+                                    <RouterLink to={region.link} style={{ textDecoration: 'none', color: 'blue' }}>
+                                      {region.name}
+                                    </RouterLink>
                                   </Typography>
                                 </TableCell>
                               </TableRow>
