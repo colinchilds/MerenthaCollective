@@ -101,10 +101,10 @@ const CharacterSelector = ({
   };
 
   const getCharacterDisplayName = (character) => {
-    const className = character.charClass || 'Unknown';
+    const subClass = character.subclass || 'Unknown';
     const raceName = (character.race && character.race.name) || character.race || 'Unknown';
     const werewolfSuffix = character.isWerewolf ? ' 🐺' : '';
-    return `${character.name} (${className}/${raceName})${werewolfSuffix}`;
+    return `${character.name} (${subClass}/${raceName})${werewolfSuffix}`;
   };
 
   const renderDeleteConfirmDialog = () => {
@@ -215,7 +215,7 @@ const CharacterSelector = ({
                   {character.name}
                 </Typography>
                 <Typography variant="caption" color="text.secondary" noWrap>
-                  Level {character.level} {character.charClass}/{(character.race && character.race.name) || character.race}
+                  Level {character.level} {character.subclass}/{(character.race && character.race.name) || character.race}
                   {character.isWerewolf ? ' 🐺' : ''}
                 </Typography>
               </Box>
