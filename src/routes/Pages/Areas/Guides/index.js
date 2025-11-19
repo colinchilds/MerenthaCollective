@@ -8,6 +8,7 @@ import MapModal from 'routes/Pages/Components/MapModal';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import { continents } from 'data/Areas/index';
 import { areas } from 'data/Areas/areas';
+import InfoRequests from 'routes/Pages/Components/InfoRequests';
 
 const makeId = (str) => {
   return str
@@ -45,6 +46,9 @@ const AreaPage = () => {
     <PageContainer breadcrumbs={breadcrumbs}>
       <GridContainer>
         <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
+          {/* Update Requests */}
+          <InfoRequests />
+
           {/* Table of Contents */}
           <CmtCard id="subzone-toc">
             <CmtCardContent>
