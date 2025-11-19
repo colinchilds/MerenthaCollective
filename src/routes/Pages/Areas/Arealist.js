@@ -19,10 +19,12 @@ import {
   Paper,
 } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import { continents } from 'data/Areas/index';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import QuestionMark from '@mui/icons-material/QuestionMark';
+import UpdatedBy from '@manannan/UpdatedBy';
+
+import { areas } from 'data/Areas';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -34,26 +36,25 @@ const Arealist = () => {
   const [minLevelFilter, setMinLevelFilter] = useState('');
   const [maxLevelFilter, setMaxLevelFilter] = useState('');
 
-  // Helper function to render boolean indicators
   const renderBooleanCell = (value) => {
-    if (value === 'yes') {
-      return <CheckIcon color="success" fontSize="small" />;
-    } else if (value === 'no') {
-      return <CloseIcon color="error" fontSize="small" />;
-    } else if (value === 'some') {
+    if (value === 'yes') return <CheckIcon color="success" fontSize="small" />;
+    if (value === 'no') return <CloseIcon color="error" fontSize="small" />;
+    if (value === 'some')
       return (
         <Typography variant="body2" color="warning.main">
           Some
         </Typography>
       );
-    }
+
     return <QuestionMark fontSize="small" />;
   };
 
-  // Function to get level range display
-  const getLevelRange = (area) => {
-    if (!area.minLevel || !area.maxLevel) return 'Unknown';
-    return `${area.minLevel} - ${area.maxLevel}`;
+  // Extract min/max from "15-20"
+  const parseLevels = (range) => {
+    if (!range || typeof range !== 'string') return { min: null, max: null };
+    const match = range.match(/(\d+)\s*-\s*(\d+)/);
+    if (!match) return { min: null, max: null };
+    return { min: Number(match[1]), max: Number(match[2]) };
   };
 
   return (
@@ -91,14 +92,15 @@ const Arealist = () => {
                 />
               </Box>
             </CmtCardHeader>
+
             <CmtCardContent>
               <Typography size="medium">These values are player provided and may need updated.</Typography>
               <Typography size="medium">
                 If you have any information missing below, please reach out via our{' '}
-                <Link href="https://github.com/colinchilds/MerenthaCollective/issues">GitHub&#8658;Issues</Link>
+                <Link href="https://github.com/colinchilds/MerenthaCollective/issues">GitHub Issues</Link>
               </Typography>
-              <Typography>You can click on the Subarea names (e.g.: Cabeiri) to get an area guide for that area.</Typography>
-              {/* ADD SOME PADDING BELOW THE ABOVE */}
+              <Typography>Click a Subarea name (e.g., Cabeiri) to view its area guide.</Typography>
+
               <Typography>&nbsp;</Typography>
 
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
@@ -110,7 +112,7 @@ const Arealist = () => {
                           Zone
                         </Typography>
                       </TableCell>
-                      <TableCell align="center" style={{ minWidth: '120px' }}>
+                      <TableCell align="center" style={{ minWidth: 120 }}>
                         <Typography variant="subtitle2" fontWeight="bold">
                           Level Range
                         </Typography>
@@ -139,83 +141,99 @@ const Arealist = () => {
                   </TableHead>
 
                   <TableBody>
-                    {continents.map((continent) => {
-                      // Filter each region to include only regions with matching areas
-                      const filteredRegions = continent.regions
-                        .map((region) => {
-                          const regionAreas = region.areas
-                            .filter((area) => {
-                              const term = searchTerm.toLowerCase();
+                    {Object.entries(areas).map(([areaSlug, subareas]) => {
+                      const areaName = areaSlug.charAt(0).toUpperCase() + areaSlug.slice(1);
 
-                              const matchesSearch =
-                                area.name.toLowerCase().includes(term) || // Area: "Island"
-                                region.name.toLowerCase().includes(term) || // Region: "Cabeiri"
-                                continent.name.toLowerCase().includes(term); // (Optional) Continent: "Atheria"
+                      // Build list of subareas + zones for filtering
+                      const processedSubareas = Object.entries(subareas).map(([subSlug, data]) => {
+                        const { min, max } = parseLevels(data.levels);
 
-                              const matchesMin =
-                                !minLevelFilter || (area.minLevel !== null && area.minLevel >= parseInt(minLevelFilter));
+                        return {
+                          name: subSlug.charAt(0).toUpperCase() + subSlug.slice(1),
+                          slug: subSlug,
+                          link: `/areas/${areaSlug}/${subSlug}`,
+                          levels: data.levels,
+                          minLevel: min,
+                          maxLevel: max,
+                          zones: data.zones,
+                        };
+                      });
 
-                              const matchesMax =
-                                !maxLevelFilter || (area.maxLevel !== null && area.maxLevel <= parseInt(maxLevelFilter));
+                      // Filter subareas by search/min/max
+                      const filtered = processedSubareas
+                        .filter((sub) => {
+                          const term = searchTerm.toLowerCase();
 
-                              return matchesSearch && matchesMin && matchesMax;
-                            })
-                            .sort((a, b) => {
-                              if (a.minLevel === null && b.minLevel === null) return 0;
-                              if (a.minLevel === null) return 1;
-                              if (b.minLevel === null) return -1;
-                              return a.minLevel - b.minLevel;
-                            });
+                          const matchesSearch =
+                            sub.name.toLowerCase().includes(term) || areaName.toLowerCase().includes(term);
 
-                          return { ...region, regionAreas };
+                          const matchesMin = !minLevelFilter || (sub.minLevel && sub.minLevel >= parseInt(minLevelFilter));
+
+                          const matchesMax = !maxLevelFilter || (sub.maxLevel && sub.maxLevel <= parseInt(maxLevelFilter));
+
+                          return matchesSearch && matchesMin && matchesMax;
                         })
-                        .filter((region) => region.regionAreas.length > 0); // <== REMOVE empty regions
+                        .sort((a, b) => {
+                          if (a.minLevel === null) return 1;
+                          if (b.minLevel === null) return -1;
+                          return a.minLevel - b.minLevel;
+                        });
 
-                      if (filteredRegions.length === 0) return null; // <== REMOVE empty continents
+                      if (filtered.length === 0) return null;
 
                       return (
-                        <React.Fragment key={continent.name}>
-                          {/* CONTINENT ROW */}
+                        <React.Fragment key={areaSlug}>
+                          {/* CONTINENT NAME */}
                           <TableRow>
                             <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
                               <Typography variant="subtitle1" fontWeight="bold">
-                                {continent.name}
+                                {areaName}
                               </Typography>
                             </TableCell>
                           </TableRow>
 
-                          {filteredRegions.map((region) => (
-                            <React.Fragment key={region.name}>
-                              {/* REGION ROW */}
+                          {/* SUBAREAS */}
+                          {filtered.map((sub) => (
+                            <React.Fragment key={sub.slug}>
                               <TableRow>
                                 <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
                                   <Typography variant="subtitle2" fontWeight="medium">
-                                    <RouterLink to={region.link} style={{ textDecoration: 'none', color: 'blue' }}>
-                                      {region.name}
+                                    <RouterLink to={sub.link} style={{ textDecoration: 'none', color: 'blue' }}>
+                                      {sub.name}
                                     </RouterLink>
                                   </Typography>
                                 </TableCell>
                               </TableRow>
 
-                              {/* AREAS */}
-                              {region.regionAreas.map((area, index) => (
-                                <TableRow key={index} hover>
-                                  <TableCell>
-                                    <Typography variant="body2" fontWeight="medium">
-                                      {area.name}
-                                    </Typography>
-                                  </TableCell>
+                              {/* ZONES */}
+                              {sub.zones.map((zone, idx) => {
+                                const { min, max } = parseLevels(zone.levels);
 
-                                  <TableCell align="center">
-                                    <Typography variant="body2">{getLevelRange(area)}</Typography>
-                                  </TableCell>
+                                const matchesSearch = zone.name.toLowerCase().includes(searchTerm.toLowerCase());
 
-                                  <TableCell align="center">{renderBooleanCell(area.aoe)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.strong)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.elite)}</TableCell>
-                                  <TableCell align="center">{renderBooleanCell(area.legendary)}</TableCell>
-                                </TableRow>
-                              ))}
+                                // Optional: Filter zones if needed
+                                if (!matchesSearch && searchTerm !== '') return null;
+
+                                return (
+                                  <TableRow key={idx} hover>
+                                    <TableCell>
+                                      <Typography variant="body2" fontWeight="medium">
+                                        {zone.name}
+                                      </Typography>
+                                    </TableCell>
+                                    <TableCell align="center">
+                                      <Typography variant="body2">
+                                        {zone.minLevel} - {zone.maxLevel}
+                                      </Typography>
+                                    </TableCell>
+
+                                    <TableCell align="center">{renderBooleanCell(zone.aoe)}</TableCell>
+                                    <TableCell align="center">{renderBooleanCell(zone.strong)}</TableCell>
+                                    <TableCell align="center">{renderBooleanCell(zone.elite)}</TableCell>
+                                    <TableCell align="center">{renderBooleanCell(zone.legendary)}</TableCell>
+                                  </TableRow>
+                                );
+                              })}
                             </React.Fragment>
                           ))}
                         </React.Fragment>
@@ -227,9 +245,8 @@ const Arealist = () => {
             </CmtCardContent>
           </CmtCard>
         </Grid>
-        <Grid item>
-          <Typography>Updated by Manannan</Typography>
-        </Grid>
+
+        <UpdatedBy name="Manannan" />
       </GridContainer>
     </PageContainer>
   );

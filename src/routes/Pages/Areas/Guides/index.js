@@ -6,9 +6,10 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import MapModal from 'routes/Pages/Components/MapModal';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import { continents } from 'data/Areas/index';
-import { areas } from 'data/Areas/areas';
 import InfoRequests from 'routes/Pages/Components/InfoRequests';
+import UpdatedBy from '@manannan/UpdatedBy';
+
+import { areas } from 'data/Areas';
 
 const makeId = (str) => {
   return str
@@ -23,23 +24,33 @@ const handleScroll = (id) => {
 };
 
 const AreaPage = () => {
-  const { area, subarea } = useParams();
-  const areaData = areas?.[area]?.[subarea];
+  // Rename params to reflect new naming conventions
+  const { area: areaSlug, subarea: subareaSlug } = useParams();
 
-  const continent = continents.find((c) => c.name.toLowerCase() === area.toLowerCase());
+  // Lookup sub-area data
+  const areaData = areas?.[areaSlug]?.[subareaSlug];
 
-  const region = continent?.regions.find((r) => r.name.toLowerCase() === subarea.toLowerCase());
+  if (!areaData) {
+    return <Typography>Area not found.</Typography>;
+  }
+
+  // Display names
+  const areaName = areaSlug.charAt(0).toUpperCase() + areaSlug.slice(1);
+  const subareaName = subareaSlug.charAt(0).toUpperCase() + subareaSlug.slice(1);
 
   const breadcrumbs = [
-    { label: 'Areas', link: '/areas/arealist' },
-    { label: continent.name, link: '/areas/arealist' },
-    { label: region.name, isActive: true },
+    { label: 'Main', link: '/' },
+    { label: 'Area List', link: `/areas/arealist` },
+    { label: subareaName, isActive: true },
   ];
 
   const toc = [
     { name: 'Summary', id: 'subzone-summary' },
     { name: 'Map(s)', id: 'subzone-map' },
-    ...(areaData.zones || []).map((zone) => ({ name: zone.name, id: makeId(zone.name) })),
+    ...(areaData.zones || []).map((zone) => ({
+      name: zone.name,
+      id: makeId(zone.name),
+    })),
   ];
 
   return (
@@ -48,6 +59,20 @@ const AreaPage = () => {
         <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
           {/* Update Requests */}
           <InfoRequests />
+
+          {/* Summary */}
+          <CmtCard id="subzone-summary">
+            <CmtCardContent>
+              <Typography variant="h2" align="center">
+                {subareaName}
+              </Typography>
+              <Typography variant="h4" align="center">
+                Level Range: {areaData.levels}
+              </Typography>
+
+              <Typography align="center">{areaData.summary}</Typography>
+            </CmtCardContent>
+          </CmtCard>
 
           {/* Table of Contents */}
           <CmtCard id="subzone-toc">
@@ -87,20 +112,6 @@ const AreaPage = () => {
                   No sections available.
                 </Typography>
               )}
-            </CmtCardContent>
-          </CmtCard>
-
-          {/* Summary */}
-          <CmtCard id="subzone-summary">
-            <CmtCardContent>
-              <Typography variant="h2" align="center">
-                {region.name}
-              </Typography>
-              <Typography variant="h4" align="center">
-                Level Range: {areaData.levels}
-              </Typography>
-
-              {<Typography align="center">{areaData.summary}</Typography>}
             </CmtCardContent>
           </CmtCard>
 
@@ -148,8 +159,8 @@ const AreaPage = () => {
                 </Typography>
 
                 {Array.isArray(zone.summary) ? (
-                  zone.summary.map((item, index) => (
-                    <Typography key={index} display="block">
+                  zone.summary.map((item, idx) => (
+                    <Typography key={idx} display="block">
                       {item}
                     </Typography>
                   ))
@@ -160,6 +171,7 @@ const AreaPage = () => {
             </CmtCard>
           ))}
         </Grid>
+        <UpdatedBy name="Manannan" />
       </GridContainer>
     </PageContainer>
   );
