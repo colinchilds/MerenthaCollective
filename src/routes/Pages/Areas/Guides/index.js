@@ -30,8 +30,8 @@ const AreaPage = () => {
   const region = continent?.regions.find((r) => r.name.toLowerCase() === subarea.toLowerCase());
 
   const breadcrumbs = [
-    { label: 'Areas', link: '/arealist' },
-    { label: continent.name, link: '/arealist' },
+    { label: 'Areas', link: '/areas/arealist' },
+    { label: continent.name, link: '/areas/arealist' },
     { label: region.name, isActive: true },
   ];
 
