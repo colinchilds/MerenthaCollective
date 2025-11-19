@@ -8,14 +8,14 @@ const useStyles = makeStyles((theme) => ({
   appFooter: {
     width: '100%',
     backgroundColor: theme.palette.background.paper,
-    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.15)',
+    boxShadow: '0px 0px 5px rgba(0, 0, 0, 0.35)',
   },
   appFooterWrapper: {
     padding: '12px 30px',
     display: 'flex',
     flexDirection: 'column',
     justifyContent: 'center',
-    minHeight: 64,
+    //minHeight: 64,
     [theme.breakpoints.up('md')]: {
       paddingLeft: 50,
       paddingRight: 50,
