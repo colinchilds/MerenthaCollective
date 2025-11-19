@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, Grid, Table, TableBody, TableCell, TableRow, Box } from '@mui/material';
+import { Typography, Grid, Box } from '@mui/material';
 import GridContainer from '@jumbo/components/GridContainer';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
