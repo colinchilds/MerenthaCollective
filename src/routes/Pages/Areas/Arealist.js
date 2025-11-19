@@ -227,6 +227,9 @@ const Arealist = () => {
             </CmtCardContent>
           </CmtCard>
         </Grid>
+        <Grid item>
+          <Typography>Updated by Manannan</Typography>
+        </Grid>
       </GridContainer>
     </PageContainer>
   );
