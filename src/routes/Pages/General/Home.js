@@ -6,6 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Link, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import Code from '@manannan/Code';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -13,6 +14,10 @@ const breadcrumbs = [
 ];
 
 const updates = [
+  {
+    date: '11/20/2025',
+    message: 'Updated Menu. Added Area Guides from the Area List.',
+  },
   {
     date: '10/13/2025',
     message: 'Added Pet Guide',
@@ -83,13 +88,26 @@ const HomePage = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardContent>
-              <Typography>
+              <Typography gutterBottom>
                 Welcome to the newly revived Merentha Collective! This site is all about the MUD{' '}
                 <Link href="https://www.merentha.com">Merentha</Link>. Please take a look around and feel free to offer
                 suggestions for improvements. We also gladly accept{' '}
                 <Link href="https://github.com/colinchilds/MerenthaCollective">merge requests</Link> to fix or add new
-                content. This is a site by the players, for the players, so please help us keep it up to date!
+                content.
               </Typography>
+
+              <Typography gutterBottom>
+                Alternatively, you can submit a request on{' '}
+                <Link
+                  href="https://github.com/colinchilds/MerenthaCollective/issues"
+                  target="_blank"
+                  rel="noopener noreferrer">
+                  GitHub Issues
+                </Link>{' '}
+                with the label <Code>PLACEHOLDER</Code>
+              </Typography>
+
+              <Typography>This is a site by the players, for the players, so please help us keep it up to date!</Typography>
             </CmtCardContent>
           </CmtCard>
         </Grid>
