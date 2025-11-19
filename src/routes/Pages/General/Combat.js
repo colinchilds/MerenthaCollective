@@ -26,9 +26,12 @@ const Combat = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardContent>
+              <Typography variant="h4" style={{ marginBottom: '10px' }}>
+                Combat Damage Messages
+              </Typography>
               <Typography>
-                Below are two tables showing the message for each hit, for each of the three damage types. The percentage is
-                the damage compared to your enemy's maximum health points.
+                The tables below show the message for each hit, for each of the three damage types. The percentage is the
+                damage compared to your enemy's maximum health points.
                 <br />
                 <br />
                 <b>Blunt:</b> Blunt, Melee, Flail, Projectile, Two handed
@@ -36,6 +39,10 @@ const Combat = () => {
                 <b>Sharp:</b> Blade, Knife, Axe
               </Typography>
             </CmtCardContent>
+          </CmtCard>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CmtCard>
             <CmtCardContent>
               <Table size="small">
                 <TableHead>
@@ -114,6 +121,10 @@ const Combat = () => {
                 </TableBody>
               </Table>
             </CmtCardContent>
+          </CmtCard>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <CmtCard>
             <CmtCardContent>
               <Table size="small">
                 <TableHead>
@@ -174,6 +185,71 @@ const Combat = () => {
                   <TableRow>
                     <TypographyCell>20.7%+</TypographyCell>
                     <TypographyCell>destroy utterly</TypographyCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </CmtCardContent>
+          </CmtCard>
+        </Grid>
+        <Grid item xs={12}>
+          <CmtCard>
+            <CmtCardContent>
+              <Typography variant="h4" style={{ marginBottom: '10px' }}>
+                Health Status Messages
+              </Typography>
+              <Typography>
+                These status messages appear when examining a creature or player, indicating their current health as a
+                percentage of their maximum HP.
+              </Typography>
+            </CmtCardContent>
+            <CmtCardContent>
+              <Table size="small">
+                <TableHead>
+                  <TableRow>
+                    <TypographyCell>HP %</TypographyCell>
+                    <TypographyCell>Status Message</TypographyCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  <TableRow>
+                    <TypographyCell>90%+</TypographyCell>
+                    <TypographyCell>is in top shape</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>80% - 90%</TypographyCell>
+                    <TypographyCell>is in decent shape</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>70% - 80%</TypographyCell>
+                    <TypographyCell>is bruised</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>60% - 70%</TypographyCell>
+                    <TypographyCell>is slightly injured</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>50% - 60%</TypographyCell>
+                    <TypographyCell>is hurting</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>40% - 50%</TypographyCell>
+                    <TypographyCell>is badly injured</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>30% - 40%</TypographyCell>
+                    <TypographyCell>is bleeding terribly</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>20% - 30%</TypographyCell>
+                    <TypographyCell>is terribly injured</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>10% - 20%</TypographyCell>
+                    <TypographyCell>is near death</TypographyCell>
+                  </TableRow>
+                  <TableRow>
+                    <TypographyCell>0% - 10%</TypographyCell>
+                    <TypographyCell>is mortally wounded</TypographyCell>
                   </TableRow>
                 </TableBody>
               </Table>
