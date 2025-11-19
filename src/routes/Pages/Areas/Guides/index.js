@@ -42,7 +42,7 @@ const AreaPage = () => {
   ];
 
   return (
-    <PageContainer breadcrumbs={breadcrumbs} heading={region.name}>
+    <PageContainer breadcrumbs={breadcrumbs}>
       <GridContainer>
         <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
           {/* Table of Contents */}
