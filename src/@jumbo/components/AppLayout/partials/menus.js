@@ -12,6 +12,7 @@ import {
   Shield,
   Terrain,
   Groups,
+  TravelExplore,
   AccessTime,
   Terminal,
   Science,
@@ -63,6 +64,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <MyLocation />,
         link: '/coords',
+      },
+      {
+        name: 'World Map',
+        type: 'item',
+        icon: <TravelExplore />,
+        link: '/worldmap',
       },
       {
         name: 'Maps',
