@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
-import Code from '@manannan/Code';
+import Code from 'common/Code';
 import { MeleeCombat, SpellCombat } from 'data/Combat';
 
 const breadcrumbs = [

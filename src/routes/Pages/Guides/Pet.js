@@ -6,7 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import UpdatedBy from '@manannan/UpdatedBy';
+import UpdatedBy from 'common/UpdatedBy';
 
 const breadcrumbs = [
   { label: 'Guides', link: '/guides' },

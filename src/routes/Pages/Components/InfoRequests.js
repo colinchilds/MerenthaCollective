@@ -1,7 +1,7 @@
 import * as React from 'react';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import Code from '@manannan/Code';
+import Code from 'common/Code';
 import { Link, Typography } from '@mui/material';
 
 const InfoRequests = () => {

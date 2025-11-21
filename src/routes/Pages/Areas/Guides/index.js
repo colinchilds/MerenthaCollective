@@ -7,7 +7,7 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import MapModal from 'routes/Pages/Components/MapModal';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import InfoRequests from 'routes/Pages/Components/InfoRequests';
-import UpdatedBy from '@manannan/UpdatedBy';
+import UpdatedBy from 'common/UpdatedBy';
 
 import { areas } from 'data/Areas';
 

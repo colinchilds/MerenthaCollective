@@ -6,7 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Link, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import Code from '@manannan/Code';
+import Code from 'common/Code';
 import updates from 'data/Home';
 
 const breadcrumbs = [
