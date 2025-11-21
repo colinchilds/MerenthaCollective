@@ -1,52 +1,38 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import { Typography, Grid, Box } from '@mui/material';
+import { Typography, Grid, Box, Chip, Divider, Alert, Link } from '@mui/material';
 import GridContainer from '@jumbo/components/GridContainer';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import MapModal from 'routes/Pages/Components/MapModal';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import InfoRequests from 'routes/Pages/Components/InfoRequests';
 import UpdatedBy from 'common/UpdatedBy';
+import Code from 'common/Code';
 
 import { areas } from 'data/Areas';
-
-const makeId = (str) => {
-  return str
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '');
-};
-
-const handleScroll = (id) => {
-  const el = document.getElementById(id);
-  if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
-};
+import { makeId, getLevelChipProps, handleScroll, sectionStyles } from './utils';
+import ZoneAttributes from './ZoneAttributes';
 
 const AreaPage = () => {
-  // Rename params to reflect new naming conventions
   const { area: areaSlug, subarea: subareaSlug } = useParams();
-
-  // Lookup sub-area data
   const areaData = areas?.[areaSlug]?.[subareaSlug];
 
   if (!areaData) {
     return <Typography>Area not found.</Typography>;
   }
 
-  // Display names
   const areaName = areaSlug.charAt(0).toUpperCase() + areaSlug.slice(1);
   const subareaName = subareaSlug.charAt(0).toUpperCase() + subareaSlug.slice(1);
 
   const breadcrumbs = [
     { label: 'Main', link: '/' },
     { label: 'Area List', link: `/areas/arealist` },
+    { label: areaName, isActive: false },
     { label: subareaName, isActive: true },
   ];
 
   const toc = [
-    { name: 'Summary', id: 'subzone-summary' },
-    { name: 'Map(s)', id: 'subzone-map' },
+    ...(areaData.maps?.length > 0 ? [{ name: 'Maps', id: 'maps-section' }] : []),
     ...(areaData.zones || []).map((zone) => ({
       name: zone.name,
       id: makeId(zone.name),
@@ -57,118 +43,146 @@ const AreaPage = () => {
     <PageContainer breadcrumbs={breadcrumbs}>
       <GridContainer>
         <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
-          {/* Update Requests */}
-          <InfoRequests />
+          <Alert severity="info" sx={{ py: 0.5 }}>
+            <Typography variant="body2">
+              To add or update zone details, submit a request on{' '}
+              <Link
+                href="https://github.com/colinchilds/MerenthaCollective/issues"
+                target="_blank"
+                rel="noopener noreferrer">
+                GitHub Issues
+              </Link>{' '}
+              with label <Code>area-data-update</Code>
+            </Typography>
+          </Alert>
 
-          {/* Summary */}
-          <CmtCard id="subzone-summary">
+          <CmtCard>
             <CmtCardContent>
-              <Typography variant="h2" align="center">
-                {subareaName}
-              </Typography>
-              <Typography variant="h4" align="center">
-                Level Range: {areaData.levels}
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'flex-start',
+                  flexWrap: 'wrap',
+                  gap: 2,
+                }}>
+                <Box>
+                  <Typography variant="h2" component="h1" gutterBottom>
+                    {subareaName}
+                  </Typography>
+                  <Typography variant="subtitle1" color="text.secondary" gutterBottom>
+                    Levels {areaData.levels}
+                  </Typography>
+                </Box>
+              </Box>
+
+              <Typography variant="body1" sx={{ mt: 2, mb: 3 }}>
+                {areaData.summary}
               </Typography>
 
-              <Typography align="center">{areaData.summary}</Typography>
-            </CmtCardContent>
-          </CmtCard>
+              <Divider sx={{ my: 2.5 }} />
 
-          {/* Table of Contents */}
-          <CmtCard id="subzone-toc">
-            <CmtCardContent>
-              <Typography variant="h3" align="center" gutterBottom>
-                Table of Contents
-              </Typography>
-
-              {toc.length > 0 ? (
-                <Grid container spacing={2} justifyContent="center" alignItems="center">
+              <Box sx={{ mb: 3 }}>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Jump to section:
+                </Typography>
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
                   {toc.map((item, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={`${item.id}-${index}`}>
-                      <Box
-                        sx={{
-                          textAlign: 'center',
-                          p: 1,
-                          border: '1px solid rgba(0,0,0,0.1)',
-                          borderRadius: 1,
-                          transition: '0.2s',
-                          '&:hover': { boxShadow: 3, cursor: 'pointer' },
-                        }}
-                        onClick={() => handleScroll(item.id)}>
-                        <Typography
-                          variant="subtitle1"
-                          sx={{
-                            textDecoration: 'underline',
-                            '&:hover': { color: 'primary.main' },
-                          }}>
-                          {item.name}
-                        </Typography>
-                      </Box>
-                    </Grid>
+                    <Chip
+                      key={`${item.id}-${index}`}
+                      label={item.name}
+                      onClick={() => handleScroll(item.id)}
+                      variant="outlined"
+                      clickable
+                      sx={{
+                        '&:hover': {
+                          backgroundColor: 'primary.main',
+                          color: 'white',
+                          borderColor: 'primary.main',
+                        },
+                      }}
+                    />
                   ))}
-                </Grid>
-              ) : (
-                <Typography variant="body2" align="center" sx={{ mt: 1 }}>
-                  No sections available.
+                </Box>
+              </Box>
+
+              <Box>
+                <Typography variant="body2" color="text.secondary" gutterBottom>
+                  Other areas in {areaName}:
                 </Typography>
-              )}
+                <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                  {Object.entries(areas[areaSlug] || {}).map(([key, data]) => {
+                    if (key === subareaSlug) return null;
+                    return (
+                      <Chip
+                        key={key}
+                        label={`${key.charAt(0).toUpperCase() + key.slice(1)} (${data.levels})`}
+                        component="a"
+                        href={`#/areas/${areaSlug}/${key}`}
+                        clickable
+                        color="primary"
+                      />
+                    );
+                  })}
+                </Box>
+              </Box>
             </CmtCardContent>
           </CmtCard>
 
-          {/* Map Section */}
-          <CmtCard id="subzone-map">
-            <CmtCardContent>
-              <Typography variant="h3" align="center" gutterBottom>
-                Map(s)
+          {areaData.maps?.length > 0 && (
+            <Box id="maps-section" sx={sectionStyles}>
+              <Typography variant="h3" gutterBottom sx={{ fontWeight: 600, mb: 2 }}>
+                Maps
               </Typography>
-              {areaData.maps?.length > 0 ? (
-                <Grid container spacing={2} justifyContent="center" alignItems="center">
-                  {areaData.maps.map((map, index) => (
-                    <Grid item xs={12} sm={6} md={4} lg={3} key={`${map.name}-${index}`}>
-                      <Box
-                        sx={{
-                          textAlign: 'center',
-                          p: 1,
-                          border: '1px solid rgba(0,0,0,0.1)',
-                          borderRadius: 1,
-                          transition: '0.2s',
-                          '&:hover': { boxShadow: 3 },
-                        }}>
-                        <MapModal name={map.name} url={map.url} />
-                      </Box>
-                    </Grid>
-                  ))}
-                </Grid>
-              ) : (
-                <Typography variant="body2" align="center" sx={{ mt: 1 }}>
-                  No maps available for this area.
-                </Typography>
-              )}
-            </CmtCardContent>
-          </CmtCard>
+              <Grid container spacing={2}>
+                {areaData.maps.map((map, index) => (
+                  <Grid item xs={12} sm={6} md={4} lg={3} key={`${map.name}-${index}`}>
+                    <Box
+                      sx={{
+                        '& > *': {
+                          transition: 'transform 0.2s ease-in-out',
+                        },
+                        '&:hover > *': {
+                          transform: 'scale(1.02)',
+                        },
+                      }}>
+                      <MapModal name={map.name} url={map.url} />
+                    </Box>
+                  </Grid>
+                ))}
+              </Grid>
+            </Box>
+          )}
 
-          {/* Zones */}
           {areaData.zones?.map((zone, index) => (
-            <CmtCard id={makeId(zone.name)} key={`${zone.name}-${index}`}>
-              <CmtCardContent>
-                <Typography variant="h3" align="center">
+            <Box key={`${zone.name}-${index}`} id={makeId(zone.name)} sx={{ scrollMarginTop: '20px', ...sectionStyles }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', mb: 1, flexWrap: 'wrap', gap: 3 }}>
+                <Typography variant="h3" sx={{ fontWeight: 600, mr: 1 }}>
                   {zone.name}
                 </Typography>
-                <Typography variant="h4" align="center">
-                  Level Range: {zone.levels}
-                </Typography>
+                <Chip
+                  label={zone.levels}
+                  size="small"
+                  sx={{
+                    fontWeight: 500,
+                    ...getLevelChipProps(zone.levels),
+                  }}
+                />
+                <ZoneAttributes zone={zone} />
+              </Box>
 
-                {Array.isArray(zone.summary) ? (
-                  zone.summary.map((item, idx) => (
-                    <Typography key={idx} display="block">
+              {Array.isArray(zone.summary) ? (
+                <Box sx={{ mb: 2 }}>
+                  {zone.summary.map((item, idx) => (
+                    <Typography key={idx} sx={{ mb: 0.5 }}>
                       {item}
                     </Typography>
-                  ))
-                ) : (
-                  <Typography>{zone.summary}</Typography>
-                )}
-              </CmtCardContent>
-            </CmtCard>
+                  ))}
+                </Box>
+              ) : (
+                <Typography sx={{ mb: 2 }}>{zone.summary}</Typography>
+              )}
+            </Box>
           ))}
         </Grid>
         <UpdatedBy name="Manannan" />
