@@ -13,7 +13,7 @@ import CheckIcon from '@mui/icons-material/Check';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { useSharedCharacterState } from '../shared/useSharedCharacterState';
-import CharacterSelector from '../StatCalculator/CharacterSelector';
+import CharacterSelector from '../shared/CharacterSelector';
 
 const breadcrumbs = [
   { label: 'Calculators', link: '/calculators' },

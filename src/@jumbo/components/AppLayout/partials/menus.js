@@ -49,6 +49,25 @@ export const sidebarNavs = [
     ],
   },
   {
+    name: 'Areas',
+    type: 'section',
+    icon: <Terrain />,
+    children: [
+      {
+        name: 'Area List',
+        type: 'item',
+        icon: <Terrain />,
+        link: '/areas/arealist',
+      },
+      {
+        name: 'Maps',
+        type: 'item',
+        icon: <Map />,
+        link: '/areas/maps',
+      },
+    ],
+  },
+  {
     name: 'General',
     type: 'section',
     children: [
@@ -59,34 +78,10 @@ export const sidebarNavs = [
         link: '/',
       },
       {
-        name: 'Coordinates',
-        type: 'item',
-        icon: <MyLocation />,
-        link: '/coords',
-      },
-      {
-        name: 'Maps',
-        type: 'item',
-        icon: <Map />,
-        link: '/maps',
-      },
-      {
-        name: 'Areas',
-        type: 'item',
-        icon: <Terrain />,
-        link: '/areas',
-      },
-      {
         name: 'Alchemy',
         type: 'item',
         icon: <Science />,
         link: '/alchemy',
-      },
-      {
-        name: 'Rolling',
-        type: 'item',
-        icon: <Casino />,
-        link: '/rolling',
       },
       {
         name: 'Combat Messages',
@@ -95,10 +90,16 @@ export const sidebarNavs = [
         link: '/combat',
       },
       {
-        name: 'Socials',
+        name: 'Common Commands',
         type: 'item',
-        icon: <Textsms />,
-        link: '/socials',
+        icon: <Terminal />,
+        link: '/commands',
+      },
+      {
+        name: 'Coordinates',
+        type: 'item',
+        icon: <MyLocation />,
+        link: '/coords',
       },
       {
         name: 'Fireworks',
@@ -107,10 +108,16 @@ export const sidebarNavs = [
         link: '/fireworks',
       },
       {
-        name: 'Common Commands',
+        name: 'Rolling',
         type: 'item',
-        icon: <Terminal />,
-        link: '/commands',
+        icon: <Casino />,
+        link: '/rolling',
+      },
+      {
+        name: 'Socials',
+        type: 'item',
+        icon: <Textsms />,
+        link: '/socials',
       },
     ],
   },
@@ -119,40 +126,47 @@ export const sidebarNavs = [
     type: 'section',
     children: [
       {
+        name: 'Classes',
+        type: 'collapse',
+        icon: <AccessibilityNew />,
+        children: [
+          {
+            name: 'Cleric',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/cleric',
+          },
+          {
+            name: 'Fighter',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/fighter',
+          },
+          {
+            name: 'Mage',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/mage',
+          },
+          {
+            name: 'Monk',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/monk',
+          },
+          {
+            name: 'Rogue',
+            type: 'item',
+            icon: <AccessibilityNew />,
+            link: '/guides/rogue',
+          },
+        ],
+      },
+      {
         name: 'Newbie',
         type: 'item',
         icon: <AccessibilityNew />,
         link: '/guides/newbie',
-      },
-      {
-        name: 'Cleric',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/cleric',
-      },
-      {
-        name: 'Fighter',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/fighter',
-      },
-      {
-        name: 'Mage',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/mage',
-      },
-      {
-        name: 'Monk',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/monk',
-      },
-      {
-        name: 'Rogue',
-        type: 'item',
-        icon: <AccessibilityNew />,
-        link: '/guides/rogue',
       },
       {
         name: 'Pet',

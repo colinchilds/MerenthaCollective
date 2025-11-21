@@ -23,14 +23,14 @@ import NightsStayIcon from '@mui/icons-material/NightsStay';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { getEncumbrance, getVitals, getWeight } from './vitals';
+import { getEncumbrance, getVitals, getWeight } from '../shared/vitals';
 import { getAdvanceExp, getMaxExp, getStatCost, getMaxStat } from '../Helpers/stats.helpers';
 import { classes, stats, intToString, getPartyRangeMin, getPartyRangeMax, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import LevelInfo from '../Components/level-info.component';
 import CharacterInfo from '../Components/character-info.component';
 import { useSharedCharacterState } from '../shared/useSharedCharacterState';
-import CharacterSelector from './CharacterSelector';
+import CharacterSelector from '../shared/CharacterSelector';
 
 const breadcrumbs = [
   { label: 'Calculators', link: '/calculators' },
