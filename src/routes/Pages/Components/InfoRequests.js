@@ -16,7 +16,7 @@ const InfoRequests = () => {
         </Typography>
 
         <Typography align="center">
-          Use the label <Code>PLACEHOLDER</Code>
+          Use the label <Code>Content Update Request</Code>
         </Typography>
       </CmtCardContent>
     </CmtCard>

@@ -22,7 +22,6 @@ import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import CheckIcon from '@mui/icons-material/Check';
 import CloseIcon from '@mui/icons-material/Close';
 import QuestionMark from '@mui/icons-material/QuestionMark';
-import UpdatedBy from 'common/UpdatedBy';
 
 import { areas } from 'data/Areas';
 
@@ -245,8 +244,6 @@ const Arealist = () => {
             </CmtCardContent>
           </CmtCard>
         </Grid>
-
-        <UpdatedBy name="Manannan" />
       </GridContainer>
     </PageContainer>
   );
