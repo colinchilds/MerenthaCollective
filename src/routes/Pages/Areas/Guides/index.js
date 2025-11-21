@@ -52,7 +52,7 @@ const AreaPage = () => {
                 rel="noopener noreferrer">
                 GitHub Issues
               </Link>{' '}
-              with label <Code>area-data-update</Code>
+              with label <Code>Content Update Request</Code>
             </Typography>
           </Alert>
 
