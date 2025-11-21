@@ -6,7 +6,6 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-import UpdatedBy from 'common/UpdatedBy';
 
 const breadcrumbs = [
   { label: 'Guides', link: '/guides' },
@@ -55,7 +54,6 @@ const Pet = () => {
             </CmtCard>
           </Grid>
         ))}
-        <UpdatedBy name="Manannan" />
       </GridContainer>
     </PageContainer>
   );

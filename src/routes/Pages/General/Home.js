@@ -37,7 +37,7 @@ const HomePage = () => {
                   rel="noopener noreferrer">
                   GitHub Issues
                 </Link>{' '}
-                with the label <Code>PLACEHOLDER</Code>
+                with the label <Code>Content Update Request</Code>
               </Typography>
 
               <Typography>This is a site by the players, for the players, so please help us keep it up to date!</Typography>

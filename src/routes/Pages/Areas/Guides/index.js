@@ -6,7 +6,6 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import MapModal from 'routes/Pages/Components/MapModal';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import UpdatedBy from 'common/UpdatedBy';
 import Code from 'common/Code';
 
 import { areas } from 'data/Areas';
@@ -185,7 +184,6 @@ const AreaPage = () => {
             </Box>
           ))}
         </Grid>
-        <UpdatedBy name="Manannan" />
       </GridContainer>
     </PageContainer>
   );
