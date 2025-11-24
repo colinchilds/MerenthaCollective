@@ -120,3 +120,46 @@ export const SpellCombat = [
     magic: 'destroy utterly',
   },
 ];
+
+export const HealthStatus = [
+  {
+    percent: '90%+',
+    message: 'is in top shape',
+  },
+  {
+    percent: '80% - 90%',
+    message: 'is in decent shape',
+  },
+  {
+    percent: '70% - 80%',
+    message: 'is bruised',
+  },
+  {
+    percent: '60% - 70%',
+    message: 'is slightly injured',
+  },
+  {
+    percent: '50% - 60%',
+    message: 'is hurting',
+  },
+  {
+    percent: '40% - 50%',
+    message: 'is badly injured',
+  },
+  {
+    percent: '30% - 40%',
+    message: 'is bleeding terribly',
+  },
+  {
+    percent: '20% - 30%',
+    message: 'is terribly injured',
+  },
+  {
+    percent: '10% - 20%',
+    message: 'is near death',
+  },
+  {
+    percent: '0% - 10%',
+    message: 'is mortally wounded',
+  },
+];
