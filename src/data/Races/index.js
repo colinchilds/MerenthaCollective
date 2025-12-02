@@ -37,7 +37,7 @@ export const raceStats = {
   Charisma: {
     1: ['Dragon', 'Nymph', 'Human'],
     2: ['Half-elf', 'Hobbit', 'Faerie'],
-    4: ['Satyr', 'Centaur', 'Gnome', 'Troll', 'Ogre', 'Drow-elf', 'Artrell', 'Ogre-magi', 'Giant'],
+    4: ['Satyr', 'Gnome', 'Troll', 'Ogre', 'Drow-elf', 'Artrell', 'Ogre-magi', 'Giant'],
   },
   Constitution: {
     1: ['Dragon', 'Ogre', 'Centaur', 'Kender'],
