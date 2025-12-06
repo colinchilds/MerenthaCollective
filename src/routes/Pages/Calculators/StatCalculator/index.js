@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useRef, useLayoutEffect, useCallback } from 'react';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
 import {
@@ -73,7 +73,41 @@ const StatCalculator = () => {
   const isWerewolf = (activeCharacter && activeCharacter.isWerewolf) || false;
   const statWerewolfToggles = (activeCharacter && activeCharacter.statWerewolfToggles) || null;
   const statLevels = (activeCharacter && activeCharacter.statLevels) || initStats;
-  const statInc = (activeCharacter && activeCharacter.statIncrements) || initStats;
+  const statTargets = (activeCharacter && activeCharacter.statIncrements) || initStats;
+
+  const [invalidTargets, setInvalidTargets] = useState({});
+  const [showButtons, setShowButtons] = useState(true);
+  const targetInputRef = useRef(null);
+  const expRef = useRef(null);
+
+  // Check for overlap between buttons and exp text
+  // We measure from target input's right edge and check if there's enough space for buttons
+  const checkOverlap = useCallback(() => {
+    if (targetInputRef.current && expRef.current) {
+      const targetRect = targetInputRef.current.getBoundingClientRect();
+      const expRect = expRef.current.getBoundingClientRect();
+      // Only check if they're on the same row
+      const sameRow = Math.abs(targetRect.top - expRect.top) < targetRect.height;
+      // Check if any stat has apply/clear buttons showing (target > current)
+      const hasApplyButtons = stats.some((stat) => parseInt(statTargets[stat]) > parseInt(statLevels[stat]));
+
+      const minButtonSpace = hasApplyButtons ? 100 : 50;
+      const availableSpace = expRect.left - targetRect.right;
+      const hasSpace = !sameRow || availableSpace >= minButtonSpace;
+      setShowButtons(hasSpace);
+    }
+  }, [statTargets, statLevels]);
+
+  useLayoutEffect(() => {
+    checkOverlap();
+    window.addEventListener('resize', checkOverlap);
+    return () => window.removeEventListener('resize', checkOverlap);
+  }, [checkOverlap]);
+
+  // Re-check overlap when targets/levels change (affects button count)
+  useEffect(() => {
+    checkOverlap();
+  }, [statTargets, statLevels, checkOverlap]);
 
   const [charStatTotal, setCharStatTotal] = useState(0);
   const [statTotal, setStatTotal] = useState(0);
@@ -95,44 +129,50 @@ const StatCalculator = () => {
       },
     });
   };
-  const updateStatInc = (k, v) => {
-    if (v < 0) {
-      v = 0;
-    } else if (v > 500) {
-      v = 500;
-    }
+  const updateStatTarget = (k, v) => {
+    // Don't clamp on change - allow typing any value
+    // Validation happens on blur
     updateActiveCharacter({
       statIncrements: {
-        ...statInc,
+        ...statTargets,
         [k]: v,
       },
     });
   };
 
-  const handleMaxIncrement = (stat) => {
+  const handleTargetBlur = (stat) => {
     const currentValue = parseInt(statLevels[stat]) || 0;
+    let targetValue = parseInt(statTargets[stat]) || 0;
     const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
     const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
-    const maxIncrement = Math.max(0, maxValue - currentValue);
-    updateStatInc(stat, maxIncrement);
+
+    // Clamp to [current, max]
+    if (targetValue < currentValue) targetValue = currentValue;
+    if (targetValue > maxValue) targetValue = maxValue;
+
+    updateActiveCharacter({
+      statIncrements: {
+        ...statTargets,
+        [stat]: targetValue,
+      },
+    });
+    setInvalidTargets((prev) => ({ ...prev, [stat]: false }));
   };
 
-  const handleApplyIncrement = (stat) => {
-    const currentValue = parseInt(statLevels[stat]) || 0;
-    const incrementValue = parseInt(statInc[stat]) || 0;
-    const newValue = currentValue + incrementValue;
+  const handleMaxTarget = (stat) => {
     const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
     const maxValue = parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay)) || 0;
-    const finalValue = Math.min(newValue, maxValue);
+    updateStatTarget(stat, maxValue);
+    setInvalidTargets((prev) => ({ ...prev, [stat]: false }));
+  };
 
+  const handleApplyTarget = (stat) => {
+    const targetValue = parseInt(statTargets[stat]) || 0;
+    // Set current = target, leave target unchanged
     updateActiveCharacter({
       statLevels: {
         ...statLevels,
-        [stat]: finalValue,
-      },
-      statIncrements: {
-        ...statInc,
-        [stat]: 0,
+        [stat]: targetValue,
       },
     });
   };
@@ -143,19 +183,22 @@ const StatCalculator = () => {
     var et = 0;
     stats.forEach((stat) => {
       const werewolfTimeOfDay = isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day';
-      const cost = getStatCost(stat, charClass, race, statLevels[stat], statInc[stat], isWerewolf, werewolfTimeOfDay);
+      const currentLevel = parseInt(statLevels[stat]) || 0;
+      const targetLevel = parseInt(statTargets[stat]) || 0;
+      const increment = Math.max(0, targetLevel - currentLevel);
+      const cost = getStatCost(stat, charClass, race, currentLevel, increment, isWerewolf, werewolfTimeOfDay);
       setStatCost((statCost) => ({
         ...statCost,
         [stat]: cost,
       }));
-      cst += parseInt(statLevels[stat]);
+      cst += currentLevel;
       st += parseInt(getMaxStat(stat, charClass, race, level, isWerewolf, werewolfTimeOfDay));
       et += parseInt(cost);
     });
     setCharStatTotal(cst);
     setStatTotal(st);
     setExpTotal(et);
-  }, [statLevels, statInc, charClass, race, level, isWerewolf, statWerewolfToggles]);
+  }, [statLevels, statTargets, charClass, race, level, isWerewolf, statWerewolfToggles]);
 
   useEffect(() => {
     setAdvExp(getAdvanceExp(level));
@@ -173,6 +216,25 @@ const StatCalculator = () => {
       setVitalsNight(vNight);
     }
   }, [charClass, race, level, statLevels, subclass, isWerewolf]);
+
+  // Sync targets when current exceeds them
+  useEffect(() => {
+    const updates = {};
+    let needsUpdate = false;
+    stats.forEach((stat) => {
+      const current = parseInt(statLevels[stat]) || 0;
+      const target = parseInt(statTargets[stat]) || 0;
+      if (current > target) {
+        updates[stat] = current;
+        needsUpdate = true;
+      }
+    });
+    if (needsUpdate) {
+      updateActiveCharacter({
+        statIncrements: { ...statTargets, ...updates },
+      });
+    }
+  }, [statLevels]);
 
   if (!activeCharacter) {
     return (
@@ -267,56 +329,68 @@ const StatCalculator = () => {
                 <Grid item xs={6} sm={3} order={{ xs: 3, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
                   <Box display="flex" alignItems="center" gap={1}>
                     <TextField
+                      ref={index === 0 ? targetInputRef : null}
                       size="small"
                       type="number"
-                      label="+"
+                      label="Target"
                       inputProps={{ min: 0, max: 500 }}
-                      style={{ minWidth: '75px' }}
-                      value={statInc[stat]}
+                      style={{ minWidth: '85px' }}
+                      value={statTargets[stat]}
                       variant="outlined"
-                      onChange={(event) => updateStatInc(stat, event.target.value)}
+                      error={invalidTargets[stat]}
+                      onChange={(event) => {
+                        const val = event.target.value;
+                        updateStatTarget(stat, val);
+                        setInvalidTargets((prev) => ({
+                          ...prev,
+                          [stat]: parseInt(val) < parseInt(statLevels[stat]),
+                        }));
+                      }}
+                      onBlur={() => handleTargetBlur(stat)}
                     />
-                    <Button
-                      size="small"
-                      variant="outlined"
-                      onClick={() => handleMaxIncrement(stat)}
-                      style={{
-                        minWidth: '45px',
-                        fontSize: '0.7rem',
-                        padding: '4px 8px',
-                      }}>
-                      MAX
-                    </Button>
-                    {statInc[stat] > 0 && (
-                      <>
-                        <IconButton
-                          size="small"
-                          onClick={() => handleApplyIncrement(stat)}
-                          style={{
-                            border: '1px solid rgba(0, 0, 0, 0.23)',
-                            borderRadius: '4px',
-                            padding: '4px',
-                            color: '#4caf50',
-                          }}>
-                          <CheckIcon fontSize="small" />
-                        </IconButton>
-                        <IconButton
-                          size="small"
-                          onClick={() => updateStatInc(stat, 0)}
-                          style={{
-                            border: '1px solid rgba(0, 0, 0, 0.23)',
-                            borderRadius: '4px',
-                            padding: '4px',
-                          }}>
-                          <ClearIcon fontSize="small" />
-                        </IconButton>
-                      </>
-                    )}
+                    <Box sx={{ display: showButtons ? 'flex' : 'none', alignItems: 'center', gap: 1 }}>
+                      <Button
+                        size="small"
+                        variant="outlined"
+                        onClick={() => handleMaxTarget(stat)}
+                        style={{
+                          minWidth: '45px',
+                          fontSize: '0.7rem',
+                          padding: '4px 8px',
+                        }}>
+                        MAX
+                      </Button>
+                      {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
+                        <>
+                          <IconButton
+                            size="small"
+                            onClick={() => handleApplyTarget(stat)}
+                            style={{
+                              border: '1px solid rgba(0, 0, 0, 0.23)',
+                              borderRadius: '4px',
+                              padding: '4px',
+                              color: '#4caf50',
+                            }}>
+                            <CheckIcon fontSize="small" />
+                          </IconButton>
+                          <IconButton
+                            size="small"
+                            onClick={() => updateStatTarget(stat, statLevels[stat])}
+                            style={{
+                              border: '1px solid rgba(0, 0, 0, 0.23)',
+                              borderRadius: '4px',
+                              padding: '4px',
+                            }}>
+                            <ClearIcon fontSize="small" />
+                          </IconButton>
+                        </>
+                      )}
+                    </Box>
                   </Box>
                 </Grid>
-                <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }}>
+                <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }} ref={index === 0 ? expRef : null}>
                   <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                    <Typography>
+                    <Typography sx={{ pl: 2 }}>
                       {intToString(parseInt(statCost[stat]), 2)}
                       {' exp'}
                     </Typography>
@@ -336,11 +410,11 @@ const StatCalculator = () => {
             <Grid item xs={6} sm={3} order={{ xs: 1, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
               <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
                 {(() => {
-                  let totalWithPlanned = 0;
+                  let totalTarget = 0;
                   stats.forEach((stat) => {
-                    totalWithPlanned += parseInt(statLevels[stat] || 0) + parseInt(statInc[stat] || 0);
+                    totalTarget += parseInt(statTargets[stat] || 0);
                   });
-                  return `${totalWithPlanned} / ${statTotal}`;
+                  return `${totalTarget} / ${statTotal}`;
                 })()}
               </Typography>
             </Grid>

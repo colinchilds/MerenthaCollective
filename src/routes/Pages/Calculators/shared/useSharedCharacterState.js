@@ -233,20 +233,36 @@ export const useSharedCharacterState = () => {
         !character.statIncrements ||
         !character.warriorSpecializations ||
         character.isWerewolf === undefined ||
-        (isWerewolf && !character.statWerewolfToggles);
+        (isWerewolf && !character.statWerewolfToggles) ||
+        !character.hasStatTargetMigration;
 
       if (needsUpdate) {
+        // Migrate statIncrements from increment format (+5) to target format (105)
+        // Old format: statIncrements stored how much to add
+        // New format: statIncrements stores the target value
+        let migratedStatIncrements = character.statIncrements || createDefaultStatIncrements();
+        if (!character.hasStatTargetMigration && character.statIncrements && character.statLevels) {
+          migratedStatIncrements = {};
+          STATS.forEach((stat) => {
+            const currentLevel = parseInt(character.statLevels[stat]) || 0;
+            const oldIncrement = parseInt(character.statIncrements[stat]) || 0;
+            // Convert: new target = current + old increment
+            migratedStatIncrements[stat] = currentLevel + oldIncrement;
+          });
+        }
+
         const updatedCharacter = {
           ...character,
           isWerewolf: isWerewolf,
           race: actualRace,
           skillIncrements: character.skillIncrements || createDefaultSkillIncrements(),
-          statIncrements: character.statIncrements || createDefaultStatIncrements(),
+          statIncrements: migratedStatIncrements,
           warriorSpecializations: character.warriorSpecializations || {
             newbie: null,
             elite: null,
             legend: null,
           },
+          hasStatTargetMigration: true,
         };
 
         // Initialize statWerewolfToggles for werewolf characters that don't have them
