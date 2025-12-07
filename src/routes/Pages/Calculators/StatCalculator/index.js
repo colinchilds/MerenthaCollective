@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useRef, useLayoutEffect, useCallback } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
 import {
@@ -8,6 +8,7 @@ import {
   TableBody,
   TableCell,
   TableContainer,
+  TableHead,
   TableRow,
   TextField,
   Tooltip,
@@ -15,6 +16,8 @@ import {
   InputAdornment,
   Divider,
   IconButton,
+  useMediaQuery,
+  useTheme,
 } from '@mui/material';
 import ClearIcon from '@mui/icons-material/Clear';
 import CheckIcon from '@mui/icons-material/Check';
@@ -38,6 +41,9 @@ const breadcrumbs = [
 ];
 
 const StatCalculator = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+
   const {
     characters,
     activeCharacter,
@@ -76,38 +82,6 @@ const StatCalculator = () => {
   const statTargets = (activeCharacter && activeCharacter.statIncrements) || initStats;
 
   const [invalidTargets, setInvalidTargets] = useState({});
-  const [showButtons, setShowButtons] = useState(true);
-  const targetInputRef = useRef(null);
-  const expRef = useRef(null);
-
-  // Check for overlap between buttons and exp text
-  // We measure from target input's right edge and check if there's enough space for buttons
-  const checkOverlap = useCallback(() => {
-    if (targetInputRef.current && expRef.current) {
-      const targetRect = targetInputRef.current.getBoundingClientRect();
-      const expRect = expRef.current.getBoundingClientRect();
-      // Only check if they're on the same row
-      const sameRow = Math.abs(targetRect.top - expRect.top) < targetRect.height;
-      // Check if any stat has apply/clear buttons showing (target > current)
-      const hasApplyButtons = stats.some((stat) => parseInt(statTargets[stat]) > parseInt(statLevels[stat]));
-
-      const minButtonSpace = hasApplyButtons ? 100 : 50;
-      const availableSpace = expRect.left - targetRect.right;
-      const hasSpace = !sameRow || availableSpace >= minButtonSpace;
-      setShowButtons(hasSpace);
-    }
-  }, [statTargets, statLevels]);
-
-  useLayoutEffect(() => {
-    checkOverlap();
-    window.addEventListener('resize', checkOverlap);
-    return () => window.removeEventListener('resize', checkOverlap);
-  }, [checkOverlap]);
-
-  // Re-check overlap when targets/levels change (affects button count)
-  useEffect(() => {
-    checkOverlap();
-  }, [statTargets, statLevels, checkOverlap]);
 
   const [charStatTotal, setCharStatTotal] = useState(0);
   const [statTotal, setStatTotal] = useState(0);
@@ -274,66 +248,69 @@ const StatCalculator = () => {
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         <CmtCardHeader title="Stat Information" />
         <CmtCardContent>
-          {stats.map((stat, index) => (
-            <Fragment key={index}>
-              <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
-                <Grid item xs={6} sm={3}>
-                  <Box display="flex" alignItems="center" gap={1}>
-                    {isWerewolf && statWerewolfToggles && (
-                      <Tooltip title={statWerewolfToggles[stat] === 'night' ? 'Night (Werewolf)' : `Day (${race})`}>
-                        <IconButton
-                          size="small"
-                          onClick={() =>
-                            setStatWerewolfToggle(stat, statWerewolfToggles[stat] === 'night' ? 'day' : 'night')
-                          }
-                          sx={{
-                            padding: '2px',
-                            color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
-                          }}>
-                          {statWerewolfToggles[stat] === 'night' ? (
-                            <NightsStayIcon fontSize="small" />
-                          ) : (
-                            <WbSunnyIcon fontSize="small" />
-                          )}
-                        </IconButton>
-                      </Tooltip>
-                    )}
-                    <Typography>{stat}</Typography>
+          {isMobile ? (
+            // Mobile: Stacked card layout
+            <>
+              {stats.map((stat) => (
+                <Box key={stat} sx={{ mb: 2, p: 2, border: 1, borderColor: 'divider', borderRadius: 1 }}>
+                  <Box display="flex" justifyContent="space-between" alignItems="center">
+                    <Box display="flex" alignItems="center" gap={1}>
+                      {isWerewolf && statWerewolfToggles && (
+                        <Tooltip title={statWerewolfToggles[stat] === 'night' ? 'Night (Werewolf)' : `Day (${race})`}>
+                          <IconButton
+                            size="small"
+                            onClick={() =>
+                              setStatWerewolfToggle(stat, statWerewolfToggles[stat] === 'night' ? 'day' : 'night')
+                            }
+                            sx={{
+                              padding: '2px',
+                              color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
+                            }}>
+                            {statWerewolfToggles[stat] === 'night' ? (
+                              <NightsStayIcon fontSize="small" />
+                            ) : (
+                              <WbSunnyIcon fontSize="small" />
+                            )}
+                          </IconButton>
+                        </Tooltip>
+                      )}
+                      <Typography fontWeight="bold">{stat}</Typography>
+                    </Box>
+                    <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
+                      <Typography color="text.secondary">{intToString(parseInt(statCost[stat]), 2)} exp</Typography>
+                    </Tooltip>
                   </Box>
-                </Grid>
-                <Grid item xs={6} sm={3} align={{ xs: 'left', sm: 'center' }}>
-                  <TextField
-                    size="small"
-                    type="number"
-                    inputProps={{ min: 0, max: 500 }}
-                    style={{ minWidth: '120px' }}
-                    value={statLevels[stat]}
-                    variant="outlined"
-                    onChange={(event) => updateStatLevels(stat, event.target.value)}
-                    InputProps={{
-                      endAdornment: (
-                        <InputAdornment position="end" size="small">
-                          <Typography>{`/ ${getMaxStat(
-                            stat,
-                            charClass,
-                            race,
-                            level,
-                            isWerewolf,
-                            isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
-                          )}`}</Typography>
-                        </InputAdornment>
-                      ),
-                    }}
-                  />
-                </Grid>
-                <Grid item xs={6} sm={3} order={{ xs: 3, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
-                  <Box display="flex" alignItems="center" gap={1}>
+                  <Box display="flex" gap={2} mt={1.5}>
                     <TextField
-                      ref={index === 0 ? targetInputRef : null}
+                      size="small"
+                      type="number"
+                      label="Current"
+                      inputProps={{ min: 0, max: 500 }}
+                      sx={{ flex: 1 }}
+                      value={statLevels[stat]}
+                      variant="outlined"
+                      onChange={(event) => updateStatLevels(stat, event.target.value)}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end" size="small">
+                            <Typography>{`/ ${getMaxStat(
+                              stat,
+                              charClass,
+                              race,
+                              level,
+                              isWerewolf,
+                              isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
+                            )}`}</Typography>
+                          </InputAdornment>
+                        ),
+                      }}
+                    />
+                    <TextField
                       size="small"
                       type="number"
                       label="Target"
                       inputProps={{ min: 0, max: 500 }}
+                      sx={{ flex: 1 }}
                       value={statTargets[stat]}
                       variant="outlined"
                       error={invalidTargets[stat]}
@@ -346,103 +323,272 @@ const StatCalculator = () => {
                         }));
                       }}
                       onBlur={() => handleTargetBlur(stat)}
-                      sx={{ minWidth: '120px' }}
-                      InputProps={{
-                        endAdornment: (
-                          <InputAdornment position="end" size="small">
-                            <Typography sx={{ color: 'text.secondary' }}>
-                              {(() => {
-                                const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
-                                return diff > 0 ? `+${diff}` : diff === 0 ? '' : `${diff}`;
-                              })()}
-                            </Typography>
-                          </InputAdornment>
-                        ),
-                      }}
                     />
-                    <Box sx={{ display: showButtons ? 'flex' : 'none', alignItems: 'center', gap: 1 }}>
-                      <Button
-                        size="small"
-                        variant="outlined"
-                        onClick={() => handleMaxTarget(stat)}
-                        style={{
-                          minWidth: '45px',
-                          fontSize: '0.7rem',
-                          padding: '4px 8px',
-                        }}>
-                        MAX
-                      </Button>
-                      {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
-                        <>
-                          <IconButton
-                            size="small"
-                            onClick={() => handleApplyTarget(stat)}
-                            style={{
-                              border: '1px solid rgba(0, 0, 0, 0.23)',
-                              borderRadius: '4px',
-                              padding: '4px',
-                              color: '#4caf50',
-                            }}>
-                            <CheckIcon fontSize="small" />
-                          </IconButton>
-                          <IconButton
-                            size="small"
-                            onClick={() => updateStatTarget(stat, statLevels[stat])}
-                            style={{
-                              border: '1px solid rgba(0, 0, 0, 0.23)',
-                              borderRadius: '4px',
-                              padding: '4px',
-                            }}>
-                            <ClearIcon fontSize="small" />
-                          </IconButton>
-                        </>
-                      )}
-                    </Box>
                   </Box>
-                </Grid>
-                <Grid item xs={6} sm={3} order={{ xs: 2, sm: 3 }} ref={index === 0 ? expRef : null}>
-                  <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
-                    <Typography sx={{ pl: 2 }}>
-                      {intToString(parseInt(statCost[stat]), 2)}
-                      {' exp'}
+                  <Box display="flex" justifyContent="flex-start" alignItems="center" mt={1.5} gap={0.5}>
+                    <Button
+                      size="small"
+                      variant="outlined"
+                      onClick={() => handleMaxTarget(stat)}
+                      sx={{
+                        minWidth: '45px',
+                        fontSize: '0.7rem',
+                        padding: '4px 8px',
+                      }}>
+                      MAX
+                    </Button>
+                    {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
+                      <>
+                        <IconButton
+                          size="small"
+                          onClick={() => handleApplyTarget(stat)}
+                          sx={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                            color: '#4caf50',
+                          }}>
+                          <CheckIcon fontSize="small" />
+                        </IconButton>
+                        <IconButton
+                          size="small"
+                          onClick={() => updateStatTarget(stat, statLevels[stat])}
+                          sx={{
+                            border: '1px solid rgba(0, 0, 0, 0.23)',
+                            borderRadius: '4px',
+                            padding: '4px',
+                          }}>
+                          <ClearIcon fontSize="small" />
+                        </IconButton>
+                      </>
+                    )}
+                  </Box>
+                </Box>
+              ))}
+              {/* Mobile summary */}
+              <Box sx={{ p: 2, backgroundColor: 'action.hover', borderRadius: 1 }}>
+                <Box display="flex" justifyContent="space-between" mb={1}>
+                  <Typography>Current Total:</Typography>
+                  <Typography>
+                    {charStatTotal} / {statTotal}
+                  </Typography>
+                </Box>
+                <Box display="flex" justifyContent="space-between" mb={1}>
+                  <Typography>Target Total:</Typography>
+                  <Typography>
+                    {(() => {
+                      let totalTarget = 0;
+                      stats.forEach((stat) => {
+                        totalTarget += parseInt(statTargets[stat] || 0);
+                      });
+                      return `${totalTarget} / ${statTotal}`;
+                    })()}
+                  </Typography>
+                </Box>
+                <Box display="flex" justifyContent="space-between">
+                  <Typography>Exp Cost:</Typography>
+                  <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                    <Typography>
+                      {intToString(parseInt(expTotal), 2)} exp
+                      {maxExp > 0 && expTotal > 0 && (
+                        <span style={{ fontSize: '0.9em', color: '#666' }}> ({(expTotal / maxExp).toFixed(2)} maxes)</span>
+                      )}
                     </Typography>
                   </Tooltip>
-                </Grid>
-              </Grid>
-              <Divider />
-            </Fragment>
-          ))}
-          <Grid container direction="row" alignItems="center" spacing={2} style={{ padding: 10 }}>
-            <Grid item sm={3} sx={{ display: { xs: 'none', sm: 'block' } }} />
-            <Grid item xs={6} sm={3} order={{ xs: 2, sm: 1 }} align={{ xs: 'left', sm: 'center' }}>
-              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
-                {charStatTotal} / {statTotal}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sm={3} order={{ xs: 1, sm: 2 }} align={{ xs: 'left', sm: 'center' }}>
-              <Typography align="left" sx={{ paddingLeft: { xs: 0, sm: '30px' } }}>
-                {(() => {
-                  let totalTarget = 0;
-                  stats.forEach((stat) => {
-                    totalTarget += parseInt(statTargets[stat] || 0);
-                  });
-                  return `${totalTarget} / ${statTotal}`;
-                })()}
-              </Typography>
-            </Grid>
-            <Grid item xs={6} sm={3} order={{ xs: 0, sm: 3 }}>
-              <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                <Typography>
-                  {intToString(parseInt(expTotal), 2)}
-                  {' exp '}
-                  {maxExp > 0 && expTotal > 0 && (
-                    <span style={{ fontSize: '0.9em', color: '#666' }}>({(expTotal / maxExp).toFixed(2)} maxes)</span>
-                  )}
-                </Typography>
-              </Tooltip>
-            </Grid>
-          </Grid>
-          <Divider />
+                </Box>
+              </Box>
+            </>
+          ) : (
+            // Desktop: Table layout
+            <TableContainer>
+              <Table
+                size="small"
+                sx={{
+                  '& .MuiTableCell-root': { py: 1, px: 1 },
+                }}>
+                <TableHead>
+                  <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
+                    <TableCell>
+                      <Typography variant="subtitle2">Stat</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">Current</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography variant="subtitle2">Target</Typography>
+                    </TableCell>
+                    <TableCell align="right" sx={{ minWidth: '140px' }}>
+                      <Typography variant="subtitle2">Exp Cost</Typography>
+                    </TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
+                  {stats.map((stat) => (
+                    <TableRow key={stat}>
+                      <TableCell>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          {isWerewolf && statWerewolfToggles && (
+                            <Tooltip title={statWerewolfToggles[stat] === 'night' ? 'Night (Werewolf)' : `Day (${race})`}>
+                              <IconButton
+                                size="small"
+                                onClick={() =>
+                                  setStatWerewolfToggle(stat, statWerewolfToggles[stat] === 'night' ? 'day' : 'night')
+                                }
+                                sx={{
+                                  padding: '2px',
+                                  color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
+                                }}>
+                                {statWerewolfToggles[stat] === 'night' ? (
+                                  <NightsStayIcon fontSize="small" />
+                                ) : (
+                                  <WbSunnyIcon fontSize="small" />
+                                )}
+                              </IconButton>
+                            </Tooltip>
+                          )}
+                          <Typography>{stat}</Typography>
+                        </Box>
+                      </TableCell>
+                      <TableCell>
+                        <TextField
+                          size="small"
+                          type="number"
+                          inputProps={{ min: 0, max: 500 }}
+                          value={statLevels[stat]}
+                          variant="outlined"
+                          onChange={(event) => updateStatLevels(stat, event.target.value)}
+                          sx={{ minWidth: '120px' }}
+                          InputProps={{
+                            endAdornment: (
+                              <InputAdornment position="end" size="small">
+                                <Typography>{`/ ${getMaxStat(
+                                  stat,
+                                  charClass,
+                                  race,
+                                  level,
+                                  isWerewolf,
+                                  isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
+                                )}`}</Typography>
+                              </InputAdornment>
+                            ),
+                          }}
+                        />
+                      </TableCell>
+                      <TableCell>
+                        <Box display="flex" alignItems="center" gap={1}>
+                          <TextField
+                            size="small"
+                            type="number"
+                            inputProps={{ min: 0, max: 500 }}
+                            value={statTargets[stat]}
+                            variant="outlined"
+                            error={invalidTargets[stat]}
+                            onChange={(event) => {
+                              const val = event.target.value;
+                              updateStatTarget(stat, val);
+                              setInvalidTargets((prev) => ({
+                                ...prev,
+                                [stat]: parseInt(val) < parseInt(statLevels[stat]),
+                              }));
+                            }}
+                            onBlur={() => handleTargetBlur(stat)}
+                            sx={{ width: '120px' }}
+                            InputProps={{
+                              endAdornment: (
+                                <InputAdornment position="end" size="small">
+                                  <Typography sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
+                                    {(() => {
+                                      const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
+                                      return diff > 0 ? `+${diff}` : diff === 0 ? '' : `${diff}`;
+                                    })()}
+                                  </Typography>
+                                </InputAdornment>
+                              ),
+                            }}
+                          />
+                          <Button
+                            size="small"
+                            variant="outlined"
+                            onClick={() => handleMaxTarget(stat)}
+                            sx={{
+                              minWidth: '45px',
+                              fontSize: '0.7rem',
+                              padding: '4px 8px',
+                            }}>
+                            MAX
+                          </Button>
+                          {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
+                            <>
+                              <IconButton
+                                size="small"
+                                onClick={() => handleApplyTarget(stat)}
+                                sx={{
+                                  border: '1px solid rgba(0, 0, 0, 0.23)',
+                                  borderRadius: '4px',
+                                  padding: '4px',
+                                  color: '#4caf50',
+                                }}>
+                                <CheckIcon fontSize="small" />
+                              </IconButton>
+                              <IconButton
+                                size="small"
+                                onClick={() => updateStatTarget(stat, statLevels[stat])}
+                                sx={{
+                                  border: '1px solid rgba(0, 0, 0, 0.23)',
+                                  borderRadius: '4px',
+                                  padding: '4px',
+                                }}>
+                                <ClearIcon fontSize="small" />
+                              </IconButton>
+                            </>
+                          )}
+                        </Box>
+                      </TableCell>
+                      <TableCell align="right" sx={{ whiteSpace: 'nowrap', width: '120px' }}>
+                        <Tooltip title={parseInt(statCost[stat]).toLocaleString('en-US') + ' exp'}>
+                          <Typography>{intToString(parseInt(statCost[stat]), 2)} exp</Typography>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  ))}
+                  {/* Summary row */}
+                  <TableRow sx={{ backgroundColor: 'action.hover' }}>
+                    <TableCell>
+                      <Typography fontWeight="bold">Total</Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>
+                        {charStatTotal} / {statTotal}
+                      </Typography>
+                    </TableCell>
+                    <TableCell>
+                      <Typography>
+                        {(() => {
+                          let totalTarget = 0;
+                          stats.forEach((stat) => {
+                            totalTarget += parseInt(statTargets[stat] || 0);
+                          });
+                          return `${totalTarget} / ${statTotal}`;
+                        })()}
+                      </Typography>
+                    </TableCell>
+                    <TableCell align="right">
+                      <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                        <Box>
+                          <Typography>{intToString(parseInt(expTotal), 2)} exp</Typography>
+                          {maxExp > 0 && expTotal > 0 && (
+                            <Typography sx={{ fontSize: '0.9em', color: 'text.secondary' }}>
+                              ({(expTotal / maxExp).toFixed(2)} maxes)
+                            </Typography>
+                          )}
+                        </Box>
+                      </Tooltip>
+                    </TableCell>
+                  </TableRow>
+                </TableBody>
+              </Table>
+            </TableContainer>
+          )}
         </CmtCardContent>
         <CmtCardHeader title="Character Information" />
         <CmtCardContent>
