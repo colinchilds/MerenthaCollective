@@ -334,7 +334,6 @@ const StatCalculator = () => {
                       type="number"
                       label="Target"
                       inputProps={{ min: 0, max: 500 }}
-                      style={{ minWidth: '85px' }}
                       value={statTargets[stat]}
                       variant="outlined"
                       error={invalidTargets[stat]}
@@ -347,6 +346,19 @@ const StatCalculator = () => {
                         }));
                       }}
                       onBlur={() => handleTargetBlur(stat)}
+                      sx={{ minWidth: '120px' }}
+                      InputProps={{
+                        endAdornment: (
+                          <InputAdornment position="end" size="small">
+                            <Typography sx={{ color: 'text.secondary' }}>
+                              {(() => {
+                                const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
+                                return diff > 0 ? `+${diff}` : diff === 0 ? '' : `${diff}`;
+                              })()}
+                            </Typography>
+                          </InputAdornment>
+                        ),
+                      }}
                     />
                     <Box sx={{ display: showButtons ? 'flex' : 'none', alignItems: 'center', gap: 1 }}>
                       <Button
