@@ -499,7 +499,7 @@ const StatCalculator = () => {
                                   <Typography sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
                                     {(() => {
                                       const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
-                                      return diff > 0 ? `+${diff}` : diff === 0 ? '' : `${diff}`;
+                                      return diff >= 0 ? `+${diff}` : `${diff}`;
                                     })()}
                                   </Typography>
                                 </InputAdornment>
