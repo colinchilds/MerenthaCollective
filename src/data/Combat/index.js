@@ -123,43 +123,43 @@ export const SpellCombat = [
 
 export const HealthStatus = [
   {
-    percent: '90%+',
+    percent: '>90%',
     message: 'is in top shape',
   },
   {
-    percent: '80% - 90%',
+    percent: '81% - 90%',
     message: 'is in decent shape',
   },
   {
-    percent: '70% - 80%',
+    percent: '71% - 80%',
     message: 'is bruised',
   },
   {
-    percent: '60% - 70%',
+    percent: '61% - 70%',
     message: 'is slightly injured',
   },
   {
-    percent: '50% - 60%',
+    percent: '51% - 60%',
     message: 'is hurting',
   },
   {
-    percent: '40% - 50%',
+    percent: '41% - 50%',
     message: 'is badly injured',
   },
   {
-    percent: '30% - 40%',
+    percent: '31% - 40%',
     message: 'is bleeding terribly',
   },
   {
-    percent: '20% - 30%',
+    percent: '21% - 30%',
     message: 'is terribly injured',
   },
   {
-    percent: '10% - 20%',
+    percent: '11% - 20%',
     message: 'is near death',
   },
   {
-    percent: '0% - 10%',
+    percent: '1% - 10%',
     message: 'is mortally wounded',
   },
 ];
