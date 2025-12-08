@@ -98,7 +98,7 @@ const ClericGuideData = [
   },
   {
     question: 'What is manastorm?',
-    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, so regain hp,
+    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, to regain hp,
     it effects everyone in the room, as well as mobs. This spell last a while, and takes a while to work.`,
   },
 ];
