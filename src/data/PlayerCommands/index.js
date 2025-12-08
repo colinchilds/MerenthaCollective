@@ -2,9 +2,9 @@ const commands = [
   {
     id: 'abilities',
     name: 'abilities',
-    syntax: 'abilities [mine]',
+    syntax: 'abilities [filter]',
     description:
-      'Lists all the abilities/skills which are possible most of the time. If you specify <abilities mine> it will list all the abilities you currently have. See also: abilities2, spells',
+      'Lists all the abilities/skills which are possible most of the time. If you do not specify a filter it will list all the abilities you currently have. Can filter using a subclass: `abilities bard` will show all the abilities a bard can obtain. See also: spells',
   },
   {
     id: 'alias',
@@ -711,13 +711,6 @@ const commands = [
     name: 'wake',
     syntax: 'wake',
     description: 'Wake will wake a sleeping or resting player up. See also: rest, sleep.',
-  },
-  {
-    id: 'abilities2',
-    name: 'abilities2',
-    syntax: 'abilities2 [filter]',
-    description:
-      'Lists all the abilities/skills which are possible most of the time. If you do not specify a filter it will list all the abilities you currently have. Can filter using a subclass: `abilities2 bard` will show all the abilities a bard can obtain. See also: abilities, spells',
   },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
