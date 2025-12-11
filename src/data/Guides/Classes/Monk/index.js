@@ -1,18 +1,6 @@
-import React from 'react';
-import GridContainer from '@jumbo/components/GridContainer';
-import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
-import CmtCard from '@coremat/CmtCard';
-import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Typography } from '@mui/material';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
+import Monk from 'routes/Pages/Guides/Classes/Monk';
 
-const breadcrumbs = [
-  { label: 'Guides', link: '/guides' },
-  { label: 'Monk', isActive: true },
-];
-
-const data = [
+const MonkGuideData = [
   {
     question: 'How do I select my sub class?',
     answer: `Look around the class hall, look at the various items in the rooms, including the one north of you if you are in Cabeiri. Try to figure it out yourself.`,
@@ -84,26 +72,4 @@ const data = [
   },
 ];
 
-const Monk = () => {
-  return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Monk FAQ">
-      <GridContainer>
-        {data.map((item, index) => (
-          <Grid item xs={12} key={index}>
-            <CmtCard>
-              <CmtCardHeader title={item.question} />
-              <CmtCardContent>
-                <Typography style={{ whiteSpace: 'pre-line' }}>{item.answer}</Typography>
-              </CmtCardContent>
-            </CmtCard>
-          </Grid>
-        ))}
-        <Grid item>
-          <Typography>Written by Scurvy</Typography>
-        </Grid>
-      </GridContainer>
-    </PageContainer>
-  );
-};
-
-export default Monk;
+export default MonkGuideData;

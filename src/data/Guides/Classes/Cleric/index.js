@@ -1,18 +1,4 @@
-import React from 'react';
-import GridContainer from '@jumbo/components/GridContainer';
-import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
-import CmtCard from '@coremat/CmtCard';
-import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Typography } from '@mui/material';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-
-const breadcrumbs = [
-  { label: 'Guides', link: '/guides' },
-  { label: 'Cleric', isActive: true },
-];
-
-const data = [
+const ClericGuideData = [
   {
     question: 'Some important commands that will help you out.',
     answer: `Feed corpse (raises alighnment a little), notify skills, notify exp., cost, score, skills, spells mine and abilities mine.`,
@@ -112,31 +98,9 @@ const data = [
   },
   {
     question: 'What is manastorm?',
-    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, so regain hp,
-    it effects everyone in the room, as well as mobs. This spell last a while, and take a while to work.`,
+    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, to regain hp,
+    it effects everyone in the room, as well as mobs. This spell last a while, and takes a while to work.`,
   },
 ];
 
-const Cleric = () => {
-  return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Cleric FAQ">
-      <GridContainer>
-        {data.map((item, index) => (
-          <Grid item xs={12} key={index}>
-            <CmtCard>
-              <CmtCardHeader title={item.question} />
-              <CmtCardContent>
-                <Typography>{item.answer}</Typography>
-              </CmtCardContent>
-            </CmtCard>
-          </Grid>
-        ))}
-        <Grid item>
-          <Typography>Written by Ggood and Stasia</Typography>
-        </Grid>
-      </GridContainer>
-    </PageContainer>
-  );
-};
-
-export default Cleric;
+export default ClericGuideData;

@@ -6,7 +6,7 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableHead, TableRow, Typography } from '@mui/material';
 import Code from 'common/Code';
-import { MeleeCombat, SpellCombat } from 'data/Combat';
+import { MeleeCombat, SpellCombat, HealthStatus } from 'data/Combat';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -39,16 +39,25 @@ const Combat = () => {
               <Typography gutterBottom>
                 <strong>Sharp:</strong> Blade, Knife, Axe
               </Typography>
-              <Typography sx={{ fontStyle: 'italic' }}>
+              <Typography sx={{ fontStyle: 'italic' }} gutterBottom>
                 Some Spells/Abilities have their own output for the damage done and will repeat the same basic damage script,
                 which does not follow the tables below. E.g.: scorch always says <Code>hit</Code> but does more than 0%
                 damage.
               </Typography>
+              <Typography>The table at the bottom shows Health status when looking at a creature or player.</Typography>
             </CmtCardContent>
           </CmtCard>
         </Grid>
         <Grid item xs={12} sm={6}>
           <CmtCard>
+            <CmtCardContent>
+              <Typography variant="h4" style={{ marginBottom: '10px' }}>
+                Melee Combat Messages
+              </Typography>
+              <Typography>
+                These status messages appear when damaging someone/something via melle or weapon based combat.
+              </Typography>
+            </CmtCardContent>
             <CmtCardContent>
               <Table size="small">
                 <TableHead>
@@ -73,6 +82,12 @@ const Combat = () => {
         </Grid>
         <Grid item xs={12} sm={6}>
           <CmtCard>
+            <CmtCardContent>
+              <Typography variant="h4" style={{ marginBottom: '10px' }}>
+                Spell Combat Messages
+              </Typography>
+              <Typography>These status messages appear when damaging someone/something via spell based combat.</Typography>
+            </CmtCardContent>
             <CmtCardContent>
               <Table size="small">
                 <TableHead>
@@ -113,46 +128,12 @@ const Combat = () => {
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  <TableRow>
-                    <TypographyCell>90%+</TypographyCell>
-                    <TypographyCell>is in top shape</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>80% - 90%</TypographyCell>
-                    <TypographyCell>is in decent shape</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>70% - 80%</TypographyCell>
-                    <TypographyCell>is bruised</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>60% - 70%</TypographyCell>
-                    <TypographyCell>is slightly injured</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>50% - 60%</TypographyCell>
-                    <TypographyCell>is hurting</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>40% - 50%</TypographyCell>
-                    <TypographyCell>is badly injured</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>30% - 40%</TypographyCell>
-                    <TypographyCell>is bleeding terribly</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>20% - 30%</TypographyCell>
-                    <TypographyCell>is terribly injured</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>10% - 20%</TypographyCell>
-                    <TypographyCell>is near death</TypographyCell>
-                  </TableRow>
-                  <TableRow>
-                    <TypographyCell>0% - 10%</TypographyCell>
-                    <TypographyCell>is mortally wounded</TypographyCell>
-                  </TableRow>
+                  {HealthStatus.map((row, i) => (
+                    <TableRow key={i}>
+                      <TypographyCell>{row.percent}</TypographyCell>
+                      <TypographyCell>{row.message}</TypographyCell>
+                    </TableRow>
+                  ))}
                 </TableBody>
               </Table>
             </CmtCardContent>

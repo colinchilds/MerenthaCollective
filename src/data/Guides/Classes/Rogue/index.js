@@ -1,18 +1,4 @@
-import React from 'react';
-import GridContainer from '@jumbo/components/GridContainer';
-import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
-import CmtCard from '@coremat/CmtCard';
-import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Typography } from '@mui/material';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-
-const breadcrumbs = [
-  { label: 'Guides', link: '/guides' },
-  { label: 'Rogue', isActive: true },
-];
-
-const data = [
+const RogueGuideData = [
   {
     question: 'How do I become a bard, thief or assassin?',
     answer: `This is your chance to prove how intelligent and observant you are. The answer to this question should be right in front of you by now if you're reading this in the Cabeiri Hideout. Try looking at things or people, that Wise Old Artrell Rogue there looks kind of suspicious...`,
@@ -109,26 +95,4 @@ const data = [
   },
 ];
 
-const Rogue = () => {
-  return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Rogue FAQ">
-      <GridContainer>
-        {data.map((item, index) => (
-          <Grid item xs={12} key={index}>
-            <CmtCard>
-              <CmtCardHeader title={item.question} />
-              <CmtCardContent>
-                <Typography style={{ whiteSpace: 'pre-line' }}>{item.answer}</Typography>
-              </CmtCardContent>
-            </CmtCard>
-          </Grid>
-        ))}
-        <Grid item>
-          <Typography>Written by Krook</Typography>
-        </Grid>
-      </GridContainer>
-    </PageContainer>
-  );
-};
-
-export default Rogue;
+export default RogueGuideData;

@@ -1,18 +1,4 @@
-import React from 'react';
-import GridContainer from '@jumbo/components/GridContainer';
-import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
-import CmtCard from '@coremat/CmtCard';
-import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Typography } from '@mui/material';
-import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
-
-const breadcrumbs = [
-  { label: 'Guides', link: '/guides' },
-  { label: 'Mage', isActive: true },
-];
-
-const data = [
+const MageGuideData = [
   {
     question: 'How do I pick a subclass?',
     answer: `Explore the mage hall and find the book of the magi. Looking at it will tell you how to choose your subclass.`,
@@ -134,26 +120,4 @@ const data = [
   },
 ];
 
-const Mage = () => {
-  return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="Mage FAQ">
-      <GridContainer>
-        {data.map((item, index) => (
-          <Grid item xs={12} key={index}>
-            <CmtCard>
-              <CmtCardHeader title={item.question} />
-              <CmtCardContent>
-                <Typography style={{ whiteSpace: 'pre-line' }}>{item.answer}</Typography>
-              </CmtCardContent>
-            </CmtCard>
-          </Grid>
-        ))}
-        <Grid item>
-          <Typography>Written by Cordell</Typography>
-        </Grid>
-      </GridContainer>
-    </PageContainer>
-  );
-};
-
-export default Mage;
+export default MageGuideData;
