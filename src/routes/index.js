@@ -19,6 +19,7 @@ import PlayerCommands from './Pages/General/PlayerCommands';
 import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
 import Socials from './Pages/General/Socials';
+import Quests from './Pages/General/Quests';
 //- GUIDES -//
 import Builder from './Pages/Guides/Builder';
 import BuilderRooms from './Pages/Guides/Builder/Rooms';
@@ -75,6 +76,7 @@ const Routes = () => {
           <Route path="/rolling" component={Rolling} />
           <Route path="/alchemy" component={Alchemy} />
           <Route path="/commands" component={PlayerCommands} />
+          <Route path="/quests" component={Quests} />
 
           {/* Guides */}
           <Route path="/guides/cleric" component={Cleric} />
