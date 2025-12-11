@@ -43,16 +43,33 @@ const Quests = () => {
         </Grid>
 
         {/* RIGHT CONTENT PANEL */}
-        <Grid item xs={12} sm={8} md={9}>
+        <Grid item xs={12} sm={8} md={9} sx={{ position: 'sticky', top: '0', alignSelf: 'start' }}>
           <CmtCard>
             <CmtCardContent>
               {selected ? (
                 <>
                   <h2 style={{ marginBottom: '1rem' }}>{selected.name}</h2>
 
-                  <p style={{ marginBottom: '1rem' }}>{selected.description}</p>
+                  {Array.isArray(selected.description) ? (
+                    selected.description.map((line, idx) => (
+                      <div key={idx} style={{ marginBottom: '0.5rem' }}>
+                        {line}
+                      </div>
+                    ))
+                  ) : (
+                    <div>{selected.description}</div>
+                  )}
 
-                  <h3>
+                  {selected.hint ? (
+                    <p style={{ marginTop: '1rem' }}>
+                      <strong style={{ textTransform: 'capitalize' }}>HINT: </strong>
+                      {selected.hint}
+                    </p>
+                  ) : (
+                    <></>
+                  )}
+
+                  <h3 style={{ marginTop: '1rem' }}>
                     <strong>Level:</strong> {selected.level}
                   </h3>
                 </>
