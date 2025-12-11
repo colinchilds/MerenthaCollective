@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Typography, Grid, Box, Chip, Divider } from '@mui/material';
+import { Typography, Grid, Box, Chip, Divider, useMediaQuery, useTheme } from '@mui/material';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import GridContainer from '@jumbo/components/GridContainer';
 import CmtCard from '@coremat/CmtCard';
@@ -14,7 +14,9 @@ const breadcrumbs = [
 
 const Quests = () => {
   const [selected, setSelected] = useState(null);
-  const [sortMode, setSortMode] = useState('level'); // NEW
+  const [sortMode, setSortMode] = useState('level');
+  const theme = useTheme();
+  const isSmall = useMediaQuery(theme.breakpoints.down('sm'));
 
   const sortedData = [...questData].sort((a, b) => {
     if (sortMode === 'level') {
@@ -42,7 +44,7 @@ const Quests = () => {
                   mb: 1,
                 }}>
                 <Typography variant="subtitle1" color="text.secondary">
-                  Select a quest to view its details.
+                  Select a quest.
                 </Typography>
 
                 <Chip
@@ -60,22 +62,31 @@ const Quests = () => {
               </Typography>
 
               {/* Quest Chips */}
-              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+              <Box
+                sx={{
+                  display: 'grid',
+                  gridTemplateColumns: {
+                    xs: 'repeat(2, 1fr)',
+                    lg: 'repeat(3, 1fr)',
+                    xl: 'repeat(4, 1fr)',
+                  },
+                  justifyContent: 'start',
+                  alignItems: 'start',
+                  gap: 1,
+                }}>
                 {sortedData.map((quest, index) => (
                   <Chip
                     key={index}
-                    label={`${quest.name} (${quest.level}+)`}
+                    label={`${isSmall ? quest.short || quest.name : quest.name} (${quest.level})`}
                     clickable
                     onClick={() => setSelected(quest)}
                     variant={selected?.name === quest.name ? 'filled' : 'outlined'}
                     color={selected?.name === quest.name ? 'primary' : 'default'}
                     sx={{
-                      cursor: 'pointer',
-                      '&:hover': {
-                        backgroundColor: 'primary.main',
-                        color: 'white',
-                        borderColor: 'primary.main',
-                      },
+                      whiteSpace: 'nowrap',
+                      overflow: 'visible',
+                      textOverflow: 'clip',
+                      width: '100%',
                     }}
                   />
                 ))}
@@ -83,7 +94,7 @@ const Quests = () => {
             </CmtCardContent>
           </CmtCard>
 
-          {/* SELECTED QUEST SECTION (unchanged) */}
+          {/* SELECTED QUEST SECTION */}
           {selected && (
             <CmtCard>
               <Box
