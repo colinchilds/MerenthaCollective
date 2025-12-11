@@ -158,7 +158,7 @@ const questData = [
                   goblins and ogres and it is rumored that they are planning an invasion into
                   civilized cities. As the First step in this evil plan they have taken several
                   people prisoners. Go rescue them!`,
-    level: 50,
+    level: 15,
   },
   {
     name: 'The Quest for Steel',
