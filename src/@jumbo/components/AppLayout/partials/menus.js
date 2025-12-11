@@ -15,6 +15,7 @@ import {
   AccessTime,
   Terminal,
   Science,
+  Check,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -106,6 +107,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <LocalFireDepartment />,
         link: '/fireworks',
+      },
+      {
+        name: 'Quests',
+        type: 'item',
+        icon: <Check />,
+        link: '/quests',
       },
       {
         name: 'Rolling',
