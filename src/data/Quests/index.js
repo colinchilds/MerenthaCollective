@@ -9,6 +9,7 @@ const questData = [
       'It is up to you to join these two.',
     ],
     level: 1,
+    rewards: 'Charisma',
   },
   {
     name: 'The Forest of Deception',
@@ -35,6 +36,7 @@ const questData = [
       'If you have already saved the prisoners, you must now destroy the city.',
     ],
     level: 10,
+    rewards: 'If Prisoner is done first, Strength',
   },
   {
     name: 'The Quest for Honey',
@@ -61,6 +63,7 @@ const questData = [
     description: `The prince of darkness has stolen the faerie princess. Return the princess to
                   her mother. Talk to the Queen of Faeries in Cardania for more details.`,
     level: 15,
+    rewards: 'Charisma',
   },
   {
     name: 'The Missing Neighbors',
@@ -107,6 +110,7 @@ const questData = [
                   since the dawn of time. Now, the Kobolds are close to realizing this
                   achievement. Will you help them, or impede them?!`,
     level: 20,
+    rewards: 'Good Alignment: Wisdom | Evil Alignment: Intelligence & Wisdom',
   },
   {
     name: 'The Quest for Immortality',
@@ -131,6 +135,7 @@ const questData = [
                   to heal the ill. To begin this quest, locate the Apothecary on the Island of
                   Rimaga and speak to him about his quest.`,
     level: 20,
+    rewards: 'Intelligence',
   },
   {
     name: 'The Ottograd Royal Regime',
@@ -138,6 +143,7 @@ const questData = [
                   Czar. Help the people of Ottograd find their own way and break free from the
                   Royal Czar's grasp.`,
     level: 30,
+    rewards: 'Constitution',
   },
   {
     name: 'Korlis Ruins',
@@ -145,12 +151,14 @@ const questData = [
                   beast had slept for years, until the Kobolds expanded into its domain. Now it
                   has risen and begun to create havoc in its path.`,
     level: 30,
+    rewards: 'Strength & Intelligence',
   },
   {
     name: 'Holy Chalice',
     description:
       'The Arch Black Cleric stole the Holy Chalice. It must be retrieved and placed back into its proper resting place.',
     level: 40,
+    rewards: 'Wisdom',
   },
   {
     name: 'The Prisoner of Trogrelin',
@@ -158,7 +166,8 @@ const questData = [
                   goblins and ogres and it is rumored that they are planning an invasion into
                   civilized cities. As the First step in this evil plan they have taken several
                   people prisoners. Go rescue them!`,
-    level: 15,
+    level: 10,
+    rewards: 'Wisdom',
   },
   {
     name: 'The Quest for Steel',
@@ -188,6 +197,7 @@ const questData = [
                   god, but to no avail. Seek out one who is wizened and learned beneath the frozen
                   lands of Aerioth.`,
     level: 70,
+    rewards: '2 Constitution',
   },
   {
     name: 'The Dracolich',
@@ -195,6 +205,7 @@ const questData = [
                   black magic, and an isolated abbey of monks seeks to put an end to his plans.
                   Bring evidence of Kel'rek's intentions to their leader to help out.`,
     level: 80,
+    rewards: 'Depends on class, 5 of either Strength, Dexterity, Intelligence, or Wisdom',
   },
   {
     name: 'The Unholy War',
@@ -203,11 +214,13 @@ const questData = [
                   Elder Magi understand that their forces may be too weak for their new nemesis
                   and they're looking for help from outsiders.`,
     level: 100,
+    rewards: 'Wisdom',
   },
   {
     name: "Fairdale's Mythical Creatures",
     description: 'A hunter of the wilds tells a legend of mythical creatues in the lands of Fairdale.',
     level: 100,
+    rewards: 'Charisma, Dexterity, Wisdom',
   },
   {
     name: 'The Quest for Amity',
@@ -215,6 +228,7 @@ const questData = [
                   and differing opinions over the generations have slowly driven this community
                   apart. Help this tribe remember the amity that once bonded them together.`,
     level: 100,
+    rewards: '1 Random Stat',
   },
   {
     name: 'The Hunt for the Kraken',
@@ -223,7 +237,8 @@ const questData = [
                   long. Brave the frozen sea to join their dangerous quest of slaying a beast of
                   titan proportions.`,
     level: 120,
+    rewards: 'Strength & Intelligence',
   },
-].sort((a, b) => a.level - b.level);
+];
 
 export default questData;

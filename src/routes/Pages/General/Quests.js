@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import GridContainer from '@jumbo/components/GridContainer';
+import { Typography, Grid, Box, Chip, Divider } from '@mui/material';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
+import GridContainer from '@jumbo/components/GridContainer';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 
@@ -13,71 +13,124 @@ const breadcrumbs = [
 ];
 
 const Quests = () => {
-  // Track which quest is selected
-  const [selected, setSelected] = useState(questData[0] ?? null);
+  const [selected, setSelected] = useState(null);
+  const [sortMode, setSortMode] = useState('level'); // NEW
+
+  const sortedData = [...questData].sort((a, b) => {
+    if (sortMode === 'level') {
+      if (a.level !== b.level) return a.level - b.level;
+      return a.name.localeCompare(b.name); // tie-break by name
+    }
+    return a.name.localeCompare(b.name);
+  });
 
   return (
     <PageContainer breadcrumbs={breadcrumbs} heading="Quests">
-      <GridContainer spacing={3}>
-        {/* LEFT MENU */}
-        <Grid item xs={12} sm={4} md={3}>
+      <GridContainer>
+        <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
           <CmtCard>
             <CmtCardContent>
-              {questData.map((quest, index) => (
-                <div
-                  key={index}
-                  onClick={() => setSelected(quest)}
-                  style={{
-                    padding: '10px 12px',
-                    marginBottom: 6,
-                    borderRadius: 6,
-                    cursor: 'pointer',
-                    background: selected?.name === quest.name ? 'rgba(0,0,0,0.15)' : 'transparent',
-                    fontWeight: selected?.name === quest.name ? 'bold' : 'normal',
-                  }}>
-                  {quest.name}
-                </div>
-              ))}
+              <Typography variant="h2" gutterBottom>
+                Quest Compendium
+              </Typography>
+
+              <Box
+                sx={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  mb: 1,
+                }}>
+                <Typography variant="subtitle1" color="text.secondary">
+                  Select a quest to view its details.
+                </Typography>
+
+                <Chip
+                  label={`Sort by: ${sortMode === 'level' ? 'Level' : 'Name'}`}
+                  clickable
+                  onClick={() => setSortMode(sortMode === 'level' ? 'name' : 'level')}
+                  sx={{ fontWeight: 500 }}
+                />
+              </Box>
+
+              <Divider sx={{ my: 2 }} />
+
+              <Typography variant="body2" color="text.secondary" gutterBottom>
+                Choose a quest:
+              </Typography>
+
+              {/* Quest Chips */}
+              <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                {sortedData.map((quest, index) => (
+                  <Chip
+                    key={index}
+                    label={`${quest.name} (${quest.level}+)`}
+                    clickable
+                    onClick={() => setSelected(quest)}
+                    variant={selected?.name === quest.name ? 'filled' : 'outlined'}
+                    color={selected?.name === quest.name ? 'primary' : 'default'}
+                    sx={{
+                      cursor: 'pointer',
+                      '&:hover': {
+                        backgroundColor: 'primary.main',
+                        color: 'white',
+                        borderColor: 'primary.main',
+                      },
+                    }}
+                  />
+                ))}
+              </Box>
             </CmtCardContent>
           </CmtCard>
-        </Grid>
 
-        {/* RIGHT CONTENT PANEL */}
-        <Grid item xs={12} sm={8} md={9} sx={{ position: 'sticky', top: '0', alignSelf: 'start' }}>
-          <CmtCard>
-            <CmtCardContent>
-              {selected ? (
-                <>
-                  <h2 style={{ marginBottom: '1rem' }}>{selected.name}</h2>
+          {/* SELECTED QUEST SECTION (unchanged) */}
+          {selected && (
+            <CmtCard>
+              <Box
+                sx={{
+                  background: 'rgba(255,255,255,0.03)',
+                  borderRadius: 2,
+                  p: 2.5,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                }}>
+                <Typography variant="h3" sx={{ fontWeight: 600, mb: 1 }}>
+                  {selected.name}
+                </Typography>
 
-                  {Array.isArray(selected.description) ? (
-                    selected.description.map((line, idx) => (
-                      <div key={idx} style={{ marginBottom: '0.5rem' }}>
+                {/* Description */}
+                {Array.isArray(selected.description) ? (
+                  <Box sx={{ mb: 2 }}>
+                    {selected.description.map((line, i) => (
+                      <Typography key={i} sx={{ mb: 0.5 }}>
                         {line}
-                      </div>
-                    ))
-                  ) : (
-                    <div>{selected.description}</div>
-                  )}
+                      </Typography>
+                    ))}
+                  </Box>
+                ) : (
+                  <Typography sx={{ mb: 2 }}>{selected.description}</Typography>
+                )}
 
-                  {selected.hint ? (
-                    <p style={{ marginTop: '1rem' }}>
-                      <strong style={{ textTransform: 'capitalize' }}>HINT: </strong>
-                      {selected.hint}
-                    </p>
-                  ) : (
-                    <></>
-                  )}
+                {/* Rewards */}
+                {selected.rewards && (
+                  <Typography sx={{ mb: 1 }}>
+                    <strong>Rewards:</strong> {selected.rewards}
+                  </Typography>
+                )}
 
-                  <h3 style={{ marginTop: '1rem' }}>
-                    <strong>Level:</strong> {selected.level}
-                  </h3>
-                </>
-              ) : (
-                <p>Select a quest from the menu.</p>
-              )}
-            </CmtCardContent>
-          </CmtCard>
+                {/* Hint */}
+                {selected.hint && (
+                  <Typography sx={{ mb: 1 }}>
+                    <strong>Hint:</strong> {selected.hint}
+                  </Typography>
+                )}
+
+                {/* Level */}
+                <Typography variant="body1" sx={{ mt: 1 }}>
+                  <strong>Level:</strong> {selected.level}
+                </Typography>
+              </Box>
+            </CmtCard>
+          )}
         </Grid>
       </GridContainer>
     </PageContainer>
