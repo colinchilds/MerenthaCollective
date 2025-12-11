@@ -1,5 +1,9 @@
 const updates = [
   {
+    date: '12/11/2025',
+    message: 'Added Quests section.',
+  },
+  {
     date: '11/20/2025',
     message: 'Updated Menu. Added Area Guides from the Area List.',
   },
