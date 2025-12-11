@@ -2,13 +2,12 @@ const questData = [
   {
     name: "The Lover's Sin",
     short: 'Lovers',
-    description: [
-      'Two souls, banished from ever meeting again.',
-      'Two souls, forbidden to join in one embrace.',
-      'One walks by day never to see the moons.',
-      'One walks by night, prohibited from feeling the rays of the sun.',
-      'It is up to you to join these two.',
-    ],
+    description: `
+      Two souls, banished from ever meeting again. 
+      Two souls, forbidden to join in one embrace.
+      One walks by day never to see the moons.
+      One walks by night, prohibited from feeling the rays of the sun.
+      It is up to you to join these two.`,
     level: 1,
     rewards: 'Charisma',
   },
@@ -23,24 +22,19 @@ const questData = [
   {
     name: 'Into the Woods',
     short: 'Woods',
-    description: [
-      'Long ago, when you were just a.....',
-      'Ahhhh, forget it.Lets just say there is a witch in the Forest of Deception and well she needs your help.Go to Deception, past Marrdan and help her out.',
-      'Well what are you waiting for? Go to the Woods!',
-    ],
+    description: `Long ago, when you were just a.....
+                  Ahhhh, forget it.Lets just say there is a witch in the Forest of Deception and well she needs your help.Go to Deception, past Marrdan and help her out.
+                  Well what are you waiting for? Go to the Woods!`,
     level: 10,
   },
   {
     name: 'The Destruction of Trogrelin',
     short: 'Destruction',
-    description: [
-      `An evil troll empire has appeared in the swamps of Fenris. With the trolls live
-      goblins and ogres and it is rumored that they are planning an invasion into
-      civilized cities.`,
-      'If you have already saved the prisoners, you must now destroy the city.',
-    ],
+    description: `An evil troll empire has appeared in the swamps of Fenris. With the trolls live
+                  goblins and ogres and it is rumored that they are planning an invasion into
+                  civilized cities. 'If you have already saved the prisoners, you must now destroy the city.`,
     level: 10,
-    rewards: 'If Prisoner is done first, Strength',
+    rewards: 'Strength if The Prisoner of Trogrelin is completed first',
   },
   {
     name: 'The Quest for Honey',
