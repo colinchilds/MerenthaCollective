@@ -88,6 +88,7 @@ const questData = [
   },
   {
     name: 'The Heir to Talis',
+    short: 'Talis',
     description: `Talis is an island in search of its heir. Many have tried to claim the throne
                   for themselves, but the true ruler has still not been found. In fact the isle of
                   Talis itself is somewhat a mystery, although many claim to have once been there,
