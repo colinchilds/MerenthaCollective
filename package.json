@@ -8,8 +8,6 @@
     "@mui/icons-material": "^5.2.5",
     "@mui/lab": "^5.0.0-alpha.64",
     "@mui/material": "^5.2.8",
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
-    "@mui/styled-engine-sc": "^5.1.0",
     "@mui/styles": "^5.2.3",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
@@ -37,7 +35,6 @@
     "typescript": "^3.9.10"
   },
   "resolutions": {
-    "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
     "mini-css-extract-plugin": "2.4.5"
   },
   "scripts": {
