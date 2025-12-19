@@ -6,14 +6,14 @@ import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Typography, Box, Chip, Paper, Link } from '@mui/material';
 import { alpha } from '@mui/material/styles';
-import commands from 'data/PlayerCommands';
+import commands from 'data/CommonCommands';
 
 const breadcrumbs = [
   { label: 'General', link: '/' },
   { label: 'Common Commands', isActive: true },
 ];
 
-const PlayerCommands = () => {
+const CommonCommands = () => {
   const [selectedCommand, setSelectedCommand] = useState(null);
 
   const handleCommandClick = (command) => {
@@ -154,4 +154,4 @@ const PlayerCommands = () => {
   );
 };
 
-export default PlayerCommands;
+export default CommonCommands;
