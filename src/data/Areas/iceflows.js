@@ -6,8 +6,6 @@ export const iceflows = area({
     levels: '20-90',
     maps: [
       map('Aerioth', '/images/maps/Aerioth.gif'),
-      map('Aerioth 2', '/images/maps/Aerioth2.gif'),
-      map('Aerioth 3', '/images/maps/Aerioth3.gif'),
       map('Aerioth Abbey', '/images/maps/AeriothAbbey.gif'),
       map('Aerioth Castle', '/images/maps/AeriothCastle.gif'),
       map('Aerioth Caverns', '/images/maps/AeriothCaverns.gif'),
