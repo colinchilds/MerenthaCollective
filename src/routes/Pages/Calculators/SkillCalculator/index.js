@@ -66,6 +66,8 @@ const SkillCalculator = () => {
     setCharacterClass,
     setCharacterRace,
     setCharacterSubclass,
+    setCharacterWerewolf,
+    setStatWerewolfToggle,
   } = useSharedCharacterState();
 
   var sn = [].concat.apply([], Object.values(skillNames));
@@ -79,6 +81,8 @@ const SkillCalculator = () => {
   const subclass = validSubclass;
   const race = (activeCharacter && activeCharacter.race) || races[0];
   const level = (activeCharacter && activeCharacter.level) || 1;
+  const isWerewolf = (activeCharacter && activeCharacter.isWerewolf) || false;
+  const statWerewolfToggles = (activeCharacter && activeCharacter.statWerewolfToggles) || null;
   const skillLevels = (activeCharacter && activeCharacter.skillLevels) || initSkills;
   const skillTargets = (activeCharacter && activeCharacter.skillIncrements) || initSkills;
 
@@ -275,11 +279,12 @@ const SkillCalculator = () => {
           charClass={charClass}
           subclass={subclass}
           race={race}
+          isWerewolf={isWerewolf}
           setLevel={setCharacterLevel}
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
-          showWerewolf={false}
+          setWerewolf={setCharacterWerewolf}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         {subclass === 'Warrior' && (
@@ -314,8 +319,7 @@ const SkillCalculator = () => {
                                 border: 1,
                                 borderColor: 'divider',
                                 borderRadius: 1,
-                              }}
-                            >
+                              }}>
                               <Box display="flex" justifyContent="space-between" alignItems="center">
                                 <Box display="flex" alignItems="center" gap={1}>
                                   <Typography fontWeight="bold">{skill}</Typography>
@@ -325,8 +329,7 @@ const SkillCalculator = () => {
                                       sx={{
                                         color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
                                         fontWeight: 'bold',
-                                      }}
-                                    >
+                                      }}>
                                       {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
                                     </Typography>
                                   )}
@@ -386,8 +389,7 @@ const SkillCalculator = () => {
                                     minWidth: '45px',
                                     fontSize: '0.7rem',
                                     padding: '4px 8px',
-                                  }}
-                                >
+                                  }}>
                                   MAX
                                 </Button>
                                 {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
@@ -400,8 +402,7 @@ const SkillCalculator = () => {
                                         borderRadius: '4px',
                                         padding: '4px',
                                         color: '#4caf50',
-                                      }}
-                                    >
+                                      }}>
                                       <CheckIcon fontSize="small" />
                                     </IconButton>
                                     <IconButton
@@ -411,8 +412,7 @@ const SkillCalculator = () => {
                                         border: '1px solid rgba(0, 0, 0, 0.23)',
                                         borderRadius: '4px',
                                         padding: '4px',
-                                      }}
-                                    >
+                                      }}>
                                       <ClearIcon fontSize="small" />
                                     </IconButton>
                                   </>
@@ -431,14 +431,13 @@ const SkillCalculator = () => {
                           '& .MuiTableCell-root': { py: 1, px: 1 },
                           tableLayout: 'fixed',
                           width: '100%',
-                        }}
-                      >
+                        }}>
                         <TableHead>
                           <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
-                            <TableCell sx={{ width: '200px' }}>
+                            <TableCell sx={{ width: '300px' }}>
                               <Typography variant="subtitle2">Skill</Typography>
                             </TableCell>
-                            <TableCell sx={{ width: '200px' }}>
+                            <TableCell sx={{ width: '300px' }}>
                               <Typography variant="subtitle2">Current</Typography>
                             </TableCell>
                             <TableCell sx={{ width: 'auto' }}>
@@ -463,8 +462,7 @@ const SkillCalculator = () => {
                                           sx={{
                                             color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
                                             fontWeight: 'bold',
-                                          }}
-                                        >
+                                          }}>
                                           {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
                                         </Typography>
                                       )}
@@ -511,8 +509,7 @@ const SkillCalculator = () => {
                                           endAdornment: (
                                             <InputAdornment position="end" size="small">
                                               <Typography
-                                                sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}
-                                              >
+                                                sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
                                                 {(() => {
                                                   const diff =
                                                     (parseInt(skillTargets[skill]) || 0) -
@@ -532,8 +529,7 @@ const SkillCalculator = () => {
                                           minWidth: '45px',
                                           fontSize: '0.7rem',
                                           padding: '4px 8px',
-                                        }}
-                                      >
+                                        }}>
                                         MAX
                                       </Button>
                                       {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
@@ -546,8 +542,7 @@ const SkillCalculator = () => {
                                               borderRadius: '4px',
                                               padding: '4px',
                                               color: '#4caf50',
-                                            }}
-                                          >
+                                            }}>
                                             <CheckIcon fontSize="small" />
                                           </IconButton>
                                           <IconButton
@@ -557,8 +552,7 @@ const SkillCalculator = () => {
                                               border: '1px solid rgba(0, 0, 0, 0.23)',
                                               borderRadius: '4px',
                                               padding: '4px',
-                                            }}
-                                          >
+                                            }}>
                                             <ClearIcon fontSize="small" />
                                           </IconButton>
                                         </>
@@ -626,8 +620,7 @@ const SkillCalculator = () => {
                   '& .MuiTableCell-root': { py: 1, px: 1 },
                   tableLayout: 'fixed',
                   width: '100%',
-                }}
-              >
+                }}>
                 <TableBody>
                   <TableRow sx={{ backgroundColor: 'action.hover' }}>
                     <TableCell sx={{ width: '200px' }}>
