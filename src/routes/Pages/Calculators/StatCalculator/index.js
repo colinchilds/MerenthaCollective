@@ -1,6 +1,5 @@
 import React, { Fragment, useEffect, useState } from 'react';
 import PageContainer from '../../../../@jumbo/components/PageComponents/layouts/PageContainer';
-import Grid from '@mui/material/Grid';
 import {
   Box,
   Button,
@@ -14,7 +13,6 @@ import {
   Tooltip,
   Typography,
   InputAdornment,
-  Divider,
   IconButton,
   useMediaQuery,
   useTheme,
@@ -265,7 +263,8 @@ const StatCalculator = () => {
                             sx={{
                               padding: '2px',
                               color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
-                            }}>
+                            }}
+                          >
                             {statWerewolfToggles[stat] === 'night' ? (
                               <NightsStayIcon fontSize="small" />
                             ) : (
@@ -334,7 +333,8 @@ const StatCalculator = () => {
                         minWidth: '45px',
                         fontSize: '0.7rem',
                         padding: '4px 8px',
-                      }}>
+                      }}
+                    >
                       MAX
                     </Button>
                     {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
@@ -347,7 +347,8 @@ const StatCalculator = () => {
                             borderRadius: '4px',
                             padding: '4px',
                             color: '#4caf50',
-                          }}>
+                          }}
+                        >
                           <CheckIcon fontSize="small" />
                         </IconButton>
                         <IconButton
@@ -357,7 +358,8 @@ const StatCalculator = () => {
                             border: '1px solid rgba(0, 0, 0, 0.23)',
                             borderRadius: '4px',
                             padding: '4px',
-                          }}>
+                          }}
+                        >
                           <ClearIcon fontSize="small" />
                         </IconButton>
                       </>
@@ -405,7 +407,8 @@ const StatCalculator = () => {
                 size="small"
                 sx={{
                   '& .MuiTableCell-root': { py: 1, px: 1 },
-                }}>
+                }}
+              >
                 <TableHead>
                   <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
                     <TableCell>
@@ -437,7 +440,8 @@ const StatCalculator = () => {
                                 sx={{
                                   padding: '2px',
                                   color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
-                                }}>
+                                }}
+                              >
                                 {statWerewolfToggles[stat] === 'night' ? (
                                   <NightsStayIcon fontSize="small" />
                                 ) : (
@@ -514,7 +518,8 @@ const StatCalculator = () => {
                               minWidth: '45px',
                               fontSize: '0.7rem',
                               padding: '4px 8px',
-                            }}>
+                            }}
+                          >
                             MAX
                           </Button>
                           {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
@@ -527,7 +532,8 @@ const StatCalculator = () => {
                                   borderRadius: '4px',
                                   padding: '4px',
                                   color: '#4caf50',
-                                }}>
+                                }}
+                              >
                                 <CheckIcon fontSize="small" />
                               </IconButton>
                               <IconButton
@@ -537,7 +543,8 @@ const StatCalculator = () => {
                                   border: '1px solid rgba(0, 0, 0, 0.23)',
                                   borderRadius: '4px',
                                   padding: '4px',
-                                }}>
+                                }}
+                              >
                                 <ClearIcon fontSize="small" />
                               </IconButton>
                             </>

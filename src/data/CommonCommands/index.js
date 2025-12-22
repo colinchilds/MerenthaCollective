@@ -712,6 +712,18 @@ const commands = [
     syntax: 'wake',
     description: 'Wake will wake a sleeping or resting player up. See also: rest, sleep.',
   },
+  {
+    id: 'bio',
+    name: 'bio',
+    syntax: 'bio',
+    description: 'This command displays a bit of your own biography. See also: score, status, armour, body',
+  },
+  {
+    id: 'armour',
+    name: 'armour',
+    syntax: 'armour',
+    description: 'This command displays how well your body is armoured physically and magically. See also: body',
+  },
 ].sort((a, b) => a.name.localeCompare(b.name));
 
 export default commands;

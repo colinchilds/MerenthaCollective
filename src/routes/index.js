@@ -15,7 +15,7 @@ import Coordinates from './Pages/General/Coordinates';
 import HomePage from './Pages/General/Home';
 import Alchemy from './Pages/General/Alchemy';
 import Combat from './Pages/General/Combat';
-import PlayerCommands from './Pages/General/PlayerCommands';
+import CommonCommands from './Pages/General/CommonCommands';
 import Fireworks from './Pages/General/Fireworks';
 import Rolling from './Pages/General/Rolling';
 import Socials from './Pages/General/Socials';
@@ -75,7 +75,7 @@ const Routes = () => {
           <Route path="/fireworks" component={Fireworks} />
           <Route path="/rolling" component={Rolling} />
           <Route path="/alchemy" component={Alchemy} />
-          <Route path="/commands" component={PlayerCommands} />
+          <Route path="/commands" component={CommonCommands} />
           <Route path="/quests" component={Quests} />
 
           {/* Guides */}
