@@ -46,7 +46,7 @@ const ClericGuideData = [
   },
   {
     question: 'What spells do I get as a black cleric?',
-    answer: `Well as all other cleric you recieve paralyze, wound, haste, raise dead,disrupt, and swarm.
+    answer: `Well as other cleric you recieve paralyze, wound, haste, raise dead, disrupt, and swarm.
       As a black cleric you will learn to love paralyze and wound. Black have the best paralyze.
       Some spells all classes get, which is why there all not listed.`,
   },
@@ -84,11 +84,11 @@ const ClericGuideData = [
   {
     question: 'How does resurrection work?',
     answer: `Type "help resurrect" for a start. After a resurrection your vitals will drop to 1hp / 0 sp/ 0 mp,
-      so creationg potions first and having orbs may help. You need to be white and saintly to resurrect,
-      lvl 20 and the player's level you are about to resurrect must be lower or the same as yours.
+      so creationg potions first and having orbs may help. You need to be white, saintly, lvl 20 and the player's 
+      level you are about to resurrect must be lower or the same as yours.
       Resurrection is the only way to change race, which can greatly help improve stats.
-      You may not resurrect people into were-wolfs, dragons, and/or drow, these are quests,
-      and tell them you are not able to help. You can resurrect only once per reboot.
+      You may not resurrect people into were-wolfs, dragons, and/or drow as these are quests.
+      Tell them you are not able to help. You can resurrect only once per reboot.
       Some clerics charge for resurrections, there is no standard price, just depends on how much you want to charge.
       Can be another great way to make money!`,
   },
@@ -98,8 +98,8 @@ const ClericGuideData = [
   },
   {
     question: 'What is manastorm?',
-    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, to regain hp,
-    it effects everyone in the room, as well as mobs. This spell last a while, and takes a while to work.`,
+    answer: `Manastorm is not what it says. Manastorm is a cloud that you summon, to regain hp.
+      It effects everyone in the room, as well as mobs. This spell lasts a while, and takes a while to work.`,
   },
 ];
 

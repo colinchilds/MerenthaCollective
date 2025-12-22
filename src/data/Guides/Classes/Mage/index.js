@@ -115,8 +115,17 @@ const MageGuideData = [
     answer: `Whatever protects you best. Really though, lots of faeries and imps become mages and find it hard to carry good armour around. Lightweight armour exists, but doesn't protect as well. You'll probably have to improve your strength if you want to wear heavy platemail. Look at your magic defense spells. Buffer is short lived, but will boost your armour. You can check your armour levels by typing "armour"`,
   },
   {
+    question: 'When can I `create` bags?',
+    answer: 'With high enough conjuring, you can create bags at level 20',
+  },
+  {
+    question: 'When can I use `gate` and `remember`?',
+    answer:
+      'Level 30 is the minimum level to use `Gate`; however, the quantity of `remember` slots depends on your stats. Try improving your intelligence.',
+  },
+  {
     question: "I have a question this FAQ didn't answer, who should I ask?",
-    answer: `Most commands have a help file, try [help blahspell/command] first. If that doesn't help, try asking the question on the [mage] line or the [newbie]/[mid] line.`,
+    answer: `Most commands have a help file, try [help blahspell/command] first. If that doesn't help, try asking the question on the [mage] line or the [newbie]/[mid] lines.`,
   },
 ];
 
