@@ -1,5 +1,9 @@
 const updates = [
   {
+    date: '12/22/2025',
+    message: 'Added subclass guides.',
+  },
+  {
     date: '12/11/2025',
     message: 'Added Quests section.',
   },
