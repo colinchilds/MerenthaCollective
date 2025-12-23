@@ -11,6 +11,7 @@ import {
   ToggleButton,
   ToggleButtonGroup,
   Button,
+  Divider,
 } from '@mui/material';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -25,22 +26,38 @@ const FONT_FAMILIES = [
 
 /**
  * Text picker dropdown with text input, font size, font family, and style options.
+ * For rooms: single text input
+ * For connections: from/to label inputs + orientation toggle
  */
 const TextPickerDropdown = ({
   icon,
   tooltip,
+  // Room text (single field)
   text = '',
+  // Connection labels (from/to fields)
+  fromLabel = '',
+  toLabel = '',
+  labelOrientation = 'along',
+  // Shared font properties
   fontSize = 24,
   fontFamily = 'monospace',
   fontBold = false,
   fontItalic = false,
+  // Whether this is a connection (show from/to UI) or room (show single text UI)
+  isConnection = false,
   onChange,
   disabled = false,
   open: controlledOpen,
   onOpenChange,
 }) => {
   const [anchorEl, setAnchorEl] = useState(null);
+  // Room text state
   const [localText, setLocalText] = useState(text);
+  // Connection label state
+  const [localFromLabel, setLocalFromLabel] = useState(fromLabel);
+  const [localToLabel, setLocalToLabel] = useState(toLabel);
+  const [localLabelOrientation, setLocalLabelOrientation] = useState(labelOrientation);
+  // Shared font state
   const [localFontSize, setLocalFontSize] = useState(fontSize);
   const [localFontFamily, setLocalFontFamily] = useState(fontFamily);
   const [localFontBold, setLocalFontBold] = useState(fontBold);
@@ -51,11 +68,14 @@ const TextPickerDropdown = ({
   // Sync local state when props change (new selection)
   useEffect(() => {
     setLocalText(text);
+    setLocalFromLabel(fromLabel);
+    setLocalToLabel(toLabel);
+    setLocalLabelOrientation(labelOrientation);
     setLocalFontSize(fontSize);
     setLocalFontFamily(fontFamily);
     setLocalFontBold(fontBold);
     setLocalFontItalic(fontItalic);
-  }, [text, fontSize, fontFamily, fontBold, fontItalic]);
+  }, [text, fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic]);
 
   // Handle controlled open state (e.g., from keyboard shortcut)
   useEffect(() => {
@@ -80,26 +100,108 @@ const TextPickerDropdown = ({
     }
   };
 
-  const triggerOnChange = (newText, newSize, newFamily, newBold, newItalic) => {
-    onChange(newText, newSize, newFamily, newBold, newItalic);
+  // For rooms: (text, fontSize, fontFamily, fontBold, fontItalic)
+  // For connections: (fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
+  const triggerOnChange = (newText, newFromLabel, newToLabel, newOrientation, newSize, newFamily, newBold, newItalic) => {
+    if (isConnection) {
+      onChange(newFromLabel, newToLabel, newOrientation, newSize, newFamily, newBold, newItalic);
+    } else {
+      onChange(newText, newSize, newFamily, newBold, newItalic);
+    }
   };
 
+  // Room text handler
   const handleTextChange = (event) => {
     const value = event.target.value;
     setLocalText(value);
-    triggerOnChange(value, localFontSize, localFontFamily, localFontBold, localFontItalic);
+    triggerOnChange(
+      value,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      localFontSize,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
   };
 
+  // Connection label handlers
+  const handleFromLabelChange = (event) => {
+    const value = event.target.value;
+    setLocalFromLabel(value);
+    triggerOnChange(
+      localText,
+      value,
+      localToLabel,
+      localLabelOrientation,
+      localFontSize,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
+  };
+
+  const handleToLabelChange = (event) => {
+    const value = event.target.value;
+    setLocalToLabel(value);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      value,
+      localLabelOrientation,
+      localFontSize,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
+  };
+
+  const handleOrientationChange = (event, newOrientation) => {
+    if (newOrientation !== null) {
+      setLocalLabelOrientation(newOrientation);
+      triggerOnChange(
+        localText,
+        localFromLabel,
+        localToLabel,
+        newOrientation,
+        localFontSize,
+        localFontFamily,
+        localFontBold,
+        localFontItalic,
+      );
+    }
+  };
+
+  // Font handlers
   const handleFontSizeChange = (event) => {
     const value = event.target.value;
     setLocalFontSize(value);
-    triggerOnChange(localText, value, localFontFamily, localFontBold, localFontItalic);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      value,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
   };
 
   const handleFontFamilyChange = (event) => {
     const value = event.target.value;
     setLocalFontFamily(value);
-    triggerOnChange(localText, localFontSize, value, localFontBold, localFontItalic);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      localFontSize,
+      value,
+      localFontBold,
+      localFontItalic,
+    );
   };
 
   const handleStyleChange = (event, newStyles) => {
@@ -107,12 +209,45 @@ const TextPickerDropdown = ({
     const newItalic = newStyles.includes('italic');
     setLocalFontBold(newBold);
     setLocalFontItalic(newItalic);
-    triggerOnChange(localText, localFontSize, localFontFamily, newBold, newItalic);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      localFontSize,
+      localFontFamily,
+      newBold,
+      newItalic,
+    );
   };
 
   const handleClear = () => {
-    setLocalText('');
-    triggerOnChange('', localFontSize, localFontFamily, localFontBold, localFontItalic);
+    if (isConnection) {
+      setLocalFromLabel('');
+      setLocalToLabel('');
+      triggerOnChange(
+        localText,
+        '',
+        '',
+        localLabelOrientation,
+        localFontSize,
+        localFontFamily,
+        localFontBold,
+        localFontItalic,
+      );
+    } else {
+      setLocalText('');
+      triggerOnChange(
+        '',
+        localFromLabel,
+        localToLabel,
+        localLabelOrientation,
+        localFontSize,
+        localFontFamily,
+        localFontBold,
+        localFontItalic,
+      );
+    }
   };
 
   const open = Boolean(anchorEl);
@@ -161,26 +296,66 @@ const TextPickerDropdown = ({
         TransitionProps={{
           onEntered: handlePopoverEntered,
         }}>
-        {/* Text input */}
-        <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
-          Text
-        </Typography>
-        <TextField
-          inputRef={textFieldRef}
-          size="small"
-          fullWidth
-          multiline
-          minRows={1}
-          maxRows={4}
-          value={localText}
-          onChange={handleTextChange}
-          onKeyDown={handleTextKeyDown}
-          onKeyUp={(e) => e.stopPropagation()}
-          placeholder="Enter text..."
-          autoComplete="off"
-          inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
-          sx={{ mb: 2 }}
-        />
+        {/* Text inputs - different for rooms vs connections */}
+        {isConnection ? (
+          <>
+            {/* Connection: From/To labels */}
+            <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
+              From Label
+            </Typography>
+            <TextField
+              inputRef={textFieldRef}
+              size="small"
+              fullWidth
+              value={localFromLabel}
+              onChange={handleFromLabelChange}
+              onKeyDown={handleTextKeyDown}
+              onKeyUp={(e) => e.stopPropagation()}
+              placeholder="e.g., +"
+              autoComplete="off"
+              inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
+              sx={{ mb: 1.5 }}
+            />
+            <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
+              To Label
+            </Typography>
+            <TextField
+              size="small"
+              fullWidth
+              value={localToLabel}
+              onChange={handleToLabelChange}
+              onKeyDown={handleTextKeyDown}
+              onKeyUp={(e) => e.stopPropagation()}
+              placeholder="e.g., -"
+              autoComplete="off"
+              inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
+              sx={{ mb: 2 }}
+            />
+          </>
+        ) : (
+          <>
+            {/* Room: Single text input */}
+            <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
+              Text
+            </Typography>
+            <TextField
+              inputRef={textFieldRef}
+              size="small"
+              fullWidth
+              multiline
+              minRows={1}
+              maxRows={4}
+              value={localText}
+              onChange={handleTextChange}
+              onKeyDown={handleTextKeyDown}
+              onKeyUp={(e) => e.stopPropagation()}
+              placeholder="Enter text..."
+              autoComplete="off"
+              inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
+              sx={{ mb: 2 }}
+            />
+          </>
+        )}
 
         {/* Font Size and Font Family row */}
         <Box sx={{ display: 'flex', gap: 1.5, mb: 2 }}>
@@ -207,8 +382,8 @@ const TextPickerDropdown = ({
           </FormControl>
         </Box>
 
-        {/* Style toggles and Clear button */}
-        <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between' }}>
+        {/* Style toggles */}
+        <Box sx={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', mb: isConnection ? 2 : 0 }}>
           <Box>
             <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
               Style
@@ -227,6 +402,32 @@ const TextPickerDropdown = ({
             Clear
           </Button>
         </Box>
+
+        {/* Orientation toggle - only for connections */}
+        {isConnection && (
+          <>
+            <Divider sx={{ my: 2 }} />
+            <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
+              Orientation
+            </Typography>
+            <ToggleButtonGroup
+              value={localLabelOrientation}
+              exclusive
+              onChange={handleOrientationChange}
+              size="small"
+              fullWidth>
+              <ToggleButton value="horizontal" aria-label="horizontal">
+                Horizontal
+              </ToggleButton>
+              <ToggleButton value="along" aria-label="along line">
+                Along
+              </ToggleButton>
+              <ToggleButton value="vertical" aria-label="vertical">
+                Vertical
+              </ToggleButton>
+            </ToggleButtonGroup>
+          </>
+        )}
       </Popover>
     </>
   );

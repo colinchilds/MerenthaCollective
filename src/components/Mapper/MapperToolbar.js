@@ -144,8 +144,9 @@ const MapperToolbar = ({
       const reader = new FileReader();
       reader.onload = (event) => {
         try {
-          // Parse JSON and convert old 'symbol' format to 'text'
+          // Parse JSON and convert old formats
           const modelData = JSON.parse(event.target.result);
+          // Migrate old 'symbol' format to 'text' on nodes
           if (modelData.nodeDataArray) {
             modelData.nodeDataArray = modelData.nodeDataArray.map((node) => {
               if (node.symbol !== undefined && node.text === undefined) {
@@ -153,6 +154,16 @@ const MapperToolbar = ({
                 return { ...rest, text: symbol };
               }
               return node;
+            });
+          }
+          // Migrate old 'label' property to 'fromLabel' on links
+          if (modelData.linkDataArray) {
+            modelData.linkDataArray = modelData.linkDataArray.map((link) => {
+              if (link.label !== undefined && link.fromLabel === undefined) {
+                const { label, ...rest } = link;
+                return { ...rest, fromLabel: label };
+              }
+              return link;
             });
           }
           const json = JSON.stringify(modelData);
@@ -242,15 +253,32 @@ const MapperToolbar = ({
     }
   };
 
-  const handleTextChange = (text, fontSize, fontFamily, fontBold, fontItalic) => {
+  // For rooms: handleTextChange(text, fontSize, fontFamily, fontBold, fontItalic)
+  // For connections: handleTextChange(fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
+  const handleTextChange = (...args) => {
     if (!diagramRef || !selectedObject) return;
     diagramRef.startTransaction('change text properties');
-    const textProp = selectionType === 'room' ? 'text' : 'label';
-    diagramRef.model.setDataProperty(selectedObject.data, textProp, text);
-    diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
-    diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
-    diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
-    diagramRef.model.setDataProperty(selectedObject.data, 'fontItalic', fontItalic);
+
+    if (selectionType === 'room') {
+      // Room: (text, fontSize, fontFamily, fontBold, fontItalic)
+      const [text, fontSize, fontFamily, fontBold, fontItalic] = args;
+      diagramRef.model.setDataProperty(selectedObject.data, 'text', text);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontItalic', fontItalic);
+    } else {
+      // Connection: (fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
+      const [fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic] = args;
+      diagramRef.model.setDataProperty(selectedObject.data, 'fromLabel', fromLabel);
+      diagramRef.model.setDataProperty(selectedObject.data, 'toLabel', toLabel);
+      diagramRef.model.setDataProperty(selectedObject.data, 'labelOrientation', labelOrientation);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fontItalic', fontItalic);
+    }
+
     diagramRef.commitTransaction('change text properties');
   };
 
@@ -300,8 +328,11 @@ const MapperToolbar = ({
   const currentFromDecor = selectedObject?.data?.fromDecor || '';
   const currentToDecor = selectedObject?.data?.toDecor || '';
 
-  // Text properties - use 'text' for rooms, 'label' for connections
-  const currentText = isRoomSelected ? selectedObject?.data?.text || '' : selectedObject?.data?.label || '';
+  // Text properties - 'text' for rooms, 'fromLabel'/'toLabel' for connections
+  const currentText = selectedObject?.data?.text || '';
+  const currentFromLabel = selectedObject?.data?.fromLabel || '';
+  const currentToLabel = selectedObject?.data?.toLabel || '';
+  const currentLabelOrientation = selectedObject?.data?.labelOrientation || 'along';
   const currentFontSize = selectedObject?.data?.fontSize || 24;
   const currentFontFamily = selectedObject?.data?.fontFamily || 'monospace';
   const currentFontBold = selectedObject?.data?.fontBold || false;
@@ -387,10 +418,14 @@ const MapperToolbar = ({
         icon={<TextFields fontSize="small" />}
         tooltip="Text (T)"
         text={currentText}
+        fromLabel={currentFromLabel}
+        toLabel={currentToLabel}
+        labelOrientation={currentLabelOrientation}
         fontSize={currentFontSize}
         fontFamily={currentFontFamily}
         fontBold={currentFontBold}
         fontItalic={currentFontItalic}
+        isConnection={isConnectionSelected}
         onChange={handleTextChange}
         disabled={!isTextPickerEnabled}
         open={textDialogOpen}

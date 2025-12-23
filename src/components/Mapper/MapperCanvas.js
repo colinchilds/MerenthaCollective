@@ -20,8 +20,8 @@ const NUMPAD_DIRECTIONS = {
   1: { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE' }, // SW
   4: { dx: -200, dy: 0, fromPort: 'W', toPort: 'E' }, // West
   7: { dx: -200, dy: -200, fromPort: 'NW', toPort: 'SE' }, // NW
-  '+': { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW' }, // Up (same as NE)
-  '-': { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE' }, // Down (same as SW)
+  '+': { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW', fromLabel: '+', toLabel: '-', labelOrientation: 'horizontal' }, // Up
+  '-': { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE', fromLabel: '-', toLabel: '+', labelOrientation: 'horizontal' }, // Down
 };
 
 const MapperCanvas = ({
@@ -119,13 +119,18 @@ const MapperCanvas = ({
         if (!linkExists) {
           // Create a link to the existing room
           diagram.model.commit((m) => {
-            m.addLinkData({
+            const linkData = {
               from: sourceKey,
               to: targetKey,
               fromPort: direction.fromPort,
               toPort: direction.toPort,
               color: '#000000',
-            });
+            };
+            // Add labels if specified in direction (for up/down)
+            if (direction.fromLabel) linkData.fromLabel = direction.fromLabel;
+            if (direction.toLabel) linkData.toLabel = direction.toLabel;
+            if (direction.labelOrientation) linkData.labelOrientation = direction.labelOrientation;
+            m.addLinkData(linkData);
           }, 'add link');
         }
 
@@ -143,13 +148,18 @@ const MapperCanvas = ({
           borderColor: defaultBorderColor,
           text: '',
         });
-        m.addLinkData({
+        const linkData = {
           from: sourceNode.data.key,
           to: nextKey,
           fromPort: direction.fromPort,
           toPort: direction.toPort,
           color: '#000000',
-        });
+        };
+        // Add labels if specified in direction (for up/down)
+        if (direction.fromLabel) linkData.fromLabel = direction.fromLabel;
+        if (direction.toLabel) linkData.toLabel = direction.toLabel;
+        if (direction.labelOrientation) linkData.labelOrientation = direction.labelOrientation;
+        m.addLinkData(linkData);
       }, 'add room with link');
       diagram.nextRoomKey = nextKey + 1;
 
@@ -472,23 +482,60 @@ const MapperCanvas = ({
           return new go.Point(0, 0);
         }),
       ),
-      // Connection label (positioned above the line)
+      // "From" end label (near the source of the connection)
       $(
         go.TextBlock,
         {
-          name: 'LABEL',
+          name: 'FROM_LABEL',
           visible: false,
-          segmentOffset: new go.Point(0, -12), // Position above the line
+          segmentIndex: NaN,
+          segmentFraction: 0.15,
+          segmentOffset: new go.Point(0, -12),
           font: '24px monospace',
         },
-        new go.Binding('visible', 'label', (l) => !!l),
-        new go.Binding('text', 'label'),
+        new go.Binding('visible', 'fromLabel', (l) => !!l),
+        new go.Binding('text', 'fromLabel'),
         new go.Binding('font', '', (data) => {
           const size = data.fontSize || 24;
           const family = data.fontFamily || 'monospace';
           const bold = data.fontBold ? 'bold ' : '';
           const italic = data.fontItalic ? 'italic ' : '';
           return `${italic}${bold}${size}px ${family}`;
+        }),
+        new go.Binding('segmentOrientation', 'labelOrientation', (orient) => {
+          const o = orient || 'along';
+          return o === 'along' ? go.Link.OrientAlong : go.Link.None;
+        }),
+        new go.Binding('angle', 'labelOrientation', (orient) => {
+          return orient === 'vertical' ? 270 : 0;
+        }),
+      ),
+      // "To" end label (near the target of the connection)
+      $(
+        go.TextBlock,
+        {
+          name: 'TO_LABEL',
+          visible: false,
+          segmentIndex: NaN,
+          segmentFraction: 0.85,
+          segmentOffset: new go.Point(0, -12),
+          font: '24px monospace',
+        },
+        new go.Binding('visible', 'toLabel', (l) => !!l),
+        new go.Binding('text', 'toLabel'),
+        new go.Binding('font', '', (data) => {
+          const size = data.fontSize || 24;
+          const family = data.fontFamily || 'monospace';
+          const bold = data.fontBold ? 'bold ' : '';
+          const italic = data.fontItalic ? 'italic ' : '';
+          return `${italic}${bold}${size}px ${family}`;
+        }),
+        new go.Binding('segmentOrientation', 'labelOrientation', (orient) => {
+          const o = orient || 'along';
+          return o === 'along' ? go.Link.OrientAlong : go.Link.None;
+        }),
+        new go.Binding('angle', 'labelOrientation', (orient) => {
+          return orient === 'vertical' ? 270 : 0;
         }),
       ),
     );
@@ -510,6 +557,13 @@ const MapperCanvas = ({
         const saveData = JSON.parse(saved);
         diagram.model = diagram.model.constructor.fromJson(saveData.model);
         diagram.nextRoomKey = saveData.nextRoomKey || 1;
+        // Migrate old 'label' property to 'fromLabel' for backward compatibility
+        diagram.model.linkDataArray.forEach((link) => {
+          if (link.label && !link.fromLabel) {
+            diagram.model.setDataProperty(link, 'fromLabel', link.label);
+            diagram.model.setDataProperty(link, 'label', undefined);
+          }
+        });
         // Fit all content in view after loading
         diagram.zoomToFit();
       }
