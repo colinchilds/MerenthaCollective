@@ -380,10 +380,17 @@ const MapperCanvas = ({
       makePort('NW', new go.Spot(0, 0)),
     );
 
-    // Define custom arrowhead geometries for perpendicular lines
-    // GoJS arrowheads are centered at y=4 in a 0-8 coordinate system
-    go.Shape.defineArrowheadGeometry('Line', 'M0 0 L0 8'); // Single perpendicular line, centered at y=4
-    go.Shape.defineArrowheadGeometry('DoubleLine', 'M-2 0 L-2 8 M2 0 L2 8'); // Two parallel lines, symmetric around x=0
+    // Bars are authored in a 0..8 box, like built-in arrowheads,
+    // so Spot.Right/Spot.Left alignment lands exactly on the endpoint.
+
+    // single bar at endpoint (to-end)
+    go.Shape.defineArrowheadGeometry('Bar', 'M8 0 L8 8');
+    // single bar at endpoint (from-end)
+    go.Shape.defineArrowheadGeometry('BarBack', 'M0 0 L0 8');
+
+    // double bars: one at endpoint + one slightly “inside”
+    go.Shape.defineArrowheadGeometry('DoubleBar', 'M5 0 L5 8 M8 0 L8 8');
+    go.Shape.defineArrowheadGeometry('DoubleBarBack', 'M0 0 L0 8 M3 0 L3 8');
 
     // Custom link selection adornment (just shows the relinking handles, no mid-segment handle)
     const linkSelectionAdornmentTemplate = $(
@@ -415,22 +422,27 @@ const MapperCanvas = ({
         go.Shape,
         {
           segmentIndex: 0,
-          fill: '#000',
-          stroke: '#000',
           strokeWidth: 2,
           visible: false,
         },
-        // Convert 'Standard' to 'Backward' for from-end arrows
-        new go.Binding('fromArrow', 'fromDecor', (d) => (d === 'Standard' ? 'Backward' : d)),
+        new go.Binding('stroke', 'color'),
+        new go.Binding('fill', 'color'),
+        // Map from-end decorations to backward variants
+        new go.Binding('fromArrow', 'fromDecor', (d) => {
+          if (d === 'Standard') return 'Backward';
+          if (d === 'Line') return 'BarBack';
+          if (d === 'DoubleLine') return 'DoubleBarBack';
+          return d;
+        }),
         new go.Binding('visible', 'fromDecor', (d) => !!d),
         new go.Binding('scale', 'fromDecor', (d) => {
           if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
           return 1.5;
         }),
+        // Only arrows need offset adjustment
         new go.Binding('segmentOffset', 'fromDecor', (d) => {
-          if (d === 'Line') return new go.Point(-2, 0);
-          if (d === 'DoubleLine') return new go.Point(-8, 0);
-          return new go.Point(-8, 0);
+          if (d === 'Standard') return new go.Point(-8, 0);
+          return new go.Point(0, 0);
         }),
       ),
       // "To" end decoration (arrow, line, or double line)
@@ -438,21 +450,26 @@ const MapperCanvas = ({
         go.Shape,
         {
           segmentIndex: -1,
-          fill: '#000',
-          stroke: '#000',
           strokeWidth: 2,
           visible: false,
         },
-        new go.Binding('toArrow', 'toDecor'),
+        new go.Binding('stroke', 'color'),
+        new go.Binding('fill', 'color'),
+        // Map to-end decorations to forward variants
+        new go.Binding('toArrow', 'toDecor', (d) => {
+          if (d === 'Line') return 'Bar';
+          if (d === 'DoubleLine') return 'DoubleBar';
+          return d;
+        }),
         new go.Binding('visible', 'toDecor', (d) => !!d),
         new go.Binding('scale', 'toDecor', (d) => {
           if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
           return 1.5;
         }),
+        // Only arrows need offset adjustment
         new go.Binding('segmentOffset', 'toDecor', (d) => {
-          if (d === 'Line') return new go.Point(2, 0);
-          if (d === 'DoubleLine') return new go.Point(-2, 0);
-          return new go.Point(8, 0);
+          if (d === 'Standard') return new go.Point(8, 0);
+          return new go.Point(0, 0);
         }),
       ),
       // Connection label (positioned above the line)
