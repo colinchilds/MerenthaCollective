@@ -44,6 +44,13 @@ const MapperCanvas = ({
   const toolModeRef = useRef(toolMode);
   // Stack to track source room keys when creating rooms via numpad (for undo selection restoration)
   const sourceRoomKeyStackRef = useRef([]);
+  // Ref for onOpenTextDialog to avoid re-running useEffect when callback changes
+  const onOpenTextDialogRef = useRef(onOpenTextDialog);
+
+  // Keep refs in sync with props
+  useEffect(() => {
+    onOpenTextDialogRef.current = onOpenTextDialog;
+  }, [onOpenTextDialog]);
 
   // Keep toolModeRef in sync with toolMode prop and update diagram tools
   useEffect(() => {
@@ -716,6 +723,16 @@ const MapperCanvas = ({
       }
     });
 
+    // Handle double-click on nodes or links to open text dialog
+    diagram.addDiagramListener('ObjectDoubleClicked', (e) => {
+      const part = e.subject.part;
+      if (part instanceof go.Node || part instanceof go.Link) {
+        if (onOpenTextDialogRef.current) {
+          onOpenTextDialogRef.current();
+        }
+      }
+    });
+
     // Listen for model changes to update undo/redo state and auto-save
     diagram.addModelChangedListener((e) => {
       // Update undo/redo state after any model change
@@ -811,25 +828,30 @@ const MapperCanvas = ({
       const diagram = diagramRef.current;
       if (!diagram) return;
 
-      // Tool mode shortcuts
-      if (e.key === 'v' || e.key === 'V') {
+      // Tool mode shortcuts (don't capture if command/ctrl pressed - allow browser shortcuts like Cmd+V)
+      if ((e.key === 'v' || e.key === 'V') && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         setToolMode('select');
         return;
       }
-      if (e.key === 'r' || e.key === 'R') {
+      if ((e.key === 'r' || e.key === 'R') && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         setToolMode('addRoom');
         return;
       }
-      if (e.key === 'h' || e.key === 'H') {
+      if ((e.key === 'h' || e.key === 'H') && !e.metaKey && !e.ctrlKey) {
         e.preventDefault();
         setToolMode('pan');
         return;
       }
 
-      // T to open text dialog when a room or connection is selected
-      if ((e.key === 't' || e.key === 'T') && (selectionType === 'room' || selectionType === 'connection')) {
+      // T to open text dialog when a room or connection is selected (don't capture Cmd+T)
+      if (
+        (e.key === 't' || e.key === 'T') &&
+        !e.metaKey &&
+        !e.ctrlKey &&
+        (selectionType === 'room' || selectionType === 'connection')
+      ) {
         e.preventDefault();
         if (onOpenTextDialog) {
           onOpenTextDialog();
@@ -837,9 +859,8 @@ const MapperCanvas = ({
         return;
       }
 
-      // Escape to return to select mode and clear selection
+      // Escape to clear selection (but keep current tool mode)
       if (e.key === 'Escape') {
-        setToolMode('select');
         diagram.clearSelection();
         setSelectionType('none');
         setSelectedGridSquare(null);

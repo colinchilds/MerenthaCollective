@@ -265,10 +265,13 @@ const TextPickerDropdown = ({
     }
   };
 
-  // Handle Enter key to close dialog (Shift+Enter for newlines)
+  // Handle Enter/Escape key to close dialog (Shift+Enter for newlines)
   const handleTextKeyDown = (e) => {
     e.stopPropagation();
     if (e.key === 'Enter' && !e.shiftKey) {
+      e.preventDefault();
+      handleClose();
+    } else if (e.key === 'Escape') {
       e.preventDefault();
       handleClose();
     }
