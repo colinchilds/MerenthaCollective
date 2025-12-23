@@ -42,6 +42,8 @@ const MapperCanvas = ({
   const diagramDivRef = useRef(null);
   const diagramRef = useRef(null);
   const toolModeRef = useRef(toolMode);
+  // Stack to track source room keys when creating rooms via numpad (for undo selection restoration)
+  const sourceRoomKeyStackRef = useRef([]);
 
   // Keep toolModeRef in sync with toolMode prop and update diagram tools
   useEffect(() => {
@@ -140,6 +142,9 @@ const MapperCanvas = ({
 
       // Create the new room and link
       const nextKey = diagram.nextRoomKey || 1;
+      const sourceKey = sourceNode.data.key;
+      // Track source room for undo selection restoration
+      sourceRoomKeyStackRef.current.push(sourceKey);
       diagram.model.commit((m) => {
         m.addNodeData({
           key: nextKey,
@@ -149,7 +154,7 @@ const MapperCanvas = ({
           text: '',
         });
         const linkData = {
-          from: sourceNode.data.key,
+          from: sourceKey,
           to: nextKey,
           fromPort: direction.fromPort,
           toPort: direction.toPort,
@@ -167,6 +172,8 @@ const MapperCanvas = ({
       const newNode = diagram.findNodeForKey(nextKey);
       if (newNode) {
         diagram.select(newNode);
+        // Scroll to make the new room visible if it's outside the viewport
+        diagram.commandHandler.scrollToPart(newNode);
       }
     },
     [defaultFillColor, defaultBorderColor],
@@ -713,6 +720,56 @@ const MapperCanvas = ({
     diagram.addModelChangedListener((e) => {
       // Update undo/redo state after any model change
       updateUndoRedoState(diagram);
+
+      // Handle selection restoration after undoing room creation
+      if (e.change === go.ChangedEvent.Transaction && e.propertyName === 'FinishedUndo') {
+        // Check if this was an 'add room with link' transaction
+        const transaction = e.object;
+        if (transaction && transaction.name === 'add room with link') {
+          // Pop the source room key from our stack and select it
+          const sourceKey = sourceRoomKeyStackRef.current.pop();
+          if (sourceKey !== undefined) {
+            const sourceNode = diagram.findNodeForKey(sourceKey);
+            if (sourceNode) {
+              diagram.select(sourceNode);
+              diagram.commandHandler.scrollToPart(sourceNode);
+            }
+          }
+        }
+      }
+
+      // Handle redo of room creation - restore the source key to the stack and select the new room
+      if (e.change === go.ChangedEvent.Transaction && e.propertyName === 'FinishedRedo') {
+        const transaction = e.object;
+        if (transaction && transaction.name === 'add room with link') {
+          // Find the source and target room keys from the transaction's link data
+          let sourceKey = null;
+          let targetKey = null;
+          transaction.changes.each((change) => {
+            if (change.model && change.propertyName === 'linkDataArray' && change.newValue) {
+              const linkData = change.newValue;
+              if (linkData.from !== undefined) {
+                sourceKey = linkData.from;
+              }
+              if (linkData.to !== undefined) {
+                targetKey = linkData.to;
+              }
+            }
+          });
+          // Push source key back to stack for future undos
+          if (sourceKey !== null) {
+            sourceRoomKeyStackRef.current.push(sourceKey);
+          }
+          // Select the newly created room and scroll to it
+          if (targetKey !== null) {
+            const newNode = diagram.findNodeForKey(targetKey);
+            if (newNode) {
+              diagram.select(newNode);
+              diagram.commandHandler.scrollToPart(newNode);
+            }
+          }
+        }
+      }
 
       // Auto-save to localStorage when a transaction is committed
       if (

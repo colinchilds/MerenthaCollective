@@ -1,6 +1,11 @@
 const updates = [
   {
     date: '12/22/2025',
+    message:
+      'Added new mapping tool. This is in beta for now - if you have any feature requests, please submit them on Github.',
+  },
+  {
+    date: '12/22/2025',
     message: 'Added subclass guides.',
   },
   {
