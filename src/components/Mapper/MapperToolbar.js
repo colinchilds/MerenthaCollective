@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { Box, Divider, Popover, MenuItem, ListItemIcon, ListItemText } from '@mui/material';
+import * as go from 'gojs';
+import { Box, Divider, Popover } from '@mui/material';
 import {
   NoteAdd,
   Save,
@@ -22,6 +23,67 @@ import {
 import ToolbarButton from './ToolbarButton';
 import ColorPickerDropdown from './ColorPickerDropdown';
 import TextPickerDropdown from './SymbolPickerDropdown';
+
+/**
+ * SVG icon component for line end decorations
+ */
+const LineEndIcon = ({ fromDecor, toDecor }) => {
+  const paths = [];
+
+  // Horizontal line (adjusted based on decorations)
+  const leftX = fromDecor === 'DoubleLine' ? 8 : fromDecor ? 6 : 2;
+  const rightX = toDecor === 'DoubleLine' ? 24 : toDecor ? 26 : 30;
+  paths.push(`M${leftX},8 L${rightX},8`);
+
+  // Left decorations (from)
+  if (fromDecor === 'Standard') {
+    paths.push('M6,4 L2,8 L6,12'); // Arrow pointing left
+  } else if (fromDecor === 'Line') {
+    paths.push('M2,3 L2,13'); // Single bar
+  } else if (fromDecor === 'DoubleLine') {
+    paths.push('M2,3 L2,13 M6,3 L6,13'); // Double bar
+  }
+
+  // Right decorations (to)
+  if (toDecor === 'Standard') {
+    paths.push('M26,4 L30,8 L26,12'); // Arrow pointing right
+  } else if (toDecor === 'Line') {
+    paths.push('M30,3 L30,13'); // Single bar
+  } else if (toDecor === 'DoubleLine') {
+    paths.push('M30,3 L30,13 M26,3 L26,13'); // Double bar
+  }
+
+  return (
+    <svg width="32" height="16" viewBox="0 0 32 16">
+      <path
+        d={paths.join(' ')}
+        stroke="currentColor"
+        strokeWidth="2"
+        fill="none"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  );
+};
+
+/**
+ * SVG icon component for line styles
+ */
+const LineStyleIcon = ({ style }) => {
+  const patterns = {
+    solid: 'M2,8 L38,8',
+    dashed: 'M2,8 L10,8 M16,8 L24,8 M30,8 L38,8',
+    dotted: 'M4,8 L6,8 M12,8 L14,8 M20,8 L22,8 M28,8 L30,8 M36,8 L38,8',
+    dashdot: 'M2,8 L10,8 M14,8 L16,8 M20,8 L28,8 M32,8 L34,8',
+  };
+
+  return (
+    <svg width="40" height="16" viewBox="0 0 40 16">
+      <path d={patterns[style]} stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" />
+    </svg>
+  );
+};
 
 /**
  * Unified toolbar component combining file operations, edit tools,
@@ -82,7 +144,18 @@ const MapperToolbar = ({
       const reader = new FileReader();
       reader.onload = (event) => {
         try {
-          const json = event.target.result;
+          // Parse JSON and convert old 'symbol' format to 'text'
+          const modelData = JSON.parse(event.target.result);
+          if (modelData.nodeDataArray) {
+            modelData.nodeDataArray = modelData.nodeDataArray.map((node) => {
+              if (node.symbol !== undefined && node.text === undefined) {
+                const { symbol, ...rest } = node;
+                return { ...rest, text: symbol };
+              }
+              return node;
+            });
+          }
+          const json = JSON.stringify(modelData);
           diagramRef.model = diagramRef.model.constructor.fromJson(json);
           // Calculate next room key from loaded data
           const maxKey = diagramRef.model.nodeDataArray.reduce((max, node) => Math.max(max, node.key || 0), 0);
@@ -104,6 +177,7 @@ const MapperToolbar = ({
       background: 'white',
       scale: 2,
       type: 'image/png',
+      maxSize: new go.Size(Infinity, Infinity),
     });
     diagramRef.grid.visible = originalGridVisible;
     const link = document.createElement('a');
@@ -171,7 +245,7 @@ const MapperToolbar = ({
   const handleTextChange = (text, fontSize, fontFamily, fontBold, fontItalic) => {
     if (!diagramRef || !selectedObject) return;
     diagramRef.startTransaction('change text properties');
-    const textProp = selectionType === 'room' ? 'symbol' : 'label';
+    const textProp = selectionType === 'room' ? 'text' : 'label';
     diagramRef.model.setDataProperty(selectedObject.data, textProp, text);
     diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
     diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
@@ -185,8 +259,13 @@ const MapperToolbar = ({
   const handleConnectionLineStyleChange = (style) => {
     if (!diagramRef || !selectedObject) return;
     diagramRef.startTransaction('change line style');
-    const dashArray = style === 'dashed' ? [4, 4] : null;
-    diagramRef.model.setDataProperty(selectedObject.data, 'dash', dashArray);
+    const dashArrays = {
+      solid: null,
+      dashed: [6, 4],
+      dotted: [2, 3],
+      dashdot: [6, 3, 2, 3],
+    };
+    diagramRef.model.setDataProperty(selectedObject.data, 'dash', dashArrays[style]);
     diagramRef.commitTransaction('change line style');
     setLineStyleAnchor(null);
   };
@@ -212,12 +291,17 @@ const MapperToolbar = ({
     ? selectedObject?.data?.borderColor || defaultBorderColor
     : selectedObject?.data?.color || '#000000';
   const currentConnectionDash = selectedObject?.data?.dash;
-  const currentLineStyle = currentConnectionDash ? 'dashed' : 'solid';
+  const currentLineStyle = (() => {
+    if (!currentConnectionDash) return 'solid';
+    if (currentConnectionDash.length === 4) return 'dashdot';
+    if (currentConnectionDash[0] <= 2) return 'dotted';
+    return 'dashed';
+  })();
   const currentFromDecor = selectedObject?.data?.fromDecor || '';
   const currentToDecor = selectedObject?.data?.toDecor || '';
 
-  // Text properties - use 'symbol' for rooms, 'label' for connections
-  const currentText = isRoomSelected ? selectedObject?.data?.symbol || '' : selectedObject?.data?.label || '';
+  // Text properties - use 'text' for rooms, 'label' for connections
+  const currentText = isRoomSelected ? selectedObject?.data?.text || '' : selectedObject?.data?.label || '';
   const currentFontSize = selectedObject?.data?.fontSize || 24;
   const currentFontFamily = selectedObject?.data?.fontFamily || 'monospace';
   const currentFontBold = selectedObject?.data?.fontBold || false;
@@ -327,26 +411,27 @@ const MapperToolbar = ({
         open={Boolean(lineStyleAnchor)}
         anchorEl={lineStyleAnchor}
         onClose={() => setLineStyleAnchor(null)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
-        <MenuItem onClick={() => handleConnectionLineStyleChange('solid')} selected={currentLineStyle === 'solid'}>
-          <ListItemIcon sx={{ minWidth: 36 }}>
-            <Box sx={{ width: 40, height: 2, backgroundColor: '#000' }} />
-          </ListItemIcon>
-          <ListItemText>Solid</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleConnectionLineStyleChange('dashed')} selected={currentLineStyle === 'dashed'}>
-          <ListItemIcon sx={{ minWidth: 36 }}>
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
+        PaperProps={{ sx: { p: 1 } }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 0.5 }}>
+          {['solid', 'dashed', 'dotted', 'dashdot'].map((style) => (
             <Box
+              key={style}
+              onClick={() => handleConnectionLineStyleChange(style)}
               sx={{
-                width: 40,
-                height: 2,
-                backgroundImage: 'linear-gradient(to right, #000 50%, transparent 50%)',
-                backgroundSize: '8px 2px',
-              }}
-            />
-          </ListItemIcon>
-          <ListItemText>Dashed</ListItemText>
-        </MenuItem>
+                p: 1,
+                cursor: 'pointer',
+                borderRadius: 1,
+                backgroundColor: currentLineStyle === style ? '#e8f0fe' : 'transparent',
+                '&:hover': { backgroundColor: '#f1f3f4' },
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}>
+              <LineStyleIcon style={style} />
+            </Box>
+          ))}
+        </Box>
       </Popover>
 
       <ToolbarButton
@@ -362,11 +447,12 @@ const MapperToolbar = ({
         onClose={() => setArrowAnchor(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
         PaperProps={{ sx: { p: 1 } }}>
-        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0.5 }}>
-          {/* None */}
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 0.5 }}>
+          {/* None - centered across all columns */}
           <Box
             onClick={() => handleConnectionDecorChange('', '')}
             sx={{
+              gridColumn: '1 / -1',
               p: 1,
               cursor: 'pointer',
               borderRadius: 1,
@@ -375,12 +461,10 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ———
+            <LineEndIcon fromDecor="" toDecor="" />
           </Box>
-          {/* Arrow To */}
+          {/* Arrow row: To, From, Both */}
           <Box
             onClick={() => handleConnectionDecorChange('', 'Standard')}
             sx={{
@@ -392,12 +476,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ——▶
+            <LineEndIcon fromDecor="" toDecor="Standard" />
           </Box>
-          {/* Arrow From */}
           <Box
             onClick={() => handleConnectionDecorChange('Standard', '')}
             sx={{
@@ -409,12 +490,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ◀——
+            <LineEndIcon fromDecor="Standard" toDecor="" />
           </Box>
-          {/* Arrow Both */}
           <Box
             onClick={() => handleConnectionDecorChange('Standard', 'Standard')}
             sx={{
@@ -426,12 +504,10 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ◀—▶
+            <LineEndIcon fromDecor="Standard" toDecor="Standard" />
           </Box>
-          {/* Single Line To */}
+          {/* Single bar row: To, From, Both */}
           <Box
             onClick={() => handleConnectionDecorChange('', 'Line')}
             sx={{
@@ -443,12 +519,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ——|
+            <LineEndIcon fromDecor="" toDecor="Line" />
           </Box>
-          {/* Single Line From */}
           <Box
             onClick={() => handleConnectionDecorChange('Line', '')}
             sx={{
@@ -460,12 +533,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            |——
+            <LineEndIcon fromDecor="Line" toDecor="" />
           </Box>
-          {/* Single Line Both */}
           <Box
             onClick={() => handleConnectionDecorChange('Line', 'Line')}
             sx={{
@@ -477,14 +547,10 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            |—|
+            <LineEndIcon fromDecor="Line" toDecor="Line" />
           </Box>
-          {/* Spacer */}
-          <Box />
-          {/* Double Line To */}
+          {/* Double bar row: To, From, Both */}
           <Box
             onClick={() => handleConnectionDecorChange('', 'DoubleLine')}
             sx={{
@@ -496,12 +562,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            —||
+            <LineEndIcon fromDecor="" toDecor="DoubleLine" />
           </Box>
-          {/* Double Line From */}
           <Box
             onClick={() => handleConnectionDecorChange('DoubleLine', '')}
             sx={{
@@ -513,12 +576,9 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ||—
+            <LineEndIcon fromDecor="DoubleLine" toDecor="" />
           </Box>
-          {/* Double Line Both */}
           <Box
             onClick={() => handleConnectionDecorChange('DoubleLine', 'DoubleLine')}
             sx={{
@@ -531,10 +591,8 @@ const MapperToolbar = ({
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              minWidth: 50,
-              fontSize: 14,
             }}>
-            ||—||
+            <LineEndIcon fromDecor="DoubleLine" toDecor="DoubleLine" />
           </Box>
         </Box>
       </Popover>

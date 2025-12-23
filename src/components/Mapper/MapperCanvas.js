@@ -71,7 +71,7 @@ const MapperCanvas = ({
           loc: `${x} ${y}`,
           fillColor: defaultFillColor,
           borderColor: defaultBorderColor,
-          symbol: '',
+          text: '',
         });
       }, 'add room');
       diagram.nextRoomKey = nextKey + 1;
@@ -141,7 +141,7 @@ const MapperCanvas = ({
           loc: `${targetX} ${targetY}`,
           fillColor: defaultFillColor,
           borderColor: defaultBorderColor,
-          symbol: '',
+          text: '',
         });
         m.addLinkData({
           from: sourceNode.data.key,
@@ -360,7 +360,7 @@ const MapperCanvas = ({
           stroke: '#000',
           alignment: go.Spot.Center,
         },
-        new go.Binding('text', 'symbol'),
+        new go.Binding('text', 'text'),
         new go.Binding('font', '', (data) => {
           const size = data.fontSize || 24;
           const family = data.fontFamily || 'monospace';
@@ -381,9 +381,9 @@ const MapperCanvas = ({
     );
 
     // Define custom arrowhead geometries for perpendicular lines
-    // Adjust y-coordinates to center the line on the link path
-    go.Shape.defineArrowheadGeometry('Line', 'M0 8 L0 -8'); // Single perpendicular line
-    go.Shape.defineArrowheadGeometry('DoubleLine', 'M0 8 L0 -8 M-4 8 L-4 -8'); // Two parallel lines
+    // GoJS arrowheads are centered at y=4 in a 0-8 coordinate system
+    go.Shape.defineArrowheadGeometry('Line', 'M0 0 L0 8'); // Single perpendicular line, centered at y=4
+    go.Shape.defineArrowheadGeometry('DoubleLine', 'M-2 0 L-2 8 M2 0 L2 8'); // Two parallel lines, symmetric around x=0
 
     // Custom link selection adornment (just shows the relinking handles, no mid-segment handle)
     const linkSelectionAdornmentTemplate = $(
@@ -415,7 +415,6 @@ const MapperCanvas = ({
         go.Shape,
         {
           segmentIndex: 0,
-          scale: 1.8,
           fill: '#000',
           stroke: '#000',
           strokeWidth: 2,
@@ -424,8 +423,13 @@ const MapperCanvas = ({
         // Convert 'Standard' to 'Backward' for from-end arrows
         new go.Binding('fromArrow', 'fromDecor', (d) => (d === 'Standard' ? 'Backward' : d)),
         new go.Binding('visible', 'fromDecor', (d) => !!d),
+        new go.Binding('scale', 'fromDecor', (d) => {
+          if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
+          return 1.5;
+        }),
         new go.Binding('segmentOffset', 'fromDecor', (d) => {
-          if (d === 'Line' || d === 'DoubleLine') return new go.Point(-4, 0);
+          if (d === 'Line') return new go.Point(-2, 0);
+          if (d === 'DoubleLine') return new go.Point(-8, 0);
           return new go.Point(-8, 0);
         }),
       ),
@@ -434,7 +438,6 @@ const MapperCanvas = ({
         go.Shape,
         {
           segmentIndex: -1,
-          scale: 1.8,
           fill: '#000',
           stroke: '#000',
           strokeWidth: 2,
@@ -442,8 +445,13 @@ const MapperCanvas = ({
         },
         new go.Binding('toArrow', 'toDecor'),
         new go.Binding('visible', 'toDecor', (d) => !!d),
+        new go.Binding('scale', 'toDecor', (d) => {
+          if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
+          return 1.5;
+        }),
         new go.Binding('segmentOffset', 'toDecor', (d) => {
-          if (d === 'Line' || d === 'DoubleLine') return new go.Point(4, 0);
+          if (d === 'Line') return new go.Point(2, 0);
+          if (d === 'DoubleLine') return new go.Point(-2, 0);
           return new go.Point(8, 0);
         }),
       ),

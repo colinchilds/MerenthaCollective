@@ -34,7 +34,7 @@ const Mapper = () => {
   }, []);
 
   return (
-    <PageContainer breadcrumbs={breadcrumbs} heading="MUD Mapper">
+    <PageContainer breadcrumbs={breadcrumbs} heading="Mapper (Beta)">
       <GridContainer>
         <Grid item xs={12}>
           <CmtCard>
