@@ -66,8 +66,6 @@ const SkillCalculator = () => {
     setCharacterClass,
     setCharacterRace,
     setCharacterSubclass,
-    setCharacterWerewolf,
-    setStatWerewolfToggle,
   } = useSharedCharacterState();
 
   var sn = [].concat.apply([], Object.values(skillNames));
@@ -81,8 +79,6 @@ const SkillCalculator = () => {
   const subclass = validSubclass;
   const race = (activeCharacter && activeCharacter.race) || races[0];
   const level = (activeCharacter && activeCharacter.level) || 1;
-  const isWerewolf = (activeCharacter && activeCharacter.isWerewolf) || false;
-  const statWerewolfToggles = (activeCharacter && activeCharacter.statWerewolfToggles) || null;
   const skillLevels = (activeCharacter && activeCharacter.skillLevels) || initSkills;
   const skillTargets = (activeCharacter && activeCharacter.skillIncrements) || initSkills;
 
@@ -280,12 +276,11 @@ const SkillCalculator = () => {
           charClass={charClass}
           subclass={subclass}
           race={race}
-          isWerewolf={isWerewolf}
           setLevel={setCharacterLevel}
           setCharClass={setCharacterClass}
           setSubclass={setCharacterSubclass}
           setRace={setCharacterRace}
-          setWerewolf={setCharacterWerewolf}
+          showWerewolf={false}
         />
         <LevelInfo level={level} advExp={advExp} maxExp={maxExp} />
         {subclass === 'Warrior' && (
