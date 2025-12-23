@@ -10,16 +10,18 @@ import {
   Delete,
   NearMe,
   AddBox,
+  PanTool,
+  ZoomIn,
+  ZoomOut,
   FormatColorFill,
   BorderColor,
   TextFields,
   LinearScale,
   TrendingFlat,
-  Palette,
 } from '@mui/icons-material';
 import ToolbarButton from './ToolbarButton';
 import ColorPickerDropdown from './ColorPickerDropdown';
-import SymbolPickerDropdown from './SymbolPickerDropdown';
+import TextPickerDropdown from './SymbolPickerDropdown';
 
 /**
  * Unified toolbar component combining file operations, edit tools,
@@ -37,6 +39,8 @@ const MapperToolbar = ({
   setDefaultFillColor,
   defaultBorderColor,
   setDefaultBorderColor,
+  textDialogOpen,
+  setTextDialogOpen,
 }) => {
   const [lineStyleAnchor, setLineStyleAnchor] = useState(null);
   const [arrowAnchor, setArrowAnchor] = useState(null);
@@ -47,6 +51,8 @@ const MapperToolbar = ({
     if (!diagramRef) return;
     if (window.confirm('Clear the current map? This cannot be undone.')) {
       diagramRef.model = new diagramRef.model.constructor();
+      diagramRef.nextRoomKey = 1;
+      localStorage.removeItem('merentha-mapper-data');
     }
   };
 
@@ -78,6 +84,9 @@ const MapperToolbar = ({
         try {
           const json = event.target.result;
           diagramRef.model = diagramRef.model.constructor.fromJson(json);
+          // Calculate next room key from loaded data
+          const maxKey = diagramRef.model.nodeDataArray.reduce((max, node) => Math.max(max, node.key || 0), 0);
+          diagramRef.nextRoomKey = maxKey + 1;
         } catch (error) {
           alert('Error loading map file: ' + error.message);
         }
@@ -94,7 +103,7 @@ const MapperToolbar = ({
     const imgData = diagramRef.makeImageData({
       background: 'white',
       scale: 2,
-      type: 'image/png'
+      type: 'image/png',
     });
     diagramRef.grid.visible = originalGridVisible;
     const link = document.createElement('a');
@@ -123,58 +132,97 @@ const MapperToolbar = ({
     diagramRef.commandHandler.deleteSelection();
   };
 
+  // ============ ZOOM OPERATIONS ============
+
+  const handleZoomIn = () => {
+    if (!diagramRef) return;
+    const newScale = Math.min(5, diagramRef.scale * 1.2);
+    diagramRef.scale = newScale;
+  };
+
+  const handleZoomOut = () => {
+    if (!diagramRef) return;
+    const newScale = Math.max(0.1, diagramRef.scale / 1.2);
+    diagramRef.scale = newScale;
+  };
+
   // ============ ROOM STYLING ============
 
   const handleRoomFillColorChange = (color) => {
     if (!diagramRef || !selectedObject) return;
+    diagramRef.startTransaction('change fill color');
     diagramRef.model.setDataProperty(selectedObject.data, 'fillColor', color);
+    diagramRef.commitTransaction('change fill color');
   };
 
-  const handleRoomBorderColorChange = (color) => {
+  const handleStrokeColorChange = (color) => {
     if (!diagramRef || !selectedObject) return;
-    diagramRef.model.setDataProperty(selectedObject.data, 'borderColor', color);
+    if (selectionType === 'room') {
+      diagramRef.startTransaction('change border color');
+      diagramRef.model.setDataProperty(selectedObject.data, 'borderColor', color);
+      diagramRef.commitTransaction('change border color');
+    } else if (selectionType === 'connection') {
+      diagramRef.startTransaction('change line color');
+      diagramRef.model.setDataProperty(selectedObject.data, 'color', color);
+      diagramRef.commitTransaction('change line color');
+    }
   };
 
-  const handleRoomSymbolChange = (symbol) => {
+  const handleTextChange = (text, fontSize, fontFamily, fontBold, fontItalic) => {
     if (!diagramRef || !selectedObject) return;
-    diagramRef.model.setDataProperty(selectedObject.data, 'symbol', symbol);
+    diagramRef.startTransaction('change text properties');
+    const textProp = selectionType === 'room' ? 'symbol' : 'label';
+    diagramRef.model.setDataProperty(selectedObject.data, textProp, text);
+    diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
+    diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
+    diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
+    diagramRef.model.setDataProperty(selectedObject.data, 'fontItalic', fontItalic);
+    diagramRef.commitTransaction('change text properties');
   };
 
   // ============ CONNECTION STYLING ============
 
   const handleConnectionLineStyleChange = (style) => {
     if (!diagramRef || !selectedObject) return;
+    diagramRef.startTransaction('change line style');
     const dashArray = style === 'dashed' ? [4, 4] : null;
     diagramRef.model.setDataProperty(selectedObject.data, 'dash', dashArray);
+    diagramRef.commitTransaction('change line style');
     setLineStyleAnchor(null);
   };
 
-  const handleConnectionArrowChange = (arrowType) => {
+  const handleConnectionDecorChange = (fromDecor, toDecor) => {
     if (!diagramRef || !selectedObject) return;
-    const showArrow = arrowType !== 'none';
-    diagramRef.model.setDataProperty(selectedObject.data, 'showArrow', showArrow);
-    diagramRef.model.setDataProperty(selectedObject.data, 'arrowType', arrowType);
+    diagramRef.startTransaction('change line ends');
+    diagramRef.model.setDataProperty(selectedObject.data, 'fromDecor', fromDecor);
+    diagramRef.model.setDataProperty(selectedObject.data, 'toDecor', toDecor);
+    diagramRef.commitTransaction('change line ends');
     setArrowAnchor(null);
-  };
-
-  const handleConnectionColorChange = (color) => {
-    if (!diagramRef || !selectedObject) return;
-    diagramRef.model.setDataProperty(selectedObject.data, 'color', color);
   };
 
   // ============ DERIVED VALUES ============
 
   const isRoomSelected = selectionType === 'room' && selectedObject;
   const isConnectionSelected = selectionType === 'connection' && selectedObject;
-  const hasSelection = isRoomSelected || isConnectionSelected;
+  const isMultipleSelected = selectionType === 'multiple';
+  const hasSelection = isRoomSelected || isConnectionSelected || isMultipleSelected;
 
   const currentRoomFillColor = selectedObject?.data?.fillColor || defaultFillColor;
-  const currentRoomBorderColor = selectedObject?.data?.borderColor || defaultBorderColor;
-  const currentRoomSymbol = selectedObject?.data?.symbol || '';
-  const currentConnectionColor = selectedObject?.data?.color || '#000000';
+  const currentStrokeColor = isRoomSelected
+    ? selectedObject?.data?.borderColor || defaultBorderColor
+    : selectedObject?.data?.color || '#000000';
   const currentConnectionDash = selectedObject?.data?.dash;
   const currentLineStyle = currentConnectionDash ? 'dashed' : 'solid';
-  const currentArrowType = selectedObject?.data?.arrowType || 'none';
+  const currentFromDecor = selectedObject?.data?.fromDecor || '';
+  const currentToDecor = selectedObject?.data?.toDecor || '';
+
+  // Text properties - use 'symbol' for rooms, 'label' for connections
+  const currentText = isRoomSelected ? selectedObject?.data?.symbol || '' : selectedObject?.data?.label || '';
+  const currentFontSize = selectedObject?.data?.fontSize || 24;
+  const currentFontFamily = selectedObject?.data?.fontFamily || 'monospace';
+  const currentFontBold = selectedObject?.data?.fontBold || false;
+  const currentFontItalic = selectedObject?.data?.fontItalic || false;
+  const isTextPickerEnabled = isRoomSelected || isConnectionSelected;
 
   return (
     <Box
@@ -187,8 +235,7 @@ const MapperToolbar = ({
         backgroundColor: '#f8f9fa',
         borderRadius: 1,
         border: '1px solid #e0e0e0',
-      }}
-    >
+      }}>
       {/* FILE GROUP */}
       <ToolbarButton icon={<NoteAdd fontSize="small" />} tooltip="New Map (Ctrl+N)" onClick={handleNew} />
       <ToolbarButton icon={<Save fontSize="small" />} tooltip="Save Map (Ctrl+S)" onClick={handleSave} />
@@ -200,7 +247,12 @@ const MapperToolbar = ({
       {/* EDIT GROUP */}
       <ToolbarButton icon={<Undo fontSize="small" />} tooltip="Undo (Ctrl+Z)" onClick={handleUndo} disabled={!canUndo} />
       <ToolbarButton icon={<Redo fontSize="small" />} tooltip="Redo (Ctrl+Y)" onClick={handleRedo} disabled={!canRedo} />
-      <ToolbarButton icon={<Delete fontSize="small" />} tooltip="Delete (Del)" onClick={handleDelete} disabled={!hasSelection} />
+      <ToolbarButton
+        icon={<Delete fontSize="small" />}
+        tooltip="Delete (Del)"
+        onClick={handleDelete}
+        disabled={!hasSelection}
+      />
 
       <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#dadce0' }} />
 
@@ -212,11 +264,23 @@ const MapperToolbar = ({
         active={toolMode === 'select'}
       />
       <ToolbarButton
+        icon={<PanTool fontSize="small" />}
+        tooltip="Pan Tool (H)"
+        onClick={() => setToolMode('pan')}
+        active={toolMode === 'pan'}
+      />
+      <ToolbarButton
         icon={<AddBox fontSize="small" />}
         tooltip="Add Room Tool (R)"
         onClick={() => setToolMode('addRoom')}
         active={toolMode === 'addRoom'}
       />
+
+      <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#dadce0' }} />
+
+      {/* ZOOM GROUP */}
+      <ToolbarButton icon={<ZoomIn fontSize="small" />} tooltip="Zoom In" onClick={handleZoomIn} />
+      <ToolbarButton icon={<ZoomOut fontSize="small" />} tooltip="Zoom Out" onClick={handleZoomOut} />
 
       <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#dadce0' }} />
 
@@ -230,17 +294,23 @@ const MapperToolbar = ({
       />
       <ColorPickerDropdown
         icon={<BorderColor fontSize="small" />}
-        tooltip="Border Color"
-        color={currentRoomBorderColor}
-        onChange={handleRoomBorderColorChange}
-        disabled={!isRoomSelected}
+        tooltip="Stroke Color"
+        color={currentStrokeColor}
+        onChange={handleStrokeColorChange}
+        disabled={!isRoomSelected && !isConnectionSelected}
       />
-      <SymbolPickerDropdown
+      <TextPickerDropdown
         icon={<TextFields fontSize="small" />}
-        tooltip="Room Symbol"
-        symbol={currentRoomSymbol}
-        onChange={handleRoomSymbolChange}
-        disabled={!isRoomSelected}
+        tooltip="Text (T)"
+        text={currentText}
+        fontSize={currentFontSize}
+        fontFamily={currentFontFamily}
+        fontBold={currentFontBold}
+        fontItalic={currentFontItalic}
+        onChange={handleTextChange}
+        disabled={!isTextPickerEnabled}
+        open={textDialogOpen}
+        onOpenChange={setTextDialogOpen}
       />
 
       <Divider orientation="vertical" flexItem sx={{ mx: 0.5, borderColor: '#dadce0' }} />
@@ -257,23 +327,23 @@ const MapperToolbar = ({
         open={Boolean(lineStyleAnchor)}
         anchorEl={lineStyleAnchor}
         onClose={() => setLineStyleAnchor(null)}
-        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      >
-        <MenuItem
-          onClick={() => handleConnectionLineStyleChange('solid')}
-          selected={currentLineStyle === 'solid'}
-        >
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}>
+        <MenuItem onClick={() => handleConnectionLineStyleChange('solid')} selected={currentLineStyle === 'solid'}>
           <ListItemIcon sx={{ minWidth: 36 }}>
             <Box sx={{ width: 40, height: 2, backgroundColor: '#000' }} />
           </ListItemIcon>
           <ListItemText>Solid</ListItemText>
         </MenuItem>
-        <MenuItem
-          onClick={() => handleConnectionLineStyleChange('dashed')}
-          selected={currentLineStyle === 'dashed'}
-        >
+        <MenuItem onClick={() => handleConnectionLineStyleChange('dashed')} selected={currentLineStyle === 'dashed'}>
           <ListItemIcon sx={{ minWidth: 36 }}>
-            <Box sx={{ width: 40, height: 2, backgroundImage: 'linear-gradient(to right, #000 50%, transparent 50%)', backgroundSize: '8px 2px' }} />
+            <Box
+              sx={{
+                width: 40,
+                height: 2,
+                backgroundImage: 'linear-gradient(to right, #000 50%, transparent 50%)',
+                backgroundSize: '8px 2px',
+              }}
+            />
           </ListItemIcon>
           <ListItemText>Dashed</ListItemText>
         </MenuItem>
@@ -281,7 +351,7 @@ const MapperToolbar = ({
 
       <ToolbarButton
         icon={<TrendingFlat fontSize="small" />}
-        tooltip="Arrow Direction"
+        tooltip="Line Ends"
         onClick={(e) => setArrowAnchor(e.currentTarget)}
         disabled={!isConnectionSelected}
         hasDropdown
@@ -291,28 +361,183 @@ const MapperToolbar = ({
         anchorEl={arrowAnchor}
         onClose={() => setArrowAnchor(null)}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'left' }}
-      >
-        <MenuItem onClick={() => handleConnectionArrowChange('none')} selected={currentArrowType === 'none'}>
-          <ListItemText>None</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleConnectionArrowChange('forward')} selected={currentArrowType === 'forward'}>
-          <ListItemText>→ Forward</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleConnectionArrowChange('backward')} selected={currentArrowType === 'backward'}>
-          <ListItemText>← Backward</ListItemText>
-        </MenuItem>
-        <MenuItem onClick={() => handleConnectionArrowChange('bidirectional')} selected={currentArrowType === 'bidirectional'}>
-          <ListItemText>↔ Both</ListItemText>
-        </MenuItem>
+        PaperProps={{ sx: { p: 1 } }}>
+        <Box sx={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 0.5 }}>
+          {/* None */}
+          <Box
+            onClick={() => handleConnectionDecorChange('', '')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: !currentFromDecor && !currentToDecor ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ———
+          </Box>
+          {/* Arrow To */}
+          <Box
+            onClick={() => handleConnectionDecorChange('', 'Standard')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: !currentFromDecor && currentToDecor === 'Standard' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ——▶
+          </Box>
+          {/* Arrow From */}
+          <Box
+            onClick={() => handleConnectionDecorChange('Standard', '')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: currentFromDecor === 'Standard' && !currentToDecor ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ◀——
+          </Box>
+          {/* Arrow Both */}
+          <Box
+            onClick={() => handleConnectionDecorChange('Standard', 'Standard')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: currentFromDecor === 'Standard' && currentToDecor === 'Standard' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ◀—▶
+          </Box>
+          {/* Single Line To */}
+          <Box
+            onClick={() => handleConnectionDecorChange('', 'Line')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: !currentFromDecor && currentToDecor === 'Line' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ——|
+          </Box>
+          {/* Single Line From */}
+          <Box
+            onClick={() => handleConnectionDecorChange('Line', '')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: currentFromDecor === 'Line' && !currentToDecor ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            |——
+          </Box>
+          {/* Single Line Both */}
+          <Box
+            onClick={() => handleConnectionDecorChange('Line', 'Line')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: currentFromDecor === 'Line' && currentToDecor === 'Line' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            |—|
+          </Box>
+          {/* Spacer */}
+          <Box />
+          {/* Double Line To */}
+          <Box
+            onClick={() => handleConnectionDecorChange('', 'DoubleLine')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: !currentFromDecor && currentToDecor === 'DoubleLine' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            —||
+          </Box>
+          {/* Double Line From */}
+          <Box
+            onClick={() => handleConnectionDecorChange('DoubleLine', '')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor: currentFromDecor === 'DoubleLine' && !currentToDecor ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ||—
+          </Box>
+          {/* Double Line Both */}
+          <Box
+            onClick={() => handleConnectionDecorChange('DoubleLine', 'DoubleLine')}
+            sx={{
+              p: 1,
+              cursor: 'pointer',
+              borderRadius: 1,
+              backgroundColor:
+                currentFromDecor === 'DoubleLine' && currentToDecor === 'DoubleLine' ? '#e8f0fe' : 'transparent',
+              '&:hover': { backgroundColor: '#f1f3f4' },
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              minWidth: 50,
+              fontSize: 14,
+            }}>
+            ||—||
+          </Box>
+        </Box>
       </Popover>
-
-      <ColorPickerDropdown
-        icon={<Palette fontSize="small" />}
-        tooltip="Line Color"
-        color={currentConnectionColor}
-        onChange={handleConnectionColorChange}
-        disabled={!isConnectionSelected}
-      />
     </Box>
   );
 };
