@@ -6,7 +6,7 @@ const UpdateAlert = () => {
     <Grid item xs={12} sx={{ display: 'flex', flexDirection: 'column', rowGap: '1.5rem' }}>
       <Alert severity="info" sx={{ py: 0.5 }}>
         <Typography variant="body2">
-          To add or update zone details, submit a request on{' '}
+          To add or update details, submit a request on{' '}
           <Link href="https://github.com/colinchilds/MerenthaCollective/issues" target="_blank" rel="noopener noreferrer">
             GitHub Issues
           </Link>{' '}
