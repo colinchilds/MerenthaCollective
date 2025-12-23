@@ -485,6 +485,8 @@ const MapperCanvas = ({
         const saveData = JSON.parse(saved);
         diagram.model = diagram.model.constructor.fromJson(saveData.model);
         diagram.nextRoomKey = saveData.nextRoomKey || 1;
+        // Fit all content in view after loading
+        diagram.zoomToFit();
       }
     } catch (err) {
       console.warn('Failed to load map from localStorage:', err);
