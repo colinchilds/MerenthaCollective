@@ -44,33 +44,31 @@ function ScrollToTop({ children }) {
 }
 
 const Routes = () => {
-  const location = useLocation();
-
-  if (location.pathname === '/calculators') {
-    return <Redirect to={'/calculators/stats'} />;
-  } else if (location.pathname === '/guides') {
-    return <Redirect to={'/guides/cleric'} />;
-  }
-
   return (
     <Fragment>
       <ScrollToTop>
         <Switch>
-          {/* Calculator */}
+          {/* ================= Redirects ================= */}
+          <Redirect exact from="/calculators" to="/calculators/stats" />
+          <Redirect exact from="/guides" to="/guides/cleric" />
+
+          {/* ================= Home ================= */}
+          <Route exact path="/" component={HomePage} />
+
+          {/* ================= Calculators ================= */}
           <Route path="/calculators/stats" component={StatCalculator} />
           <Route path="/calculators/skills" component={SkillCalculator} />
           <Route path="/calculators/party" component={PartyCalculator} />
           <Route path="/calculators/time" component={TimeCalculator} />
 
-          {/* Areas */}
+          {/* ================= Areas ================= */}
           <Route path="/areas/arealist" component={Arealist} />
           <Route path="/areas/maps" component={Maps} />
           <Route path="/mapper" component={Mapper} />
-          {/** SUPER IMPORTANT: this must go last for the areas list **/}
+          {/* MUST stay last for areas */}
           <Route path="/areas/:area/:subarea" component={AreaPage} />
 
-          {/* General */}
-          <Route exact path="/" component={HomePage} />
+          {/* ================= General ================= */}
           <Route path="/coords" component={Coordinates} />
           <Route path="/combat" component={Combat} />
           <Route path="/socials" component={Socials} />
@@ -80,20 +78,29 @@ const Routes = () => {
           <Route path="/commands" component={CommonCommands} />
           <Route path="/quests" component={Quests} />
 
-          {/* Guides */}
-          <Route path="/guides/cleric" component={Cleric} />
-          <Route path="/guides/fighter" component={Fighter} />
-          <Route path="/guides/mage" component={Mage} />
-          <Route path="/guides/monk" component={Monk} />
-          <Route path="/guides/rogue" component={Rogue} />
+          {/* ================= Guides – Classes (Base) ================= */}
+          <Route exact path="/guides/cleric" component={Cleric} />
+          <Route exact path="/guides/fighter" component={Fighter} />
+          <Route exact path="/guides/mage" component={Mage} />
+          <Route exact path="/guides/monk" component={Monk} />
+          <Route exact path="/guides/rogue" component={Rogue} />
+
+          {/* ================= Guides – Classes (Subclasses) ================= */}
+          <Route path="/guides/cleric/:subclass" component={Cleric} />
+          <Route path="/guides/fighter/:subclass" component={Fighter} />
+          <Route path="/guides/mage/:subclass" component={Mage} />
+          <Route path="/guides/monk/:subclass" component={Monk} />
+          <Route path="/guides/rogue/:subclass" component={Rogue} />
+
+          {/* ================= Guides – Other ================= */}
           <Route path="/guides/newbie" component={Newbie} />
           <Route path="/guides/pets" component={Pet} />
 
-          {/* ! Guides >> Hidden ! */}
+          {/* ================= Guides – Hidden ================= */}
           <Route path="/guides/builder/rooms" component={BuilderRooms} />
           <Route path="/guides/builder" component={Builder} />
 
-          {/* 404 Not Found */}
+          {/* ================= 404 ================= */}
           <Route component={Error404} />
         </Switch>
       </ScrollToTop>

@@ -4,7 +4,7 @@ import CmtCard from '@coremat/CmtCard';
 import { classes, intToString, subclasses } from '../Helpers/calculator.helpers';
 import { races } from 'data/Races';
 import LevelInfo from '../Components/level-info.component';
-import { getMaxExp } from '../Helpers/stats.helpers';
+import { getAdvanceExp, getMaxExp } from '../Helpers/stats.helpers';
 import CharacterInfo from '../Components/character-info.component';
 import WarriorSpecializations from '../Components/WarriorSpecializations';
 import { getSkillCost, getSkillMax, getSkillMultipliers, skillNames } from '../Helpers/skills.helpers';
@@ -213,6 +213,7 @@ const SkillCalculator = () => {
   }, [charClass, subclass, race, activeCharacter]);
 
   useEffect(() => {
+    setAdvExp(getAdvanceExp(level));
     setMaxExp(getMaxExp(level));
   }, [level]);
 
@@ -294,378 +295,369 @@ const SkillCalculator = () => {
           </Fragment>
         )}
 
-        {Object.keys(skillNames).map((section, sectionIndex) => (
-          <Fragment key={sectionIndex}>
-            {hasItemInSection(section, multipliers) && (
-              <Fragment>
-                <CmtCardHeader title={section} />
-                <CmtCardContent>
-                  {isMobile ? (
-                    // Mobile: Card layout
-                    <>
-                      {skillNames[section].map(
-                        (skill, skillIndex) =>
-                          multipliers[skill] && (
-                            <Box
-                              key={skillIndex}
-                              sx={{
-                                mb: 2,
-                                p: 2,
-                                border: 1,
-                                borderColor: 'divider',
-                                borderRadius: 1,
-                              }}
-                            >
-                              <Box display="flex" justifyContent="space-between" alignItems="center">
-                                <Box display="flex" alignItems="center" gap={1}>
-                                  <Typography fontWeight="bold">{skill}</Typography>
-                                  {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
-                                    <Typography
-                                      variant="body2"
-                                      sx={{
-                                        color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
-                                        fontWeight: 'bold',
-                                      }}
-                                    >
-                                      {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
+        <CmtCardHeader title="Skill Information" />
+        <CmtCardContent>
+          {Object.keys(skillNames).map((section, sectionIndex) => (
+            <Fragment key={sectionIndex}>
+              {hasItemInSection(section, multipliers) && (
+                <Fragment>
+                  <CmtCardHeader title={section} />
+                  <CmtCardContent>
+                    {isMobile ? (
+                      // Mobile: Card layout
+                      <>
+                        {skillNames[section].map(
+                          (skill, skillIndex) =>
+                            multipliers[skill] && (
+                              <Box
+                                key={skillIndex}
+                                sx={{
+                                  mb: 2,
+                                  p: 2,
+                                  border: 1,
+                                  borderColor: 'divider',
+                                  borderRadius: 1,
+                                }}>
+                                <Box display="flex" justifyContent="space-between" alignItems="center">
+                                  <Box display="flex" alignItems="center" gap={1}>
+                                    <Typography fontWeight="bold">{skill}</Typography>
+                                    {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
+                                      <Typography
+                                        variant="body2"
+                                        sx={{
+                                          color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
+                                          fontWeight: 'bold',
+                                        }}>
+                                        {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
+                                      </Typography>
+                                    )}
+                                  </Box>
+                                  <Tooltip title={parseInt(skillCost[skill]).toLocaleString('en-US') + ' exp'}>
+                                    <Typography color="text.secondary">
+                                      {intToString(parseInt(skillCost[skill]), 2)} exp
                                     </Typography>
+                                  </Tooltip>
+                                </Box>
+
+                                <Box display="flex" gap={2} mt={1.5}>
+                                  <TextField
+                                    size="small"
+                                    type="number"
+                                    label="Current"
+                                    inputProps={{ min: 0, max: 999 }}
+                                    sx={{ flex: 1 }}
+                                    value={skillLevels[skill]}
+                                    variant="outlined"
+                                    onChange={(event) => updateSkillLevels(skill, event.target.value)}
+                                    InputProps={{
+                                      endAdornment: (
+                                        <InputAdornment position="end" size="small">
+                                          <Typography>{`/ ${getSkillMax(multipliers, skill, level)}`}</Typography>
+                                        </InputAdornment>
+                                      ),
+                                    }}
+                                  />
+                                  <TextField
+                                    size="small"
+                                    type="number"
+                                    label="Target"
+                                    inputProps={{ min: 0, max: 999 }}
+                                    sx={{ flex: 1 }}
+                                    value={skillTargets[skill]}
+                                    variant="outlined"
+                                    error={invalidTargets[skill]}
+                                    onChange={(event) => {
+                                      const val = event.target.value;
+                                      updateSkillTarget(skill, val);
+                                      setInvalidTargets((prev) => ({
+                                        ...prev,
+                                        [skill]: parseInt(val) < parseInt(skillLevels[skill]),
+                                      }));
+                                    }}
+                                    onBlur={() => handleTargetBlur(skill)}
+                                  />
+                                </Box>
+
+                                <Box display="flex" justifyContent="flex-start" alignItems="center" mt={1.5} gap={0.5}>
+                                  <Button
+                                    size="small"
+                                    variant="outlined"
+                                    onClick={() => handleMaxTarget(skill)}
+                                    sx={{
+                                      minWidth: '45px',
+                                      fontSize: '0.7rem',
+                                      padding: '4px 8px',
+                                    }}>
+                                    MAX
+                                  </Button>
+                                  {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
+                                    <>
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => handleApplyTarget(skill)}
+                                        sx={{
+                                          border: '1px solid rgba(0, 0, 0, 0.23)',
+                                          borderRadius: '4px',
+                                          padding: '4px',
+                                          color: '#4caf50',
+                                        }}>
+                                        <CheckIcon fontSize="small" />
+                                      </IconButton>
+                                      <IconButton
+                                        size="small"
+                                        onClick={() => updateSkillTarget(skill, skillLevels[skill])}
+                                        sx={{
+                                          border: '1px solid rgba(0, 0, 0, 0.23)',
+                                          borderRadius: '4px',
+                                          padding: '4px',
+                                        }}>
+                                        <ClearIcon fontSize="small" />
+                                      </IconButton>
+                                    </>
                                   )}
                                 </Box>
-                                <Tooltip title={parseInt(skillCost[skill]).toLocaleString('en-US') + ' exp'}>
-                                  <Typography color="text.secondary">
-                                    {intToString(parseInt(skillCost[skill]), 2)} exp
-                                  </Typography>
-                                </Tooltip>
                               </Box>
-
-                              <Box display="flex" gap={2} mt={1.5}>
-                                <TextField
-                                  size="small"
-                                  type="number"
-                                  label="Current"
-                                  inputProps={{ min: 0, max: 999 }}
-                                  sx={{ flex: 1 }}
-                                  value={skillLevels[skill]}
-                                  variant="outlined"
-                                  onChange={(event) => updateSkillLevels(skill, event.target.value)}
-                                  InputProps={{
-                                    endAdornment: (
-                                      <InputAdornment position="end" size="small">
-                                        <Typography>{`/ ${getSkillMax(multipliers, skill, level)}`}</Typography>
-                                      </InputAdornment>
-                                    ),
-                                  }}
-                                />
-                                <TextField
-                                  size="small"
-                                  type="number"
-                                  label="Target"
-                                  inputProps={{ min: 0, max: 999 }}
-                                  sx={{ flex: 1 }}
-                                  value={skillTargets[skill]}
-                                  variant="outlined"
-                                  error={invalidTargets[skill]}
-                                  onChange={(event) => {
-                                    const val = event.target.value;
-                                    updateSkillTarget(skill, val);
-                                    setInvalidTargets((prev) => ({
-                                      ...prev,
-                                      [skill]: parseInt(val) < parseInt(skillLevels[skill]),
-                                    }));
-                                  }}
-                                  onBlur={() => handleTargetBlur(skill)}
-                                />
-                              </Box>
-
-                              <Box display="flex" justifyContent="flex-start" alignItems="center" mt={1.5} gap={0.5}>
-                                <Button
-                                  size="small"
-                                  variant="outlined"
-                                  onClick={() => handleMaxTarget(skill)}
-                                  sx={{
-                                    minWidth: '45px',
-                                    fontSize: '0.7rem',
-                                    padding: '4px 8px',
-                                  }}
-                                >
-                                  MAX
-                                </Button>
-                                {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
-                                  <>
-                                    <IconButton
-                                      size="small"
-                                      onClick={() => handleApplyTarget(skill)}
-                                      sx={{
-                                        border: '1px solid rgba(0, 0, 0, 0.23)',
-                                        borderRadius: '4px',
-                                        padding: '4px',
-                                        color: '#4caf50',
-                                      }}
-                                    >
-                                      <CheckIcon fontSize="small" />
-                                    </IconButton>
-                                    <IconButton
-                                      size="small"
-                                      onClick={() => updateSkillTarget(skill, skillLevels[skill])}
-                                      sx={{
-                                        border: '1px solid rgba(0, 0, 0, 0.23)',
-                                        borderRadius: '4px',
-                                        padding: '4px',
-                                      }}
-                                    >
-                                      <ClearIcon fontSize="small" />
-                                    </IconButton>
-                                  </>
-                                )}
-                              </Box>
-                            </Box>
-                          ),
-                      )}
-                    </>
-                  ) : (
-                    // Desktop: Table layout
-                    <TableContainer>
-                      <Table
-                        size="small"
-                        sx={{
-                          '& .MuiTableCell-root': { py: 1, px: 1 },
-                          tableLayout: 'fixed',
-                          width: '100%',
-                        }}
-                      >
-                        <TableHead>
-                          <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
-                            <TableCell sx={{ width: '200px' }}>
-                              <Typography variant="subtitle2">Skill</Typography>
-                            </TableCell>
-                            <TableCell sx={{ width: '200px' }}>
-                              <Typography variant="subtitle2">Current</Typography>
-                            </TableCell>
-                            <TableCell sx={{ width: 'auto' }}>
-                              <Typography variant="subtitle2">Target</Typography>
-                            </TableCell>
-                            <TableCell align="right" sx={{ width: '140px' }}>
-                              <Typography variant="subtitle2">Exp Cost</Typography>
-                            </TableCell>
-                          </TableRow>
-                        </TableHead>
-                        <TableBody>
-                          {skillNames[section].map(
-                            (skill, skillIndex) =>
-                              multipliers[skill] && (
-                                <TableRow key={skillIndex}>
-                                  <TableCell sx={{ width: '200px' }}>
-                                    <Box display="flex" alignItems="center" gap={1}>
-                                      <Typography>{skill}</Typography>
-                                      {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
-                                        <Typography
-                                          variant="body2"
-                                          sx={{
-                                            color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
-                                            fontWeight: 'bold',
-                                          }}
-                                        >
-                                          {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
-                                        </Typography>
-                                      )}
-                                    </Box>
-                                  </TableCell>
-                                  <TableCell sx={{ width: '180px' }}>
-                                    <TextField
-                                      size="small"
-                                      type="number"
-                                      inputProps={{ min: 0, max: 999 }}
-                                      value={skillLevels[skill]}
-                                      variant="outlined"
-                                      onChange={(event) => updateSkillLevels(skill, event.target.value)}
-                                      sx={{ width: '160px' }}
-                                      InputProps={{
-                                        endAdornment: (
-                                          <InputAdornment position="end" size="small">
-                                            <Typography>{`/ ${getSkillMax(multipliers, skill, level)}`}</Typography>
-                                          </InputAdornment>
-                                        ),
-                                      }}
-                                    />
-                                  </TableCell>
-                                  <TableCell sx={{ width: 'auto' }}>
-                                    <Box display="flex" alignItems="center" gap={1}>
+                            ),
+                        )}
+                      </>
+                    ) : (
+                      // Desktop: Table layout
+                      <TableContainer>
+                        <Table
+                          size="small"
+                          sx={{
+                            '& .MuiTableCell-root': { py: 1, px: 1 },
+                            tableLayout: 'fixed',
+                            width: '100%',
+                          }}>
+                          <TableHead>
+                            <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
+                              <TableCell sx={{ width: '300px' }}>
+                                <Typography variant="subtitle2">Skill</Typography>
+                              </TableCell>
+                              <TableCell sx={{ width: '300px' }}>
+                                <Typography variant="subtitle2">Current</Typography>
+                              </TableCell>
+                              <TableCell sx={{ width: 'auto' }}>
+                                <Typography variant="subtitle2">Target</Typography>
+                              </TableCell>
+                              <TableCell align="right" sx={{ width: '140px' }}>
+                                <Typography variant="subtitle2">Exp Cost</Typography>
+                              </TableCell>
+                            </TableRow>
+                          </TableHead>
+                          <TableBody>
+                            {skillNames[section].map(
+                              (skill, skillIndex) =>
+                                multipliers[skill] && (
+                                  <TableRow key={skillIndex}>
+                                    <TableCell sx={{ width: '200px' }}>
+                                      <Box display="flex" alignItems="center" gap={1}>
+                                        <Typography>{skill}</Typography>
+                                        {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
+                                          <Typography
+                                            variant="body2"
+                                            sx={{
+                                              color: getSkillSpecializationLevel(skill) === 'legend' ? '#gold' : '#1976d2',
+                                              fontWeight: 'bold',
+                                            }}>
+                                            {getSpecializationIndicator(getSkillSpecializationLevel(skill))}
+                                          </Typography>
+                                        )}
+                                      </Box>
+                                    </TableCell>
+                                    <TableCell sx={{ width: '180px' }}>
                                       <TextField
                                         size="small"
                                         type="number"
                                         inputProps={{ min: 0, max: 999 }}
-                                        value={skillTargets[skill]}
+                                        value={skillLevels[skill]}
                                         variant="outlined"
-                                        error={invalidTargets[skill]}
-                                        onChange={(event) => {
-                                          const val = event.target.value;
-                                          updateSkillTarget(skill, val);
-                                          setInvalidTargets((prev) => ({
-                                            ...prev,
-                                            [skill]: parseInt(val) < parseInt(skillLevels[skill]),
-                                          }));
-                                        }}
-                                        onBlur={() => handleTargetBlur(skill)}
-                                        sx={{ width: '120px' }}
+                                        onChange={(event) => updateSkillLevels(skill, event.target.value)}
+                                        sx={{ width: '160px' }}
                                         InputProps={{
                                           endAdornment: (
                                             <InputAdornment position="end" size="small">
-                                              <Typography
-                                                sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}
-                                              >
-                                                {(() => {
-                                                  const diff =
-                                                    (parseInt(skillTargets[skill]) || 0) -
-                                                    (parseInt(skillLevels[skill]) || 0);
-                                                  return diff >= 0 ? `+${diff}` : `${diff}`;
-                                                })()}
-                                              </Typography>
+                                              <Typography>{`/ ${getSkillMax(multipliers, skill, level)}`}</Typography>
                                             </InputAdornment>
                                           ),
                                         }}
                                       />
-                                      <Button
-                                        size="small"
-                                        variant="outlined"
-                                        onClick={() => handleMaxTarget(skill)}
-                                        sx={{
-                                          minWidth: '45px',
-                                          fontSize: '0.7rem',
-                                          padding: '4px 8px',
-                                        }}
-                                      >
-                                        MAX
-                                      </Button>
-                                      {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
-                                        <>
-                                          <IconButton
-                                            size="small"
-                                            onClick={() => handleApplyTarget(skill)}
-                                            sx={{
-                                              border: '1px solid rgba(0, 0, 0, 0.23)',
-                                              borderRadius: '4px',
-                                              padding: '4px',
-                                              color: '#4caf50',
-                                            }}
-                                          >
-                                            <CheckIcon fontSize="small" />
-                                          </IconButton>
-                                          <IconButton
-                                            size="small"
-                                            onClick={() => updateSkillTarget(skill, skillLevels[skill])}
-                                            sx={{
-                                              border: '1px solid rgba(0, 0, 0, 0.23)',
-                                              borderRadius: '4px',
-                                              padding: '4px',
-                                            }}
-                                          >
-                                            <ClearIcon fontSize="small" />
-                                          </IconButton>
-                                        </>
-                                      )}
-                                    </Box>
-                                  </TableCell>
-                                  <TableCell align="right" sx={{ width: '140px' }}>
-                                    <Tooltip title={parseInt(skillCost[skill]).toLocaleString('en-US') + ' exp'}>
-                                      <Typography>{intToString(parseInt(skillCost[skill]), 2)} exp</Typography>
-                                    </Tooltip>
-                                  </TableCell>
-                                </TableRow>
-                              ),
-                          )}
-                        </TableBody>
-                      </Table>
-                    </TableContainer>
-                  )}
-                </CmtCardContent>
-              </Fragment>
-            )}
-          </Fragment>
-        ))}
-
-        {/* Summary Section */}
-        <CmtCardContent>
-          <Divider sx={{ mb: 2 }} />
-          {isMobile ? (
-            <Box sx={{ p: 2, backgroundColor: 'action.hover', borderRadius: 1 }}>
-              <Box display="flex" justifyContent="space-between" mb={1}>
-                <Typography>Current Total:</Typography>
-                <Typography>
-                  {charSkillTotal} / {skillTotal}
-                </Typography>
-              </Box>
-              <Box display="flex" justifyContent="space-between" mb={1}>
-                <Typography>Target Total:</Typography>
-                <Typography>
-                  {(() => {
-                    let totalTarget = 0;
-                    sn.forEach((skill) => {
-                      totalTarget += parseInt(skillTargets[skill] || 0);
-                    });
-                    return `${totalTarget} / ${skillTotal}`;
-                  })()}
-                </Typography>
-              </Box>
-              <Box display="flex" justifyContent="space-between">
-                <Typography>Exp Cost:</Typography>
-                <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                  <Typography>
-                    {intToString(parseInt(expTotal), 2)} exp
-                    {maxExp > 0 && expTotal > 0 && (
-                      <span style={{ fontSize: '0.9em', color: '#666' }}> ({(expTotal / maxExp).toFixed(2)} maxes)</span>
+                                    </TableCell>
+                                    <TableCell sx={{ width: 'auto' }}>
+                                      <Box display="flex" alignItems="center" gap={1}>
+                                        <TextField
+                                          size="small"
+                                          type="number"
+                                          inputProps={{ min: 0, max: 999 }}
+                                          value={skillTargets[skill]}
+                                          variant="outlined"
+                                          error={invalidTargets[skill]}
+                                          onChange={(event) => {
+                                            const val = event.target.value;
+                                            updateSkillTarget(skill, val);
+                                            setInvalidTargets((prev) => ({
+                                              ...prev,
+                                              [skill]: parseInt(val) < parseInt(skillLevels[skill]),
+                                            }));
+                                          }}
+                                          onBlur={() => handleTargetBlur(skill)}
+                                          sx={{ width: '120px' }}
+                                          InputProps={{
+                                            endAdornment: (
+                                              <InputAdornment position="end" size="small">
+                                                <Typography
+                                                  sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
+                                                  {(() => {
+                                                    const diff =
+                                                      (parseInt(skillTargets[skill]) || 0) -
+                                                      (parseInt(skillLevels[skill]) || 0);
+                                                    return diff >= 0 ? `+${diff}` : `${diff}`;
+                                                  })()}
+                                                </Typography>
+                                              </InputAdornment>
+                                            ),
+                                          }}
+                                        />
+                                        <Button
+                                          size="small"
+                                          variant="outlined"
+                                          onClick={() => handleMaxTarget(skill)}
+                                          sx={{
+                                            minWidth: '45px',
+                                            fontSize: '0.7rem',
+                                            padding: '4px 8px',
+                                          }}>
+                                          MAX
+                                        </Button>
+                                        {parseInt(skillTargets[skill]) > parseInt(skillLevels[skill]) && (
+                                          <>
+                                            <IconButton
+                                              size="small"
+                                              onClick={() => handleApplyTarget(skill)}
+                                              sx={{
+                                                border: '1px solid rgba(0, 0, 0, 0.23)',
+                                                borderRadius: '4px',
+                                                padding: '4px',
+                                                color: '#4caf50',
+                                              }}>
+                                              <CheckIcon fontSize="small" />
+                                            </IconButton>
+                                            <IconButton
+                                              size="small"
+                                              onClick={() => updateSkillTarget(skill, skillLevels[skill])}
+                                              sx={{
+                                                border: '1px solid rgba(0, 0, 0, 0.23)',
+                                                borderRadius: '4px',
+                                                padding: '4px',
+                                              }}>
+                                              <ClearIcon fontSize="small" />
+                                            </IconButton>
+                                          </>
+                                        )}
+                                      </Box>
+                                    </TableCell>
+                                    <TableCell align="right" sx={{ width: '140px' }}>
+                                      <Tooltip title={parseInt(skillCost[skill]).toLocaleString('en-US') + ' exp'}>
+                                        <Typography>{intToString(parseInt(skillCost[skill]), 2)} exp</Typography>
+                                      </Tooltip>
+                                    </TableCell>
+                                  </TableRow>
+                                ),
+                            )}
+                          </TableBody>
+                        </Table>
+                      </TableContainer>
                     )}
+                  </CmtCardContent>
+                </Fragment>
+              )}
+            </Fragment>
+          ))}
+
+          {/* Summary Section */}
+          <CmtCardContent>
+            <Divider sx={{ mb: 2 }} />
+            {isMobile ? (
+              <Box sx={{ p: 2, backgroundColor: 'action.hover', borderRadius: 1 }}>
+                <Box display="flex" justifyContent="space-between" mb={1}>
+                  <Typography>Current Total:</Typography>
+                  <Typography>
+                    {charSkillTotal} / {skillTotal}
                   </Typography>
-                </Tooltip>
+                </Box>
+                <Box display="flex" justifyContent="space-between" mb={1}>
+                  <Typography>Target Total:</Typography>
+                  <Typography>
+                    {(() => {
+                      let totalTarget = 0;
+                      sn.forEach((skill) => {
+                        totalTarget += parseInt(skillTargets[skill] || 0);
+                      });
+                      return `${totalTarget} / ${skillTotal}`;
+                    })()}
+                  </Typography>
+                </Box>
+                <Box display="flex" justifyContent="space-between">
+                  <Typography>Exp Cost:</Typography>
+                  <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                    <Typography>
+                      {intToString(parseInt(expTotal), 2)} exp
+                      {maxExp > 0 && expTotal > 0 && (
+                        <span style={{ fontSize: '0.9em', color: '#666' }}> ({(expTotal / maxExp).toFixed(2)} maxes)</span>
+                      )}
+                    </Typography>
+                  </Tooltip>
+                </Box>
               </Box>
-            </Box>
-          ) : (
-            <TableContainer>
-              <Table
-                size="small"
-                sx={{
-                  '& .MuiTableCell-root': { py: 1, px: 1 },
-                  tableLayout: 'fixed',
-                  width: '100%',
-                }}
-              >
-                <TableBody>
-                  <TableRow sx={{ backgroundColor: 'action.hover' }}>
-                    <TableCell sx={{ width: '200px' }}>
-                      <Typography fontWeight="bold">Total</Typography>
-                    </TableCell>
-                    <TableCell sx={{ width: '180px' }}>
-                      <Typography>
-                        {charSkillTotal} / {skillTotal}
-                      </Typography>
-                    </TableCell>
-                    <TableCell sx={{ width: 'auto' }}>
-                      <Typography>
-                        {(() => {
-                          let totalTarget = 0;
-                          sn.forEach((skill) => {
-                            totalTarget += parseInt(skillTargets[skill] || 0);
-                          });
-                          return `${totalTarget} / ${skillTotal}`;
-                        })()}
-                      </Typography>
-                    </TableCell>
-                    <TableCell align="right" sx={{ width: '140px' }}>
-                      <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
-                        <Box>
-                          <Typography>{intToString(parseInt(expTotal), 2)} exp</Typography>
-                          {maxExp > 0 && expTotal > 0 && (
-                            <Typography sx={{ fontSize: '0.9em', color: 'text.secondary' }}>
-                              ({(expTotal / maxExp).toFixed(2)} maxes)
-                            </Typography>
-                          )}
-                        </Box>
-                      </Tooltip>
-                    </TableCell>
-                  </TableRow>
-                </TableBody>
-              </Table>
-            </TableContainer>
-          )}
+            ) : (
+              <TableContainer>
+                <Table
+                  size="small"
+                  sx={{
+                    '& .MuiTableCell-root': { py: 1, px: 1 },
+                    tableLayout: 'fixed',
+                    width: '100%',
+                  }}>
+                  <TableBody>
+                    <TableRow sx={{ backgroundColor: 'action.hover' }}>
+                      <TableCell sx={{ width: '200px' }}>
+                        <Typography fontWeight="bold">Total</Typography>
+                      </TableCell>
+                      <TableCell sx={{ width: '180px' }}>
+                        <Typography>
+                          {charSkillTotal} / {skillTotal}
+                        </Typography>
+                      </TableCell>
+                      <TableCell sx={{ width: 'auto' }}>
+                        <Typography>
+                          {(() => {
+                            let totalTarget = 0;
+                            sn.forEach((skill) => {
+                              totalTarget += parseInt(skillTargets[skill] || 0);
+                            });
+                            return `${totalTarget} / ${skillTotal}`;
+                          })()}
+                        </Typography>
+                      </TableCell>
+                      <TableCell align="right" sx={{ width: '140px' }}>
+                        <Tooltip title={parseInt(expTotal).toLocaleString('en-US') + ' exp'}>
+                          <Box>
+                            <Typography>{intToString(parseInt(expTotal), 2)} exp</Typography>
+                            {maxExp > 0 && expTotal > 0 && (
+                              <Typography sx={{ fontSize: '0.9em', color: 'text.secondary' }}>
+                                ({(expTotal / maxExp).toFixed(2)} maxes)
+                              </Typography>
+                            )}
+                          </Box>
+                        </Tooltip>
+                      </TableCell>
+                    </TableRow>
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            )}
+          </CmtCardContent>
         </CmtCardContent>
       </CmtCard>
     </PageContainer>
