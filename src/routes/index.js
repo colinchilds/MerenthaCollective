@@ -9,6 +9,7 @@ import PartyCalculator from './Pages/Calculators/PartyCalculator';
 //- AREAS -//
 import Arealist from './Pages/Areas/Arealist';
 import Maps from './Pages/Areas/Maps';
+import Mapper from './Pages/General/Mapper';
 import AreaPage from './Pages/Areas/Guides';
 //- GENERAL -//
 import Coordinates from './Pages/General/Coordinates';
@@ -63,6 +64,7 @@ const Routes = () => {
           {/* ================= Areas ================= */}
           <Route path="/areas/arealist" component={Arealist} />
           <Route path="/areas/maps" component={Maps} />
+          <Route path="/mapper" component={Mapper} />
           {/* MUST stay last for areas */}
           <Route path="/areas/:area/:subarea" component={AreaPage} />
 
