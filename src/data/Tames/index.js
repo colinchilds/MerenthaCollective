@@ -84,7 +84,7 @@ export const tames = [
   },
   {
     name: 'arctic treant',
-    area: 'Aerioth (Frozen)',
+    area: 'Aerioth II',
     levelMin: 90,
     levelMax: 92,
     tameMin: 450,
@@ -212,7 +212,7 @@ export const tames = [
   },
   {
     name: 'buffalo',
-    area: 'Storm Isle',
+    area: 'Charanth',
     levelMin: 90,
     levelMax: 90,
     tameMin: 360,
@@ -236,7 +236,7 @@ export const tames = [
   },
   {
     name: 'shadowhound',
-    area: 'Storm Isle',
+    area: 'Charanth',
     levelMin: 85,
     levelMax: 85,
     tameMin: 340,
@@ -252,7 +252,7 @@ export const tames = [
   },
   {
     name: 'frost drake',
-    area: 'Aerioth (Frozen)',
+    area: 'Aerioth II',
     levelMin: 60,
     levelMax: 65,
     tameMin: 300,
@@ -284,7 +284,7 @@ export const tames = [
   },
   {
     name: 'dire wolf',
-    area: 'Aerioth (Frozen)',
+    area: 'Aerioth II',
     levelMin: 55,
     levelMax: 55,
     tameMin: 275,
@@ -868,7 +868,7 @@ export const tames = [
   },
   {
     name: 'deer',
-    area: 'Deception',
+    area: 'Forest of Deception',
     levelMin: 1,
     levelMax: 1,
     tameMin: 1,
