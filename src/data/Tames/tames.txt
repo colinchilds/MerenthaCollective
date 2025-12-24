@@ -1,0 +1,250 @@
+-=-=-| /domains/Isles/Ensi/items/Minotaurs/monsters |=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Ensi/items/Minotaurs/monsters/scout
+NAME  fire ant                   LVL  50                          TAME  200                        
+/domains/Isles/Ensi/items/Minotaurs/monsters/hill_mob
+NAME  giant mantis               LVL  97 = [95..99]               TAME  485 = [475..495]           
+NAME  bison                      LVL  93                          TAME  465                        
+NAME  big-horned sheep           LVL  92 = [90..94]               TAME  460 = [450..470]           
+NAME  rhinoceros                 LVL  92 = [91..93]               TAME  460 = [455..465]           
+NAME  coyote                     LVL  92 = [90..95]               TAME  462 = [450..475]           
+NAME  jackalope                  LVL  96 = [95..97]               TAME  480 = [475..485]           
+-=-=-| /domains/Fenris/obj/mon |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Fenris/obj/mon/alligator
+NAME  giant alligator            LVL  15                          TAME  75                         
+-=-=-| /domains/Isles/Ensi/items/Centaurs/monsters |-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Ensi/items/Centaurs/monsters/ants
+NAME  fire ant worker            LVL  93 = [92..94]               TAME  372 = [368..376]           
+NAME  fire ant guardian          LVL  98 = [97..99]               TAME  392 = [388..396]           
+NAME  fire ant soldier           LVL  96 = [95..97]               TAME  384 = [380..388]           
+NAME  fire ant drone             LVL  93 = [92..94]               TAME  372 = [368..376]           
+/domains/Isles/Ensi/items/Centaurs/monsters/forestmob
+NAME  hawk                       LVL  92                          TAME  368                        
+NAME  snake                      LVL  91 = [90..92]               TAME  364 = [360..368]           
+NAME  badger                     LVL  90                          TAME  360                        
+NAME  jaguar cub                 LVL  90                          TAME  360                        
+NAME  bear cub                   LVL  91 = [90..92]               TAME  364 = [360..368]           
+NAME  spider                     LVL  91 = [90..92]               TAME  364 = [360..368]           
+NAME  black bear                 LVL  96 = [95..97]               TAME  384 = [380..388]           
+NAME  jaguar                     LVL  91 = [90..92]               TAME  364 = [360..368]           
+-=-=-| /domains/Lizland/obj/mob |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Lizland/obj/mob/gazelle
+NAME  gazelle                    LVL  59 = [53..65]               TAME  236 = [212..260]           
+/domains/Lizland/obj/mob/grizzly
+NAME  grizzly bear               LVL  65                          TAME  390                        
+/domains/Lizland/obj/mob/coyote
+NAME  coyote                     LVL  61 = [58..65]               TAME  246 = [232..260]           
+-=-=-| /domains/DeathSpiral/mon |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/DeathSpiral/mon/beagle
+NAME  baby eagle                 LVL  15                          TAME  75                         
+/domains/DeathSpiral/mon/lynx
+NAME  lynx                       LVL  15                          TAME  63 = [60..67]              
+/domains/DeathSpiral/mon/stalker
+NAME  stalker                    LVL  28                          TAME  140                        
+-=-=-| /domains/Isles/Mjharr/mob |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Mjharr/mob/addax
+NAME  addax                      LVL  70                          TAME  350                        
+/domains/Isles/Mjharr/mob/shrew
+NAME  shrew                      LVL  70                          TAME  280                        
+-=-=-| /domains/Cloud/obj/mob |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Cloud/obj/mob/squirrel
+NAME  squirrel                   LVL  15                          TAME  1                          
+--More-- (20%) [hit <enter> or <space> to continue or <q> to quit]
+
+-=-=-| /domains/Deception/obj/mon |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Deception/obj/mon/deer
+NAME  deer                       LVL  1                           TAME  1                          
+-=-=-| /domains/Hiemelia/Kingdom/wild/mon |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Hiemelia/Kingdom/wild/mon/swolf2
+NAME  snow wolf                  LVL  15                          TAME  60                         
+/domains/Hiemelia/Kingdom/wild/mon/sbear
+NAME  snow bear                  LVL  45                          TAME  225                        
+/domains/Hiemelia/Kingdom/wild/mon/swolf
+NAME  snow wolf                  LVL  35                          TAME  175                        
+/domains/Hiemelia/Kingdom/wild/mon/sbear2
+NAME  snow bear                  LVL  20                          TAME  80                         
+-=-=-| /domains/Isles/Kittay/mobs |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Kittay/mobs/roach
+NAME  hissing cockroach          LVL  100                         TAME  425 = [400..450]           
+/domains/Isles/Kittay/mobs/lguardian
+NAME  lesser guardian tomcat     LVL  110                         TAME  467 = [440..495]           
+/domains/Isles/Kittay/mobs/guardian
+NAME  guardian tomcat            LVL  120                         TAME  510 = [480..540]           
+-=-=-| /realms/lacuna |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/realms/lacuna/giraffe
+NAME  ancient giraffe            LVL  130                         TAME  520                        
+-=-=-| /std |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/std/tameable
+NAME  0                          LVL  0                           TAME  0                          
+-=-=-| /domains/Isles/Abbadon/items/monsters |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Abbadon/items/monsters/malespider
+NAME  huge spider                LVL  135                         TAME  607                        
+/domains/Isles/Abbadon/items/monsters/ancientgiraffe
+NAME  ancient giraffe            LVL  130                         TAME  536 = [520..585]           
+-=-=-| /domains/Cardania/Mystic/forest/obj/mob |-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Cardania/Mystic/forest/obj/mob/tame
+NAME  0                          LVL  0                           TAME  0                          
+/domains/Cardania/Mystic/forest/obj/mob/badger
+NAME  badger                     LVL  20                          TAME  80                         
+/domains/Cardania/Mystic/forest/obj/mob/wabbit
+NAME  wabbit                     LVL  26                          TAME  104                        
+/domains/Cardania/Mystic/forest/obj/mob/msnake
+NAME  water moccassin            LVL  26                          TAME  110 = [104..117]           
+/domains/Cardania/Mystic/forest/obj/mob/bob
+NAME  bobcat                     LVL  8                           TAME  34 = [32..36]              
+/domains/Cardania/Mystic/forest/obj/mob/lion
+NAME  mountain lion              LVL  10                          TAME  42 = [40..45]              
+-=-=-| /domains/Rforest/monsters |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Rforest/monsters/wild
+NAME  lizard                     LVL  24 = [23..26]               TAME  98 = [92..104]             
+NAME  parrot                     LVL  24 = [23..26]               TAME  98 = [92..104]             
+NAME  mongoose                   LVL  29 = [28..31]               TAME  118 = [112..124]           
+NAME  muskrat                    LVL  28 = [27..30]               TAME  114 = [108..120]           
+NAME  leopard                    LVL  33 = [32..35]               TAME  134 = [128..140]           
+--More-- (41%) [hit <enter> or <space> to continue or <q> to quit]
+
+NAME  vulture                    LVL  30 = [29..32]               TAME  122 = [116..128]           
+NAME  monkey                     LVL  26 = [25..28]               TAME  106 = [100..112]           
+NAME  bat                        LVL  23 = [22..25]               TAME  94 = [88..100]             
+NAME  dragonfly                  LVL  23 = [22..25]               TAME  94 = [88..100]             
+NAME  gorilla                    LVL  33 = [32..35]               TAME  134 = [128..140]           
+NAME  agouti                     LVL  29 = [28..31]               TAME  118 = [112..124]           
+NAME  anaconda                   LVL  31 = [30..33]               TAME  126 = [120..132]           
+NAME  beetle                     LVL  24 = [21..27]               TAME  96 = [84..108]             
+NAME  warthog                    LVL  26 = [25..28]               TAME  106 = [100..112]           
+NAME  wild boar                  LVL  33 = [32..35]               TAME  134 = [128..140]           
+NAME  tiger                      LVL  29 = [28..31]               TAME  118 = [112..124]           
+NAME  spider                     LVL  34 = [32..36]               TAME  136 = [128..144]           
+NAME  sloth                      LVL  29 = [28..31]               TAME  118 = [112..124]           
+NAME  toucan                     LVL  26 = [25..28]               TAME  106 = [100..112]           
+NAME  wild dog                   LVL  26 = [25..28]               TAME  106 = [100..112]           
+NAME  elephant                   LVL  29 = [28..31]               TAME  118 = [112..124]           
+NAME  hamster                    LVL  23 = [22..25]               TAME  94 = [88..100]             
+NAME  tapir                      LVL  29 = [28..31]               TAME  118 = [112..124]           
+/domains/Rforest/monsters/wild2
+NAME  giant pucca bat            LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  giant elephant             LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  silverback gorilla         LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  giant fire ant             LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  hippo                      LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  muskrat                    LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  water faerie               LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  shnakra warrior            LVL  32 = [29..36]               TAME  130 = [116..144]           
+NAME  chigger                    LVL  32 = [29..36]               TAME  130 = [116..144]           
+-=-=-| /realms/lacuna/Dremora/items/monsters |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/realms/lacuna/Dremora/items/monsters/forestmob
+NAME  condor                     LVL  100 = [98..103]             TAME  402 = [392..412]           
+NAME  warthog                    LVL  101 = [99..103]             TAME  404 = [396..412]           
+NAME  antelope                   LVL  99 = [96..102]              TAME  396 = [384..408]           
+NAME  tunnel worm                LVL  108 = [105..112]            TAME  434 = [420..448]           
+NAME  black panther              LVL  102 = [100..104]            TAME  408 = [400..416]           
+NAME  green-quilled porcupine    LVL  100 = [98..103]             TAME  402 = [392..412]           
+NAME  red bear                   LVL  103 = [101..105]            TAME  412 = [404..420]           
+-=-=-| /domains/Isles/Kobold/Korlis/obj/mob |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Kobold/Korlis/obj/mob/panther
+NAME  panther                    LVL  19 = [15..24]               TAME  195 = [150..240]           
+-=-=-| /domains/Isles/Ottograd/mon |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Ottograd/mon/wchuck
+NAME  woodchuck                  LVL  55                          TAME  275                        
+/domains/Isles/Ottograd/mon/toad
+NAME  spinyback toad             LVL  65                          TAME  325                        
+/domains/Isles/Ottograd/mon/wox
+NAME  wild ox                    LVL  60                          TAME  300                        
+/domains/Isles/Ottograd/mon/lemming
+NAME  lemming                    LVL  50                          TAME  250                        
+-=-=-| /domains/Praxis/obj/mon |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+--More-- (61%) [hit <enter> or <space> to continue or <q> to quit]
+
+/domains/Praxis/obj/mon/baby_dragon
+NAME  baby dragon                LVL  6                           TAME  35                         
+/domains/Praxis/obj/mon/squirrel
+NAME  squirrel                   LVL  3                           TAME  12 = [12..13]              
+/domains/Praxis/obj/mon/tiger
+NAME  tiger                      LVL  6                           TAME  25                         
+-=-=-| /domains/Atheria/Uruk/forest/obj/mon |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Atheria/Uruk/forest/obj/mon/wild
+NAME  hawk                       LVL  11 = [6..15]                TAME  44 = [24..60]              
+NAME  bear                       LVL  12 = [7..18]                TAME  51 = [28..72]              
+NAME  deer                       LVL  9 = [5..14]                 TAME  38 = [20..56]              
+NAME  fox                        LVL  7 = [4..11]                 TAME  31 = [16..44]              
+NAME  owl                        LVL  9 = [5..13]                 TAME  39 = [20..52]              
+NAME  porcupine                  LVL  9 = [5..14]                 TAME  38 = [20..56]              
+NAME  wolf                       LVL  9 = [5..13]                 TAME  38 = [20..52]              
+NAME  squirrel                   LVL  7 = [4..11]                 TAME  31 = [16..44]              
+NAME  raccoon                    LVL  8 = [4..12]                 TAME  33 = [16..48]              
+-=-=-| /domains/Natives/monsters |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Natives/monsters/wild
+NAME  hawk                       LVL  13 = [12..15]               TAME  54 = [48..60]              
+NAME  bear                       LVL  16 = [15..18]               TAME  66 = [60..72]              
+NAME  deer                       LVL  12 = [11..14]               TAME  50 = [44..56]              
+NAME  fox                        LVL  9 = [8..11]                 TAME  38 = [32..44]              
+NAME  owl                        LVL  11 = [10..13]               TAME  46 = [40..52]              
+NAME  porcupine                  LVL  12 = [11..14]               TAME  50 = [44..56]              
+NAME  wolf                       LVL  11 = [10..13]               TAME  46 = [40..52]              
+NAME  squirrel                   LVL  9 = [8..11]                 TAME  38 = [32..44]              
+NAME  raccoon                    LVL  10 = [9..12]                TAME  42 = [36..48]              
+-=-=-| /domains/Beaches/Aerioth/aerioth2/mon |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Beaches/Aerioth/aerioth2/mon/drake
+NAME  frost drake                LVL  62 = [60..65]               TAME  312 = [300..325]           
+/domains/Beaches/Aerioth/aerioth2/mon/arctic_treant
+NAME  arctic treant              LVL  91 = [90..92]               TAME  455 = [450..460]           
+/domains/Beaches/Aerioth/aerioth2/mon/dire_wolf
+NAME  dire wolf                  LVL  55                          TAME  275                        
+-=-=-| /domains/Isles/Shanadan/monster |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Shanadan/monster/vampirebat
+NAME  vampire bat                LVL  65 = [60..70]               TAME  325 = [300..350]           
+/domains/Isles/Shanadan/monster/bird
+NAME  hawk                       LVL  69 = [65..74]               TAME  347 = [325..370]           
+-=-=-| /domains/Isles/Storm/obj/mob |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Storm/obj/mob/shadowhound
+NAME  shadowhound                LVL  85                          TAME  340                        
+/domains/Isles/Storm/obj/mob/wbuffalo
+NAME  buffalo                    LVL  90                          TAME  360                        
+-=-=-| /domains/Isles/Boar/obj/mon |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Boar/obj/mon/wbeast
+NAME  wild boar                  LVL  20                          TAME  100                        
+-=-=-| /realms/lacuna/kittay/mobs |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/realms/lacuna/kittay/mobs/roachtest
+--More-- (82%) [hit <enter> or <space> to continue or <q> to quit]
+
+NAME  hissing cockroach          LVL  100                         TAME  400                        
+/realms/lacuna/kittay/mobs/guardian
+NAME  guardian tomcat            LVL  120                         TAME  480                        
+/realms/lacuna/kittay/mobs/roach
+NAME  hissing cockroach          LVL  100                         TAME  400                        
+/realms/lacuna/kittay/mobs/guardian2
+NAME  guardian tomcat            LVL  120                         TAME  480                        
+/realms/lacuna/kittay/mobs/lguardian
+NAME  lesser guardian tomcat     LVL  110                         TAME  440                        
+-=-=-| /realms/kabaal/Dremora/items/monsters |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/realms/kabaal/Dremora/items/monsters/forestmob
+NAME  condor                     LVL  101 = [99..103]             TAME  405 = [396..412]           
+NAME  warthog                    LVL  101 = [99..103]             TAME  405 = [396..412]           
+NAME  antelope                   LVL  99 = [96..102]              TAME  396 = [384..408]           
+NAME  tunnel worm                LVL  108 = [106..112]            TAME  433 = [424..448]           
+NAME  green-quilled porcupine    LVL  100 = [98..102]             TAME  400 = [392..408]           
+NAME  black panther              LVL  102 = [100..104]            TAME  408 = [400..416]           
+NAME  red bear                   LVL  102 = [101..104]            TAME  410 = [404..416]           
+-=-=-| /domains/Isles/Shanadan |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Isles/Shanadan/vampirebat
+NAME  vampire bat                LVL  65 = [60..70]               TAME  325 = [300..350]           
+-=-=-| /domains/Haven/obj/mobs |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Haven/obj/mobs/mongoose
+NAME  mongoose                   LVL  35                          TAME  140                        
+/domains/Haven/obj/mobs/pigeon
+NAME  pigeon                     LVL  24                          TAME  102 = [96..108]            
+/domains/Haven/obj/mobs/beaver
+NAME  beaver                     LVL  37                          TAME  148                        
+/domains/Haven/obj/mobs/pigeon2
+NAME  pigeon                     LVL  24                          TAME  102 = [96..108]            
+-=-=-| /domains/Beaches/Aerioth/mon |=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Beaches/Aerioth/mon/elk
+NAME  mountain elk               LVL  45                          TAME  225                        
+/domains/Beaches/Aerioth/mon/fox
+NAME  snow fox                   LVL  40                          TAME  200                        
+/domains/Beaches/Aerioth/mon/lynx
+NAME  snow lynx                  LVL  45                          TAME  225                        
+-=-=-| /domains/Oz/valentine/mob |-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-
+/domains/Oz/valentine/mob/corn4
+NAME  marmot                     LVL  20                          TAME  80                         
+/domains/Oz/valentine/mob/chipmonk
+NAME  squirrel                   LVL  15                          TAME  63 = [60..67]    

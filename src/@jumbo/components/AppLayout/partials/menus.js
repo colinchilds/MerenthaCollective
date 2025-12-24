@@ -17,6 +17,7 @@ import {
   Terminal,
   Science,
   Check,
+  Pets,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
@@ -72,6 +73,12 @@ export const sidebarNavs = [
         type: 'item',
         icon: <EditLocation />,
         link: '/mapper',
+      },
+      {
+        name: 'Tames',
+        type: 'item',
+        icon: <Pets />,
+        link: '/areas/tames',
       },
     ],
   },
