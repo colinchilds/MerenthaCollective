@@ -28,7 +28,7 @@ export const tames = [
   },
   {
     name: 'giant mantis',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 95,
     levelMax: 99,
     tameMin: 475,
@@ -44,7 +44,7 @@ export const tames = [
   },
   {
     name: 'jackalope',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 95,
     levelMax: 97,
     tameMin: 475,
@@ -52,7 +52,7 @@ export const tames = [
   },
   {
     name: 'coyote',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 95,
     tameMin: 450,
@@ -60,7 +60,7 @@ export const tames = [
   },
   {
     name: 'big-horned sheep',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 94,
     tameMin: 450,
@@ -68,7 +68,7 @@ export const tames = [
   },
   {
     name: 'bison',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 93,
     levelMax: 93,
     tameMin: 465,
@@ -76,7 +76,7 @@ export const tames = [
   },
   {
     name: 'rhinoceros',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 91,
     levelMax: 93,
     tameMin: 455,
@@ -100,7 +100,7 @@ export const tames = [
   },
   {
     name: 'fire ant guardian',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 97,
     levelMax: 99,
     tameMin: 388,
@@ -116,7 +116,7 @@ export const tames = [
   },
   {
     name: 'fire ant soldier',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 95,
     levelMax: 97,
     tameMin: 380,
@@ -124,7 +124,7 @@ export const tames = [
   },
   {
     name: 'black bear',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 95,
     levelMax: 97,
     tameMin: 380,
@@ -132,7 +132,7 @@ export const tames = [
   },
   {
     name: 'fire ant worker',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 92,
     levelMax: 94,
     tameMin: 368,
@@ -140,7 +140,7 @@ export const tames = [
   },
   {
     name: 'fire ant drone',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 92,
     levelMax: 94,
     tameMin: 368,
@@ -156,7 +156,7 @@ export const tames = [
   },
   {
     name: 'hawk',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 92,
     levelMax: 92,
     tameMin: 368,
@@ -164,7 +164,7 @@ export const tames = [
   },
   {
     name: 'snake',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 92,
     tameMin: 360,
@@ -172,7 +172,7 @@ export const tames = [
   },
   {
     name: 'bear cub',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 92,
     tameMin: 360,
@@ -180,7 +180,7 @@ export const tames = [
   },
   {
     name: 'spider',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 92,
     tameMin: 360,
@@ -188,7 +188,7 @@ export const tames = [
   },
   {
     name: 'jaguar',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 92,
     tameMin: 360,
@@ -196,7 +196,7 @@ export const tames = [
   },
   {
     name: 'badger',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 90,
     tameMin: 360,
@@ -204,7 +204,7 @@ export const tames = [
   },
   {
     name: 'jaguar cub',
-    area: 'Ensi (Centaur Forest)',
+    area: 'Ensi',
     levelMin: 90,
     levelMax: 90,
     tameMin: 360,
@@ -356,7 +356,7 @@ export const tames = [
   },
   {
     name: 'fire ant',
-    area: 'Ensi (Minotaur Hills)',
+    area: 'Ensi',
     levelMin: 50,
     levelMax: 50,
     tameMin: 200,

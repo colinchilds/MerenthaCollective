@@ -3,8 +3,8 @@ const path = require('path');
 
 // Map domain paths to readable area names
 const domainToArea = {
-  '/domains/Isles/Ensi/items/Minotaurs': 'Ensi (Minotaur Hills)',
-  '/domains/Isles/Ensi/items/Centaurs': 'Ensi (Centaur Forest)',
+  '/domains/Isles/Ensi/items/Minotaurs': 'Ensi',
+  '/domains/Isles/Ensi/items/Centaurs': 'Ensi',
   '/domains/Fenris': 'Fenris',
   '/domains/Lizland': 'Liku',
   '/domains/DeathSpiral': 'DeathSpiral',
