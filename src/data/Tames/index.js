@@ -235,14 +235,6 @@ export const tames = [
     tameMax: 350,
   },
   {
-    name: 'vampire bat',
-    area: 'Shanadan',
-    levelMin: 60,
-    levelMax: 70,
-    tameMin: 300,
-    tameMax: 350,
-  },
-  {
     name: 'shadowhound',
     area: 'Storm Isle',
     levelMin: 85,
@@ -624,14 +616,6 @@ export const tames = [
     levelMin: 21,
     levelMax: 27,
     tameMin: 84,
-    tameMax: 108,
-  },
-  {
-    name: 'pigeon',
-    area: 'Haven',
-    levelMin: 24,
-    levelMax: 24,
-    tameMin: 96,
     tameMax: 108,
   },
   {

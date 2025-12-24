@@ -116,14 +116,23 @@ function parseTames(inputPath, outputPath) {
     }
   }
 
+  // Remove duplicates (same name, level, and tame values)
+  const seen = new Set();
+  const uniqueTames = tames.filter((t) => {
+    const key = `${t.name}|${t.levelMin}|${t.levelMax}|${t.tameMin}|${t.tameMax}`;
+    if (seen.has(key)) return false;
+    seen.add(key);
+    return true;
+  });
+
   // Sort by tameMax descending
-  tames.sort((a, b) => b.tameMax - a.tameMax);
+  uniqueTames.sort((a, b) => b.tameMax - a.tameMax);
 
   // Generate output
   const output = `// Auto-generated from tames.txt - do not edit manually
 // Run: node scripts/parseTames.js
 
-export const tames = ${JSON.stringify(tames, null, 2)};
+export const tames = ${JSON.stringify(uniqueTames, null, 2)};
 `;
 
   // Ensure output directory exists
@@ -133,11 +142,15 @@ export const tames = ${JSON.stringify(tames, null, 2)};
   }
 
   fs.writeFileSync(outputPath, output);
-  console.log(`Generated ${tames.length} tame entries to ${outputPath}`);
+  console.log(
+    `Generated ${uniqueTames.length} tame entries to ${outputPath} (${
+      tames.length - uniqueTames.length
+    } duplicates removed)`,
+  );
 
   // Print area summary
   const areaCounts = {};
-  tames.forEach((t) => {
+  uniqueTames.forEach((t) => {
     areaCounts[t.area] = (areaCounts[t.area] || 0) + 1;
   });
   console.log('\nMobs by area:');
@@ -149,7 +162,7 @@ export const tames = ${JSON.stringify(tames, null, 2)};
 }
 
 // Run
-const inputPath = path.join(__dirname, '../src/data/tames.txt');
-const outputPath = path.join(__dirname, '../src/data/Tames/index.js');
+const inputPath = path.join(__dirname, 'tames.txt');
+const outputPath = path.join(__dirname, 'index.js');
 
 parseTames(inputPath, outputPath);

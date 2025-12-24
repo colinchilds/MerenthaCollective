@@ -59,12 +59,6 @@ const Tames = () => {
     return [...new Set(tames.map((t) => t.area))].sort();
   }, []);
 
-  // Format level/tame range for display
-  const formatRange = (min, max) => {
-    if (min === max) return String(min);
-    return `${min}-${max}`;
-  };
-
   // Filter and sort tames
   const filteredTames = useMemo(() => {
     return tames.filter((mob) => {
@@ -163,9 +157,7 @@ const Tames = () => {
                 <br />
                 1. Nature + Charisma must be &gt;= tame value
                 <br />
-                2. Faith + 3×Charisma + random(Charisma/2) + random(Luck/2) must be &gt;= tame value
-                <br />
-                3. Must not be in combat and mob cannot be aggressive toward you
+                2. Must not be in combat and mob cannot be aggressive toward you
               </Typography>
 
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
@@ -180,11 +172,6 @@ const Tames = () => {
                       <TableCell>
                         <Typography variant="subtitle2" fontWeight="bold">
                           Area
-                        </Typography>
-                      </TableCell>
-                      <TableCell align="center">
-                        <Typography variant="subtitle2" fontWeight="bold">
-                          Level
                         </Typography>
                       </TableCell>
                       <TableCell align="center">
@@ -205,16 +192,13 @@ const Tames = () => {
                           <Typography variant="body2">{mob.area}</Typography>
                         </TableCell>
                         <TableCell align="center">
-                          <Typography variant="body2">{formatRange(mob.levelMin, mob.levelMax)}</Typography>
-                        </TableCell>
-                        <TableCell align="center">
-                          <Typography variant="body2">{formatRange(mob.tameMin, mob.tameMax)}</Typography>
+                          <Typography variant="body2">~{Math.round((mob.tameMin + mob.tameMax) / 2)}</Typography>
                         </TableCell>
                       </TableRow>
                     ))}
                     {filteredTames.length === 0 && (
                       <TableRow>
-                        <TableCell colSpan={4} align="center">
+                        <TableCell colSpan={3} align="center">
                           <Typography variant="body2" color="text.secondary">
                             No mobs found matching your criteria.
                           </Typography>
