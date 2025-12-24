@@ -183,7 +183,9 @@ const MapperToolbar = ({
   const handleExportPNG = () => {
     if (!diagramRef) return;
     const originalGridVisible = diagramRef.grid.visible;
+    const originalSelection = diagramRef.selection.toArray();
     diagramRef.grid.visible = false;
+    diagramRef.clearSelection();
     const imgData = diagramRef.makeImageData({
       background: 'white',
       scale: 2,
@@ -191,6 +193,7 @@ const MapperToolbar = ({
       maxSize: new go.Size(Infinity, Infinity),
     });
     diagramRef.grid.visible = originalGridVisible;
+    diagramRef.selectCollection(originalSelection);
     const link = document.createElement('a');
     link.href = imgData;
     const timestamp = new Date().toISOString().slice(0, 10);
