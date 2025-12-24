@@ -153,11 +153,13 @@ const Tames = () => {
               )}
 
               <Typography variant="body2" color="text.secondary" sx={{ mb: 2 }}>
-                <strong>Tame requirements:</strong>
+                <strong>Tame notes:</strong>
                 <br />
                 1. Nature + Charisma must be &gt;= tame value
                 <br />
-                2. Must not be in combat and mob cannot be aggressive toward you
+                2. You must not be in combat and the mob cannot be aggressive toward you
+                <br />
+                3. Rangers can have 3 tames. Druids can have 3, increasing to 4 at 100 nature, 5 at 200, and 6 at 600.
               </Typography>
 
               <TableContainer component={Paper} sx={{ maxHeight: '70vh' }}>
