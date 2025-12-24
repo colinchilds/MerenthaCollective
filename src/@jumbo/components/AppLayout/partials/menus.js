@@ -16,11 +16,18 @@ import {
   AccessTime,
   Terminal,
   Science,
-  Check,
+  AutoStories,
   Pets,
 } from '@mui/icons-material';
 
 export const sidebarNavs = [
+  {
+    name: 'Home',
+    type: 'item',
+    icon: <Home />,
+    link: '/',
+    style: { paddingTop: 16 },
+  },
   {
     name: 'Calculators',
     type: 'section',
@@ -80,18 +87,18 @@ export const sidebarNavs = [
         icon: <Pets />,
         link: '/areas/tames',
       },
+      {
+        name: 'Coordinates',
+        type: 'item',
+        icon: <MyLocation />,
+        link: '/coords',
+      },
     ],
   },
   {
     name: 'General',
     type: 'section',
     children: [
-      {
-        name: 'Home',
-        type: 'item',
-        icon: <Home />,
-        link: '/',
-      },
       {
         name: 'Alchemy',
         type: 'item',
@@ -111,12 +118,6 @@ export const sidebarNavs = [
         link: '/commands',
       },
       {
-        name: 'Coordinates',
-        type: 'item',
-        icon: <MyLocation />,
-        link: '/coords',
-      },
-      {
         name: 'Fireworks',
         type: 'item',
         icon: <LocalFireDepartment />,
@@ -125,7 +126,7 @@ export const sidebarNavs = [
       {
         name: 'Quests',
         type: 'item',
-        icon: <Check />,
+        icon: <AutoStories />,
         link: '/quests',
       },
       {

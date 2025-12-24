@@ -70,7 +70,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const NavMenuItem = (props) => {
-  const { name, icon, link } = props;
+  const { name, icon, link, style } = props;
   const { sidebarTheme } = useContext(SidebarThemeContext);
 
   const { setSidebarOpen } = useContext(LayoutContext);
@@ -88,7 +88,7 @@ const NavMenuItem = (props) => {
   };
 
   return (
-    <List component="div" className={clsx(classes.navMenuItem, 'Cmt-nav-menu-item')}>
+    <List component="div" className={clsx(classes.navMenuItem, 'Cmt-nav-menu-item')} style={style}>
       <NavHashLink
         className={clsx(classes.navMenuLink, 'Cmt-nav-menu-link')}
         to={link}
