@@ -12,6 +12,7 @@ import {
   ToggleButtonGroup,
   Button,
   Divider,
+  Slider,
 } from '@mui/material';
 import FormatBoldIcon from '@mui/icons-material/FormatBold';
 import FormatItalicIcon from '@mui/icons-material/FormatItalic';
@@ -38,6 +39,8 @@ const TextPickerDropdown = ({
   fromLabel = '',
   toLabel = '',
   labelOrientation = 'along',
+  fromLabelPosition = 0.15,
+  toLabelPosition = 0.85,
   // Shared font properties
   fontSize = 24,
   fontFamily = 'monospace',
@@ -57,6 +60,8 @@ const TextPickerDropdown = ({
   const [localFromLabel, setLocalFromLabel] = useState(fromLabel);
   const [localToLabel, setLocalToLabel] = useState(toLabel);
   const [localLabelOrientation, setLocalLabelOrientation] = useState(labelOrientation);
+  const [localFromLabelPosition, setLocalFromLabelPosition] = useState(fromLabelPosition);
+  const [localToLabelPosition, setLocalToLabelPosition] = useState(toLabelPosition);
   // Shared font state
   const [localFontSize, setLocalFontSize] = useState(fontSize);
   const [localFontFamily, setLocalFontFamily] = useState(fontFamily);
@@ -71,11 +76,24 @@ const TextPickerDropdown = ({
     setLocalFromLabel(fromLabel);
     setLocalToLabel(toLabel);
     setLocalLabelOrientation(labelOrientation);
+    setLocalFromLabelPosition(fromLabelPosition);
+    setLocalToLabelPosition(toLabelPosition);
     setLocalFontSize(fontSize);
     setLocalFontFamily(fontFamily);
     setLocalFontBold(fontBold);
     setLocalFontItalic(fontItalic);
-  }, [text, fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic]);
+  }, [
+    text,
+    fromLabel,
+    toLabel,
+    labelOrientation,
+    fromLabelPosition,
+    toLabelPosition,
+    fontSize,
+    fontFamily,
+    fontBold,
+    fontItalic,
+  ]);
 
   // Handle controlled open state (e.g., from keyboard shortcut)
   useEffect(() => {
@@ -101,10 +119,31 @@ const TextPickerDropdown = ({
   };
 
   // For rooms: (text, fontSize, fontFamily, fontBold, fontItalic)
-  // For connections: (fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
-  const triggerOnChange = (newText, newFromLabel, newToLabel, newOrientation, newSize, newFamily, newBold, newItalic) => {
+  // For connections: (fromLabel, toLabel, labelOrientation, fromLabelPos, toLabelPos, fontSize, fontFamily, fontBold, fontItalic)
+  const triggerOnChange = (
+    newText,
+    newFromLabel,
+    newToLabel,
+    newOrientation,
+    newFromLabelPos,
+    newToLabelPos,
+    newSize,
+    newFamily,
+    newBold,
+    newItalic,
+  ) => {
     if (isConnection) {
-      onChange(newFromLabel, newToLabel, newOrientation, newSize, newFamily, newBold, newItalic);
+      onChange(
+        newFromLabel,
+        newToLabel,
+        newOrientation,
+        newFromLabelPos,
+        newToLabelPos,
+        newSize,
+        newFamily,
+        newBold,
+        newItalic,
+      );
     } else {
       onChange(newText, newSize, newFamily, newBold, newItalic);
     }
@@ -119,6 +158,8 @@ const TextPickerDropdown = ({
       localFromLabel,
       localToLabel,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       localFontSize,
       localFontFamily,
       localFontBold,
@@ -135,6 +176,8 @@ const TextPickerDropdown = ({
       value,
       localToLabel,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       localFontSize,
       localFontFamily,
       localFontBold,
@@ -150,6 +193,8 @@ const TextPickerDropdown = ({
       localFromLabel,
       value,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       localFontSize,
       localFontFamily,
       localFontBold,
@@ -165,12 +210,46 @@ const TextPickerDropdown = ({
         localFromLabel,
         localToLabel,
         newOrientation,
+        localFromLabelPosition,
+        localToLabelPosition,
         localFontSize,
         localFontFamily,
         localFontBold,
         localFontItalic,
       );
     }
+  };
+
+  const handleFromLabelPositionChange = (event, value) => {
+    setLocalFromLabelPosition(value);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      value,
+      localToLabelPosition,
+      localFontSize,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
+  };
+
+  const handleToLabelPositionChange = (event, value) => {
+    setLocalToLabelPosition(value);
+    triggerOnChange(
+      localText,
+      localFromLabel,
+      localToLabel,
+      localLabelOrientation,
+      localFromLabelPosition,
+      value,
+      localFontSize,
+      localFontFamily,
+      localFontBold,
+      localFontItalic,
+    );
   };
 
   // Font handlers
@@ -182,6 +261,8 @@ const TextPickerDropdown = ({
       localFromLabel,
       localToLabel,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       value,
       localFontFamily,
       localFontBold,
@@ -197,6 +278,8 @@ const TextPickerDropdown = ({
       localFromLabel,
       localToLabel,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       localFontSize,
       value,
       localFontBold,
@@ -214,6 +297,8 @@ const TextPickerDropdown = ({
       localFromLabel,
       localToLabel,
       localLabelOrientation,
+      localFromLabelPosition,
+      localToLabelPosition,
       localFontSize,
       localFontFamily,
       newBold,
@@ -230,6 +315,8 @@ const TextPickerDropdown = ({
         '',
         '',
         localLabelOrientation,
+        localFromLabelPosition,
+        localToLabelPosition,
         localFontSize,
         localFontFamily,
         localFontBold,
@@ -242,6 +329,8 @@ const TextPickerDropdown = ({
         localFromLabel,
         localToLabel,
         localLabelOrientation,
+        localFromLabelPosition,
+        localToLabelPosition,
         localFontSize,
         localFontFamily,
         localFontBold,
@@ -317,8 +406,23 @@ const TextPickerDropdown = ({
               placeholder="e.g., +"
               autoComplete="off"
               inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
-              sx={{ mb: 1.5 }}
+              sx={{ mb: 0.5 }}
             />
+            <Box sx={{ px: 1, mb: 1.5 }}>
+              <Typography variant="caption" color="textSecondary">
+                Position
+              </Typography>
+              <Slider
+                size="small"
+                value={localFromLabelPosition}
+                onChange={handleFromLabelPositionChange}
+                min={0}
+                max={1}
+                step={0.05}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(v) => `${Math.round(v * 100)}%`}
+              />
+            </Box>
             <Typography variant="caption" color="textSecondary" sx={{ mb: 0.5, display: 'block' }}>
               To Label
             </Typography>
@@ -332,8 +436,23 @@ const TextPickerDropdown = ({
               placeholder="e.g., -"
               autoComplete="off"
               inputProps={{ autoComplete: 'off', 'data-lpignore': 'true', 'data-form-type': 'other' }}
-              sx={{ mb: 2 }}
+              sx={{ mb: 0.5 }}
             />
+            <Box sx={{ px: 1, mb: 2 }}>
+              <Typography variant="caption" color="textSecondary">
+                Position
+              </Typography>
+              <Slider
+                size="small"
+                value={localToLabelPosition}
+                onChange={handleToLabelPositionChange}
+                min={0}
+                max={1}
+                step={0.05}
+                valueLabelDisplay="auto"
+                valueLabelFormat={(v) => `${Math.round(v * 100)}%`}
+              />
+            </Box>
           </>
         ) : (
           <>

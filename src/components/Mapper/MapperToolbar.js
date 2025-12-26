@@ -257,7 +257,7 @@ const MapperToolbar = ({
   };
 
   // For rooms: handleTextChange(text, fontSize, fontFamily, fontBold, fontItalic)
-  // For connections: handleTextChange(fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
+  // For connections: handleTextChange(fromLabel, toLabel, labelOrientation, fromLabelPosition, toLabelPosition, fontSize, fontFamily, fontBold, fontItalic)
   const handleTextChange = (...args) => {
     if (!diagramRef || !selectedObject) return;
     diagramRef.startTransaction('change text properties');
@@ -271,11 +271,23 @@ const MapperToolbar = ({
       diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
       diagramRef.model.setDataProperty(selectedObject.data, 'fontItalic', fontItalic);
     } else {
-      // Connection: (fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic)
-      const [fromLabel, toLabel, labelOrientation, fontSize, fontFamily, fontBold, fontItalic] = args;
+      // Connection: (fromLabel, toLabel, labelOrientation, fromLabelPosition, toLabelPosition, fontSize, fontFamily, fontBold, fontItalic)
+      const [
+        fromLabel,
+        toLabel,
+        labelOrientation,
+        fromLabelPosition,
+        toLabelPosition,
+        fontSize,
+        fontFamily,
+        fontBold,
+        fontItalic,
+      ] = args;
       diagramRef.model.setDataProperty(selectedObject.data, 'fromLabel', fromLabel);
       diagramRef.model.setDataProperty(selectedObject.data, 'toLabel', toLabel);
       diagramRef.model.setDataProperty(selectedObject.data, 'labelOrientation', labelOrientation);
+      diagramRef.model.setDataProperty(selectedObject.data, 'fromLabelPosition', fromLabelPosition);
+      diagramRef.model.setDataProperty(selectedObject.data, 'toLabelPosition', toLabelPosition);
       diagramRef.model.setDataProperty(selectedObject.data, 'fontSize', fontSize);
       diagramRef.model.setDataProperty(selectedObject.data, 'fontFamily', fontFamily);
       diagramRef.model.setDataProperty(selectedObject.data, 'fontBold', fontBold);
@@ -336,6 +348,8 @@ const MapperToolbar = ({
   const currentFromLabel = selectedObject?.data?.fromLabel || '';
   const currentToLabel = selectedObject?.data?.toLabel || '';
   const currentLabelOrientation = selectedObject?.data?.labelOrientation || 'along';
+  const currentFromLabelPosition = selectedObject?.data?.fromLabelPosition ?? 0.15;
+  const currentToLabelPosition = selectedObject?.data?.toLabelPosition ?? 0.85;
   const currentFontSize = selectedObject?.data?.fontSize || 24;
   const currentFontFamily = selectedObject?.data?.fontFamily || 'monospace';
   const currentFontBold = selectedObject?.data?.fontBold || false;
@@ -424,6 +438,8 @@ const MapperToolbar = ({
         fromLabel={currentFromLabel}
         toLabel={currentToLabel}
         labelOrientation={currentLabelOrientation}
+        fromLabelPosition={currentFromLabelPosition}
+        toLabelPosition={currentToLabelPosition}
         fontSize={currentFontSize}
         fontFamily={currentFontFamily}
         fontBold={currentFontBold}

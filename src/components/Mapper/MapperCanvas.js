@@ -509,6 +509,7 @@ const MapperCanvas = ({
         },
         new go.Binding('visible', 'fromLabel', (l) => !!l),
         new go.Binding('text', 'fromLabel'),
+        new go.Binding('segmentFraction', 'fromLabelPosition', (pos) => (pos !== undefined ? pos : 0.15)),
         new go.Binding('font', '', (data) => {
           const size = data.fontSize || 24;
           const family = data.fontFamily || 'monospace';
@@ -537,6 +538,7 @@ const MapperCanvas = ({
         },
         new go.Binding('visible', 'toLabel', (l) => !!l),
         new go.Binding('text', 'toLabel'),
+        new go.Binding('segmentFraction', 'toLabelPosition', (pos) => (pos !== undefined ? pos : 0.85)),
         new go.Binding('font', '', (data) => {
           const size = data.fontSize || 24;
           const family = data.fontFamily || 'monospace';
