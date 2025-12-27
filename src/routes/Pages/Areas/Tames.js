@@ -61,20 +61,21 @@ const Tames = () => {
 
   // Filter and sort tames
   const filteredTames = useMemo(() => {
-    return tames.filter((mob) => {
-      // Search filter (name and area)
-      const term = searchTerm.toLowerCase();
-      const matchesSearch = mob.name.toLowerCase().includes(term) || mob.area.toLowerCase().includes(term);
+    return tames
+      .filter((mob) => {
+        // Search filter (name and area)
+        const term = searchTerm.toLowerCase();
+        const matchesSearch = mob.name.toLowerCase().includes(term) || mob.area.toLowerCase().includes(term);
 
-      // Area filter
-      const matchesArea = !areaFilter || mob.area === areaFilter;
+        // Area filter
+        const matchesArea = !areaFilter || mob.area === areaFilter;
 
-      // Tameable filter (only when character is selected)
-      const matchesTameable = !tameCapability || tameCapability >= mob.tameMin;
+        // Tameable filter (only when character is selected)
+        const matchesTameable = !tameCapability || tameCapability >= mob.tameMin;
 
-      return matchesSearch && matchesArea && matchesTameable;
-    });
-    // Already sorted by tameMax descending from the data file
+        return matchesSearch && matchesArea && matchesTameable;
+      })
+      .sort((a, b) => (b.tameMin + b.tameMax) / 2 - (a.tameMin + a.tameMax) / 2);
   }, [searchTerm, areaFilter, tameCapability]);
 
   const getCharacterDisplayName = (character) => {
