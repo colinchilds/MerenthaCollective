@@ -1,8 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import SidebarToggleHandler from '../../../../../@coremat/CmtLayouts/Vertical/SidebarToggleHandler';
 import Toolbar from '@mui/material/Toolbar';
-import { Box, Typography } from '@mui/material';
+import { Box, IconButton, Tooltip, Typography } from '@mui/material';
 import { alpha } from '@mui/material/styles';
+import Brightness4Icon from '@mui/icons-material/Brightness4';
+import Brightness7Icon from '@mui/icons-material/Brightness7';
+import AppContext from '../../../contextProvider/AppContextProvider/AppContext';
 
 import makeStyles from '@mui/styles/makeStyles';
 
@@ -69,10 +72,17 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.common.white,
     },
   },
+  themeToggle: {
+    color: theme.palette.common.white,
+    '&:hover': {
+      backgroundColor: alpha(theme.palette.common.white, 0.1),
+    },
+  },
 }));
 
 const Header = () => {
   const classes = useStyles();
+  const { isDarkMode, toggleTheme } = useContext(AppContext);
 
   return (
     <Toolbar className={classes.root}>
@@ -82,6 +92,11 @@ const Header = () => {
         Merentha Collective
       </Typography>
       <Box flex={1} />
+      <Tooltip title={isDarkMode ? 'Switch to light mode' : 'Switch to dark mode'}>
+        <IconButton onClick={toggleTheme} className={classes.themeToggle} aria-label="toggle theme">
+          {isDarkMode ? <Brightness7Icon /> : <Brightness4Icon />}
+        </IconButton>
+      </Tooltip>
     </Toolbar>
   );
 };

@@ -95,13 +95,13 @@ const CommonCommands = () => {
                       onClick={() => handleCommandClick(command)}
                       sx={{
                         cursor: 'pointer',
-                        bgcolor: selectedCommand?.id === command.id ? 'primary.main' : 'grey.100',
+                        bgcolor: selectedCommand?.id === command.id ? 'primary.main' : 'action.hover',
                         color: selectedCommand?.id === command.id ? 'white' : 'text.primary',
                         '&:hover': {
                           bgcolor:
                             selectedCommand?.id === command.id
                               ? 'primary.dark'
-                              : (theme) => alpha(theme.palette.primary.main, 0.1),
+                              : (theme) => alpha(theme.palette.primary.main, 0.15),
                         },
                       }}
                     />
@@ -111,7 +111,7 @@ const CommonCommands = () => {
 
               {/* Command Details */}
               {selectedCommand && (
-                <Paper sx={{ p: 3, bgcolor: 'grey.50' }}>
+                <Paper sx={{ p: 3, bgcolor: 'action.hover' }}>
                   <Typography
                     variant="h4"
                     sx={{
@@ -125,7 +125,7 @@ const CommonCommands = () => {
                   <Typography variant="h6" sx={{ mb: 1 }}>
                     Syntax:
                   </Typography>
-                  <Paper sx={{ p: 2, mb: 3, bgcolor: 'grey.900', color: 'white' }}>
+                  <Paper sx={{ p: 2, mb: 3, bgcolor: 'grey.900', color: 'grey.100' }}>
                     <Typography variant="body1" component="code" sx={{ fontFamily: 'monospace' }}>
                       {selectedCommand.syntax}
                     </Typography>
@@ -140,7 +140,7 @@ const CommonCommands = () => {
               )}
 
               {!selectedCommand && (
-                <Paper sx={{ p: 3, bgcolor: 'grey.50', textAlign: 'center' }}>
+                <Paper sx={{ p: 3, bgcolor: 'action.hover', textAlign: 'center' }}>
                   <Typography variant="body1" color="text.secondary">
                     Select a command from the list above to view its details.
                   </Typography>

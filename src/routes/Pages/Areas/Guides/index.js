@@ -94,10 +94,10 @@ const AreaPage = () => {
                       variant="outlined"
                       clickable
                       sx={{
-                        '&:hover': {
+                        '&&:hover': {
                           backgroundColor: 'primary.main',
-                          color: 'white',
                           borderColor: 'primary.main',
+                          color: '#fff',
                         },
                       }}
                     />

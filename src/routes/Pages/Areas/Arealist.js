@@ -184,7 +184,7 @@ const Arealist = () => {
                         <React.Fragment key={areaSlug}>
                           {/* CONTINENT NAME */}
                           <TableRow>
-                            <TableCell colSpan={6} sx={{ backgroundColor: 'grey.200' }}>
+                            <TableCell colSpan={6} sx={{ backgroundColor: 'action.selected' }}>
                               <Typography variant="subtitle1" fontWeight="bold">
                                 {areaName}
                               </Typography>
@@ -195,10 +195,12 @@ const Arealist = () => {
                           {filtered.map((sub) => (
                             <React.Fragment key={sub.slug}>
                               <TableRow>
-                                <TableCell colSpan={6} sx={{ backgroundColor: 'grey.100' }}>
+                                <TableCell colSpan={6} sx={{ backgroundColor: 'action.hover' }}>
                                   <Typography variant="subtitle2" fontWeight="medium">
-                                    <RouterLink to={sub.link} style={{ textDecoration: 'none', color: 'blue' }}>
-                                      {sub.name}
+                                    <RouterLink to={sub.link} style={{ textDecoration: 'none', color: 'inherit' }}>
+                                      <Typography component="span" color="primary.main">
+                                        {sub.name}
+                                      </Typography>
                                     </RouterLink>
                                   </Typography>
                                 </TableCell>

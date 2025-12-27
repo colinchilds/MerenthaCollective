@@ -1,8 +1,8 @@
 export const sectionStyles = {
   padding: '20px 24px 20px 32px',
   border: '1px solid',
-  borderColor: 'grey.300',
-  backgroundColor: 'grey.50',
+  borderColor: 'divider',
+  backgroundColor: 'background.paper',
   borderRadius: 1,
 };
 

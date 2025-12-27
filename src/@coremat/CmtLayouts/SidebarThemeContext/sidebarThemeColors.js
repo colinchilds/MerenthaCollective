@@ -21,13 +21,13 @@ export const sidebarSemiDarkTheme = {
 };
 
 export const sidebarDarkTheme = {
-  bgColor: '#363636',
-  textColor: 'rgba(255, 255, 255, 0.3)',
+  bgColor: '#1a1a2e',
+  textColor: 'rgba(255, 255, 255, 0.75)',
   textDarkColor: '#fff',
-  textActiveColor: '#fff',
-  navHoverBgColor: 'rgba(187, 134, 252, 0.08)',
-  navActiveBgColor: '#3f51b5',
-  borderColor: 'rgba(255, 255, 255, 0.08)',
+  textActiveColor: '#90caf9',
+  navHoverBgColor: 'rgba(144, 202, 249, 0.12)',
+  navActiveBgColor: 'rgba(144, 202, 249, 0.2)',
+  borderColor: 'rgba(255, 255, 255, 0.12)',
   ...JSON.parse(localStorage.getItem('sidebar-colors')),
 };
 

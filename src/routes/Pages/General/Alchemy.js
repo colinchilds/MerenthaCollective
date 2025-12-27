@@ -4,7 +4,17 @@ import PageContainer from '@jumbo/components/PageComponents/layouts/PageContaine
 import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Table, TableBody, TableCell, TableHead, TableRow, Typography, TableContainer, Paper } from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  Typography,
+  TableContainer,
+  Paper,
+  useTheme,
+} from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { alchemyRecipes, ingredients } from 'data/Alchemy';
 
@@ -16,6 +26,12 @@ const breadcrumbs = [
 // Alchemy recipe data organized by circles
 
 const Alchemy = () => {
+  const theme = useTheme();
+  const isDark = theme.palette.mode === 'dark';
+
+  const emptyCell = isDark ? 'rgba(255, 255, 255, 0.05)' : 'grey.300';
+  const filledCell = isDark ? '#5c5c1a' : '#FFF176';
+
   const renderRecipeSection = (title, recipes, bgColor) => (
     <React.Fragment>
       <TableRow>
@@ -25,7 +41,7 @@ const Alchemy = () => {
             backgroundColor: bgColor,
             py: 1,
           }}>
-          <Typography variant="subtitle1" fontWeight="bold">
+          <Typography variant="subtitle1" fontWeight="bold" color="#000">
             {title}
           </Typography>
         </TableCell>
@@ -37,40 +53,40 @@ const Alchemy = () => {
               {recipe.potion}
             </Typography>
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.water ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.water ? filledCell : emptyCell }}>
             {recipe.water || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.oil ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.oil ? filledCell : emptyCell }}>
             {recipe.oil || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.vinegar ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.vinegar ? filledCell : emptyCell }}>
             {recipe.vinegar || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.blood ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.blood ? filledCell : emptyCell }}>
             {recipe.blood || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.clay ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.clay ? filledCell : emptyCell }}>
             {recipe.clay || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.bark ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.bark ? filledCell : emptyCell }}>
             {recipe.bark || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.root ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.root ? filledCell : emptyCell }}>
             {recipe.root || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.limestone ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.limestone ? filledCell : emptyCell }}>
             {recipe.limestone || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.bone ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.bone ? filledCell : emptyCell }}>
             {recipe.bone || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.mushroom ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.mushroom ? filledCell : emptyCell }}>
             {recipe.mushroom || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.iron ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.iron ? filledCell : emptyCell }}>
             {recipe.iron || ''}
           </TableCell>
-          <TableCell align="center" sx={{ backgroundColor: recipe.acorn ? '#FFF176' : 'grey.300' }}>
+          <TableCell align="center" sx={{ backgroundColor: recipe.acorn ? filledCell : emptyCell }}>
             {recipe.acorn || ''}
           </TableCell>
         </TableRow>
