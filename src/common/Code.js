@@ -10,7 +10,8 @@ const Code = ({ children }) => {
         px: 0.5,
         borderRadius: '4px',
         fontFamily: 'monospace',
-        backgroundColor: '#f5f5f5',
+        backgroundColor: 'action.selected',
+        color: 'text.primary',
       }}>
       {children}
     </Typography>
