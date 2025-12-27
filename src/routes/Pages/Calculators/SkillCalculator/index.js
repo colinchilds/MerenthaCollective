@@ -427,21 +427,19 @@ const SkillCalculator = () => {
                           size="small"
                           sx={{
                             '& .MuiTableCell-root': { py: 1, px: 1 },
-                            tableLayout: 'fixed',
-                            width: '100%',
                           }}>
                           <TableHead>
                             <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
-                              <TableCell sx={{ width: '300px' }}>
+                              <TableCell sx={{ width: '200px' }}>
                                 <Typography variant="subtitle2">Skill</Typography>
                               </TableCell>
-                              <TableCell sx={{ width: '300px' }}>
+                              <TableCell>
                                 <Typography variant="subtitle2">Current</Typography>
                               </TableCell>
-                              <TableCell sx={{ width: 'auto' }}>
+                              <TableCell>
                                 <Typography variant="subtitle2">Target</Typography>
                               </TableCell>
-                              <TableCell align="right" sx={{ width: '140px' }}>
+                              <TableCell align="right">
                                 <Typography variant="subtitle2">Exp Cost</Typography>
                               </TableCell>
                             </TableRow>
@@ -451,7 +449,7 @@ const SkillCalculator = () => {
                               (skill, skillIndex) =>
                                 multipliers[skill] && (
                                   <TableRow key={skillIndex}>
-                                    <TableCell sx={{ width: '200px' }}>
+                                    <TableCell>
                                       <Box display="flex" alignItems="center" gap={1}>
                                         <Typography>{skill}</Typography>
                                         {getSpecializationIndicator(getSkillSpecializationLevel(skill)) && (
@@ -466,7 +464,7 @@ const SkillCalculator = () => {
                                         )}
                                       </Box>
                                     </TableCell>
-                                    <TableCell sx={{ width: '180px' }}>
+                                    <TableCell>
                                       <TextField
                                         size="small"
                                         type="number"
@@ -484,7 +482,7 @@ const SkillCalculator = () => {
                                         }}
                                       />
                                     </TableCell>
-                                    <TableCell sx={{ width: 'auto' }}>
+                                    <TableCell>
                                       <Box display="flex" alignItems="center" gap={1}>
                                         <TextField
                                           size="small"
