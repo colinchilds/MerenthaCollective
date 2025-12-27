@@ -94,15 +94,6 @@ const globalStyles = makeStyles((theme) => ({
     pre: {
       margin: '15px',
     },
-    '.MuiTableHead-root': {
-      backgroundColor: '#DDD',
-      '& th:first-child': {
-        borderRadius: 3,
-      },
-      '& th:last-child': {
-        borderRadius: 3,
-      },
-    },
     ...paddingClasses,
     ...marginClasses,
   },
