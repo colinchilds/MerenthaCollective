@@ -430,16 +430,16 @@ const SkillCalculator = () => {
                           }}>
                           <TableHead>
                             <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
-                              <TableCell sx={{ width: '200px' }}>
+                              <TableCell sx={{ width: '180px' }}>
                                 <Typography variant="subtitle2">Skill</Typography>
                               </TableCell>
                               <TableCell>
                                 <Typography variant="subtitle2">Current</Typography>
                               </TableCell>
-                              <TableCell>
+                              <TableCell sx={{ minWidth: '250px' }}>
                                 <Typography variant="subtitle2">Target</Typography>
                               </TableCell>
-                              <TableCell align="right">
+                              <TableCell align="right" sx={{ width: '100px' }}>
                                 <Typography variant="subtitle2">Exp Cost</Typography>
                               </TableCell>
                             </TableRow>
@@ -465,25 +465,23 @@ const SkillCalculator = () => {
                                       </Box>
                                     </TableCell>
                                     <TableCell>
-                                      <TextField
-                                        size="small"
-                                        type="number"
-                                        inputProps={{ min: 0, max: 999 }}
-                                        value={skillLevels[skill]}
-                                        variant="outlined"
-                                        onChange={(event) => updateSkillLevels(skill, event.target.value)}
-                                        sx={{ width: '160px' }}
-                                        InputProps={{
-                                          endAdornment: (
-                                            <InputAdornment position="end" size="small">
-                                              <Typography>{`/ ${getSkillMax(multipliers, skill, level)}`}</Typography>
-                                            </InputAdornment>
-                                          ),
-                                        }}
-                                      />
+                                      <Box display="flex" alignItems="center" gap={2.5} sx={{ whiteSpace: 'nowrap', pr: 2 }}>
+                                        <TextField
+                                          size="small"
+                                          type="number"
+                                          inputProps={{ min: 0, max: 999 }}
+                                          value={skillLevels[skill]}
+                                          variant="outlined"
+                                          onChange={(event) => updateSkillLevels(skill, event.target.value)}
+                                          sx={{ width: '90px' }}
+                                        />
+                                        <Typography sx={{ color: 'text.secondary' }}>
+                                          {`/ ${getSkillMax(multipliers, skill, level)}`}
+                                        </Typography>
+                                      </Box>
                                     </TableCell>
-                                    <TableCell>
-                                      <Box display="flex" alignItems="center" gap={1}>
+                                    <TableCell sx={{ minWidth: '250px' }}>
+                                      <Box display="flex" alignItems="center" gap={2}>
                                         <TextField
                                           size="small"
                                           type="number"
@@ -500,23 +498,26 @@ const SkillCalculator = () => {
                                             }));
                                           }}
                                           onBlur={() => handleTargetBlur(skill)}
-                                          sx={{ width: '120px' }}
-                                          InputProps={{
-                                            endAdornment: (
-                                              <InputAdornment position="end" size="small">
-                                                <Typography
-                                                  sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
-                                                  {(() => {
-                                                    const diff =
-                                                      (parseInt(skillTargets[skill]) || 0) -
-                                                      (parseInt(skillLevels[skill]) || 0);
-                                                    return diff >= 0 ? `+${diff}` : `${diff}`;
-                                                  })()}
-                                                </Typography>
-                                              </InputAdornment>
-                                            ),
-                                          }}
+                                          sx={{ width: '90px' }}
                                         />
+                                        <Typography
+                                          sx={{
+                                            color: (() => {
+                                              const diff =
+                                                (parseInt(skillTargets[skill]) || 0) - (parseInt(skillLevels[skill]) || 0);
+                                              if (diff > 0) return 'success.main';
+                                              if (diff < 0) return 'error.main';
+                                              return 'text.secondary';
+                                            })(),
+                                            minWidth: '36px',
+                                            fontWeight: 500,
+                                          }}>
+                                          {(() => {
+                                            const diff =
+                                              (parseInt(skillTargets[skill]) || 0) - (parseInt(skillLevels[skill]) || 0);
+                                            return diff >= 0 ? `+${diff}` : `${diff}`;
+                                          })()}
+                                        </Typography>
                                         <Button
                                           size="small"
                                           variant="outlined"

@@ -263,8 +263,7 @@ const StatCalculator = () => {
                             sx={{
                               padding: '2px',
                               color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
-                            }}
-                          >
+                            }}>
                             {statWerewolfToggles[stat] === 'night' ? (
                               <NightsStayIcon fontSize="small" />
                             ) : (
@@ -333,8 +332,7 @@ const StatCalculator = () => {
                         minWidth: '45px',
                         fontSize: '0.7rem',
                         padding: '4px 8px',
-                      }}
-                    >
+                      }}>
                       MAX
                     </Button>
                     {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
@@ -347,8 +345,7 @@ const StatCalculator = () => {
                             borderRadius: '4px',
                             padding: '4px',
                             color: '#4caf50',
-                          }}
-                        >
+                          }}>
                           <CheckIcon fontSize="small" />
                         </IconButton>
                         <IconButton
@@ -358,8 +355,7 @@ const StatCalculator = () => {
                             border: '1px solid rgba(0, 0, 0, 0.23)',
                             borderRadius: '4px',
                             padding: '4px',
-                          }}
-                        >
+                          }}>
                           <ClearIcon fontSize="small" />
                         </IconButton>
                       </>
@@ -407,8 +403,7 @@ const StatCalculator = () => {
                 size="small"
                 sx={{
                   '& .MuiTableCell-root': { py: 1, px: 1 },
-                }}
-              >
+                }}>
                 <TableHead>
                   <TableRow sx={{ '& .MuiTableCell-root': { py: 1.5, borderBottom: 2, borderColor: 'divider' } }}>
                     <TableCell>
@@ -417,7 +412,7 @@ const StatCalculator = () => {
                     <TableCell>
                       <Typography variant="subtitle2">Current</Typography>
                     </TableCell>
-                    <TableCell>
+                    <TableCell sx={{ width: '300px' }}>
                       <Typography variant="subtitle2">Target</Typography>
                     </TableCell>
                     <TableCell align="right" sx={{ minWidth: '140px' }}>
@@ -440,8 +435,7 @@ const StatCalculator = () => {
                                 sx={{
                                   padding: '2px',
                                   color: statWerewolfToggles[stat] === 'night' ? '#1976d2' : '#f57c00',
-                                }}
-                              >
+                                }}>
                                 {statWerewolfToggles[stat] === 'night' ? (
                                   <NightsStayIcon fontSize="small" />
                                 ) : (
@@ -454,32 +448,30 @@ const StatCalculator = () => {
                         </Box>
                       </TableCell>
                       <TableCell>
-                        <TextField
-                          size="small"
-                          type="number"
-                          inputProps={{ min: 0, max: 500 }}
-                          value={statLevels[stat]}
-                          variant="outlined"
-                          onChange={(event) => updateStatLevels(stat, event.target.value)}
-                          sx={{ minWidth: '120px' }}
-                          InputProps={{
-                            endAdornment: (
-                              <InputAdornment position="end" size="small">
-                                <Typography>{`/ ${getMaxStat(
-                                  stat,
-                                  charClass,
-                                  race,
-                                  level,
-                                  isWerewolf,
-                                  isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
-                                )}`}</Typography>
-                              </InputAdornment>
-                            ),
-                          }}
-                        />
+                        <Box display="flex" alignItems="center" gap={2}>
+                          <TextField
+                            size="small"
+                            type="number"
+                            inputProps={{ min: 0, max: 500 }}
+                            value={statLevels[stat]}
+                            variant="outlined"
+                            onChange={(event) => updateStatLevels(stat, event.target.value)}
+                            sx={{ width: '90px' }}
+                          />
+                          <Typography sx={{ color: 'text.secondary' }}>
+                            {`/ ${getMaxStat(
+                              stat,
+                              charClass,
+                              race,
+                              level,
+                              isWerewolf,
+                              isWerewolf && statWerewolfToggles ? statWerewolfToggles[stat] : 'day',
+                            )}`}
+                          </Typography>
+                        </Box>
                       </TableCell>
-                      <TableCell>
-                        <Box display="flex" alignItems="center" gap={1}>
+                      <TableCell sx={{ width: '300px' }}>
+                        <Box display="flex" alignItems="center" gap={2}>
                           <TextField
                             size="small"
                             type="number"
@@ -496,20 +488,24 @@ const StatCalculator = () => {
                               }));
                             }}
                             onBlur={() => handleTargetBlur(stat)}
-                            sx={{ width: '120px' }}
-                            InputProps={{
-                              endAdornment: (
-                                <InputAdornment position="end" size="small">
-                                  <Typography sx={{ color: 'text.secondary', minWidth: '28px', textAlign: 'right' }}>
-                                    {(() => {
-                                      const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
-                                      return diff >= 0 ? `+${diff}` : `${diff}`;
-                                    })()}
-                                  </Typography>
-                                </InputAdornment>
-                              ),
-                            }}
+                            sx={{ width: '90px' }}
                           />
+                          <Typography
+                            sx={{
+                              color: (() => {
+                                const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
+                                if (diff > 0) return 'success.main';
+                                if (diff < 0) return 'error.main';
+                                return 'text.secondary';
+                              })(),
+                              minWidth: '36px',
+                              fontWeight: 500,
+                            }}>
+                            {(() => {
+                              const diff = (parseInt(statTargets[stat]) || 0) - (parseInt(statLevels[stat]) || 0);
+                              return diff >= 0 ? `+${diff}` : `${diff}`;
+                            })()}
+                          </Typography>
                           <Button
                             size="small"
                             variant="outlined"
@@ -518,8 +514,7 @@ const StatCalculator = () => {
                               minWidth: '45px',
                               fontSize: '0.7rem',
                               padding: '4px 8px',
-                            }}
-                          >
+                            }}>
                             MAX
                           </Button>
                           {parseInt(statTargets[stat]) > parseInt(statLevels[stat]) && (
@@ -532,8 +527,7 @@ const StatCalculator = () => {
                                   borderRadius: '4px',
                                   padding: '4px',
                                   color: '#4caf50',
-                                }}
-                              >
+                                }}>
                                 <CheckIcon fontSize="small" />
                               </IconButton>
                               <IconButton
@@ -543,8 +537,7 @@ const StatCalculator = () => {
                                   border: '1px solid rgba(0, 0, 0, 0.23)',
                                   borderRadius: '4px',
                                   padding: '4px',
-                                }}
-                              >
+                                }}>
                                 <ClearIcon fontSize="small" />
                               </IconButton>
                             </>
