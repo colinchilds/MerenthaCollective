@@ -4,7 +4,7 @@ import { Typography, Grid, Box, Chip, Divider, Alert, Link } from '@mui/material
 import GridContainer from '@jumbo/components/GridContainer';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import MapModal from 'routes/Pages/Components/MapModal';
+import InteractiveMap from '../../Components/InteractiveMap';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import Code from 'common/Code';
 
@@ -145,7 +145,7 @@ const AreaPage = () => {
                           transform: 'scale(1.02)',
                         },
                       }}>
-                      <MapModal name={map.name} url={map.url} />
+                      <InteractiveMap name={map.name} url={map.url} interactiveMapName={map.interactiveMapName} />
                     </Box>
                   </Grid>
                 ))}

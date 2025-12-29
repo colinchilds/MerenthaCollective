@@ -7,7 +7,7 @@ import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableRow, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import { flyingCoords, balloonCoords, shipsCoords, sailingCoords } from 'data/Coords';
-import MapModal from 'routes/Pages/Components/MapModal';
+import MapLink from 'routes/Pages/Components/InteractiveMap';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -21,7 +21,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Sailing">
-              <MapModal name="World Map" url="/images/maps/world_map.png" />
+              <MapLink name="World Map" url="/images/maps/world_map.png" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
@@ -45,7 +45,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Balloon">
-              <MapModal name="World Map" url="/images/maps/world_map.png" />
+              <MapLink name="World Map" url="/images/maps/world_map.png" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
@@ -69,7 +69,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Ships">
-              <MapModal name="World Map" url="/images/maps/world_map.png" />
+              <MapLink name="World Map" url="/images/maps/world_map.png" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">
@@ -96,7 +96,7 @@ const Coordinates = () => {
         <Grid item xs={12}>
           <CmtCard>
             <CmtCardHeader title="Flying">
-              <MapModal name="Flying Map" url="/images/maps/flying_map.gif" />
+              <MapLink name="Flying Map" url="/images/maps/flying_map.gif" />
             </CmtCardHeader>
             <CmtCardContent>
               <Table size="small">

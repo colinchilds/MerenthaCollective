@@ -1,6 +1,16 @@
 import React, { useEffect, useRef, useCallback } from 'react';
 import * as go from 'gojs';
 import { Box } from '@mui/material';
+import {
+  createNodeTemplate,
+  setAllPortsVisible,
+  createLinkTemplate,
+  registerArrowheadGeometries,
+  createDragSelectingBox,
+  createModel,
+  setupScrollZoomHandling,
+  setupLinkingToolCallbacks,
+} from './core';
 
 // Set GoJS license key from environment variable
 if (process.env.REACT_APP_GOJS_LICENSE_KEY) {
@@ -204,30 +214,8 @@ const MapperCanvas = ({
 
     const $ = go.GraphObject.make;
 
-    // Create port shape - centered on the room edge, rendered on top of border
-    // Links connect to the center of the port, which sits exactly on the room edge
-    const makePort = (portId, alignment) => {
-      return $(go.Shape, 'Circle', {
-        name: `PORT_${portId}`,
-        desiredSize: new go.Size(16, 16), // Large enough to click
-        fill: 'transparent',
-        stroke: 'transparent',
-        portId: portId,
-        fromSpot: go.Spot.Center, // Links connect to center of port
-        toSpot: go.Spot.Center, // which is at the room edge
-        fromLinkable: true,
-        toLinkable: true,
-        fromLinkableDuplicates: true,
-        toLinkableDuplicates: true,
-        fromEndSegmentLength: 0,
-        toEndSegmentLength: 0,
-        alignment: alignment,
-        alignmentFocus: go.Spot.Center, // Center of port sits at room edge
-        cursor: 'crosshair',
-        // Ensure ports render on top of room border
-        background: 'transparent',
-      });
-    };
+    // Register custom arrowhead geometries
+    registerArrowheadGeometries();
 
     const diagram = $(go.Diagram, diagramDivRef.current, {
       'undoManager.isEnabled': true,
@@ -240,330 +228,21 @@ const MapperCanvas = ({
       'animationManager.isEnabled': false,
       allowLink: true,
       // Configure drag selecting tool with styled box
-      'dragSelectingTool.box': $(
-        go.Part,
-        { layerName: 'Tool' },
-        $(go.Shape, 'Rectangle', {
-          fill: 'rgba(66, 133, 244, 0.1)',
-          stroke: '#4285f4',
-          strokeWidth: 1,
-        }),
-      ),
+      'dragSelectingTool.box': createDragSelectingBox($),
       // Disable default panning - we'll control it via tool mode
       'panningTool.isEnabled': false,
       'dragSelectingTool.isEnabled': true,
-      model: new go.GraphLinksModel({
-        linkKeyProperty: 'key',
-        linkFromPortIdProperty: 'fromPort', // Save port ID when link created
-        linkToPortIdProperty: 'toPort', // Save port ID when link created
-        nodeDataArray: [],
-        linkDataArray: [],
-      }),
+      model: createModel(),
     });
 
-    // Define room node template with hover-visible ports
-    diagram.nodeTemplate = $(
-      go.Node,
-      'Spot',
-      {
-        locationSpot: go.Spot.Center,
-        selectionAdorned: false, // Disable default adornment, we'll handle selection visually
-        locationObjectName: 'SHAPE',
-        resizable: false,
-        rotatable: false,
-        dragComputation: (part, pt, gridpt) => {
-          const cellSize = 100;
-          const offset = 50;
-          const x = Math.round((pt.x - offset) / cellSize) * cellSize + offset;
-          const y = Math.round((pt.y - offset) / cellSize) * cellSize + offset;
-          return new go.Point(x, y);
-        },
-        // Show ports on mouse enter (make them visible by changing colors)
-        mouseEnter: (e, node) => {
-          e.diagram.skipsUndoManager = true;
-          const portIds = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-          portIds.forEach((id) => {
-            const port = node.findObject(`PORT_${id}`);
-            if (port) {
-              port.fill = 'rgba(66, 133, 244, 0.7)';
-              port.stroke = '#2962ff';
-            }
-          });
-          e.diagram.skipsUndoManager = false;
-        },
-        // Hide ports on mouse leave (make them transparent)
-        mouseLeave: (e, node) => {
-          if (!e.diagram.toolManager.linkingTool.isActive && !e.diagram.toolManager.relinkingTool.isActive) {
-            e.diagram.skipsUndoManager = true;
-            const portIds = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-            portIds.forEach((id) => {
-              const port = node.findObject(`PORT_${id}`);
-              if (port) {
-                port.fill = 'transparent';
-                port.stroke = 'transparent';
-              }
-            });
-            e.diagram.skipsUndoManager = false;
-          }
-        },
-        // Show ports when dragging a link over this node
-        mouseDragEnter: (e, node) => {
-          e.diagram.skipsUndoManager = true;
-          const portIds = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-          portIds.forEach((id) => {
-            const port = node.findObject(`PORT_${id}`);
-            if (port) {
-              port.fill = 'rgba(66, 133, 244, 0.7)';
-              port.stroke = '#2962ff';
-            }
-          });
-          e.diagram.skipsUndoManager = false;
-        },
-        // Hide ports when dragging a link away from this node
-        mouseDragLeave: (e, node) => {
-          e.diagram.skipsUndoManager = true;
-          const portIds = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-          portIds.forEach((id) => {
-            const port = node.findObject(`PORT_${id}`);
-            if (port) {
-              port.fill = 'transparent';
-              port.stroke = 'transparent';
-            }
-          });
-          e.diagram.skipsUndoManager = false;
-        },
-      },
-      new go.Binding('location', 'loc', go.Point.parse).makeTwoWay(go.Point.stringify),
-      // Room fill (rendered first, below everything)
-      $(
-        go.Shape,
-        'Square',
-        {
-          name: 'SHAPE',
-          width: 100,
-          height: 100,
-          strokeWidth: 0,
-          cursor: 'move',
-          fromLinkable: false,
-          toLinkable: false,
-        },
-        new go.Binding('fill', 'fillColor'),
-      ),
-      // Room border (separate shape so ports can render on top of it)
-      $(
-        go.Shape,
-        'Square',
-        {
-          width: 100,
-          height: 100,
-          fill: 'transparent',
-          strokeWidth: 2,
-          cursor: 'move',
-        },
-        new go.Binding('stroke', 'borderColor'),
-      ),
-      // Selection highlight (renders before ports so they stay on top)
-      $(
-        go.Shape,
-        'Square',
-        {
-          width: 104,
-          height: 104,
-          fill: null,
-          stroke: '#4285f4',
-          strokeWidth: 3,
-          visible: false,
-        },
-        new go.Binding('visible', 'isSelected').ofObject(),
-      ),
-      // Room symbol/character
-      $(
-        go.TextBlock,
-        {
-          font: '24px monospace',
-          stroke: '#000',
-          alignment: go.Spot.Center,
-        },
-        new go.Binding('text', 'text'),
-        new go.Binding('font', '', (data) => {
-          const size = data.fontSize || 24;
-          const family = data.fontFamily || 'monospace';
-          const bold = data.fontBold ? 'bold ' : '';
-          const italic = data.fontItalic ? 'italic ' : '';
-          return `${italic}${bold}${size}px ${family}`;
-        }),
-      ),
-      // 8 connection ports - centered on room edges
-      makePort('N', new go.Spot(0.5, 0)),
-      makePort('NE', new go.Spot(1, 0)),
-      makePort('E', new go.Spot(1, 0.5)),
-      makePort('SE', new go.Spot(1, 1)),
-      makePort('S', new go.Spot(0.5, 1)),
-      makePort('SW', new go.Spot(0, 1)),
-      makePort('W', new go.Spot(0, 0.5)),
-      makePort('NW', new go.Spot(0, 0)),
-    );
+    // Define room node template using shared template
+    diagram.nodeTemplate = createNodeTemplate($, { isEditable: true, showTooltip: false });
 
-    // Bars are authored in a 0..8 box, like built-in arrowheads,
-    // so Spot.Right/Spot.Left alignment lands exactly on the endpoint.
+    // Define link template using shared template
+    diagram.linkTemplate = createLinkTemplate($, { isEditable: true });
 
-    // single bar at endpoint (to-end)
-    go.Shape.defineArrowheadGeometry('Bar', 'M8 0 L8 8');
-    // single bar at endpoint (from-end)
-    go.Shape.defineArrowheadGeometry('BarBack', 'M0 0 L0 8');
-
-    // double bars: one at endpoint + one slightly “inside”
-    go.Shape.defineArrowheadGeometry('DoubleBar', 'M5 0 L5 8 M8 0 L8 8');
-    go.Shape.defineArrowheadGeometry('DoubleBarBack', 'M0 0 L0 8 M3 0 L3 8');
-
-    // Custom link selection adornment (just shows the relinking handles, no mid-segment handle)
-    const linkSelectionAdornmentTemplate = $(
-      go.Adornment,
-      'Link',
-      $(go.Shape, { isPanelMain: true, stroke: '#4285f4', strokeWidth: 3 }),
-    );
-
-    // Define link template for connections
-    diagram.linkTemplate = $(
-      go.Link,
-      {
-        routing: go.Link.Normal, // Straight lines work best with port connections
-        corner: 0,
-        relinkableFrom: true,
-        relinkableTo: true,
-        reshapable: false,
-        resegmentable: false,
-        selectionAdornmentTemplate: linkSelectionAdornmentTemplate,
-        adjusting: go.Link.None, // Don't auto-adjust when nodes move
-        fromShortLength: -8, // Extend line to reach room edge
-        toShortLength: -8,
-      },
-      new go.Binding('fromPortId', 'fromPort').makeTwoWay(),
-      new go.Binding('toPortId', 'toPort').makeTwoWay(),
-      $(go.Shape, { strokeWidth: 2 }, new go.Binding('stroke', 'color'), new go.Binding('strokeDashArray', 'dash')),
-      // "From" end decoration (arrow, line, or double line)
-      $(
-        go.Shape,
-        {
-          segmentIndex: 0,
-          strokeWidth: 2,
-          visible: false,
-        },
-        new go.Binding('stroke', 'color'),
-        new go.Binding('fill', 'color'),
-        // Map from-end decorations to backward variants
-        new go.Binding('fromArrow', 'fromDecor', (d) => {
-          if (d === 'Standard') return 'Backward';
-          if (d === 'Line') return 'BarBack';
-          if (d === 'DoubleLine') return 'DoubleBarBack';
-          return d;
-        }),
-        new go.Binding('visible', 'fromDecor', (d) => !!d),
-        new go.Binding('scale', 'fromDecor', (d) => {
-          if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
-          return 1.5;
-        }),
-        // Only arrows need offset adjustment
-        new go.Binding('segmentOffset', 'fromDecor', (d) => {
-          if (d === 'Standard') return new go.Point(-8, 0);
-          return new go.Point(0, 0);
-        }),
-      ),
-      // "To" end decoration (arrow, line, or double line)
-      $(
-        go.Shape,
-        {
-          segmentIndex: -1,
-          strokeWidth: 2,
-          visible: false,
-        },
-        new go.Binding('stroke', 'color'),
-        new go.Binding('fill', 'color'),
-        // Map to-end decorations to forward variants
-        new go.Binding('toArrow', 'toDecor', (d) => {
-          if (d === 'Line') return 'Bar';
-          if (d === 'DoubleLine') return 'DoubleBar';
-          return d;
-        }),
-        new go.Binding('visible', 'toDecor', (d) => !!d),
-        new go.Binding('scale', 'toDecor', (d) => {
-          if (d === 'Line' || d === 'DoubleLine') return 2.5; // 50% larger than arrows
-          return 1.5;
-        }),
-        // Only arrows need offset adjustment
-        new go.Binding('segmentOffset', 'toDecor', (d) => {
-          if (d === 'Standard') return new go.Point(8, 0);
-          return new go.Point(0, 0);
-        }),
-      ),
-      // "From" end label (near the source of the connection)
-      $(
-        go.TextBlock,
-        {
-          name: 'FROM_LABEL',
-          visible: false,
-          segmentIndex: NaN,
-          segmentFraction: 0.15,
-          segmentOffset: new go.Point(0, -12),
-          font: '24px monospace',
-        },
-        new go.Binding('visible', 'fromLabel', (l) => !!l),
-        new go.Binding('text', 'fromLabel'),
-        new go.Binding('segmentFraction', 'fromLabelPosition', (pos) => (pos !== undefined ? pos : 0.15)),
-        new go.Binding('font', '', (data) => {
-          const size = data.fontSize || 24;
-          const family = data.fontFamily || 'monospace';
-          const bold = data.fontBold ? 'bold ' : '';
-          const italic = data.fontItalic ? 'italic ' : '';
-          return `${italic}${bold}${size}px ${family}`;
-        }),
-        new go.Binding('segmentOrientation', 'labelOrientation', (orient) => {
-          const o = orient || 'along';
-          return o === 'along' ? go.Link.OrientAlong : go.Link.None;
-        }),
-        new go.Binding('angle', 'labelOrientation', (orient) => {
-          return orient === 'vertical' ? 270 : 0;
-        }),
-      ),
-      // "To" end label (near the target of the connection)
-      $(
-        go.TextBlock,
-        {
-          name: 'TO_LABEL',
-          visible: false,
-          segmentIndex: NaN,
-          segmentFraction: 0.85,
-          segmentOffset: new go.Point(0, -12),
-          font: '24px monospace',
-        },
-        new go.Binding('visible', 'toLabel', (l) => !!l),
-        new go.Binding('text', 'toLabel'),
-        new go.Binding('segmentFraction', 'toLabelPosition', (pos) => (pos !== undefined ? pos : 0.85)),
-        new go.Binding('font', '', (data) => {
-          const size = data.fontSize || 24;
-          const family = data.fontFamily || 'monospace';
-          const bold = data.fontBold ? 'bold ' : '';
-          const italic = data.fontItalic ? 'italic ' : '';
-          return `${italic}${bold}${size}px ${family}`;
-        }),
-        new go.Binding('segmentOrientation', 'labelOrientation', (orient) => {
-          const o = orient || 'along';
-          return o === 'along' ? go.Link.OrientAlong : go.Link.None;
-        }),
-        new go.Binding('angle', 'labelOrientation', (orient) => {
-          return orient === 'vertical' ? 270 : 0;
-        }),
-      ),
-    );
-
-    // Initialize with empty model (with port ID properties configured)
-    diagram.model = new go.GraphLinksModel({
-      linkKeyProperty: 'key',
-      linkFromPortIdProperty: 'fromPort',
-      linkToPortIdProperty: 'toPort',
-      nodeDataArray: [],
-      linkDataArray: [],
-    });
+    // Initialize with empty model
+    diagram.model = createModel();
     diagram.nextRoomKey = 1;
 
     // Try to load saved map from localStorage
@@ -587,77 +266,11 @@ const MapperCanvas = ({
       console.warn('Failed to load map from localStorage:', err);
     }
 
-    // Helper to show/hide all ports on all nodes (using colors, not visibility)
-    const setAllPortsVisible = (visible) => {
-      diagram.skipsUndoManager = true;
-      const portIds = ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'];
-      diagram.nodes.each((node) => {
-        portIds.forEach((id) => {
-          const port = node.findObject(`PORT_${id}`);
-          if (port) {
-            if (visible) {
-              port.fill = 'rgba(66, 133, 244, 0.7)';
-              port.stroke = '#2962ff';
-            } else {
-              port.fill = 'transparent';
-              port.stroke = 'transparent';
-            }
-          }
-        });
-      });
-      diagram.skipsUndoManager = false;
-    };
+    // Set up linking tool callbacks to show/hide ports
+    setupLinkingToolCallbacks(diagram, setAllPortsVisible);
 
-    // Show all ports when linking tool activates
-    diagram.toolManager.linkingTool.doActivate = function () {
-      go.LinkingTool.prototype.doActivate.call(this);
-      setAllPortsVisible(true);
-    };
-
-    // Hide all ports when linking tool deactivates
-    diagram.toolManager.linkingTool.doDeactivate = function () {
-      go.LinkingTool.prototype.doDeactivate.call(this);
-      setAllPortsVisible(false);
-    };
-
-    // Same for relinking tool
-    diagram.toolManager.relinkingTool.doActivate = function () {
-      go.RelinkingTool.prototype.doActivate.call(this);
-      setAllPortsVisible(true);
-    };
-
-    diagram.toolManager.relinkingTool.doDeactivate = function () {
-      go.RelinkingTool.prototype.doDeactivate.call(this);
-      setAllPortsVisible(false);
-    };
-
-    // Custom scroll/zoom handling: Command+scroll on Mac, Ctrl+scroll on Windows for zoom
-    diagram.toolManager.mouseWheelBehavior = go.ToolManager.WheelNone;
-    const isMac = navigator.platform.toUpperCase().indexOf('MAC') >= 0;
-
-    const handleWheel = (e) => {
-      e.preventDefault();
-      const zoomModifier = isMac ? e.metaKey : e.ctrlKey;
-
-      if (zoomModifier) {
-        // Zoom
-        const oldScale = diagram.scale;
-        const delta = e.deltaY > 0 ? 0.9 : 1.1;
-        const newScale = oldScale * delta;
-        diagram.scale = Math.max(0.1, Math.min(5, newScale));
-      } else if (e.shiftKey || Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
-        // Horizontal pan (shift+scroll or trackpad horizontal gesture)
-        const delta = e.deltaX !== 0 ? e.deltaX : e.deltaY;
-        const dir = delta > 0 ? 'right' : 'left';
-        diagram.scroll('pixel', dir, Math.abs(delta));
-      } else {
-        // Vertical pan
-        const dir = e.deltaY > 0 ? 'down' : 'up';
-        diagram.scroll('pixel', dir, Math.abs(e.deltaY));
-      }
-    };
-
-    diagramDivRef.current.addEventListener('wheel', handleWheel, { passive: false });
+    // Set up custom scroll/zoom handling
+    const cleanupScrollZoom = setupScrollZoomHandling(diagram, diagramDivRef.current, { isEditable: true });
 
     diagramRef.current = diagram;
     if (onDiagramInit) {
@@ -812,9 +425,7 @@ const MapperCanvas = ({
 
     // Cleanup
     return () => {
-      if (diagramDivRef.current) {
-        diagramDivRef.current.removeEventListener('wheel', handleWheel);
-      }
+      cleanupScrollZoom();
       if (diagramRef.current) {
         diagramRef.current.div = null;
       }

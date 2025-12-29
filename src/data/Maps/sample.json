@@ -1,0 +1,113 @@
+{
+  "version": 1,
+  "name": "Sample Map",
+  "metadata": {
+    "author": "Example",
+    "lastUpdated": "2025-01-01",
+    "notes": "A sample map demonstrating the interactive map viewer"
+  },
+  "diagram": {
+    "nodeDataArray": [
+      {
+        "key": 1,
+        "loc": "50 50",
+        "fillColor": "#e8f5e9",
+        "borderColor": "#2e7d32",
+        "text": "S",
+        "roomInfo": {
+          "name": "Town Square",
+          "description": "The central square of the town. A fountain sits in the center.",
+          "exits": ["north", "south", "east", "west"],
+          "npcs": ["Town Crier", "Guard"],
+          "notes": "Safe area, no combat. Good starting point."
+        }
+      },
+      {
+        "key": 2,
+        "loc": "50 -150",
+        "fillColor": "#fff3e0",
+        "borderColor": "#e65100",
+        "text": "T",
+        "roomInfo": {
+          "name": "Tavern",
+          "description": "A cozy tavern with warm fire. Adventurers gather here.",
+          "exits": ["south", "up"],
+          "npcs": ["Bartender", "Bard"],
+          "notes": "Healing available. Quest giver upstairs."
+        }
+      },
+      {
+        "key": 3,
+        "loc": "250 50",
+        "fillColor": "#e3f2fd",
+        "borderColor": "#1565c0",
+        "text": "Sh",
+        "roomInfo": {
+          "name": "Shop",
+          "description": "A general store selling basic supplies.",
+          "exits": ["west"],
+          "npcs": ["Shopkeeper"],
+          "notes": "Sells potions and basic gear."
+        }
+      },
+      {
+        "key": 4,
+        "loc": "-150 50",
+        "fillColor": "#fce4ec",
+        "borderColor": "#c2185b",
+        "text": "G",
+        "roomInfo": {
+          "name": "Guild Hall",
+          "description": "The adventurer's guild headquarters.",
+          "exits": ["east", "down"],
+          "npcs": ["Guild Master", "Trainer"],
+          "notes": "Class trainers available. Quest board inside."
+        }
+      },
+      {
+        "key": 5,
+        "loc": "50 250",
+        "fillColor": "#f3e5f5",
+        "borderColor": "#7b1fa2",
+        "text": "G",
+        "roomInfo": {
+          "name": "South Gate",
+          "description": "The southern entrance to the town.",
+          "exits": ["north", "south"],
+          "npcs": ["Gate Guard"],
+          "notes": "Leads to the wilderness. Be prepared!"
+        }
+      }
+    ],
+    "linkDataArray": [
+      {
+        "from": 1,
+        "to": 2,
+        "fromPort": "N",
+        "toPort": "S",
+        "color": "#666666"
+      },
+      {
+        "from": 1,
+        "to": 3,
+        "fromPort": "E",
+        "toPort": "W",
+        "color": "#666666"
+      },
+      {
+        "from": 1,
+        "to": 4,
+        "fromPort": "W",
+        "toPort": "E",
+        "color": "#666666"
+      },
+      {
+        "from": 1,
+        "to": 5,
+        "fromPort": "S",
+        "toPort": "N",
+        "color": "#666666"
+      }
+    ]
+  }
+}

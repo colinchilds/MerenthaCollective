@@ -18,9 +18,11 @@ export function zone(name, levelString, summary = '', aoe = '', strong = '', eli
 }
 
 // Map inside an area or sub-area
-export const map = (name, url) => ({
+// interactiveMapName is optional - if provided, the map will use the interactive GoJS viewer
+export const map = (name, url, interactiveMapName = null) => ({
   name,
   url,
+  interactiveMapName,
 });
 
 // Sub-area inside a continent (e.g., Cabeiri inside Atheria)

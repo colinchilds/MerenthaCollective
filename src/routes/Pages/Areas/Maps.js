@@ -5,7 +5,7 @@ import Grid from '@mui/material/Grid';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
 import { Table, TableBody, TableCell, TableRow } from '@mui/material';
-import MapModal from 'routes/Pages/Components/MapModal';
+import InteractiveMap from 'routes/Pages/Components/InteractiveMap';
 
 const breadcrumbs = [
   { label: 'Main', link: '/' },
@@ -371,7 +371,7 @@ const Maps = () => {
                   {maps.map((map, index) => (
                     <TableRow key={index}>
                       <TableCell>
-                        <MapModal name={map.name} url={map.url} />
+                        <InteractiveMap name={map.name} url={map.url} interactiveMapName={map.interactiveMapName} />
                       </TableCell>
                     </TableRow>
                   ))}
