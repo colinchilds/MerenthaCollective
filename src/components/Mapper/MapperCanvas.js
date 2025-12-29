@@ -34,6 +34,31 @@ const NUMPAD_DIRECTIONS = {
   '-': { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE', fromLabel: '-', toLabel: '+', labelOrientation: 'horizontal' }, // Down
 };
 
+// Speedwalk direction mappings: text command -> direction config
+// Used when pasting speedwalk strings like "n;e;s;w;u;d"
+const SPEEDWALK_DIRECTIONS = {
+  n: { dx: 0, dy: -200, fromPort: 'N', toPort: 'S' },
+  north: { dx: 0, dy: -200, fromPort: 'N', toPort: 'S' },
+  ne: { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW' },
+  northeast: { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW' },
+  e: { dx: 200, dy: 0, fromPort: 'E', toPort: 'W' },
+  east: { dx: 200, dy: 0, fromPort: 'E', toPort: 'W' },
+  se: { dx: 200, dy: 200, fromPort: 'SE', toPort: 'NW' },
+  southeast: { dx: 200, dy: 200, fromPort: 'SE', toPort: 'NW' },
+  s: { dx: 0, dy: 200, fromPort: 'S', toPort: 'N' },
+  south: { dx: 0, dy: 200, fromPort: 'S', toPort: 'N' },
+  sw: { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE' },
+  southwest: { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE' },
+  w: { dx: -200, dy: 0, fromPort: 'W', toPort: 'E' },
+  west: { dx: -200, dy: 0, fromPort: 'W', toPort: 'E' },
+  nw: { dx: -200, dy: -200, fromPort: 'NW', toPort: 'SE' },
+  northwest: { dx: -200, dy: -200, fromPort: 'NW', toPort: 'SE' },
+  u: { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW', fromLabel: '+', toLabel: '-', labelOrientation: 'horizontal' },
+  up: { dx: 200, dy: -200, fromPort: 'NE', toPort: 'SW', fromLabel: '+', toLabel: '-', labelOrientation: 'horizontal' },
+  d: { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE', fromLabel: '-', toLabel: '+', labelOrientation: 'horizontal' },
+  down: { dx: -200, dy: 200, fromPort: 'SW', toPort: 'NE', fromLabel: '-', toLabel: '+', labelOrientation: 'horizontal' },
+};
+
 const MapperCanvas = ({
   onDiagramInit,
   toolMode,
@@ -505,6 +530,46 @@ const MapperCanvas = ({
             e.preventDefault();
             e.stopPropagation(); // Prevent GoJS from also handling this
             diagram.commandHandler.redo();
+            break;
+          case 'v':
+            // Handle speedwalk paste in addRoom mode with a room selected
+            if (toolModeRef.current === 'addRoom' && selectionType === 'room' && selectedObject) {
+              e.preventDefault();
+              e.stopPropagation();
+              navigator.clipboard
+                .readText()
+                .then((pastedText) => {
+                  if (!pastedText) return;
+
+                  // Parse speedwalk: split by semicolons and filter valid directions
+                  const commands = pastedText
+                    .toLowerCase()
+                    .split(';')
+                    .map((cmd) => cmd.trim())
+                    .filter((cmd) => cmd && SPEEDWALK_DIRECTIONS[cmd]);
+
+                  if (commands.length === 0) return;
+
+                  // Wrap all room creations in a single transaction for undo
+                  diagram.startTransaction('import speedwalk');
+
+                  // Process each direction sequentially
+                  let currentNode = selectedObject;
+                  commands.forEach((cmd) => {
+                    const direction = SPEEDWALK_DIRECTIONS[cmd];
+                    if (direction && currentNode) {
+                      createRoomWithLink(diagram, currentNode, direction);
+                      // Get the newly selected node for the next iteration
+                      currentNode = diagram.selection.first();
+                    }
+                  });
+
+                  diagram.commitTransaction('import speedwalk');
+                })
+                .catch((err) => {
+                  console.warn('Failed to read clipboard:', err);
+                });
+            }
             break;
           default:
             break;
