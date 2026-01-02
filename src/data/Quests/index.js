@@ -97,8 +97,8 @@ const questData = [
     level: 15,
   },
   {
-    name: 'Catyle',
-    short: 'Catyle',
+    name: 'Cetyle',
+    short: 'Cetyle',
     description: `Many years ago a centaur pirate was lost at sea. Others suspect that it was the
                   ill doings of one of their scurvy mates. They await news, anxious to hang the
                   bloody bloke from the yardarm, or make him walk the plank into a sea of hungry
