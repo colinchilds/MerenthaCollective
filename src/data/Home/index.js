@@ -1,5 +1,12 @@
 const updates = [
   {
+    note: 'TODO: Remove This Update When Merentha Is Back Up!',
+    date: '4/30/2026',
+    messageHtml:
+      '<strong>🔥🔥🔥 Merentha is on FIRE! 🔥🔥🔥</strong><br/>Unfortunately the Merentha server is experiencing an issue and may be down for some time.<br/><br/>Come join us at <a href="https://michaelprograms.com" target="_blank" rel="noopener noreferrer">michaelprograms.com 10000</a> while Merentha is down. This is the latest Merentha code without any player saves, and also an Explorer event going on to test the new Explorer system! 🐲🐲🐲 The only race you can pick is dragon! 🐲🐲🐲<br/><br/>Join the Discord to stay up to date: <a href="https://discord.gg/9bFXwwe" target="_blank" rel="noopener noreferrer">discord.gg/9bFXwwe</a>',
+    backgroundColor: '#c24040',
+  },
+  {
     date: '12/24/2025',
     message: 'Added Tames page showing tameable mobs and their requirements.',
   },

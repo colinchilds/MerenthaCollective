@@ -2,9 +2,9 @@ import React, { Fragment } from 'react';
 import GridContainer from '@jumbo/components/GridContainer';
 import PageContainer from '@jumbo/components/PageComponents/layouts/PageContainer';
 import Grid from '@mui/material/Grid';
+import { Link, Typography, useTheme } from '@mui/material';
 import CmtCard from '@coremat/CmtCard';
 import CmtCardContent from '@coremat/CmtCard/CmtCardContent';
-import { Link, Typography } from '@mui/material';
 import CmtCardHeader from '@coremat/CmtCard/CmtCardHeader';
 import Code from 'common/Code';
 import updates from 'data/Home';
@@ -14,7 +14,31 @@ const breadcrumbs = [
   { label: 'Home', isActive: true },
 ];
 
+const renderUpdateMessage = (update) => {
+  if (update.messageHtml) {
+    return <Typography component="div" dangerouslySetInnerHTML={{ __html: update.messageHtml }} />;
+  }
+
+  if (typeof update.message === 'string') {
+    const lines = update.message.split('\n');
+    return (
+      <Typography>
+        {lines.map((line, lineIndex) => (
+          <Fragment key={lineIndex}>
+            {line}
+            {lineIndex < lines.length - 1 && <br />}
+          </Fragment>
+        ))}
+      </Typography>
+    );
+  }
+
+  return <Typography>{update.message}</Typography>;
+};
+
 const HomePage = () => {
+  const theme = useTheme();
+
   return (
     <PageContainer breadcrumbs={breadcrumbs}>
       <GridContainer>
@@ -44,18 +68,23 @@ const HomePage = () => {
             </CmtCardContent>
           </CmtCard>
         </Grid>
-        {updates.map((update, index) => (
-          <Grid item xs={12} key={index}>
-            <CmtCard>
-              <Fragment>
-                <CmtCardHeader title={update['date']} />
-                <CmtCardContent>
-                  <Typography>{update['message']}</Typography>
-                </CmtCardContent>
-              </Fragment>
-            </CmtCard>
-          </Grid>
-        ))}
+        {updates.map((update, index) => {
+          const backgroundColor =
+            theme.palette.mode === 'dark' && update.backgroundColorDark
+              ? update.backgroundColorDark
+              : update.backgroundColor;
+
+          return (
+            <Grid item xs={12} key={index}>
+              <CmtCard backgroundColor={backgroundColor}>
+                <Fragment>
+                  <CmtCardHeader title={update['date']} />
+                  <CmtCardContent>{renderUpdateMessage(update)}</CmtCardContent>
+                </Fragment>
+              </CmtCard>
+            </Grid>
+          );
+        })}
       </GridContainer>
     </PageContainer>
   );
