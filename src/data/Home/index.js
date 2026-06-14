@@ -1,10 +1,9 @@
 const updates = [
-  {
-    note: 'TODO: Remove This Update When Merentha Is Back Up!',
+    {
+    note: 'TODO: Remove This Update When Merentha Is Fully Back Up!',
     date: '4/30/2026',
     messageHtml:
-      '<strong>🔥🔥🔥 Merentha is on FIRE! 🔥🔥🔥</strong><br/>Unfortunately the Merentha server is experiencing an issue and may be down for some time.<br/><br/>Come join us at <a href="https://michaelprograms.com" target="_blank" rel="noopener noreferrer">michaelprograms.com 10000</a> while Merentha is down. This is the latest Merentha code without any player saves, and also an Explorer event going on to test the new Explorer system! 🐲🐲🐲 The only race you can pick is dragon! 🐲🐲🐲<br/><br/>Join the Discord to stay up to date: <a href="https://discord.gg/9bFXwwe" target="_blank" rel="noopener noreferrer">discord.gg/9bFXwwe</a>',
-    backgroundColor: '#c24040',
+      '<strong>🚨 Merentha is back online! 🚨</strong><br/>We are still waiting on the domain name to be updated to point to the new server. In the meantime, however, you can connect through two different ways:<br/>1. `165.227.41.69 : 10000`<br/>2. `michaelprograms.com : 10000`<br/><br/>Come join us at <br/><br/>Join the Discord to stay up to date: <a href="https://discord.gg/9bFXwwe" target="_blank" rel="noopener noreferrer">discord.gg/9bFXwwe</a>',
   },
   {
     date: '12/24/2025',
