@@ -1,7 +1,7 @@
 const updates = [
     {
     note: 'TODO: Remove This Update When Merentha Is Fully Back Up!',
-    date: '4/30/2026',
+    date: '6/13/2026',
     messageHtml:
       '<strong>🚨 Merentha is back online! 🚨</strong><br/>We are still waiting on the domain name to be updated to point to the new server. In the meantime, however, you can connect through two different ways:<br/>1. `165.227.41.69 : 10000`<br/>2. `michaelprograms.com : 10000`<br/><br/>Come join us at <br/><br/>Join the Discord to stay up to date: <a href="https://discord.gg/9bFXwwe" target="_blank" rel="noopener noreferrer">discord.gg/9bFXwwe</a>',
   },
